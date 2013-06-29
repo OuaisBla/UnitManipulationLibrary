@@ -38,7 +38,7 @@ namespace Unit
 namespace SI
 {
 
-class Power : public Product<Product<Product<Meter>,Kilogram>, Product<Second::Invert,Product<Second>::Invert> >::UnitType
+class Power : public Product<Joule,Second::Invert>::UnitType
 {
 public:
 

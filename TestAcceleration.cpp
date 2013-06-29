@@ -314,6 +314,8 @@ void TestCompileTimeDefinition()
   Megaacceleration2 const megaacceleration2 = megaacceleration;
   Assert( fequal( megaacceleration.GetFactor(), megaacceleration2.GetFactor() ) );
 
+  Scalar s = acceleration3 / acceleration4;
+
 }
 
 void SolveAccelerationProblems1()

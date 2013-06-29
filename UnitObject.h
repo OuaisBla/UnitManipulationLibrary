@@ -66,6 +66,12 @@ public:
   typedef Identity SimplifiedFactor;
   typedef Identity InvertedFactor;
 
+  enum { 
+    Exponent = 0,
+    NumeratorBaseTypeValue = 1, 
+    DenumeratorBaseTypeValue = 1
+  };
+
 public:
 
   Identity() { }
@@ -155,13 +161,15 @@ public:
 
 public:
 
+  inline static String SuffixExponent();
   inline static String Suffix();
 
 };
 
+
 template <typename T, Integer E>
-inline String BaseUnit<T, E>::Suffix()
-{ 
+inline String BaseUnit<T, E>::SuffixExponent()
+{
   wchar_t buf[4] = { L'\0' };
 
   switch( E )
@@ -187,7 +195,13 @@ inline String BaseUnit<T, E>::Suffix()
     ::swprintf_s( buf, L"%d", Integer( E ) );
   }
 
-  return BaseType::SimplifiedFactor::Suffix() + BaseType::Suffix() + buf;
+  return String( buf );
+}
+
+template <typename T, Integer E>
+inline String BaseUnit<T, E>::Suffix()
+{ 
+  return BaseType::SimplifiedFactor::Suffix() + BaseType::Suffix() + SuffixExponent();
 }
 
 

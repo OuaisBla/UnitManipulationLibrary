@@ -146,9 +146,7 @@ void TestCompileTimeDefinition()
   Meter m = Meter(newton8 * ( Second(1.0) * Second(1.0) ) / Kilogram(1.0));
 
 
-  Unit::Object<> const &o = newton2 / newton;
-
-  String s = o.GetSuffix();
+  Scalar s = Newton(newton2) / Newton(newton);
 
   Scalar factor = Newton::SimplifiedFactor::ConversionFactor();
 

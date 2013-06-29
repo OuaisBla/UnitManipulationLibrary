@@ -39,7 +39,7 @@ namespace SI
 {
 
 
-class Energy : public Product<Product<Product<Meter>,Kilogram>,Product<Second>::Invert>::UnitType
+class Energy : public Product<Newton, Meter>::UnitType
 {
 public:
 

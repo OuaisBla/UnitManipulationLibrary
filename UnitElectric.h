@@ -28,6 +28,7 @@ jean.gauthier@programmer.net
 #pragma once
 
 
+#include "UnitPower.h"
 #include "UnitElectricCharge.h"
 #include "UnitElectricPotential.h"
 #include "UnitElectricResistance.h"

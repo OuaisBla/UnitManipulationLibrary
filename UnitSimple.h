@@ -104,7 +104,7 @@ public:
 
   inline static String Suffix()
   {
-    return _Factor::Suffix() + UnitType::Suffix();
+    return _Factor::Suffix() + BaseType::Suffix() + UnitType::SuffixExponent();
   }
 
 

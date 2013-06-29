@@ -81,18 +81,19 @@ void TestFactorDefinition()
 void TestCompileTimeDefinition()
 {
 
-
-
-  int iVolt = Volt::NumeratorBaseTypeValue;
-  int jVolt = Volt::DenumeratorBaseTypeValue;
-
-  int iOhm = Ohm::NumeratorBaseTypeValue;
-  int jOhm = Ohm::DenumeratorBaseTypeValue;
-
-  int i = (Volt( 1. ) / Ohm( 1. )).NumeratorBaseTypeValue;
-  int j = (Volt( 1. ) / Ohm( 1. )).DenumeratorBaseTypeValue;
-
   Ampere a = Volt( 1. ) / Ohm( 1. );
+
+  Ohm ohm = Volt( 1. ) / Ampere( 1. );
+
+  Joule j = Watt( 1. ) * Millisecond( 1. ); 
+
+  Watt w = Joule( 1. ) / Second( 1. );
+
+  Ohm ohm2 = Watt ( 1. ) / Dekaampere( 1. ) / Deciampere( 1. );
+
+  Ohm ohm3 = Watt ( 1. ) / Product<Dekaampere>( 1. );
+
+  Milliampere ma = Kilocoulomb( 1. ) / Microsecond( 1. );
 
 }
 

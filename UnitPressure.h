@@ -39,7 +39,7 @@ namespace SI
 {
 
 
-struct Pressure : public Product<Product<Meter::Invert, Kilogram>, Product<Second>::Invert>::UnitType
+struct Pressure : public Product<Newton, Product<Meter>::Invert>::UnitType
 {
 
   inline static String Suffix()
