@@ -107,10 +107,6 @@ inline String Identity::Suffix()
 template<typename _ScalarType = Scalar>
 class Object
 {
-  
-  Object( Object const & );
-  void operator=( Object const & );
-
 public:
 
   //Default facade
@@ -119,24 +115,38 @@ public:
 
 public:
 
-  Object() { }
+  inline Object();
   virtual ~Object() { }
 
 public:
 
-  virtual ScalarType GetValue() const = 0;
-  virtual Scalar GetFactor() const = 0;
-  virtual ScalarType GetConvertedValue() const = 0;
+  virtual ScalarType GetValue() const { return 0; }
+  virtual Scalar GetFactor() const { return 1; }
+  virtual ScalarType GetConvertedValue() const { return 0; }
 
 public:
 
-  virtual String GetSuffix() const = 0;
+  virtual String GetSuffix() const { return String(); } 
 
 protected:
 
-  virtual void SetValue( ScalarType ) = 0;
+  virtual void SetValue( ScalarType ) { }
+
+protected:
+
+  static SuffixesMap RuntimeSuffix;
 
 };
+
+
+template<typename S>
+SuffixesMap Object<S>::RuntimeSuffix;
+
+template<typename S>
+inline Object<S>::Object()
+{
+  static SuffixesMap __ForceLinker =  Object<S>::RuntimeSuffix;
+}
 
 
 /**
@@ -154,6 +164,8 @@ public:
 
 public:
 
+  BaseUnit() { }
+
   enum { Exponent = E };
 
   enum { NumeratorBaseTypeValue = IntegerPow<BaseType::NumeratorBaseTypeValue, Exponent>::value };
@@ -170,32 +182,7 @@ public:
 template <typename T, Integer E>
 inline String BaseUnit<T, E>::SuffixExponent()
 {
-  wchar_t buf[4] = { L'\0' };
-
-  switch( E )
-  {
-  case -3:
-    wcscpy_s( buf, L"-\x00B3" );
-    break;
-  case -2:
-    wcscpy_s( buf, L"-\x00B2" );
-    break;
-  case -1:
-    wcscpy_s( buf, L"-\x00B9" );
-    break;
-  case 1:
-    break;
-  case 2:
-    wcscpy_s( buf, L"\x00B2" );
-    break;
-  case 3:
-    wcscpy_s( buf, L"\x00B3" );
-    break;
-  default:
-    ::swprintf_s( buf, L"%d", Integer( E ) );
-  }
-
-  return String( buf );
+  return Unit::SuffixExponent( E );
 }
 
 template <typename T, Integer E>

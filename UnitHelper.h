@@ -29,6 +29,8 @@ jean.gauthier@programmer.net
 
 
 #include <boost/math/common_factor.hpp>
+#include <boost/unordered_map.hpp>
+#include <xstring>
 
 
 namespace Unit
@@ -39,6 +41,9 @@ namespace Unit
   typedef long          Integer;
   typedef std::wstring  String;
 
+  typedef std::pair<String,String>                    PairString;
+
+  typedef boost::unordered_map<Integer, PairString>   SuffixesMap;
 
   template <bool>
   struct CompatibleUnit;
@@ -79,6 +84,78 @@ namespace Unit
 
   };
 
+
+  inline String SuffixExponent( Integer E )
+  {
+    wchar_t buf[4] = { L'\0' };
+
+    switch( E )
+    {
+    case -3:
+      wcscpy_s( buf, L"-\x00B3" );
+      break;
+    case -2:
+      wcscpy_s( buf, L"-\x00B2" );
+      break;
+    case -1:
+      wcscpy_s( buf, L"-\x00B9" );
+      break;
+    case 1:
+      break;
+    case 2:
+      wcscpy_s( buf, L"\x00B2" );
+      break;
+    case 3:
+      wcscpy_s( buf, L"\x00B3" );
+      break;
+    default:
+      ::swprintf_s( buf, L"%d", Integer( E ) );
+    }
+
+    return String( buf );
+  }
+
+
+
+  inline void decompose(Integer n, boost::unordered_map<Integer, Integer> &out)
+  {
+    int _sign = n < 0 ? -1 : 1; 
+
+    n = ::abs( n );
+
+    Integer i(2);
+
+    while (n != 1)
+    {
+      while (n % i == Integer(0))
+      {
+        boost::unordered_map<Integer, Integer>::iterator it = out.find( i ); 
+        if( it == out.end() )
+        {
+          it = out.insert( boost::unordered_map<Integer, Integer>::value_type( i, 0 ) ).first;
+        }
+
+        it->second += _sign;
+
+        n /= i;
+      }
+      ++i;
+    }
+  }
+
+  inline bool IsPrime( Integer n )
+  {
+    Integer const count = static_cast<Integer>( ::sqrt( n * 1.0 ) ) + 1;
+
+    bool is_prime = n == 2 || n % 2 != 0;
+
+    for(Integer i = 3; i < count && is_prime; i += 2) 
+    { 
+      is_prime = n % i != 0;
+    }
+
+    return is_prime;
+  }
 
 
 }

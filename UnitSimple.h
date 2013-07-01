@@ -42,6 +42,7 @@ class Simple : public _UnitType
 public:
 
   typedef _UnitType                             UnitType;
+  typedef _Factor                               _Factor;
 
   typedef typename UnitType::ScalarType         ScalarType;
 
@@ -248,7 +249,25 @@ inline typename Simple<T,F>::ScalarType Simple<T,F>::GetConvertedValue() const
 template <typename T, typename F>
 inline String Simple<T,F>::GetSuffix() const
 {
-  return Suffix();
+  boost::unordered_map<Integer, Integer> factors;
+   
+  decompose( static_cast<Integer>( NumeratorBaseTypeValue ), factors );
+  decompose( -static_cast<Integer>( DenumeratorBaseTypeValue ), factors );
+
+  boost::unordered_map<Integer, Integer>::const_iterator it = factors.begin();
+
+  std::pair<String, String> const & suffix_0 = Object<ScalarType>::RuntimeSuffix[it->first];
+
+  String runtimeSuffix = (factors.size() > 1 ? suffix_0.first : String()) + suffix_0.second + SuffixExponent( it->second );
+
+  for( ++it; it != factors.end(); ++it )
+  {
+    std::pair<String, String> const & suffix_n = Object<ScalarType>::RuntimeSuffix[it->first];
+
+    runtimeSuffix += L'*' + suffix_n.first + suffix_n.second + SuffixExponent( it->second );
+  }
+
+  return _Factor::Suffix() + runtimeSuffix;
 }
 
 //

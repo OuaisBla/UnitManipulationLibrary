@@ -52,6 +52,77 @@ public:
 };
 
 
+template <typename _BaseType>
+class BaseUnit<_BaseType, 1> : public _BaseType
+{
+public:
+
+  typedef _BaseType                       BaseType;
+  typedef BaseUnit<BaseType,1>            SimplifiedType;
+  typedef BaseUnit<BaseType,-1>           InvertedType;
+  typedef typename BaseType::ScalarType   ScalarType;
+
+public:
+
+  inline BaseUnit();
+
+  enum { Exponent = 1 };
+
+  enum { NumeratorBaseTypeValue = BaseType::NumeratorBaseTypeValue };
+  enum { DenumeratorBaseTypeValue = BaseType::DenumeratorBaseTypeValue };
+
+public:
+
+  inline static String SuffixExponent();
+  inline static String Suffix();
+
+private:
+  
+  inline explicit BaseUnit( void * ); 
+
+  static BaseUnit const RuntimeSuffixCtor;
+
+};
+
+
+template <typename T>
+BaseUnit<T,1> const BaseUnit<T,1>::RuntimeSuffixCtor( NULL );
+
+template <typename T>
+inline BaseUnit<T,1>::BaseUnit()
+{
+  static BaseUnit<T, 1> __ForceLinker = BaseUnit<T, 1>::RuntimeSuffixCtor;
+}
+
+template <typename T>
+inline BaseUnit<T,1>::BaseUnit( void * ) 
+{
+  Integer const _NumeratorBaseTypeValue = static_cast<Integer>( NumeratorBaseTypeValue * DenumeratorBaseTypeValue );
+
+  SuffixesMap::iterator it = Object<ScalarType>::RuntimeSuffix.find(_NumeratorBaseTypeValue);
+
+  if( IsPrime( _NumeratorBaseTypeValue ) && it == Object<ScalarType>::RuntimeSuffix.end() )
+  {
+    String const suffix = BaseType::Suffix();
+    String const factorsuffix = BaseType::SimplifiedFactor::Suffix();
+
+    Object<ScalarType>::RuntimeSuffix.insert( SuffixesMap::value_type( _NumeratorBaseTypeValue, PairString( factorsuffix, suffix ) ) );
+  }
+}
+
+template <typename T>
+inline String BaseUnit<T, 1>::SuffixExponent()
+{
+  return String();
+}
+
+template <typename T>
+inline String BaseUnit<T, 1>::Suffix()
+{ 
+  return BaseType::SimplifiedFactor::Suffix() + BaseType::Suffix();
+}
+
+
 
 /**
   Class that represents a product of unit type.
