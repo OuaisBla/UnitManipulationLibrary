@@ -1,5 +1,5 @@
 
-
+#include "stdafx.h"
 #include <cassert>
 #include <cmath>
 #include <conio.h>

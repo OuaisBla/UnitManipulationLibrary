@@ -1,5 +1,5 @@
 
-
+#include "stdafx.h"
 #include "UnitArea.h"
 #include <iostream>
 

@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include "UnitElectric.h"
 #include <iostream>
 

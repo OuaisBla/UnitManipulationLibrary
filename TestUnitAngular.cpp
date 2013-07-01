@@ -1,5 +1,5 @@
 
-
+#include "stdafx.h"
 #include "UnitAngular.h"
 #include <iostream>
 

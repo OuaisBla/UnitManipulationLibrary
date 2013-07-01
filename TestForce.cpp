@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include "UnitForce.h"
 #include "UnitAngular.h"
 #include <iostream>

@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include "UnitAcceleration.h"
 
 #include <iostream>

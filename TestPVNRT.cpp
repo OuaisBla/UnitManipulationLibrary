@@ -1,5 +1,5 @@
 
-
+#include "stdafx.h"
 #include "UnitVolume.h"
 #include "UnitPressure.h"
 #include "UnitEnergy.h"
@@ -74,7 +74,7 @@ void TestPV_equals_NRT()
   std::wcout << "Volt: " << Volt().GetSuffix() << std::endl;
   std::wcout << "Volt2: " << Volt2().GetSuffix() << std::endl;
 
-  //std::wcout << (Pascal2() / Joule2( 1. )).GetSuffix() << std::endl;
+  std::wcout << (Pascal2() / Joule2( 1. )).GetSuffix() << std::endl;
 
   std::wcout << (pressure * spaceneeded).GetSuffix() << std::endl;
   std::wcout << (air * R * temperature).GetSuffix() << std::endl;

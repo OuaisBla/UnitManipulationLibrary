@@ -1,5 +1,5 @@
 
-
+#include "stdafx.h"
 #include "UnitVelocity.h"
 #include <iostream>
 
