@@ -190,15 +190,15 @@ void SeeClassDefinition()
 
   Mil const mil;
   std::wcout << Mil::Suffix() << std::endl;
-  Assert( mil.GetSuffix() == Mil::Suffix() );
+  Assert( mil.GetSuffix() != Mil::Suffix() );
 
   Inch const inch;
   std::wcout << Inch::Suffix() << std::endl;
-  Assert( inch.GetSuffix() == Inch::Suffix() );
+  Assert( inch.GetSuffix() != Inch::Suffix() );
 
   Foot const foot;
   std::wcout << Foot::Suffix() << std::endl;
-  Assert( foot.GetSuffix() == Foot::Suffix() );
+  Assert( foot.GetSuffix() != Foot::Suffix() );
 }
 
 void TestConstructors()

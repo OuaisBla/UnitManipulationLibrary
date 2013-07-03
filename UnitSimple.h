@@ -105,7 +105,7 @@ public:
 
   inline static String Suffix()
   {
-    return _Factor::Suffix() + BaseType::Suffix() + UnitType::SuffixExponent();
+    return _Factor::Suffix() + UnitType::Suffix() + UnitType::SuffixExponent();
   }
 
 
@@ -264,7 +264,7 @@ inline String Simple<T,F>::GetSuffix() const
   {
     std::pair<String, String> const & suffix_n = Object<ScalarType>::RuntimeSuffix[it->first];
 
-    runtimeSuffix += L'*' + suffix_n.first + suffix_n.second + SuffixExponent( it->second );
+    runtimeSuffix += DOT_OPERATOR + suffix_n.first + suffix_n.second + SuffixExponent( it->second );
   }
 
   return _Factor::Suffix() + runtimeSuffix;

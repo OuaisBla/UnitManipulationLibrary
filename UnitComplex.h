@@ -165,7 +165,7 @@ public:
 template <typename L, typename R>
 inline String PS2<L,R>::Suffix()
 {
-  return L::Suffix() + L'*' + R::Suffix();
+  return L::Suffix() + DOT_OPERATOR + R::Suffix();
 }
 
 
@@ -214,7 +214,7 @@ public:
 template <typename A, typename B, typename C>
 inline String PS3<A, B, C>::Suffix()
 {
-  return A::Suffix() + L'*' + B::Suffix() + L'*' + C::Suffix();
+  return A::Suffix() + DOT_OPERATOR + B::Suffix() + DOT_OPERATOR + C::Suffix();
 }
 
 
@@ -261,7 +261,7 @@ public:
 template <typename A, typename B, typename C, typename D>
 inline String PS4<A, B, C, D>::Suffix()
 {
-  return A::Suffix() + L'*' + B::Suffix() + L'*' + C::Suffix() + L'*' + D::Suffix();
+  return A::Suffix() + DOT_OPERATOR + B::Suffix() + DOT_OPERATOR + C::Suffix() + DOT_OPERATOR + D::Suffix();
 }
 
 /*
@@ -309,7 +309,7 @@ public:
 template <typename A, typename B, typename C, typename D, typename E>
 inline String PS5<A, B, C, D, E>::Suffix()
 {
-  return A::Suffix() + L'*' + B::Suffix() + L'*' + C::Suffix() + L'*' + D::Suffix() + L'*' + E::Suffix();
+  return A::Suffix() + DOT_OPERATOR + B::Suffix() + DOT_OPERATOR + C::Suffix() + DOT_OPERATOR + D::Suffix() + DOT_OPERATOR + E::Suffix();
 }
 */
 

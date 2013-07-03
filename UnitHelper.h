@@ -42,9 +42,18 @@ namespace Unit
   typedef std::wstring  String;
 
   typedef std::pair<String,String>                    PairString;
-
   typedef boost::unordered_map<Integer, PairString>   SuffixesMap;
 
+
+  //
+  //  Constants literals
+  //
+  wchar_t const DOT_OPERATOR = L'\x22C5';
+
+
+  //
+  //  Compile-time assertion operator
+  //
   template <bool>
   struct CompatibleUnit;
 
@@ -52,6 +61,9 @@ namespace Unit
   struct CompatibleUnit<true> { };
 
 
+  //
+  //  Compile time integer helper
+  //
   template <Integer V>
   struct IntegerAbs
   {
@@ -116,7 +128,9 @@ namespace Unit
   }
 
 
-
+  //
+  //  Runtime time integer helper for factorization
+  //
   inline void decompose(Integer n, boost::unordered_map<Integer, Integer> &out)
   {
     int _sign = n < 0 ? -1 : 1; 

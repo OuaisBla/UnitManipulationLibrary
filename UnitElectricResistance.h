@@ -43,7 +43,7 @@ namespace Unit
 
       inline static String Suffix()
       {
-        return String( L"\x03A9" );
+        return String( L"\x2126" );
       }
 
     };
