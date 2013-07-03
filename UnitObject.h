@@ -239,6 +239,25 @@ inline String Factor<E>::Suffix()
 } //Namespace SI
 
 
+
+/**
+  Class that represents the product of two factors.
+*/
+template <typename L, typename R = L>
+class OffsetHandler
+{
+public:
+
+  typedef typename L::ScalarType ScalarType;
+
+  inline static ScalarType Convert( ScalarType const value )
+  {
+    return value;
+  }
+
+};
+
+
 /**
   Class that represents the product of two factors.
 */

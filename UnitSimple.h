@@ -72,7 +72,7 @@ public:
 
   template< typename OtherUnitType, typename OtherFactor>
   inline Simple( Simple<OtherUnitType, OtherFactor> const &_s ) :
-    m_Value( _s.Simple<OtherUnitType, OtherFactor>::GetValue() * (OtherFactor::ConversionFactor() / m_Factor) )
+    m_Value( OffsetHandler<UnitType, OtherUnitType>::Convert( _s.Simple<OtherUnitType, OtherFactor>::GetValue() * (OtherFactor::ConversionFactor() / m_Factor) ) )
   {
     typedef Simple<OtherUnitType, OtherFactor> _OtherUnit;
 
@@ -261,7 +261,7 @@ inline Scalar Simple<T,F>::GetFactor() const
 template <typename T, typename F>
 inline typename Simple<T,F>::ScalarType Simple<T,F>::GetConvertedValue() const
 { 
-  return m_Value * m_Factor;
+  return OffsetHandler<BaseType, UnitType>::Convert( m_Value * m_Factor );
 }
 
 template <typename T, typename F>

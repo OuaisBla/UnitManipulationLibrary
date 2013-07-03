@@ -87,11 +87,8 @@ typedef Simple<Temperature,Yotta>    Yottakelvin;
 namespace NonSI
 {
 
-  struct _Celcius : public Temperature
+  struct _Celsius : public Temperature
   {
-
-    enum { NumeratorBaseTypeValue = 19 };
-    enum { DenumeratorBaseTypeValue = 1 };
 
     static String Suffix() { return String( L"°C" ); }
 
@@ -99,9 +96,39 @@ namespace NonSI
 
   };
 
-  typedef Simple<_Celcius>          Celcius;
+  typedef Simple<_Celsius>          Celsius;
 
 }
+
+
+template <typename T>
+class OffsetHandler<T, NonSI::_Celsius>
+{
+public:
+
+  typedef NonSI::_Celsius::ScalarType ScalarType;
+
+  inline static ScalarType Convert( ScalarType const value )
+  {
+    return value + (NonSI::_Celsius::Offset() - T::Offset() );
+  }
+
+};
+
+template <typename T>
+class OffsetHandler<NonSI::_Celsius, T>
+{
+public:
+
+  typedef NonSI::_Celsius::ScalarType ScalarType;
+
+  inline static ScalarType Convert( ScalarType const value )
+  {
+    return value + (T::Offset() - NonSI::_Celsius::Offset() );
+  }
+
+};
+
 
 
 } //namespace Unit

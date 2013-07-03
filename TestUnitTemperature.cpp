@@ -17,7 +17,7 @@ void Assert( bool );
 bool fequal( double, double );
 
 
-void TestUnitTemperature()
+void TestTemperature()
 {
 
   TestClassDefinition();
@@ -46,10 +46,23 @@ void TestClassDefinition()
   Assert( fequal( dekakelvin.GetConvertedValue(), 10. ) );
   Assert( fequal( dekakelvin.GetFactor(), 10. ) );
 
-  Celcius const celcius( 1. );
-  Assert( fequal( celcius.GetValue(), 1. ) );
-  Assert( fequal( celcius.GetConvertedValue(), 1. ) );
-  Assert( fequal( celcius.GetFactor(), 1. ) );
+  Celsius const celsius( 1. );
+  Assert( fequal( celsius.GetValue(), 1. ) );
+  Assert( fequal( celsius.GetConvertedValue(), 274.15 ) );
+  Assert( fequal( celsius.GetFactor(), 1. ) );
+
+  Celsius const celciusToCelcius( Celsius( 0. ) );
+  Assert( fequal( celciusToCelcius.GetValue(), 0. ) );
+
+  Celsius const KelvinToCelcius( Kelvin( 0.) );
+  Assert( fequal( KelvinToCelcius.GetValue(), -273.15 ) );
+
+  Kelvin const CelciusToKelvin( Celsius( 0.) );
+  Assert( fequal( CelciusToKelvin.GetValue(), 273.15 ) );
+
+  Kelvin const KelvinToKelvin( Kelvin( 0. ) );
+  Assert( fequal( KelvinToKelvin.GetValue(), 0. ) );
+
 
 }
 
@@ -66,8 +79,9 @@ void SeeClassDefinition()
   Dekakelvin const dekakelvin;
   std::wcout << dekakelvin.GetSuffix() << std::endl;
 
-  Celcius const celcius;
-  std::wcout << celcius.GetSuffix() << std::endl;
+  Celsius const celsius;
+  std::wcout << celsius.GetSuffix() << std::endl;
+  std::wcout << Celsius::Suffix() << std::endl;
 
 }
 

@@ -45,7 +45,7 @@ namespace Unit
     typedef _Angle BaseType;
     typedef BaseUnit<BaseType> SimplifiedType;
 
-    enum { NumeratorBaseTypeValue = 7 };
+    enum { NumeratorBaseTypeValue = 19 };
     enum { DenumeratorBaseTypeValue = 1 };
 
     inline static ScalarType Normalize( ScalarType value );
