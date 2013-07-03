@@ -150,6 +150,7 @@
     <ClCompile Include="TestUnitIdentity.cpp" />
     <ClCompile Include="TestUnitLength.cpp" />
     <ClCompile Include="TestUnitMass.cpp" />
+    <ClCompile Include="TestUnitTemperature.cpp" />
     <ClCompile Include="TestVelocity.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +159,7 @@
     <ClInclude Include="UnitElectricCharge.h" />
     <ClInclude Include="UnitElectricPotential.h" />
     <ClInclude Include="UnitElectricResistance.h" />
+    <ClInclude Include="UnitLuminousIntensity.h" />
     <ClInclude Include="UnitPowerRatio.h" />
     <ClInclude Include="Unit.h" />
     <ClInclude Include="UnitAcceleration.h" />

@@ -44,14 +44,11 @@ struct _Temperature : public Object<>
   enum { NumeratorBaseTypeValue = 7 };
   enum { DenumeratorBaseTypeValue = 1 };
 
-  inline static String Suffix();
+  inline static String Suffix() { return String( L"K" ); }
+
+  static ScalarType Offset() { return 0.0; }
 
 };
-
-inline String _Temperature::Suffix()
-{
-  return String( L"K" );
-}
 
 
 typedef _Temperature::SimplifiedType Temperature;
@@ -85,6 +82,26 @@ typedef Simple<Temperature,Yotta>    Yottakelvin;
 
 
 } //namespace SI
+
+
+namespace NonSI
+{
+
+  struct _Celcius : public Temperature
+  {
+
+    enum { NumeratorBaseTypeValue = 19 };
+    enum { DenumeratorBaseTypeValue = 1 };
+
+    static String Suffix() { return String( L"°C" ); }
+
+    static ScalarType Offset() { return 273.15; }
+
+  };
+
+  typedef Simple<_Celcius>          Celcius;
+
+}
 
 
 } //namespace Unit
