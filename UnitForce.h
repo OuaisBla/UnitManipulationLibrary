@@ -40,9 +40,10 @@ namespace SI
 {
 
 
-class Force : public Product<Kilogram,Acceleration>::UnitType
+struct Force : public Product<Kilogram,Acceleration>::UnitType
 {
-public:
+
+  typedef Force DerivedType;
 
   inline static String Suffix()
   {

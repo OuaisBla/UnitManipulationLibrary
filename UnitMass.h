@@ -35,24 +35,20 @@ namespace Unit
 {
 
 
-struct _Mass : public Object<>
+struct _Mass : public Object<>, public Facade<_Mass>
 {
 
-  typedef _Mass BaseType;
   typedef SI::Kilo SimplifiedFactor;
-  typedef BaseUnit<BaseType> SimplifiedType;
 
   enum { NumeratorBaseTypeValue = 5 };
   enum { DenumeratorBaseTypeValue = 1 };
 
-  inline static String Suffix();
+  inline static String Suffix()
+  {
+    return String( L"g" );
+  }
 
 };
-
-inline String _Mass::Suffix()
-{
-  return String( L"g" );
-}
 
 
 typedef _Mass::SimplifiedType Mass;

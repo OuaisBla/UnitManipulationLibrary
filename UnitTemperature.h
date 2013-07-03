@@ -35,11 +35,8 @@ namespace Unit
 {
 
 
-struct _Temperature : public Object<>
+struct _Temperature : public Object<>, public Facade<_Temperature>
 {
-
-  typedef _Temperature BaseType;
-  typedef BaseUnit<BaseType> SimplifiedType;
 
   enum { NumeratorBaseTypeValue = 7 };
   enum { DenumeratorBaseTypeValue = 1 };

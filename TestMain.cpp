@@ -19,6 +19,7 @@ void TestRunTimePerformance();
 void TestPV_equals_NRT();
 void TestElectric();
 void TestTemperature();
+void TestFrequency();
 
 using namespace Unit::SI;
 
@@ -35,6 +36,7 @@ int __cdecl main()
   TestPV_equals_NRT();
   TestElectric();
   TestTemperature();
+  TestFrequency();
 
 #ifndef _DEBUG
   TestRunTimePerformance();

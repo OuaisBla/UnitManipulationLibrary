@@ -35,21 +35,16 @@ namespace Unit
 {
 
 
-struct _AmountOfSubstance : public Object<>
+struct _AmountOfSubstance : public Object<>, public Facade<_AmountOfSubstance>
 {
 
   enum { NumeratorBaseTypeValue = 13 };
   enum { DenumeratorBaseTypeValue = 1 };
 
-
-  typedef _AmountOfSubstance BaseType;
-  typedef BaseUnit<BaseType> SimplifiedType;
-
   inline static String Suffix()
   { 
     return String( L"mol" );
   }
-
 
 };
 

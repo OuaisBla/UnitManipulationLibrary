@@ -36,11 +36,8 @@ namespace Unit
 
 
   template<typename _ScalarType = Scalar>
-  struct _Length : public Object<_ScalarType>
+  struct _Length : public Object<_ScalarType>, public Facade<_Length<_ScalarType> >
   {
-
-    typedef _Length             BaseType;
-    typedef BaseUnit<BaseType>  SimplifiedType;
 
     enum { NumeratorBaseTypeValue = 2 };
     enum { DenumeratorBaseTypeValue = 1 };
@@ -93,6 +90,8 @@ namespace NonSI
 struct _Mil : public Length
 {
 
+  typedef _Mil DerivedType;
+
   static String Suffix() { return String( L"mil" ); }
 
 };
@@ -113,6 +112,8 @@ struct _MilFactor
 struct _Inch : public Length
 {
 
+  typedef _Inch DerivedType;
+
   static String Suffix() { return String( L"in" ); }
 
 };
@@ -131,6 +132,8 @@ struct _InchFactor : public Length
 
 struct _Foot : public Length
 {
+
+  typedef _Foot DerivedType;
 
   static String Suffix() { return String( L"ft" ); }
 

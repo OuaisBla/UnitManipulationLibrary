@@ -95,6 +95,9 @@ inline String Identity::Suffix()
 }
 
 
+template <typename, Integer = 1>
+class BaseUnit;
+
 
 /**
   Abstract class representing the basic interface of a unit object.
@@ -105,14 +108,12 @@ inline String Identity::Suffix()
   equals to 1.
 */
 
-template<typename _ScalarType = Scalar, class _Policy = boost::math::policies::precision<_ScalarType, boost::math::policies::policy<> > >
+template<typename _ScalarType = Scalar, typename _Policy = boost::math::policies::precision<_ScalarType, boost::math::policies::policy<> > >
 class Object
 {
 public:
 
-  //Default facade
   typedef _ScalarType                     ScalarType;
-  typedef Identity                        SimplifiedFactor;
   typedef _Policy                         Policy;
   typedef std::numeric_limits<ScalarType> Limits;
 
@@ -135,30 +136,43 @@ protected:
 
   virtual void SetValue( ScalarType ) { }
 
-protected:
-
-  static SuffixesMap RuntimeSuffix;
+  static SuffixesMap RuntimeSuffixes;
 
 };
 
 
-template<typename S, class P>
-SuffixesMap Object<S,P>::RuntimeSuffix;
+template<typename _BaseType>
+struct Facade
+{
 
-template<typename S, class P>
+  typedef _BaseType                       BaseType;
+  typedef BaseType                        DerivedType;
+  typedef BaseUnit<BaseType>              SimplifiedType;
+  typedef BaseUnit<BaseType,-1>           InvertedType;
+  typedef Identity                        SimplifiedFactor;
+
+};
+
+template<typename S, typename P>
+SuffixesMap Object<S,P>::RuntimeSuffixes;
+
+template<typename S, typename P>
 inline Object<S,P>::Object()
 {
-  static SuffixesMap __ForceLinker =  Object<S>::RuntimeSuffix;
+  static SuffixesMap __ForceLinker = Object<S,P>::RuntimeSuffixes;
 }
-
 
 /**
   Class that helps to simplify a unit type.
 */
 
-template <typename _BaseType, Integer E = 1>
+template <typename _BaseType, Integer E>
 class BaseUnit : public _BaseType
 {
+
+  enum { _NumeratorBaseTypeValue = E >= 0 ? BaseType::NumeratorBaseTypeValue : BaseType::DenumeratorBaseTypeValue };
+  enum { _DenumeratorBaseTypeValue = E >= 0 ? BaseType::DenumeratorBaseTypeValue : BaseType::NumeratorBaseTypeValue };
+
 public:
 
   typedef _BaseType                       BaseType;
@@ -171,8 +185,8 @@ public:
 
   enum { Exponent = E };
 
-  enum { NumeratorBaseTypeValue = IntegerPow<BaseType::NumeratorBaseTypeValue, Exponent>::value };
-  enum { DenumeratorBaseTypeValue = IntegerPow<BaseType::DenumeratorBaseTypeValue, Exponent>::value };
+  enum { NumeratorBaseTypeValue = IntegerPow<_NumeratorBaseTypeValue, Exponent>::value };
+  enum { DenumeratorBaseTypeValue = IntegerPow<_DenumeratorBaseTypeValue, Exponent>::value };
 
 public:
 

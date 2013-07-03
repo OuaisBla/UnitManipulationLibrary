@@ -113,7 +113,7 @@ public:
 
   inline static String Suffix()
   {
-    return _Factor::Suffix() + UnitType::Suffix() + UnitType::SuffixExponent();
+    return _Factor::Suffix() + DerivedType::Suffix();
   }
 
 
@@ -274,13 +274,13 @@ inline String Simple<T,F>::GetSuffix() const
 
   boost::unordered_map<Integer, Integer>::const_iterator it = factors.begin();
 
-  std::pair<String, String> const & suffix_0 = Object<ScalarType>::RuntimeSuffix[it->first];
+  std::pair<String, String> const & suffix_0 = Object<ScalarType,Policy>::RuntimeSuffixes[it->first];
 
   String runtimeSuffix = (factors.size() > 1 ? suffix_0.first : String()) + suffix_0.second + SuffixExponent( it->second );
 
   for( ++it; it != factors.end(); ++it )
   {
-    std::pair<String, String> const & suffix_n = Object<ScalarType>::RuntimeSuffix[it->first];
+    std::pair<String, String> const & suffix_n = Object<ScalarType,Policy>::RuntimeSuffixes[it->first];
 
     runtimeSuffix += DOT_OPERATOR + suffix_n.first + suffix_n.second + SuffixExponent( it->second );
   }
@@ -304,7 +304,7 @@ inline Simple<Identity,F>::Simple( Simple<Identity,F> const &_s ) :
 template <typename F>
 inline Simple<Identity,F>::operator Scalar() const
 {
-  return m_Value;
+  return m_Value * F::ConversionFactor();
 }
 
 

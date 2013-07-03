@@ -41,7 +41,8 @@ namespace Unit
 
     struct ElectricPotentialDifference : public Product<Watt,Ampere::Invert>::UnitType
     {
-    public:
+    
+      typedef ElectricPotentialDifference DerivedType;
 
       inline static String Suffix()
       {

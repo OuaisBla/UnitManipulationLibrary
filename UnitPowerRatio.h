@@ -34,11 +34,11 @@ jean.gauthier@programmer.net
 namespace Unit
 {
 
-  struct _PowerRatio : public Object<>
+  struct _PowerRatio : public Object<_PowerRatio>
   {
 
-    typedef _PowerRatio BaseType;
-    typedef BaseUnit<BaseType> SimplifiedType;
+    enum { NumeratorBaseTypeValue = 101 };
+    enum { DenumeratorBaseTypeValue = 1 };
 
     inline static String Suffix()
     { 

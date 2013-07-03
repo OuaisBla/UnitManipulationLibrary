@@ -39,7 +39,8 @@ namespace Unit
 
     struct ElectricResistance : public Product<Volt,Ampere::Invert>::UnitType
     {
-    public:
+    
+      typedef ElectricResistance DerivedType;
 
       inline static String Suffix()
       {

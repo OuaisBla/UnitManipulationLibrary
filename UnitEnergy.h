@@ -39,9 +39,10 @@ namespace SI
 {
 
 
-class Energy : public Product<Newton, Meter>::UnitType
+struct Energy : public Product<Newton, Meter>::UnitType
 {
-public:
+
+  typedef Energy DerivedType;
 
   inline static String Suffix()
   {

@@ -35,11 +35,8 @@ namespace Unit
 {
 
 
-struct _Time : public Object<>
+struct _Time : public Object<>, public Facade<_Time>
 {
-
-  typedef _Time BaseType;
-  typedef BaseUnit<BaseType> SimplifiedType;
 
   enum { NumeratorBaseTypeValue = 3 };
   enum { DenumeratorBaseTypeValue = 1 };
@@ -92,6 +89,8 @@ namespace NonSI
 struct _Minute : public Time
 {
 
+  typedef _Minute DerivedType;
+
   static String Suffix() { return String( L"min" ); }
 
 };
@@ -111,6 +110,8 @@ struct _MinuteFactor
 
 struct _Hour : public Time
 {
+
+  typedef _Hour DerivedType;
 
   static String Suffix() { return String( L"h" ); }
 

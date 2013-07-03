@@ -61,6 +61,7 @@ public:
   typedef BaseUnit<BaseType,1>            SimplifiedType;
   typedef BaseUnit<BaseType,-1>           InvertedType;
   typedef typename BaseType::ScalarType   ScalarType;
+  typedef typename BaseType::Policy       Policy;
 
 public:
 
@@ -80,18 +81,18 @@ private:
   
   inline explicit BaseUnit( void * ); 
 
-  static BaseUnit const RuntimeSuffixCtor;
+  static BaseUnit const RuntimeSuffixesCtor;
 
 };
 
 
 template <typename T>
-BaseUnit<T,1> const BaseUnit<T,1>::RuntimeSuffixCtor( NULL );
+BaseUnit<T,1> const BaseUnit<T,1>::RuntimeSuffixesCtor( NULL );
 
 template <typename T>
 inline BaseUnit<T,1>::BaseUnit()
 {
-  static BaseUnit<T, 1> __ForceLinker = BaseUnit<T, 1>::RuntimeSuffixCtor;
+  static BaseUnit<T, 1> __ForceLinker = BaseUnit<T, 1>::RuntimeSuffixesCtor;
 }
 
 template <typename T>
@@ -99,14 +100,14 @@ inline BaseUnit<T,1>::BaseUnit( void * )
 {
   Integer const _NumeratorBaseTypeValue = static_cast<Integer>( NumeratorBaseTypeValue * DenumeratorBaseTypeValue );
 
-  SuffixesMap::iterator it = Object<ScalarType>::RuntimeSuffix.find(_NumeratorBaseTypeValue);
+  SuffixesMap::iterator it = Object<ScalarType,Policy>::RuntimeSuffixes.find(_NumeratorBaseTypeValue);
 
-  if( IsPrime( _NumeratorBaseTypeValue ) && it == Object<ScalarType>::RuntimeSuffix.end() )
+  if( IsPrime( _NumeratorBaseTypeValue ) && it == Object<ScalarType,Policy>::RuntimeSuffixes.end() )
   {
     String const suffix = BaseType::Suffix();
     String const factorsuffix = BaseType::SimplifiedFactor::Suffix();
 
-    Object<ScalarType>::RuntimeSuffix.insert( SuffixesMap::value_type( _NumeratorBaseTypeValue, PairString( factorsuffix, suffix ) ) );
+    Object<ScalarType,Policy>::RuntimeSuffixes.insert( SuffixesMap::value_type( _NumeratorBaseTypeValue, PairString( factorsuffix, suffix ) ) );
   }
 }
 
@@ -129,27 +130,16 @@ inline String BaseUnit<T, 1>::Suffix()
 */
 
 template <typename L, typename R = L>
-class PS2 : public Object<>
+class PS2 : public Object<>, public Facade<PS2<L,R> >
 {
 
   enum {
-    _L_NumeratorBaseTypeValue = L::Exponent >= 0 ? L::NumeratorBaseTypeValue : L::DenumeratorBaseTypeValue,
-    _L_DenumeratorBaseTypeValue = L::Exponent >= 0 ? L::DenumeratorBaseTypeValue : L::NumeratorBaseTypeValue,
-    _R_NumeratorBaseTypeValue = R::Exponent >= 0 ? R::NumeratorBaseTypeValue : R::DenumeratorBaseTypeValue,
-    _R_DenumeratorBaseTypeValue = R::Exponent >= 0 ? R::DenumeratorBaseTypeValue : R::NumeratorBaseTypeValue
-  };
-
-  enum {
-    _NumeratorBaseTypeValue = _L_NumeratorBaseTypeValue * _R_NumeratorBaseTypeValue,
-    _DenumeratorBaseTypeValue = _L_DenumeratorBaseTypeValue * _R_DenumeratorBaseTypeValue,
+    _NumeratorBaseTypeValue =  L::NumeratorBaseTypeValue * R::NumeratorBaseTypeValue,
+    _DenumeratorBaseTypeValue = L::DenumeratorBaseTypeValue * R::DenumeratorBaseTypeValue,
     _gcd = boost::math::static_gcd<_NumeratorBaseTypeValue, _DenumeratorBaseTypeValue>::value 
   };
 
 public:
-
-  typedef PS2<L,R> BaseType;
-  typedef BaseUnit<BaseType> SimplifiedType;
-  typedef BaseUnit<BaseType,-1> InvertedType;
 
   enum { 
     NumeratorBaseTypeValue = (_NumeratorBaseTypeValue / _gcd), 
@@ -175,30 +165,17 @@ inline String PS2<L,R>::Suffix()
 */
 
 template <typename A, typename B, typename C>
-class PS3 : public Object<>
+class PS3 : public Object<>, public Facade<PS3<A,B,C> >
 {
 
-  enum { 
-    _A_NumeratorBaseTypeValue = A::Exponent >= 0 ? A::NumeratorBaseTypeValue : A::DenumeratorBaseTypeValue,
-    _A_DenumeratorBaseTypeValue = A::Exponent >= 0 ? A::DenumeratorBaseTypeValue : A::NumeratorBaseTypeValue,
-    _B_NumeratorBaseTypeValue = B::Exponent >= 0 ? B::NumeratorBaseTypeValue : B::DenumeratorBaseTypeValue,
-    _B_DenumeratorBaseTypeValue = B::Exponent >= 0 ? B::DenumeratorBaseTypeValue : B::NumeratorBaseTypeValue,
-    _C_NumeratorBaseTypeValue = C::Exponent >= 0 ? C::NumeratorBaseTypeValue : C::DenumeratorBaseTypeValue,
-    _C_DenumeratorBaseTypeValue = C::Exponent >= 0 ? C::DenumeratorBaseTypeValue : C::NumeratorBaseTypeValue
-  };
-
   enum {
-    _NumeratorBaseTypeValue = _A_NumeratorBaseTypeValue * _B_NumeratorBaseTypeValue * _C_NumeratorBaseTypeValue,
-    _DenumeratorBaseTypeValue = _A_DenumeratorBaseTypeValue * _B_DenumeratorBaseTypeValue * _C_DenumeratorBaseTypeValue,
+    _NumeratorBaseTypeValue = A::NumeratorBaseTypeValue * B::NumeratorBaseTypeValue * C::NumeratorBaseTypeValue,
+    _DenumeratorBaseTypeValue = A::DenumeratorBaseTypeValue * B::DenumeratorBaseTypeValue * C::DenumeratorBaseTypeValue,
     _gcd = boost::math::static_gcd<_NumeratorBaseTypeValue,_DenumeratorBaseTypeValue>::value 
   };
 
 
 public:
-
-  typedef PS3<A,B,C> BaseType;
-  typedef BaseUnit<BaseType> SimplifiedType;
-  typedef BaseUnit<BaseType,-1> InvertedType;
 
   enum { 
     NumeratorBaseTypeValue = _NumeratorBaseTypeValue / _gcd, 
@@ -220,32 +197,16 @@ inline String PS3<A, B, C>::Suffix()
 
 
 template <typename A, typename B, typename C, typename D>
-class PS4 : public Object<>
+class PS4 : public Object<>, public Facade<PS4<A,B,C,D> >
 {
 
-  enum { 
-    _A_NumeratorBaseTypeValue = A::Exponent >= 0 ? A::NumeratorBaseTypeValue : A::DenumeratorBaseTypeValue,
-    _A_DenumeratorBaseTypeValue = A::Exponent >= 0 ? A::DenumeratorBaseTypeValue : A::NumeratorBaseTypeValue,
-    _B_NumeratorBaseTypeValue = B::Exponent >= 0 ? B::NumeratorBaseTypeValue : B::DenumeratorBaseTypeValue,
-    _B_DenumeratorBaseTypeValue = B::Exponent >= 0 ? B::DenumeratorBaseTypeValue : B::NumeratorBaseTypeValue,
-    _C_NumeratorBaseTypeValue = C::Exponent >= 0 ? C::NumeratorBaseTypeValue : C::DenumeratorBaseTypeValue,
-    _C_DenumeratorBaseTypeValue = C::Exponent >= 0 ? C::DenumeratorBaseTypeValue : C::NumeratorBaseTypeValue,
-    _D_NumeratorBaseTypeValue = D::Exponent >= 0 ? D::NumeratorBaseTypeValue : D::DenumeratorBaseTypeValue,
-    _D_DenumeratorBaseTypeValue = D::Exponent >= 0 ? D::DenumeratorBaseTypeValue : D::NumeratorBaseTypeValue
-  };
-
   enum {
-    _NumeratorBaseTypeValue = _A_NumeratorBaseTypeValue * _B_NumeratorBaseTypeValue * _C_NumeratorBaseTypeValue * _D_NumeratorBaseTypeValue,
-    _DenumeratorBaseTypeValue = _A_DenumeratorBaseTypeValue * _B_DenumeratorBaseTypeValue * _C_DenumeratorBaseTypeValue * _D_DenumeratorBaseTypeValue,
+    _NumeratorBaseTypeValue = A::NumeratorBaseTypeValue * B::NumeratorBaseTypeValue * C::NumeratorBaseTypeValue * D::NumeratorBaseTypeValue,
+    _DenumeratorBaseTypeValue = A::DenumeratorBaseTypeValue * B::DenumeratorBaseTypeValue * C::DenumeratorBaseTypeValue * D::DenumeratorBaseTypeValue,
     _gcd = boost::math::static_gcd<_NumeratorBaseTypeValue,_DenumeratorBaseTypeValue>::value 
   };
 
-
 public:
-
-  typedef PS4<A,B,C,D> BaseType;
-  typedef BaseUnit<BaseType> SimplifiedType;
-  typedef BaseUnit<BaseType,-1> InvertedType;
 
   enum { 
     NumeratorBaseTypeValue = _NumeratorBaseTypeValue / _gcd, 

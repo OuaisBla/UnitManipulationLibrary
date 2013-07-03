@@ -38,12 +38,15 @@ namespace Unit
 
 
   template<typename _ScalarType = Scalar, class _Policy = boost::math::policies::precision<_ScalarType, boost::math::policies::policy<> > >
-  struct _Angle : public Object<_ScalarType, _Policy>
+  class _Angle : public Object<_ScalarType, _Policy>, public Facade<_Angle<_ScalarType,_Policy> >
   {
 
-    typedef _ScalarType ScalarType;
-    typedef _Angle BaseType;
-    typedef BaseUnit<BaseType> SimplifiedType;
+    typedef Facade<_Angle<_ScalarType,_Policy> > _Facade;
+
+  public:
+
+    typedef _ScalarType                         ScalarType;
+    typedef typename _Facade::SimplifiedType   SimplifiedType;
 
     enum { NumeratorBaseTypeValue = 19 };
     enum { DenumeratorBaseTypeValue = 1 };
@@ -62,8 +65,6 @@ namespace Unit
     using Object<_ScalarType, _Policy>::GetFactor;
     using Object<_ScalarType, _Policy>::GetConvertedValue;
     using Object<_ScalarType, _Policy>::SetValue;
-
-  public:
 
     inline static String Suffix()
     { 
@@ -136,6 +137,8 @@ namespace NonSI
   struct _Degree : public Angle
   {
 
+    typedef _Degree DerivedType;
+
     static String Suffix() { return String( L"\x00B0" ); }
 
   };
@@ -154,6 +157,8 @@ namespace NonSI
 
   struct _Grade : public Angle
   {
+
+    typedef _Grade DerivedType;
 
     static String Suffix() { return String( L"gon" ); }
 
@@ -174,6 +179,8 @@ namespace NonSI
   struct _AngularMinute : public Angle
   {
 
+    typedef _AngularMinute DerivedType;
+
     static String Suffix() { return String( L"\'" ); }
 
   };
@@ -192,6 +199,8 @@ namespace NonSI
 
   struct _AngularSecond : public Angle
   {
+
+    typedef _AngularSecond DerivedType;
 
     static String Suffix() { return String( L"\"" ); }
 

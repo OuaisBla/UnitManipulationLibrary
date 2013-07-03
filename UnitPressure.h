@@ -42,6 +42,8 @@ namespace SI
 struct Pressure : public Product<Newton, Product<Meter>::Invert>::UnitType
 {
 
+  typedef Pressure DerivedType;
+
   inline static String Suffix()
   {
     return String( L"Pa" );

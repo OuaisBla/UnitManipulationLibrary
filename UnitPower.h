@@ -38,9 +38,10 @@ namespace Unit
 namespace SI
 {
 
-class Power : public Product<Joule,Second::Invert>::UnitType
+struct Power : public Product<Joule,Second::Invert>::UnitType
 {
-public:
+
+  typedef Power DerivedType;
 
   inline static String Suffix()
   {

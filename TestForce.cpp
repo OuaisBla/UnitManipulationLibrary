@@ -127,7 +127,7 @@ void TestFactorDefinition()
 void TestCompileTimeDefinition()
 {
 
-  Newton newton = Kilogram() * Acceleration();
+  Newton newton = Kilogram(1.) * Acceleration(1.);
 
   Newton2 newton2 = Newton2( newton );
 

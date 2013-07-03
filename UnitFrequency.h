@@ -39,30 +39,40 @@ namespace SI
 {
 
 
-typedef Second::Invert::UnitType  Frequency;
+  struct Frequency : public Second::Invert::UnitType
+  {
+
+    typedef Frequency DerivedType;
+
+    inline static String Suffix()
+    {
+      return String( L"Hz" );
+    }
+
+  };
 
 
-typedef Simple<Frequency,Yocto>   Yoctohertz;
-typedef Simple<Frequency,Zepto>   Zeptohertz;
-typedef Simple<Frequency,Atto>    Attohertz;
-typedef Simple<Frequency,Femto>   Femtohertz;
-typedef Simple<Frequency,Pico>    Picohertz;
-typedef Simple<Frequency,Nano>    Nanohertz;
-typedef Simple<Frequency,Micro>   Microhertz;
-typedef Simple<Frequency,Milli>   Millihertz;
-typedef Simple<Frequency,Centi>   Centihertz;
-typedef Simple<Frequency,Deci>    Decihertz;
-typedef Simple<Frequency>         Hertz;
-typedef Simple<Frequency,Deka>    Dekahertz;
-typedef Simple<Frequency,Hecto>   Hectohertz;
-typedef Simple<Frequency,Kilo>    Kilohertz;
-typedef Simple<Frequency,Mega>    Megahertz;
-typedef Simple<Frequency,Giga>    Gigahertz;
-typedef Simple<Frequency,Tera>    Terahertz;
-typedef Simple<Frequency,Peta>    Petahertz;
-typedef Simple<Frequency,Exa>     Exahertz;
-typedef Simple<Frequency,Zetta>   Zettahertz;
-typedef Simple<Frequency,Yotta>   Yottahertz;
+  typedef Simple<Frequency,Yocto>   Yoctohertz;
+  typedef Simple<Frequency,Zepto>   Zeptohertz;
+  typedef Simple<Frequency,Atto>    Attohertz;
+  typedef Simple<Frequency,Femto>   Femtohertz;
+  typedef Simple<Frequency,Pico>    Picohertz;
+  typedef Simple<Frequency,Nano>    Nanohertz;
+  typedef Simple<Frequency,Micro>   Microhertz;
+  typedef Simple<Frequency,Milli>   Millihertz;
+  typedef Simple<Frequency,Centi>   Centihertz;
+  typedef Simple<Frequency,Deci>    Decihertz;
+  typedef Simple<Frequency>         Hertz;
+  typedef Simple<Frequency,Deka>    Dekahertz;
+  typedef Simple<Frequency,Hecto>   Hectohertz;
+  typedef Simple<Frequency,Kilo>    Kilohertz;
+  typedef Simple<Frequency,Mega>    Megahertz;
+  typedef Simple<Frequency,Giga>    Gigahertz;
+  typedef Simple<Frequency,Tera>    Terahertz;
+  typedef Simple<Frequency,Peta>    Petahertz;
+  typedef Simple<Frequency,Exa>     Exahertz;
+  typedef Simple<Frequency,Zetta>   Zettahertz;
+  typedef Simple<Frequency,Yotta>   Yottahertz;
 
 
 } //namespace SI

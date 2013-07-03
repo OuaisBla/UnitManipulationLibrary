@@ -35,11 +35,8 @@ namespace Unit
 {
 
 
-struct _ElectricCurrent : public Object<>
+struct _ElectricCurrent : public Object<>, public Facade<_ElectricCurrent>
 {
-
-  typedef _ElectricCurrent BaseType;
-  typedef BaseUnit<BaseType> SimplifiedType;
 
   enum { NumeratorBaseTypeValue = 11 };
   enum { DenumeratorBaseTypeValue = 1 };

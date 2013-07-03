@@ -41,6 +41,8 @@ namespace Unit
     struct ElectricCharge : public Product<Ampere,Second>::UnitType
     {
 
+      typedef ElectricCharge DerivedType;
+
       inline static String Suffix()
       {
         return String( L"C" );

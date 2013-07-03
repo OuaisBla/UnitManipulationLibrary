@@ -34,11 +34,11 @@ jean.gauthier@programmer.net
 namespace Unit
 {
 
-  struct Ratio : public Object<>
+  struct Ratio : public Object<Ratio>
   {
 
-    typedef _Ratio BaseType;
-    typedef BaseUnit<BaseType> SimplifiedType;
+    enum { NumeratorBaseTypeValue = 103 };
+    enum { DenumeratorBaseTypeValue = 1 };
 
     inline static String Suffix()
     { 

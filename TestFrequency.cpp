@@ -48,7 +48,7 @@ static void TestConversionAssignmentOperator();
 static void TestCastOperator();
 
 
-void TestUnitFrequency()
+void TestFrequency()
 {
 
   TestClassDefinition();
@@ -156,48 +156,63 @@ void SeeClassDefinition()
 
   Femtohertz const femtohertz;
   std::wcout << femtohertz.GetSuffix() << std::endl;
+  std::wcout << Femtohertz::Suffix() << std::endl;
 
   Picohertz const picohertz;
   std::wcout << picohertz.GetSuffix() << std::endl;
+  std::wcout << Picohertz::Suffix() << std::endl;
 
   Nanohertz const nanohertz;
   std::wcout << nanohertz.GetSuffix() << std::endl;
+  std::wcout << Nanohertz::Suffix() << std::endl;
 
   Microhertz const microhertz;
   std::wcout << microhertz.GetSuffix() << std::endl;
+  std::wcout << Microhertz::Suffix() << std::endl;
 
   Millihertz const millihertz;
   std::wcout << millihertz.GetSuffix() << std::endl;
+  std::wcout << Millihertz::Suffix() << std::endl;
 
   Centihertz const centihertz;
   std::wcout << centihertz.GetSuffix() << std::endl;
+  std::wcout << Centihertz::Suffix() << std::endl;
 
   Decihertz const decihertz;
   std::wcout << decihertz.GetSuffix() << std::endl;
+  std::wcout << Decihertz::Suffix() << std::endl;
 
   Hertz const hertz;
   std::wcout << hertz.GetSuffix() << std::endl;
+  std::wcout << Hertz::Suffix() << std::endl;
 
   Dekahertz const dekahertz;
   std::wcout << dekahertz.GetSuffix() << std::endl;
+  std::wcout << Dekahertz::Suffix() << std::endl;
 
   Hectohertz const hectohertz;
   std::wcout << hectohertz.GetSuffix() << std::endl;
+  std::wcout << Hectohertz::Suffix() << std::endl;
 
   Kilohertz const kilohertz;
   std::wcout << kilohertz.GetSuffix() << std::endl;
+  std::wcout << Kilohertz::Suffix() << std::endl;
 
   Megahertz const megahertz;
   std::wcout << megahertz.GetSuffix() << std::endl;
+  std::wcout << Megahertz::Suffix() << std::endl;
 
   Gigahertz const gigahertz;
   std::wcout << gigahertz.GetSuffix() << std::endl;
+  std::wcout << Gigahertz::Suffix() << std::endl;
 
   Terahertz const terahertz;
   std::wcout << terahertz.GetSuffix() << std::endl;
+  std::wcout << Terahertz::Suffix() << std::endl;
 
   Petahertz const petahertz;
   std::wcout << petahertz.GetSuffix() << std::endl;
+  std::wcout << Petahertz::Suffix() << std::endl;
 
 }
 

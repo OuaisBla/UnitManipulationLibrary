@@ -35,15 +35,11 @@ namespace Unit
 {
 
 
-struct _LuminousIntensity : public Object<>
+struct _LuminousIntensity : public Object<_LuminousIntensity>
 {
 
   enum { NumeratorBaseTypeValue = 17 };
   enum { DenumeratorBaseTypeValue = 1 };
-
-
-  typedef _LuminousIntensity BaseType;
-  typedef BaseUnit<BaseType> SimplifiedType;
 
   inline static String Suffix()
   { 
