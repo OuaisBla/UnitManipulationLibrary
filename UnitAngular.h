@@ -30,81 +30,93 @@ jean.gauthier@programmer.net
 
 #include "Unit.h"
 #include <math.h>
+#include <boost\math\constants\constants.hpp>
 
 
 namespace Unit
 {
 
 
-struct _Angle : public Object<>
-{
+  template<typename _ScalarType = Scalar, class _Policy = boost::math::policies::precision<_ScalarType, boost::math::policies::policy<> > >
+  struct _Angle : public Object<_ScalarType, _Policy>
+  {
 
-  typedef _Angle BaseType;
-  typedef BaseUnit<BaseType> SimplifiedType;
+    typedef _ScalarType ScalarType;
+    typedef _Angle BaseType;
+    typedef BaseUnit<BaseType> SimplifiedType;
 
-  enum { NumeratorBaseTypeValue = 7 };
-  enum { DenumeratorBaseTypeValue = 1 };
+    enum { NumeratorBaseTypeValue = 7 };
+    enum { DenumeratorBaseTypeValue = 1 };
 
-  inline static Scalar Normalize( Scalar value );
+    inline static ScalarType Normalize( ScalarType value );
 
-  inline void Normalize();
+    inline void Normalize();
 
-  inline Simple<SimplifiedType> Normalized() const;
+    inline Simple<SimplifiedType> Normalized() const;
 
-  inline Scalar cos() const;
-  inline Scalar sin() const;
-  inline Scalar tan() const;
+    inline ScalarType cos() const;
+    inline ScalarType sin() const;
+    inline ScalarType tan() const;
 
-public:
+    using Object<_ScalarType, _Policy>::GetValue;
+    using Object<_ScalarType, _Policy>::GetFactor;
+    using Object<_ScalarType, _Policy>::GetConvertedValue;
+    using Object<_ScalarType, _Policy>::SetValue;
 
-  inline static String Suffix();
+  public:
 
-};
+    inline static String Suffix()
+    { 
+      return String( L"rad" );
+    }
 
-inline Simple<_Angle::SimplifiedType> _Angle::Normalized() const
-{
-  return Simple<_Angle::SimplifiedType>( Normalize( GetConvertedValue() ) );
-}
+  };
 
-inline void _Angle::Normalize()
-{
-  Scalar const dNormalizedAngle = Normalize( GetConvertedValue() );
+  template<typename S, class P>
+  S _Normalize( S const value )
+  {
+    S const TowPi = boost::math::constants::two_pi<S,P>();
+    S dNormalizedAngle = value - static_cast<S>(static_cast<long>(value / TowPi) * TowPi);
 
-  SetValue( dNormalizedAngle / GetFactor() );
-}
+    dNormalizedAngle = dNormalizedAngle >= 0. ? dNormalizedAngle : dNormalizedAngle + TowPi;
 
-Scalar _Angle::Normalize( Scalar const value )
-{
-  Scalar const TowPi = 6.283185307179586476925286766559;
-  Scalar dNormalizedAngle = value - static_cast<Scalar>(static_cast<long>(value / TowPi) * TowPi);
+    return dNormalizedAngle;
+  }
 
-  dNormalizedAngle = dNormalizedAngle >= 0. ? dNormalizedAngle : dNormalizedAngle + TowPi;
+  template<typename S, typename P>
+  inline Simple<typename _Angle<S,P>::SimplifiedType> _Angle<S,P>::Normalized() const
+  {
+    return Simple<typename _Angle<S,P>::SimplifiedType>( _Normalize<S,P>( GetConvertedValue() ) );
+  }
 
-  return dNormalizedAngle;
-}
+  template<typename S, typename P>
+  inline void _Angle<S,P>::Normalize()
+  {
+    typename _Angle<S,P>::ScalarType const dNormalizedAngle = _Normalize<S,P>( GetConvertedValue() );
 
-inline Scalar _Angle::cos() const
-{
-  return ::cos( GetConvertedValue() );
-}
+    SetValue( dNormalizedAngle / GetFactor() );
+  }
 
-inline Scalar _Angle::sin() const
-{
-  return ::sin( GetConvertedValue() );
-}
+  template<typename S, typename P>
+  inline S _Angle<S,P>::cos() const
+  {
+    return ::cos( GetConvertedValue() );
+  }
 
-inline Scalar _Angle::tan() const
-{
-  return ::tan( GetConvertedValue() );
-}
+  template<typename S, typename P>
+  inline S _Angle<S,P>::sin() const
+  {
+    return ::sin( GetConvertedValue() );
+  }
 
-inline String _Angle::Suffix()
-{ 
-  return String( L"rad" );
-}
+  template<typename S, typename P>
+  inline S _Angle<S,P>::tan() const
+  {
+    return ::tan( GetConvertedValue() );
+  }
 
 
-typedef _Angle::SimplifiedType Angle;
+  typedef _Angle<>::SimplifiedType Angle;
 
 
 namespace SI

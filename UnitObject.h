@@ -28,12 +28,13 @@ jean.gauthier@programmer.net
 #pragma once 
 
 
-#include <string>
-#include <typeinfo>
 #include <cmath>
 #include <limits>
 #include <cstdlib>
+#include <boost/math/policies/policy.hpp>
+#include <boost/math/tools/precision.hpp>
 #include "UnitHelper.h"
+
 
 #ifndef __cplusplus
 #error This header requires a C++ compiler ...
@@ -104,14 +105,16 @@ inline String Identity::Suffix()
   equals to 1.
 */
 
-template<typename _ScalarType = Scalar>
+template<typename _ScalarType = Scalar, class _Policy = boost::math::policies::precision<_ScalarType, boost::math::policies::policy<> > >
 class Object
 {
 public:
 
   //Default facade
-  typedef _ScalarType   ScalarType;
-  typedef Identity      SimplifiedFactor;
+  typedef _ScalarType                     ScalarType;
+  typedef Identity                        SimplifiedFactor;
+  typedef _Policy                         Policy;
+  typedef std::numeric_limits<ScalarType> Limits;
 
 public:
 
@@ -139,11 +142,11 @@ protected:
 };
 
 
-template<typename S>
-SuffixesMap Object<S>::RuntimeSuffix;
+template<typename S, class P>
+SuffixesMap Object<S,P>::RuntimeSuffix;
 
-template<typename S>
-inline Object<S>::Object()
+template<typename S, class P>
+inline Object<S,P>::Object()
 {
   static SuffixesMap __ForceLinker =  Object<S>::RuntimeSuffix;
 }

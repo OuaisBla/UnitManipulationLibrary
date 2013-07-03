@@ -35,24 +35,25 @@ namespace Unit
 {
 
 
-struct _Length : public Object<>
-{
+  template<typename _ScalarType = Scalar>
+  struct _Length : public Object<_ScalarType>
+  {
 
-  typedef _Length             BaseType;
-  typedef BaseUnit<BaseType>  SimplifiedType;
+    typedef _Length             BaseType;
+    typedef BaseUnit<BaseType>  SimplifiedType;
 
-  enum { NumeratorBaseTypeValue = 2 };
-  enum { DenumeratorBaseTypeValue = 1 };
+    enum { NumeratorBaseTypeValue = 2 };
+    enum { DenumeratorBaseTypeValue = 1 };
 
-  inline static String Suffix()
-  { 
-    return String( L"m" );
-  }
+    inline static String Suffix()
+    { 
+      return String( L"m" );
+    }
 
-};
+  };
 
 
-typedef _Length::SimplifiedType Length;
+typedef _Length<>::SimplifiedType Length;
 
 
 namespace SI

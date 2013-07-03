@@ -51,5 +51,5 @@ extern void Assert( bool const b )
 
 extern bool fequal( double const x, double const y )
 {
-  return ::fabs( x - y ) < Unit::UNIT_EPSILON;
+  return ::fabs( x - y ) < boost::math::tools::root_epsilon<double>();
 }

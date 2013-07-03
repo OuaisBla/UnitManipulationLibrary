@@ -42,8 +42,6 @@ template <typename, typename>
 class Product;
 
 
-double const UNIT_EPSILON = ::sqrt( std::numeric_limits<Scalar>::epsilon() );
-
 //
 //  Definition of comparison operator.
 //
@@ -51,7 +49,7 @@ double const UNIT_EPSILON = ::sqrt( std::numeric_limits<Scalar>::epsilon() );
 template <typename T, typename F>
 inline bool operator== ( Simple<T,F> const &_s1, Simple<T,F> const &_s2 )
 {
-  return ::fabs( _s1.Simple<T,F>::GetValue() - _s2.Simple<T,F>::GetValue() ) < UNIT_EPSILON;
+  return ::fabs( _s1.Simple<T,F>::GetValue() - _s2.Simple<T,F>::GetValue() ) < Simple<T,F>::Epsilon();
 }
 
 template <typename T, typename F>
@@ -98,7 +96,7 @@ inline bool operator== ( Simple<T,F1> const &_s1, Simple<T,F2> const &_s2 )
   double const _s1Value = _s1.Simple<T,F1>::GetValue() * _scaleFactor;
   double const _s2Value = _s2.Simple<T,F2>::GetValue();
 
-  return ::fabs( _s1Value - _s2Value ) < UNIT_EPSILON;
+  return ::fabs( _s1Value - _s2Value ) < Simple<T,_ScaledFactor>::Epsilon();
 }
 
 template <typename T, typename F1, typename F2>
@@ -118,7 +116,7 @@ inline bool operator< ( Simple<T,F1> const &_s1, Simple<T,F2> const &_s2 )
   double const _s2Value = _s2.Simple<T,F2>::GetValue();
 
   return _s1Value < _s2Value && 
-    ::fabs( _s1Value - _s2Value ) >= UNIT_EPSILON;
+    ::fabs( _s1Value - _s2Value ) >= Simple<T,_ScaledFactor>::Epsilon();
 }
 
 template <typename T, typename F1, typename F2>
@@ -147,6 +145,8 @@ inline bool operator>= ( Simple<T,F1> const &_s1, Simple<T,F2> const &_s2 )
 template <typename T1, typename T2, typename F1, typename F2>
 inline bool operator== ( Simple<T1,F1> const &_s1, Simple<T2,F2> const &_s2 )
 {
+  std::is_convertible<typename Simple<T1,F1>::ScalarType, typename Simple<T2,F2>::ScalarType>();
+
   CompatibleUnit<Simple<T1,F1>::NumeratorBaseTypeValue == Simple<T2,F2>::NumeratorBaseTypeValue && 
     Simple<T1,F1>::DenumeratorBaseTypeValue == Simple<T2,F2>::DenumeratorBaseTypeValue>();
 
@@ -154,10 +154,10 @@ inline bool operator== ( Simple<T1,F1> const &_s1, Simple<T2,F2> const &_s2 )
 
   Scalar const _scaleFactor =  _ScaledFactor::ConversionFactor();
 
-  Scalar const _s1scaled = _s1.Simple<T1,F1>::GetValue() * _scaleFactor;
-  Scalar const _s2scaled = _s2.Simple<T2,F2>::GetValue();
+  typename Simple<T1,F1>::ScalarType const _s1scaled = _s1.Simple<T1,F1>::GetValue() * _scaleFactor;
+  typename Simple<T2,F2>::ScalarType const _s2scaled = _s2.Simple<T2,F2>::GetValue();
 
-  return ::fabs( _s1scaled - _s2scaled ) < UNIT_EPSILON;
+  return ::fabs( _s1scaled - _s2scaled ) < Simple<T1,_ScaledFactor>::Epsilon();
 }
 
 template <typename T1, typename T2, typename F1, typename F2>
@@ -169,6 +169,8 @@ inline bool operator!= ( Simple<T1,F1> const &_s1, Simple<T2,F2> const &_s2 )
 template <typename T1, typename T2, typename F1, typename F2>
 inline bool operator< ( Simple<T1,F1> const &_s1, Simple<T2,F2> const &_s2 )
 {
+  std::is_convertible<typename Simple<T1,F1>::ScalarType, typename Simple<T2,F2>::ScalarType>();
+
   CompatibleUnit<Simple<T1,F1>::NumeratorBaseTypeValue == Simple<T2,F2>::NumeratorBaseTypeValue && 
     Simple<T1,F1>::DenumeratorBaseTypeValue == Simple<T2,F2>::DenumeratorBaseTypeValue>();
 
@@ -176,11 +178,11 @@ inline bool operator< ( Simple<T1,F1> const &_s1, Simple<T2,F2> const &_s2 )
 
   Scalar const _scaleFactor =  _ScaledFactor::ConversionFactor();
 
-  Scalar const _s1scaled = _s1.Simple<T1,F1>::GetValue() * _scaleFactor;
-  Scalar const _s2scaled = _s2.Simple<T2,F2>::GetValue();
+  typename Simple<T1,F1>::ScalarType const _s1scaled = _s1.Simple<T1,F1>::GetValue() * _scaleFactor;
+  typename Simple<T2,F2>::ScalarType const _s2scaled = _s2.Simple<T2,F2>::GetValue();
 
   return _s1scaled < _s2scaled && 
-    ::fabs( _s1scaled - _s2scaled ) >= UNIT_EPSILON;
+    ::fabs( _s1scaled - _s2scaled ) >= Simple<T1,_ScaledFactor>::Epsilon();
 }
 
 template <typename T1, typename T2, typename F1, typename F2>

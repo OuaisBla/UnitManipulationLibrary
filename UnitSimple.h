@@ -45,6 +45,9 @@ public:
   typedef _Factor                               _Factor;
 
   typedef typename UnitType::ScalarType         ScalarType;
+  typedef typename UnitType::Policy             Policy;
+  typedef typename UnitType::Limits             Limits;
+
 
   typedef typename UnitType::SimplifiedType     SimplifiedType;
   typedef typename SimplifiedType::BaseType     BaseType;
@@ -103,6 +106,11 @@ public:
     return m_Factor;
   }
 
+  inline static Scalar Epsilon()
+  {
+    return m_Epsilon;
+  }
+
   inline static String Suffix()
   {
     return _Factor::Suffix() + UnitType::Suffix() + UnitType::SuffixExponent();
@@ -120,6 +128,12 @@ protected:
   */
   static Scalar const m_Factor;
 
+
+  /**
+    A scalar to contain the current epsilon according to precision policy.
+  */
+  static ScalarType const m_Epsilon;
+
   /**
     A scalar to contain the raw value.
     This value is expressed in the current unit type.
@@ -130,6 +144,10 @@ protected:
 
 template <typename T, typename F>
 Scalar const Simple<T,F>::m_Factor = ::pow( Simple<T,F>::SimplifiedFactor::ConversionFactor(), ::abs( Simple<T,F>::SimplifiedType::Exponent ) );
+
+
+template <typename T, typename F>
+typename Simple<T,F>::ScalarType const Simple<T,F>::m_Epsilon = boost::math::tools::root_epsilon<typename Simple<T,F>::ScalarType>();
 
 
 
