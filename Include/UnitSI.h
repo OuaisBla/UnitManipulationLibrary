@@ -34,5 +34,6 @@ jean.gauthier@programmer.net
 #include "UnitMass.h"
 #include "UnitTemperature.h"
 #include "UnitAmountOfSubstance.h"
+#include "UnitLuminousIntensity.h"
 
 

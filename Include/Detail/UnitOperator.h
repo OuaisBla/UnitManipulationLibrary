@@ -28,7 +28,7 @@ jean.gauthier@programmer.net
 #pragma once 
 
 
-#include "UnitObject.h"
+#include "Detail\UnitObject.h"
 
 
 namespace Unit

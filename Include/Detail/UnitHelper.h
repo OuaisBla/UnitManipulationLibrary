@@ -48,8 +48,20 @@ namespace Unit
   //
   //  Constants literals
   //
-  wchar_t const DOT_OPERATOR = L'\x22C5';
+  wchar_t const DOT_OPERATOR            = L'\u22C5';
+  wchar_t const SUPERSCRIPT_PLUS        = L'\u207A';
+  wchar_t const SUPERSCRIPT_MINUS       = L'\u207B';
 
+  wchar_t const SUPERSCRIPT_1           = L'\u00B9';
+  wchar_t const SUPERSCRIPT_2           = L'\u00B2';
+  wchar_t const SUPERSCRIPT_3           = L'\u00B3';
+  wchar_t const SUPERSCRIPT_4           = L'\u2074';
+  wchar_t const SUPERSCRIPT_5           = L'\u2075';
+  wchar_t const SUPERSCRIPT_6           = L'\u2076';
+  wchar_t const SUPERSCRIPT_7           = L'\u2077';
+  wchar_t const SUPERSCRIPT_8           = L'\u2078';
+  wchar_t const SUPERSCRIPT_9           = L'\u2079';
+  wchar_t const SUPERSCRIPT_0           = L'\u2070';
 
   //
   //  Compile-time assertion operator
@@ -99,26 +111,36 @@ namespace Unit
 
   inline String SuffixExponent( Integer E )
   {
-    wchar_t buf[4] = { L'\0' };
+    wchar_t buf[4] = { L'\0', L'\0', L'\0', L'\0' };
 
     switch( E )
     {
+    case -4:
+      buf[0] = SUPERSCRIPT_MINUS;
+      buf[1] = SUPERSCRIPT_4;
+      break;
     case -3:
-      wcscpy_s( buf, L"-\x00B3" );
+      buf[0] = SUPERSCRIPT_MINUS;
+      buf[1] = SUPERSCRIPT_3;
       break;
     case -2:
-      wcscpy_s( buf, L"-\x00B2" );
+      buf[0] = SUPERSCRIPT_MINUS;
+      buf[1] = SUPERSCRIPT_2;
       break;
     case -1:
-      wcscpy_s( buf, L"-\x00B9" );
+      buf[0] = SUPERSCRIPT_MINUS;
+      buf[1] = SUPERSCRIPT_1;
       break;
     case 1:
       break;
     case 2:
-      wcscpy_s( buf, L"\x00B2" );
+      buf[0] = SUPERSCRIPT_2;
       break;
     case 3:
-      wcscpy_s( buf, L"\x00B3" );
+      buf[0] = SUPERSCRIPT_3;
+      break;
+    case 4:
+      buf[0] = SUPERSCRIPT_4;
       break;
     default:
       ::swprintf_s( buf, L"%d", Integer( E ) );

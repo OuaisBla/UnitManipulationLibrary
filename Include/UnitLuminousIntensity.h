@@ -35,7 +35,7 @@ namespace Unit
 {
 
 
-struct _LuminousIntensity : public Object<_LuminousIntensity>
+struct _LuminousIntensity : public Object<>, public Facade<_LuminousIntensity>
 {
 
   enum { NumeratorBaseTypeValue = 17 };

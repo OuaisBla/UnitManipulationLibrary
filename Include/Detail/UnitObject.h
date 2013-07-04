@@ -33,7 +33,7 @@ jean.gauthier@programmer.net
 #include <cstdlib>
 #include <boost/math/policies/policy.hpp>
 #include <boost/math/tools/precision.hpp>
-#include "UnitHelper.h"
+#include "Detail\UnitHelper.h"
 
 
 #ifndef __cplusplus

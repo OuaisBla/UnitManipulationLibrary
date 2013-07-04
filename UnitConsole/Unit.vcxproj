@@ -49,7 +49,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -93,7 +93,7 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -155,38 +155,38 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="UnitElectric.h" />
-    <ClInclude Include="UnitElectricCharge.h" />
-    <ClInclude Include="UnitElectricPotential.h" />
-    <ClInclude Include="UnitElectricResistance.h" />
-    <ClInclude Include="UnitLuminousIntensity.h" />
-    <ClInclude Include="UnitPowerRatio.h" />
-    <ClInclude Include="Unit.h" />
-    <ClInclude Include="UnitAcceleration.h" />
-    <ClInclude Include="UnitAmountOfSubstance.h" />
-    <ClInclude Include="UnitAngular.h" />
-    <ClInclude Include="UnitArea.h" />
-    <ClInclude Include="UnitComplex.h" />
-    <ClInclude Include="UnitElectricCurrent.h" />
-    <ClInclude Include="UnitEnergy.h" />
-    <ClInclude Include="UnitFactor.h" />
-    <ClInclude Include="UnitForce.h" />
-    <ClInclude Include="UnitFrequency.h" />
-    <ClInclude Include="UnitHelper.h" />
-    <ClInclude Include="UnitLength.h" />
-    <ClInclude Include="UnitMass.h" />
-    <ClInclude Include="UnitObject.h" />
-    <ClInclude Include="UnitOperator.h" />
-    <ClInclude Include="UnitPower.h" />
-    <ClInclude Include="UnitPressure.h" />
-    <ClInclude Include="UnitProduct.h" />
-    <ClInclude Include="UnitRatio.h" />
-    <ClInclude Include="UnitSI.h" />
-    <ClInclude Include="UnitSimple.h" />
-    <ClInclude Include="UnitTemperature.h" />
-    <ClInclude Include="UnitTime.h" />
-    <ClInclude Include="UnitVelocity.h" />
-    <ClInclude Include="UnitVolume.h" />
+    <ClInclude Include="..\Include\UnitElectric.h" />
+    <ClInclude Include="..\Include\UnitElectricCharge.h" />
+    <ClInclude Include="..\Include\UnitElectricPotential.h" />
+    <ClInclude Include="..\Include\UnitElectricResistance.h" />
+    <ClInclude Include="..\Include\UnitLuminousIntensity.h" />
+    <ClInclude Include="..\Include\UnitPowerRatio.h" />
+    <ClInclude Include="..\Include\Unit.h" />
+    <ClInclude Include="..\Include\UnitAcceleration.h" />
+    <ClInclude Include="..\Include\UnitAmountOfSubstance.h" />
+    <ClInclude Include="..\Include\UnitAngular.h" />
+    <ClInclude Include="..\Include\UnitArea.h" />
+    <ClInclude Include="..\Include\Detail\UnitComplex.h" />
+    <ClInclude Include="..\Include\UnitElectricCurrent.h" />
+    <ClInclude Include="..\Include\UnitEnergy.h" />
+    <ClInclude Include="..\Include\Detail\UnitFactor.h" />
+    <ClInclude Include="..\Include\UnitForce.h" />
+    <ClInclude Include="..\Include\UnitFrequency.h" />
+    <ClInclude Include="..\Include\Detail\UnitHelper.h" />
+    <ClInclude Include="..\Include\UnitLength.h" />
+    <ClInclude Include="..\Include\UnitMass.h" />
+    <ClInclude Include="..\Include\Detail\UnitObject.h" />
+    <ClInclude Include="..\Include\Detail\UnitOperator.h" />
+    <ClInclude Include="..\Include\UnitPower.h" />
+    <ClInclude Include="..\Include\UnitPressure.h" />
+    <ClInclude Include="..\Include\Detail\UnitProduct.h" />
+    <ClInclude Include="..\Include\UnitRatio.h" />
+    <ClInclude Include="..\Include\UnitSI.h" />
+    <ClInclude Include="..\Include\Detail\UnitSimple.h" />
+    <ClInclude Include="..\Include\UnitTemperature.h" />
+    <ClInclude Include="..\Include\UnitTime.h" />
+    <ClInclude Include="..\Include\UnitVelocity.h" />
+    <ClInclude Include="..\Include\UnitVolume.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
