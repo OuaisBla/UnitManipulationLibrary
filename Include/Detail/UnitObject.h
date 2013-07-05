@@ -136,6 +136,8 @@ protected:
 
   virtual void SetValue( ScalarType ) { }
 
+protected:
+
   static Detail::SuffixesMap RuntimeSuffixes;
 
 };
@@ -178,10 +180,12 @@ public:
   typedef _BaseType                       BaseType;
   typedef BaseUnit<BaseType,E>            SimplifiedType;
   typedef BaseUnit<BaseType,-E>           InvertedType;
+  typedef typename BaseType::ScalarType   ScalarType;
+  typedef typename BaseType::Policy       Policy;
 
 public:
 
-  BaseUnit() { }
+  inline BaseUnit();
 
   enum { Exponent = E };
 
@@ -193,7 +197,39 @@ public:
   inline static Types::String SuffixExponent();
   inline static Types::String Suffix();
 
+private:
+
+  inline explicit BaseUnit( void * ); 
+
+  static BaseUnit const RuntimeSuffixesCtor;
+
 };
+
+
+template <typename T, Types::Integer E>
+BaseUnit<T,E> const BaseUnit<T,E>::RuntimeSuffixesCtor( NULL );
+
+template <typename T, Types::Integer E>
+inline BaseUnit<T,E>::BaseUnit()
+{
+  static BaseUnit<T,E> __ForceLinker = BaseUnit<T,E>::RuntimeSuffixesCtor;
+}
+
+template <typename T, Types::Integer E>
+inline BaseUnit<T,E>::BaseUnit( void * ) 
+{
+  Types::Integer const _NumeratorBaseTypeValue = static_cast<Types::Integer>( NumeratorBaseTypeValue * DenumeratorBaseTypeValue );
+
+  Detail::SuffixesMap::iterator it = Object<ScalarType,Policy>::RuntimeSuffixes.find(_NumeratorBaseTypeValue);
+
+  if( Detail::IsPrime( _NumeratorBaseTypeValue ) && it == Object<ScalarType,Policy>::RuntimeSuffixes.end() )
+  {
+    Types::String const suffix = BaseType::Suffix();
+    Types::String const factorsuffix = BaseType::SimplifiedFactor::Suffix();
+
+    Object<ScalarType,Policy>::RuntimeSuffixes.insert( Detail::SuffixesMap::value_type( _NumeratorBaseTypeValue, Detail::PairString( factorsuffix, suffix ) ) );
+  }
+}
 
 
 template <typename T, Types::Integer E>

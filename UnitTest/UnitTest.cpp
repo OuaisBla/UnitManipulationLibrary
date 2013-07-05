@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "Unit.h"
 #include "UnitFrequency.h"
 
 using namespace Unit::SI;
