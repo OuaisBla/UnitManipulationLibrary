@@ -44,9 +44,9 @@ namespace Unit
     
       typedef ElectricPotentialDifference DerivedType;
 
-      inline static String Suffix()
+      inline static Types::String Suffix()
       {
-        return String( L"V" );
+        return Types::String( L"V" );
       }
 
     };

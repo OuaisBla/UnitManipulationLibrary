@@ -99,7 +99,7 @@ public:
   Class that represents a product of two unit type. (Specialization)
 */
 
-template <typename T, Integer a, Integer b, typename F1, typename F2>
+template <typename T, Types::Integer a, Types::Integer b, typename F1, typename F2>
 class Product<Simple<BaseUnit<T,a>,F1>,Simple<BaseUnit<T,b>,F2> > : public Simple<
   typename BaseUnit<typename T::BaseType,a+b>::SimplifiedType, 
   typename ProductFactor<F1,F2>::SimplifiedFactor>
@@ -183,25 +183,25 @@ inline Product<L,R>::Product( Product<R,L> const &_parent ) :
 {
 }
 
-template <typename T, Integer a, Integer b, typename F1, typename F2>
+template <typename T, Types::Integer a, Types::Integer b, typename F1, typename F2>
 inline Product<Simple<BaseUnit<T,a>,F1>,Simple<BaseUnit<T,b>,F2> >::Product( ScalarType const _s ) : 
   ParentType( _s )
 {
 }
 
-template <typename T, Integer a, Integer b, typename F1, typename F2>
+template <typename T, Types::Integer a, Types::Integer b, typename F1, typename F2>
 inline Product<Simple<BaseUnit<T,a>,F1>,Simple<BaseUnit<T,b>,F2> >::Product( ScalarType const _s1, ScalarType const _s2 ) : 
   ParentType( _s1, _s2 )
 {
 }
 
-template <typename T, Integer a, Integer b, typename F1, typename F2>
+template <typename T, Types::Integer a, Types::Integer b, typename F1, typename F2>
 inline Product<Simple<BaseUnit<T,a>,F1>,Simple<BaseUnit<T,b>,F2> >::Product( L const &_l, R const &_r ) : 
   ParentType( _l.L::GetValue() * _r.R::GetValue() )
 {
 }
 
-template <typename T, Integer a, Integer b, typename F1, typename F2>
+template <typename T, Types::Integer a, Types::Integer b, typename F1, typename F2>
 inline Product<Simple<BaseUnit<T,a>,F1>,Simple<BaseUnit<T,b>,F2> >::Product( Product<L,R> const &_parent ) : 
   ParentType( _parent )
 {
@@ -233,7 +233,7 @@ inline Product<L,R> const & Product<L,R>::operator= ( Product<R,L> const &_paren
   return *this;
 }
 
-template <typename T, Integer a, Integer b, typename F1, typename F2>
+template <typename T, Types::Integer a, Types::Integer b, typename F1, typename F2>
 inline Product<Simple<BaseUnit<T,a>,F1>,Simple<BaseUnit<T,b>,F2> > const & Product<Simple<BaseUnit<T,a>,F1>,Simple<BaseUnit<T,b>,F2> >::operator= ( ScalarType const _s )
 {
   ParentType::operator= ( _s );
@@ -241,7 +241,7 @@ inline Product<Simple<BaseUnit<T,a>,F1>,Simple<BaseUnit<T,b>,F2> > const & Produ
 }
 
 
-template <typename T, Integer a, Integer b, typename F1, typename F2>
+template <typename T, Types::Integer a, Types::Integer b, typename F1, typename F2>
 inline Product<Simple<BaseUnit<T,a>,F1>,Simple<BaseUnit<T,b>,F2> > const & Product<Simple<BaseUnit<T,a>,F1>,Simple<BaseUnit<T,b>,F2> >::operator= ( Product<L,R> const &_parent )
 {
   ParentType::operator= ( _parent );

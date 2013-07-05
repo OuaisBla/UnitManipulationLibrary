@@ -47,9 +47,9 @@ public:
   typedef Factor<-24> SimplifiedFactor;
   typedef Factor<24> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e-24; }
+  static Types::Scalar ConversionFactor() { return 1.e-24; }
 
-  static String Suffix() { return String( L"y" ); }
+  static Types::String Suffix() { return Types::String( L"y" ); }
 
 };
 
@@ -61,9 +61,9 @@ public:
   typedef Factor<-21> SimplifiedFactor;
   typedef Factor<21> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e-21; }
+  static Types::Scalar ConversionFactor() { return 1.e-21; }
 
-  static String Suffix() { return String( L"z" ); }
+  static Types::String Suffix() { return Types::String( L"z" ); }
 
 };
 
@@ -75,9 +75,9 @@ public:
   typedef Factor<-18> SimplifiedFactor;
   typedef Factor<18> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e-18; }
+  static Types::Scalar ConversionFactor() { return 1.e-18; }
 
-  static String Suffix() { return String( L"a" ); }
+  static Types::String Suffix() { return Types::String( L"a" ); }
 
 };
 
@@ -89,9 +89,9 @@ public:
   typedef Factor<-15> SimplifiedFactor;
   typedef Factor<15> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e-15; }
+  static Types::Scalar ConversionFactor() { return 1.e-15; }
 
-  static String Suffix() { return String( L"f" ); }
+  static Types::String Suffix() { return Types::String( L"f" ); }
 
 };
 
@@ -103,9 +103,9 @@ public:
   typedef Factor<-12> SimplifiedFactor;
   typedef Factor<12> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e-12; }
+  static Types::Scalar ConversionFactor() { return 1.e-12; }
 
-  static String Suffix() { return String( L"p" ); }
+  static Types::String Suffix() { return Types::String( L"p" ); }
 
 };
 
@@ -117,9 +117,9 @@ public:
   typedef Factor<-10> SimplifiedFactor;
   typedef Factor<10> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e-10; }
+  static Types::Scalar ConversionFactor() { return 1.e-10; }
 
-  static String Suffix() { return String( L"\'10e-10\'" ); }
+  static Types::String Suffix() { return Types::String( L"\'10e-10\'" ); }
 
 };
 
@@ -131,9 +131,9 @@ public:
   typedef Factor<-9> SimplifiedFactor;
   typedef Factor<9> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e-9; }
+  static Types::Scalar ConversionFactor() { return 1.e-9; }
 
-  static String Suffix() { return String( L"n" ); }
+  static Types::String Suffix() { return Types::String( L"n" ); }
 
 };
 
@@ -145,9 +145,9 @@ public:
   typedef Factor<-8> SimplifiedFactor;
   typedef Factor<8> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e-8; }
+  static Types::Scalar ConversionFactor() { return 1.e-8; }
 
-  static String Suffix() { return String( L"\'10e-8\'" ); }
+  static Types::String Suffix() { return Types::String( L"\'10e-8\'" ); }
 
 };
 
@@ -159,9 +159,9 @@ public:
   typedef Factor<-7> SimplifiedFactor;
   typedef Factor<7> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e-7; }
+  static Types::Scalar ConversionFactor() { return 1.e-7; }
 
-  static String Suffix() { return String( L"\'10e-7\'" ); }
+  static Types::String Suffix() { return Types::String( L"\'10e-7\'" ); }
 
 };
 
@@ -173,9 +173,9 @@ public:
   typedef Factor<-6> SimplifiedFactor;
   typedef Factor<6> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e-6; }
+  static Types::Scalar ConversionFactor() { return 1.e-6; }
 
-  static String Suffix() { return String( L"u" ); }
+  static Types::String Suffix() { return Types::String( L"u" ); }
 
 };
 
@@ -187,9 +187,9 @@ public:
   typedef Factor<-5> SimplifiedFactor;
   typedef Factor<5> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e-5; }
+  static Types::Scalar ConversionFactor() { return 1.e-5; }
 
-  static String Suffix() { return String( L"\'10e-5\'" ); }
+  static Types::String Suffix() { return Types::String( L"\'10e-5\'" ); }
 
 };
 
@@ -201,9 +201,9 @@ public:
   typedef Factor<-4> SimplifiedFactor;
   typedef Factor<4> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e-4; }
+  static Types::Scalar ConversionFactor() { return 1.e-4; }
 
-  static String Suffix() { return String( L"\'10e-4\'" ); }
+  static Types::String Suffix() { return Types::String( L"\'10e-4\'" ); }
 
 };
 
@@ -215,9 +215,9 @@ public:
   typedef Factor<-3> SimplifiedFactor;
   typedef Factor<3> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e-3; }
+  static Types::Scalar ConversionFactor() { return 1.e-3; }
 
-  static String Suffix() { return String( L"m" ); }
+  static Types::String Suffix() { return Types::String( L"m" ); }
 
 };
 
@@ -229,9 +229,9 @@ public:
   typedef Factor<-2> SimplifiedFactor;
   typedef Factor<2> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e-2; }
+  static Types::Scalar ConversionFactor() { return 1.e-2; }
 
-  static String Suffix() { return String( L"c" ); }
+  static Types::String Suffix() { return Types::String( L"c" ); }
 
 };
 
@@ -243,9 +243,9 @@ public:
   typedef Factor<-1> SimplifiedFactor;
   typedef Factor<1> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e-1; }
+  static Types::Scalar ConversionFactor() { return 1.e-1; }
 
-  static String Suffix() { return String( L"d" ); }
+  static Types::String Suffix() { return Types::String( L"d" ); }
 
 };
 
@@ -257,9 +257,9 @@ public:
   typedef Identity SimplifiedFactor;
   typedef Identity InvertedFactor;
 
-  static Scalar ConversionFactor() { return Identity::ConversionFactor(); }
+  static Types::Scalar ConversionFactor() { return Identity::ConversionFactor(); }
 
-  static String Suffix() { return Identity::Suffix(); }
+  static Types::String Suffix() { return Identity::Suffix(); }
 
 };
 
@@ -271,9 +271,9 @@ public:
   typedef Factor<1> SimplifiedFactor;
   typedef Factor<-1> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e1; }
+  static Types::Scalar ConversionFactor() { return 1.e1; }
 
-  static String Suffix() { return String( L"da" ); }
+  static Types::String Suffix() { return Types::String( L"da" ); }
 
 };
 
@@ -285,9 +285,9 @@ public:
   typedef Factor<2> SimplifiedFactor;
   typedef Factor<-2> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e2; }
+  static Types::Scalar ConversionFactor() { return 1.e2; }
 
-  static String Suffix() { return String( L"h" ); }
+  static Types::String Suffix() { return Types::String( L"h" ); }
 
 };
 
@@ -299,9 +299,9 @@ public:
   typedef Factor<3> SimplifiedFactor;
   typedef Factor<-3> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e3; }
+  static Types::Scalar ConversionFactor() { return 1.e3; }
 
-  static String Suffix() { return String( L"k" ); }
+  static Types::String Suffix() { return Types::String( L"k" ); }
 
 };
 
@@ -313,9 +313,9 @@ public:
   typedef Factor<4> SimplifiedFactor;
   typedef Factor<-4> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e4; }
+  static Types::Scalar ConversionFactor() { return 1.e4; }
 
-  static String Suffix() { return String( L"\'10e4\'" ); }
+  static Types::String Suffix() { return Types::String( L"\'10e4\'" ); }
 
 };
 
@@ -327,9 +327,9 @@ public:
   typedef Factor<5> SimplifiedFactor;
   typedef Factor<-5> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e5; }
+  static Types::Scalar ConversionFactor() { return 1.e5; }
 
-  static String Suffix() { return String( L"\'10e5\'" ); }
+  static Types::String Suffix() { return Types::String( L"\'10e5\'" ); }
 
 };
 
@@ -341,9 +341,9 @@ public:
   typedef Factor<6> SimplifiedFactor;
   typedef Factor<-6> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e6; }
+  static Types::Scalar ConversionFactor() { return 1.e6; }
 
-  static String Suffix() { return String( L"M" ); }
+  static Types::String Suffix() { return Types::String( L"M" ); }
 
 };
 
@@ -355,9 +355,9 @@ public:
   typedef Factor<7> SimplifiedFactor;
   typedef Factor<-7> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e7; }
+  static Types::Scalar ConversionFactor() { return 1.e7; }
 
-  static String Suffix() { return String( L"\'10e7\'" ); }
+  static Types::String Suffix() { return Types::String( L"\'10e7\'" ); }
 
 };
 
@@ -369,9 +369,9 @@ public:
   typedef Factor<8> SimplifiedFactor;
   typedef Factor<-8> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e8; }
+  static Types::Scalar ConversionFactor() { return 1.e8; }
 
-  static String Suffix() { return String( L"\'10e8\'" ); }
+  static Types::String Suffix() { return Types::String( L"\'10e8\'" ); }
 
 };
 
@@ -383,9 +383,9 @@ public:
   typedef Factor<9> SimplifiedFactor;
   typedef Factor<-9> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e9; }
+  static Types::Scalar ConversionFactor() { return 1.e9; }
 
-  static String Suffix() { return String( L"G" ); }
+  static Types::String Suffix() { return Types::String( L"G" ); }
 
 };
 
@@ -397,9 +397,9 @@ public:
   typedef Factor<10> SimplifiedFactor;
   typedef Factor<-10> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e10; }
+  static Types::Scalar ConversionFactor() { return 1.e10; }
 
-  static String Suffix() { return String( L"\'10e10\'" ); }
+  static Types::String Suffix() { return Types::String( L"\'10e10\'" ); }
 
 };
 
@@ -411,9 +411,9 @@ public:
   typedef Factor<12> SimplifiedFactor;
   typedef Factor<-12> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e12; }
+  static Types::Scalar ConversionFactor() { return 1.e12; }
 
-  static String Suffix() { return String( L"T" ); }
+  static Types::String Suffix() { return Types::String( L"T" ); }
 
 };
 
@@ -425,9 +425,9 @@ public:
   typedef Factor<15> SimplifiedFactor;
   typedef Factor<-15> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e15; }
+  static Types::Scalar ConversionFactor() { return 1.e15; }
 
-  static String Suffix() { return String( L"P" ); }
+  static Types::String Suffix() { return Types::String( L"P" ); }
 
 };
 
@@ -439,9 +439,9 @@ public:
   typedef Factor<18> SimplifiedFactor;
   typedef Factor<-18> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e18; }
+  static Types::Scalar ConversionFactor() { return 1.e18; }
 
-  static String Suffix() { return String( L"E" ); }
+  static Types::String Suffix() { return Types::String( L"E" ); }
 
 };
 
@@ -453,9 +453,9 @@ public:
   typedef Factor<21> SimplifiedFactor;
   typedef Factor<-21> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e21; }
+  static Types::Scalar ConversionFactor() { return 1.e21; }
 
-  static String Suffix() { return String( L"Z" ); }
+  static Types::String Suffix() { return Types::String( L"Z" ); }
 
 };
 
@@ -467,9 +467,9 @@ public:
   typedef Factor<24> SimplifiedFactor;
   typedef Factor<-24> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 1.e24; }
+  static Types::Scalar ConversionFactor() { return 1.e24; }
 
-  static String Suffix() { return String( L"Y" ); }
+  static Types::String Suffix() { return Types::String( L"Y" ); }
 
 };
 
@@ -510,9 +510,9 @@ namespace NonSI
     typedef InvertFactor<T> SimplifiedFactor;
     typedef T               InvertedFactor;
 
-    static Scalar ConversionFactor() { return 1.0 / T::ConversionFactor(); }
+    static Types::Scalar ConversionFactor() { return 1.0 / T::ConversionFactor(); }
 
-    static String Suffix() { return String( L"//" ) + T::Suffix(); }
+    static Types::String Suffix() { return Types::String( L"//" ) + T::Suffix(); }
 
   };
 

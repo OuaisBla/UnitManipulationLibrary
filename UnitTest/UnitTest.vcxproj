@@ -93,6 +93,38 @@
     <ClCompile Include="UnitTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Include\Detail\UnitComplex.h" />
+    <ClInclude Include="..\Include\Detail\UnitFactor.h" />
+    <ClInclude Include="..\Include\Detail\UnitHelper.h" />
+    <ClInclude Include="..\Include\Detail\UnitObject.h" />
+    <ClInclude Include="..\Include\Detail\UnitOperator.h" />
+    <ClInclude Include="..\Include\Detail\UnitProduct.h" />
+    <ClInclude Include="..\Include\Detail\UnitSimple.h" />
+    <ClInclude Include="..\Include\Unit.h" />
+    <ClInclude Include="..\Include\UnitAcceleration.h" />
+    <ClInclude Include="..\Include\UnitAmountOfSubstance.h" />
+    <ClInclude Include="..\Include\UnitAngular.h" />
+    <ClInclude Include="..\Include\UnitArea.h" />
+    <ClInclude Include="..\Include\UnitElectric.h" />
+    <ClInclude Include="..\Include\UnitElectricCharge.h" />
+    <ClInclude Include="..\Include\UnitElectricCurrent.h" />
+    <ClInclude Include="..\Include\UnitElectricPotential.h" />
+    <ClInclude Include="..\Include\UnitElectricResistance.h" />
+    <ClInclude Include="..\Include\UnitEnergy.h" />
+    <ClInclude Include="..\Include\UnitForce.h" />
+    <ClInclude Include="..\Include\UnitFrequency.h" />
+    <ClInclude Include="..\Include\UnitLength.h" />
+    <ClInclude Include="..\Include\UnitLuminousIntensity.h" />
+    <ClInclude Include="..\Include\UnitMass.h" />
+    <ClInclude Include="..\Include\UnitPower.h" />
+    <ClInclude Include="..\Include\UnitPowerRatio.h" />
+    <ClInclude Include="..\Include\UnitPressure.h" />
+    <ClInclude Include="..\Include\UnitRatio.h" />
+    <ClInclude Include="..\Include\UnitSI.h" />
+    <ClInclude Include="..\Include\UnitTemperature.h" />
+    <ClInclude Include="..\Include\UnitTime.h" />
+    <ClInclude Include="..\Include\UnitVelocity.h" />
+    <ClInclude Include="..\Include\UnitVolume.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>

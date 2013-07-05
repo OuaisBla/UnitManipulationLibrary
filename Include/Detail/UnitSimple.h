@@ -76,7 +76,7 @@ public:
   {
     typedef Simple<OtherUnitType, OtherFactor> _OtherUnit;
 
-    CompatibleUnit<NumeratorBaseTypeValue == _OtherUnit::NumeratorBaseTypeValue && 
+    Detail::CompatibleUnit<NumeratorBaseTypeValue == _OtherUnit::NumeratorBaseTypeValue && 
       DenumeratorBaseTypeValue == _OtherUnit::DenumeratorBaseTypeValue>();
   }
 
@@ -86,32 +86,32 @@ public:
 
 public:
 
-  inline Simple<UnitType,_Factor> const & operator= ( Scalar );
+  inline Simple<UnitType,_Factor> const & operator= ( Types::Scalar );
   inline Simple<UnitType,_Factor> const & operator= ( Simple<UnitType,_Factor> const & );
 
 public:
 
   inline ScalarType GetValue() const;
-  inline Scalar GetFactor() const;
+  inline Types::Scalar GetFactor() const;
   inline ScalarType GetConvertedValue() const;
 
 public:
 
-  inline String GetSuffix() const;
+  inline Types::String GetSuffix() const;
 
 public:
 
-  inline static Scalar ConversionFactor()
+  inline static Types::Scalar ConversionFactor()
   {
     return m_Factor;
   }
 
-  inline static Scalar Epsilon()
+  inline static Types::Scalar Epsilon()
   {
     return m_Epsilon;
   }
 
-  inline static String Suffix()
+  inline static Types::String Suffix()
   {
     return _Factor::Suffix() + DerivedType::Suffix();
   }
@@ -126,7 +126,7 @@ protected:
   /**
     A scalar to contain the conversion factor.
   */
-  static Scalar const m_Factor;
+  static Types::Scalar const m_Factor;
 
 
   /**
@@ -143,7 +143,7 @@ protected:
 };
 
 template <typename T, typename F>
-Scalar const Simple<T,F>::m_Factor = ::pow( Simple<T,F>::SimplifiedFactor::ConversionFactor(), ::abs( Simple<T,F>::SimplifiedType::Exponent ) );
+Types::Scalar const Simple<T,F>::m_Factor = ::pow( Simple<T,F>::SimplifiedFactor::ConversionFactor(), ::abs( Simple<T,F>::SimplifiedType::Exponent ) );
 
 
 template <typename T, typename F>
@@ -163,7 +163,7 @@ public:
   typedef Identity UnitType;
   typedef Identity BaseType;
   typedef Identity SimplifiedType;
-  typedef Scalar   ScalarType;
+  typedef Types::Scalar   ScalarType;
   typedef Identity InvertedType;
   typedef typename _Factor::SimplifiedFactor SimplifiedFactor;
   typedef typename _Factor::InvertedFactor InvertedFactor;
@@ -173,14 +173,14 @@ public:
 
 public:
 
-  inline Simple( Scalar );
+  inline Simple( Types::Scalar );
   inline Simple( Simple<Identity,_Factor> const & );
 
   ~Simple() { }
 
 public:
 
-  inline operator Scalar() const;
+  inline operator Types::Scalar() const;
 
 protected:
 
@@ -188,7 +188,7 @@ protected:
     A scalar to contain the raw value.
     This value is expressed in the current unit type.
   */
-  Scalar const m_Value;
+  Types::Scalar const m_Value;
 
 };
 
@@ -222,7 +222,7 @@ inline Simple<T,F>::Simple( Simple<UnitType,F> const &_s ) :
 //
 
 template <typename T, typename F>
-inline Simple<T,F> const & Simple<T,F>::operator= ( Scalar const _s )
+inline Simple<T,F> const & Simple<T,F>::operator= ( Types::Scalar const _s )
 {
   m_Value = _s;
   return *this;
@@ -253,7 +253,7 @@ inline void Simple<T,F>::SetValue( ScalarType const _s )
 }
 
 template <typename T, typename F>
-inline Scalar Simple<T,F>::GetFactor() const
+inline Types::Scalar Simple<T,F>::GetFactor() const
 {
   return m_Factor;
 }
@@ -265,24 +265,24 @@ inline typename Simple<T,F>::ScalarType Simple<T,F>::GetConvertedValue() const
 }
 
 template <typename T, typename F>
-inline String Simple<T,F>::GetSuffix() const
+inline Types::String Simple<T,F>::GetSuffix() const
 {
-  boost::unordered_map<Integer, Integer> factors;
+  boost::unordered_map<Types::Integer, Types::Integer> factors;
    
-  decompose( static_cast<Integer>( NumeratorBaseTypeValue ), factors );
-  decompose( -static_cast<Integer>( DenumeratorBaseTypeValue ), factors );
+  Detail::decompose( static_cast<Types::Integer>( NumeratorBaseTypeValue ), factors );
+  Detail::decompose( -static_cast<Types::Integer>( DenumeratorBaseTypeValue ), factors );
 
-  boost::unordered_map<Integer, Integer>::const_iterator it = factors.begin();
+  boost::unordered_map<Types::Integer, Types::Integer>::const_iterator it = factors.begin();
 
-  std::pair<String, String> const & suffix_0 = Object<ScalarType,Policy>::RuntimeSuffixes[it->first];
+  Detail::PairString const & suffix_0 = Object<ScalarType,Policy>::RuntimeSuffixes[it->first];
 
-  String runtimeSuffix = (factors.size() > 1 ? suffix_0.first : String()) + suffix_0.second + SuffixExponent( it->second );
+  Types::String runtimeSuffix = (factors.size() > 1 ? suffix_0.first : Types::String()) + suffix_0.second + Detail::SuffixExponent( it->second );
 
   for( ++it; it != factors.end(); ++it )
   {
-    std::pair<String, String> const & suffix_n = Object<ScalarType,Policy>::RuntimeSuffixes[it->first];
+    Detail::PairString const & suffix_n = Object<ScalarType,Policy>::RuntimeSuffixes[it->first];
 
-    runtimeSuffix += DOT_OPERATOR + suffix_n.first + suffix_n.second + SuffixExponent( it->second );
+    runtimeSuffix += Literals::DOT_OPERATOR + suffix_n.first + suffix_n.second + Detail::SuffixExponent( it->second );
   }
 
   return _Factor::Suffix() + runtimeSuffix;
@@ -290,7 +290,7 @@ inline String Simple<T,F>::GetSuffix() const
 
 //
 template <typename F>
-inline Simple<Identity,F>::Simple( Scalar const _s ) :
+inline Simple<Identity,F>::Simple( Types::Scalar const _s ) :
   m_Value( _s )
 {
 }
@@ -302,7 +302,7 @@ inline Simple<Identity,F>::Simple( Simple<Identity,F> const &_s ) :
 }
 
 template <typename F>
-inline Simple<Identity,F>::operator Scalar() const
+inline Simple<Identity,F>::operator Types::Scalar() const
 {
   return m_Value * F::ConversionFactor();
 }

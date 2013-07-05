@@ -35,16 +35,16 @@ namespace Unit
 {
 
 
-  template<typename _ScalarType = Scalar>
+  template<typename _ScalarType = Types::Scalar>
   struct _Length : public Object<_ScalarType>, public Facade<_Length<_ScalarType> >
   {
 
     enum { NumeratorBaseTypeValue = 2 };
     enum { DenumeratorBaseTypeValue = 1 };
 
-    inline static String Suffix()
+    inline static Types::String Suffix()
     { 
-      return String( L"m" );
+      return Types::String( L"m" );
     }
 
   };
@@ -92,7 +92,7 @@ struct _Mil : public Length
 
   typedef _Mil DerivedType;
 
-  static String Suffix() { return String( L"mil" ); }
+  static Types::String Suffix() { return Types::String( L"mil" ); }
 
 };
 
@@ -102,9 +102,9 @@ struct _MilFactor
   typedef _MilFactor                SimplifiedFactor;
   typedef InvertFactor<_MilFactor>  InvertedFactor;
 
-  static Scalar ConversionFactor() { return .0000254; }
+  static Types::Scalar ConversionFactor() { return .0000254; }
 
-  static String Suffix() { return String(); }
+  static Types::String Suffix() { return Types::String(); }
 
 };
 
@@ -114,7 +114,7 @@ struct _Inch : public Length
 
   typedef _Inch DerivedType;
 
-  static String Suffix() { return String( L"in" ); }
+  static Types::String Suffix() { return Types::String( L"in" ); }
 
 };
 
@@ -124,9 +124,9 @@ struct _InchFactor : public Length
   typedef _InchFactor               SimplifiedFactor;
   typedef InvertFactor<_InchFactor> InvertedFactor;
 
-  static Scalar ConversionFactor() { return .0254; }
+  static Types::Scalar ConversionFactor() { return .0254; }
 
-  static String Suffix() { return String(); }
+  static Types::String Suffix() { return Types::String(); }
 
 };
 
@@ -135,7 +135,7 @@ struct _Foot : public Length
 
   typedef _Foot DerivedType;
 
-  static String Suffix() { return String( L"ft" ); }
+  static Types::String Suffix() { return Types::String( L"ft" ); }
 
 };
 
@@ -146,9 +146,9 @@ public:
   typedef _FootFactor               SimplifiedFactor;
   typedef InvertFactor<_FootFactor> InvertedFactor;
 
-  static Scalar ConversionFactor() { return .3048; }
+  static Types::Scalar ConversionFactor() { return .3048; }
 
-  static String Suffix() { return String(); }
+  static Types::String Suffix() { return Types::String(); }
 
 };
 

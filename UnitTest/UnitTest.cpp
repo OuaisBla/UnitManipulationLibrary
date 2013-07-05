@@ -1,11 +1,13 @@
 #include "stdafx.h"
 #include "Unit.h"
+#include "UnitFrequency.h"
 
-
+using namespace Unit::SI;
 using namespace System;
 using namespace System::Text;
 using namespace System::Collections::Generic;
 using namespace Microsoft::VisualStudio::TestTools::UnitTesting;
+
 
 
 namespace UnitTest
@@ -55,10 +57,16 @@ namespace UnitTest
 		//
 		#pragma endregion 
 
-		/*[TestMethod]
+		[TestMethod]
 		void TestMethod()
 		{
-		}*/
+      
+      Hertz hertz;
+      Console::WriteLine ( gcnew String( hertz.GetSuffix().c_str()  ) );
+
+      Console::WriteLine ( gcnew String( Hertz::Suffix().c_str()  ) );
+
+		}
 
 	};
 }

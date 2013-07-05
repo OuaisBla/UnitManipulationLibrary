@@ -91,7 +91,7 @@ inline bool operator== ( Simple<T,F1> const &_s1, Simple<T,F2> const &_s2 )
 {
   typedef typename ProductFactor<F1, typename F2::InvertedFactor>::SimplifiedFactor _ScaledFactor;
 
-  Scalar const _scaleFactor =  _ScaledFactor::ConversionFactor();
+  Types::Scalar const _scaleFactor =  _ScaledFactor::ConversionFactor();
 
   double const _s1Value = _s1.Simple<T,F1>::GetValue() * _scaleFactor;
   double const _s2Value = _s2.Simple<T,F2>::GetValue();
@@ -110,7 +110,7 @@ inline bool operator< ( Simple<T,F1> const &_s1, Simple<T,F2> const &_s2 )
 {
   typedef typename ProductFactor<F1, typename F2::InvertedFactor>::SimplifiedFactor _ScaledFactor;
 
-  Scalar const _scaleFactor =  _ScaledFactor::ConversionFactor();
+  Types::Scalar const _scaleFactor =  _ScaledFactor::ConversionFactor();
 
   double const _s1Value = _s1.Simple<T,F1>::GetValue() * _scaleFactor;
   double const _s2Value = _s2.Simple<T,F2>::GetValue();
@@ -147,12 +147,12 @@ inline bool operator== ( Simple<T1,F1> const &_s1, Simple<T2,F2> const &_s2 )
 {
   std::is_convertible<typename Simple<T1,F1>::ScalarType, typename Simple<T2,F2>::ScalarType>();
 
-  CompatibleUnit<Simple<T1,F1>::NumeratorBaseTypeValue == Simple<T2,F2>::NumeratorBaseTypeValue && 
+  Detail::CompatibleUnit<Simple<T1,F1>::NumeratorBaseTypeValue == Simple<T2,F2>::NumeratorBaseTypeValue && 
     Simple<T1,F1>::DenumeratorBaseTypeValue == Simple<T2,F2>::DenumeratorBaseTypeValue>();
 
   typedef typename ProductFactor<F1, typename F2::InvertedFactor>::SimplifiedFactor _ScaledFactor;
 
-  Scalar const _scaleFactor =  _ScaledFactor::ConversionFactor();
+  Types::Scalar const _scaleFactor =  _ScaledFactor::ConversionFactor();
 
   typename Simple<T1,F1>::ScalarType const _s1scaled = _s1.Simple<T1,F1>::GetValue() * _scaleFactor;
   typename Simple<T2,F2>::ScalarType const _s2scaled = _s2.Simple<T2,F2>::GetValue();
@@ -176,7 +176,7 @@ inline bool operator< ( Simple<T1,F1> const &_s1, Simple<T2,F2> const &_s2 )
 
   typedef typename ProductFactor<F1, typename F2::InvertedFactor>::SimplifiedFactor _ScaledFactor;
 
-  Scalar const _scaleFactor =  _ScaledFactor::ConversionFactor();
+  Types::Scalar const _scaleFactor =  _ScaledFactor::ConversionFactor();
 
   typename Simple<T1,F1>::ScalarType const _s1scaled = _s1.Simple<T1,F1>::GetValue() * _scaleFactor;
   typename Simple<T2,F2>::ScalarType const _s2scaled = _s2.Simple<T2,F2>::GetValue();
@@ -208,25 +208,25 @@ inline bool operator>= ( Simple<T1,F1> const &_s1, Simple<T2,F2> const &_s2 )
 //
 
 template <typename T, typename F>
-inline Simple<T,F> operator* ( Simple<T,F> const &_o, Scalar const _s )
+inline Simple<T,F> operator* ( Simple<T,F> const &_o, Types::Scalar const _s )
 {
   return Simple<T,F>( _o.Simple<T,F>::GetValue() * _s );
 }
 
 template <typename T, typename F>
-inline Simple<T,F> operator* ( Scalar const _s, Simple<T,F> const &_o )
+inline Simple<T,F> operator* ( Types::Scalar const _s, Simple<T,F> const &_o )
 {
   return _o * _s;
 }
 
 template <typename T, typename F>
-inline Simple<T,F> operator/ ( Simple<T,F> const &_o, Scalar const _s )
+inline Simple<T,F> operator/ ( Simple<T,F> const &_o, Types::Scalar const _s )
 {
   return Simple<T,F>( _o.Simple<T,F>::GetValue() / _s );
 }
 
 template <typename T, typename F>
-inline typename Simple<T,F>::Invert operator/ ( Scalar const _s, Simple<T,F> const &_o )
+inline typename Simple<T,F>::Invert operator/ ( Types::Scalar const _s, Simple<T,F> const &_o )
 {
   return typename Simple<T,F>::Invert( _s / _o.Simple<T,F>::GetValue() );
 }
@@ -249,13 +249,13 @@ inline Simple<T,F> operator- ( Simple<T,F> const &_s1, Simple<T,F> const &_s2 )
 }
 
 template <typename T, typename F>
-inline Scalar operator/ ( Simple<T,F> const &_s1, Simple<T,F> const &_s2 )
+inline Types::Scalar operator/ ( Simple<T,F> const &_s1, Simple<T,F> const &_s2 )
 {
   return _s1.Simple<T,F>::GetValue() / _s2.Simple<T,F>::GetValue();
 }
 
-template <typename T, typename F,Integer Exp>
-inline Scalar operator* ( Simple<BaseUnit<T,Exp>,F> const &_s1, Simple<BaseUnit<T,-Exp>,F> const &_s2 )
+template <typename T, typename F,Types::Integer Exp>
+inline Types::Scalar operator* ( Simple<BaseUnit<T,Exp>,F> const &_s1, Simple<BaseUnit<T,-Exp>,F> const &_s2 )
 {
   return _s1.Simple<BaseUnit<T,Exp>,F>::GetValue() * _s2.Simple<BaseUnit<T,-Exp>,F>::GetValue();
 }
@@ -288,7 +288,7 @@ inline Simple<T,typename ProductFactor<F1, F2>::SimplifiedFactor> operator- ( Si
 }
 
 template <typename T, typename F1, typename F2>
-inline Scalar operator/ ( Simple<T,F1> const &_s1, Simple<T,F2> const &_s2 )
+inline Types::Scalar operator/ ( Simple<T,F1> const &_s1, Simple<T,F2> const &_s2 )
 {
   typedef Simple<T,typename ProductFactor<F1, F2>::SimplifiedFactor> _ScaledType;
 
@@ -327,13 +327,13 @@ inline Simple<T,F1> const & operator-= ( Simple<T,F1> &_s1, Simple<T,F2> const &
 }
 
 template <typename T, typename F>
-inline Simple<T,F> const & operator*= ( Simple<T,F> &_o, Scalar const _s )
+inline Simple<T,F> const & operator*= ( Simple<T,F> &_o, Types::Scalar const _s )
 {
   return _o = _o * _s;
 }
 
 template <typename T, typename F>
-inline Simple<T,F> const & operator/= ( Simple<T,F> &_o, Scalar const _s )
+inline Simple<T,F> const & operator/= ( Simple<T,F> &_o, Types::Scalar const _s )
 {
   return _o = _o / _s;
 }
@@ -385,10 +385,10 @@ inline typename Product<Simple<T1,F1>,typename Simple<T2,F2>::Invert>::SimpleTyp
   return typename Product<Simple<T1,F1>,typename Simple<T2,F2>::Invert>::SimpleType( _s1.Simple<T1,F1>::GetValue() / _s2.Simple<T2,F2>::GetValue() );
 }
 
-template <typename T, Integer E, typename F>
+template <typename T, Types::Integer E, typename F>
 inline Simple<BaseUnit<T, E / 2>, F> sqrt( Simple<BaseUnit<T, E>, F> const &_s )
 {
-  CompatibleUnit<(E > 1)>();
+  Detail::CompatibleUnit<(E > 1)>();
 
   typedef Simple<BaseUnit<T, E>, F> _SimpleTypeArg;
   typedef Simple<BaseUnit<T, E / 2>, F> _SimpleTypeReturn;
@@ -396,7 +396,7 @@ inline Simple<BaseUnit<T, E / 2>, F> sqrt( Simple<BaseUnit<T, E>, F> const &_s )
   return _SimpleTypeReturn( ::sqrt( _s._SimpleTypeArg::GetValue() ) );
 }
 
-template <typename L, Integer ExpL, typename R, Integer ExpR, Integer E, typename F>
+template <typename L, Types::Integer ExpL, typename R, Types::Integer ExpR, Types::Integer E, typename F>
 inline Simple<BaseUnit<PS2<BaseUnit<L,(ExpL * E) / 2>, BaseUnit<R,(ExpR * E) / 2> >, 1>, F> 
   sqrt( Simple<BaseUnit<PS2<BaseUnit<L,ExpL>, BaseUnit<R,ExpR> >, E>, F> const &_s )
 {

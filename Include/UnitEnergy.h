@@ -44,9 +44,9 @@ struct Energy : public Product<Newton, Meter>::UnitType
 
   typedef Energy DerivedType;
 
-  inline static String Suffix()
+  inline static Types::String Suffix()
   {
-    return String( L"J" );
+    return Types::String( L"J" );
   }
 
 };

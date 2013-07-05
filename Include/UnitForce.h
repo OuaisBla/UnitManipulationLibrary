@@ -45,9 +45,9 @@ struct Force : public Product<Kilogram,Acceleration>::UnitType
 
   typedef Force DerivedType;
 
-  inline static String Suffix()
+  inline static Types::String Suffix()
   {
-    return String( L"N" );
+    return Types::String( L"N" );
   }
 
 };

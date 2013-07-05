@@ -40,9 +40,9 @@ namespace Unit
     enum { NumeratorBaseTypeValue = 101 };
     enum { DenumeratorBaseTypeValue = 1 };
 
-    inline static String Suffix()
+    inline static Types::String Suffix()
     { 
-      return String( "B" );
+      return Types::String( "B" );
     }
 
   };

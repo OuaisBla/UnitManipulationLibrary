@@ -42,9 +42,9 @@ namespace Unit
     
       typedef ElectricResistance DerivedType;
 
-      inline static String Suffix()
+      inline static Types::String Suffix()
       {
-        return String( L"\x2126" );
+        return Types::String( L"\x2126" );
       }
 
     };

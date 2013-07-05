@@ -44,9 +44,9 @@ namespace SI
 
     typedef Frequency DerivedType;
 
-    inline static String Suffix()
+    inline static Types::String Suffix()
     {
-      return String( L"Hz" );
+      return Types::String( L"Hz" );
     }
 
   };

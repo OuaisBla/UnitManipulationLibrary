@@ -43,9 +43,9 @@ struct _Mass : public Object<>, public Facade<_Mass>
   enum { NumeratorBaseTypeValue = 5 };
   enum { DenumeratorBaseTypeValue = 1 };
 
-  inline static String Suffix()
+  inline static Types::String Suffix()
   {
-    return String( L"g" );
+    return Types::String( L"g" );
   }
 
 };

@@ -41,9 +41,9 @@ struct _ElectricCurrent : public Object<>, public Facade<_ElectricCurrent>
   enum { NumeratorBaseTypeValue = 11 };
   enum { DenumeratorBaseTypeValue = 1 };
 
-  inline static String Suffix()
+  inline static Types::String Suffix()
   { 
-    return String( L"A" );
+    return Types::String( L"A" );
   }
 
 };

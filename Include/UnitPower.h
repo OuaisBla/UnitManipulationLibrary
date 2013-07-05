@@ -43,9 +43,9 @@ struct Power : public Product<Joule,Second::Invert>::UnitType
 
   typedef Power DerivedType;
 
-  inline static String Suffix()
+  inline static Types::String Suffix()
   {
-    return String( L"W" );
+    return Types::String( L"W" );
   }
 
 };

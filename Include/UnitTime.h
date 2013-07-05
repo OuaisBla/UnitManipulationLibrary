@@ -41,9 +41,9 @@ struct _Time : public Object<>, public Facade<_Time>
   enum { NumeratorBaseTypeValue = 3 };
   enum { DenumeratorBaseTypeValue = 1 };
 
-  inline static String Suffix()
+  inline static Types::String Suffix()
   {
-    return String( L"s" );
+    return Types::String( L"s" );
   }
 
 };
@@ -91,7 +91,7 @@ struct _Minute : public Time
 
   typedef _Minute DerivedType;
 
-  static String Suffix() { return String( L"min" ); }
+  static Types::String Suffix() { return Types::String( L"min" ); }
 
 };
 
@@ -101,9 +101,9 @@ struct _MinuteFactor
   typedef _MinuteFactor               SimplifiedFactor;
   typedef InvertFactor<_MinuteFactor> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 60.; }
+  static Types::Scalar ConversionFactor() { return 60.; }
 
-  static String Suffix() { return String(); }
+  static Types::String Suffix() { return Types::String(); }
 
 };
 
@@ -113,7 +113,7 @@ struct _Hour : public Time
 
   typedef _Hour DerivedType;
 
-  static String Suffix() { return String( L"h" ); }
+  static Types::String Suffix() { return Types::String( L"h" ); }
 
 };
 
@@ -123,9 +123,9 @@ struct _HourFactor
   typedef _HourFactor               SimplifiedFactor;
   typedef InvertFactor<_HourFactor> InvertedFactor;
 
-  static Scalar ConversionFactor() { return 3600.; }
+  static Types::Scalar ConversionFactor() { return 3600.; }
 
-  static String Suffix() { return String(); }
+  static Types::String Suffix() { return Types::String(); }
 
 };
 

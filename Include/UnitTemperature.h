@@ -41,7 +41,7 @@ struct _Temperature : public Object<>, public Facade<_Temperature>
   enum { NumeratorBaseTypeValue = 7 };
   enum { DenumeratorBaseTypeValue = 1 };
 
-  inline static String Suffix() { return String( L"K" ); }
+  inline static Types::String Suffix() { return Types::String( L"K" ); }
 
   static ScalarType Offset() { return 0.0; }
 
@@ -87,7 +87,7 @@ namespace NonSI
   struct _Celsius : public Temperature
   {
 
-    static String Suffix() { return String( L"°C" ); }
+    static Types::String Suffix() { return Types::String( L"°C" ); }
 
     static ScalarType Offset() { return 273.15; }
 

@@ -41,9 +41,9 @@ struct _AmountOfSubstance : public Object<>, public Facade<_AmountOfSubstance>
   enum { NumeratorBaseTypeValue = 13 };
   enum { DenumeratorBaseTypeValue = 1 };
 
-  inline static String Suffix()
+  inline static Types::String Suffix()
   { 
-    return String( L"mol" );
+    return Types::String( L"mol" );
   }
 
 };

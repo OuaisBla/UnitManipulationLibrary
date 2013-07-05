@@ -44,9 +44,9 @@ struct Pressure : public Product<Newton, Product<Meter>::Invert>::UnitType
 
   typedef Pressure DerivedType;
 
-  inline static String Suffix()
+  inline static Types::String Suffix()
   {
-    return String( L"Pa" );
+    return Types::String( L"Pa" );
   }
 
 };

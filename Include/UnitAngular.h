@@ -37,7 +37,7 @@ namespace Unit
 {
 
 
-  template<typename _ScalarType = Scalar, class _Policy = boost::math::policies::precision<_ScalarType, boost::math::policies::policy<> > >
+  template<typename _ScalarType = Types::Scalar, class _Policy = boost::math::policies::precision<_ScalarType, boost::math::policies::policy<> > >
   class _Angle : public Object<_ScalarType, _Policy>, public Facade<_Angle<_ScalarType,_Policy> >
   {
 
@@ -66,9 +66,9 @@ namespace Unit
     using Object<_ScalarType, _Policy>::GetConvertedValue;
     using Object<_ScalarType, _Policy>::SetValue;
 
-    inline static String Suffix()
+    inline static Types::String Suffix()
     { 
-      return String( L"rad" );
+      return Types::String( L"rad" );
     }
 
   };
@@ -139,7 +139,7 @@ namespace NonSI
 
     typedef _Degree DerivedType;
 
-    static String Suffix() { return String( L"\x00B0" ); }
+    static Types::String Suffix() { return Types::String( L"\x00B0" ); }
 
   };
 
@@ -149,9 +149,9 @@ namespace NonSI
     typedef _DegreeFactor               SimplifiedFactor;
     typedef InvertFactor<_DegreeFactor> InvertedFactor;
 
-    static Scalar ConversionFactor() { return .017453292519943295769236907684886; }
+    static Types::Scalar ConversionFactor() { return .017453292519943295769236907684886; }
 
-    static String Suffix() { return String(); }
+    static Types::String Suffix() { return Types::String(); }
 
   };
 
@@ -160,7 +160,7 @@ namespace NonSI
 
     typedef _Grade DerivedType;
 
-    static String Suffix() { return String( L"gon" ); }
+    static Types::String Suffix() { return Types::String( L"gon" ); }
 
   };
 
@@ -170,9 +170,9 @@ namespace NonSI
     typedef _GradeFactor               SimplifiedFactor;
     typedef InvertFactor<_GradeFactor> InvertedFactor;
 
-    static Scalar ConversionFactor() { return .015707963267948966192313216916398; }
+    static Types::Scalar ConversionFactor() { return .015707963267948966192313216916398; }
 
-    static String Suffix() { return String(); }
+    static Types::String Suffix() { return Types::String(); }
 
   };
 
@@ -181,7 +181,7 @@ namespace NonSI
 
     typedef _AngularMinute DerivedType;
 
-    static String Suffix() { return String( L"\'" ); }
+    static Types::String Suffix() { return Types::String( L"\'" ); }
 
   };
 
@@ -191,9 +191,9 @@ namespace NonSI
     typedef _AngularMinuteFactor               SimplifiedFactor;
     typedef InvertFactor<_AngularMinuteFactor> InvertedFactor;
 
-    static Scalar ConversionFactor() { return 2.9088820866572159615394846141467e-4; }
+    static Types::Scalar ConversionFactor() { return 2.9088820866572159615394846141467e-4; }
 
-    static String Suffix() { return String(); }
+    static Types::String Suffix() { return Types::String(); }
 
   };
 
@@ -202,7 +202,7 @@ namespace NonSI
 
     typedef _AngularSecond DerivedType;
 
-    static String Suffix() { return String( L"\"" ); }
+    static Types::String Suffix() { return Types::String( L"\"" ); }
 
   };
 
@@ -212,9 +212,9 @@ namespace NonSI
     typedef _AngularSecondFactor               SimplifiedFactor;
     typedef InvertFactor<_AngularSecondFactor> InvertedFactor;
 
-    static Scalar ConversionFactor() { return 4.8481368110953599358991410235778e-6; }
+    static Types::Scalar ConversionFactor() { return 4.8481368110953599358991410235778e-6; }
 
-    static String Suffix() { return String(); }
+    static Types::String Suffix() { return Types::String(); }
 
   };
 

@@ -78,24 +78,24 @@ public:
   Identity() { }
   ~Identity() { }
   
-  inline static Scalar ConversionFactor();
+  inline static Types::Scalar ConversionFactor();
 
-  inline static String Suffix();
+  inline static Types::String Suffix();
 
 };
 
-inline Scalar Identity::ConversionFactor()
+inline Types::Scalar Identity::ConversionFactor()
 {
   return 1.;
 }
 
-inline String Identity::Suffix()
+inline Types::String Identity::Suffix()
 {
-  return String();
+  return Types::String();
 }
 
 
-template <typename, Integer = 1>
+template <typename, Types::Integer = 1>
 class BaseUnit;
 
 
@@ -108,7 +108,7 @@ class BaseUnit;
   equals to 1.
 */
 
-template<typename _ScalarType = Scalar, typename _Policy = boost::math::policies::precision<_ScalarType, boost::math::policies::policy<> > >
+template<typename _ScalarType = Types::Scalar, typename _Policy = boost::math::policies::precision<_ScalarType, boost::math::policies::policy<> > >
 class Object
 {
 public:
@@ -125,18 +125,18 @@ public:
 public:
 
   virtual ScalarType GetValue() const { return 0; }
-  virtual Scalar GetFactor() const { return 1; }
+  virtual Types::Scalar GetFactor() const { return 1; }
   virtual ScalarType GetConvertedValue() const { return 0; }
 
 public:
 
-  virtual String GetSuffix() const { return String(); } 
+  virtual Types::String GetSuffix() const { return Types::String(); } 
 
 protected:
 
   virtual void SetValue( ScalarType ) { }
 
-  static SuffixesMap RuntimeSuffixes;
+  static Detail::SuffixesMap RuntimeSuffixes;
 
 };
 
@@ -154,19 +154,19 @@ struct Facade
 };
 
 template<typename S, typename P>
-SuffixesMap Object<S,P>::RuntimeSuffixes;
+Detail::SuffixesMap Object<S,P>::RuntimeSuffixes;
 
 template<typename S, typename P>
 inline Object<S,P>::Object()
 {
-  static SuffixesMap __ForceLinker = Object<S,P>::RuntimeSuffixes;
+  static Detail::SuffixesMap __ForceLinker = Object<S,P>::RuntimeSuffixes;
 }
 
 /**
   Class that helps to simplify a unit type.
 */
 
-template <typename _BaseType, Integer E>
+template <typename _BaseType, Types::Integer E>
 class BaseUnit : public _BaseType
 {
 
@@ -185,25 +185,25 @@ public:
 
   enum { Exponent = E };
 
-  enum { NumeratorBaseTypeValue = IntegerPow<_NumeratorBaseTypeValue, Exponent>::value };
-  enum { DenumeratorBaseTypeValue = IntegerPow<_DenumeratorBaseTypeValue, Exponent>::value };
+  enum { NumeratorBaseTypeValue = Detail::IntegerPow<_NumeratorBaseTypeValue, Exponent>::value };
+  enum { DenumeratorBaseTypeValue = Detail::IntegerPow<_DenumeratorBaseTypeValue, Exponent>::value };
 
 public:
 
-  inline static String SuffixExponent();
-  inline static String Suffix();
+  inline static Types::String SuffixExponent();
+  inline static Types::String Suffix();
 
 };
 
 
-template <typename T, Integer E>
-inline String BaseUnit<T, E>::SuffixExponent()
+template <typename T, Types::Integer E>
+inline Types::String BaseUnit<T, E>::SuffixExponent()
 {
-  return Unit::SuffixExponent( E );
+  return Detail::SuffixExponent( E );
 }
 
-template <typename T, Integer E>
-inline String BaseUnit<T, E>::Suffix()
+template <typename T, Types::Integer E>
+inline Types::String BaseUnit<T, E>::Suffix()
 { 
   return BaseType::SimplifiedFactor::Suffix() + BaseType::Suffix() + SuffixExponent();
 }
@@ -217,7 +217,7 @@ namespace SI
   Class that represents SI factors that are exponent of 10.
 */
 
-template<Integer E>
+template<Types::Integer E>
 class Factor
 {
 public:
@@ -227,26 +227,26 @@ public:
 
 public:
 
-  inline static Scalar ConversionFactor();
+  inline static Types::Scalar ConversionFactor();
 
 public:
 
-  inline static String Suffix();
+  inline static Types::String Suffix();
 
 };
 
-template<Integer E>
-inline Scalar Factor<E>::ConversionFactor()
+template<Types::Integer E>
+inline Types::Scalar Factor<E>::ConversionFactor()
 { 
   return ::pow( 10., E );
 }
 
-template<Integer E>
-inline String Factor<E>::Suffix()
+template<Types::Integer E>
+inline Types::String Factor<E>::Suffix()
 { 
   wchar_t buf[8];
   ::swprintf_s( buf, L"%d", int( E ) );
-  return String( L"\'10e" ) + buf + L'\'';
+  return Types::String( L"\'10e" ) + buf + L'\'';
 }
 
 
@@ -286,15 +286,15 @@ public:
 
 public:
 
-  inline static Scalar ConversionFactor();
+  inline static Types::Scalar ConversionFactor();
 
 public:
 
-  inline static String Suffix();
+  inline static Types::String Suffix();
 
 };
 
-template <Integer L, Integer R>
+template <Types::Integer L, Types::Integer R>
 class ProductFactor<SI::Factor<L>,SI::Factor<R> >
 {
   
@@ -307,11 +307,11 @@ public:
 
 public:
 
-  inline static Scalar ConversionFactor();
+  inline static Types::Scalar ConversionFactor();
 
 public:
 
-  inline static String Suffix();
+  inline static Types::String Suffix();
 
 };
 
@@ -325,11 +325,11 @@ public:
 
 public:
 
-  inline static Scalar ConversionFactor();
+  inline static Types::Scalar ConversionFactor();
 
 public:
 
-  inline static String Suffix();
+  inline static Types::String Suffix();
 
 };
 
@@ -343,11 +343,11 @@ public:
 
 public:
 
-  inline static Scalar ConversionFactor();
+  inline static Types::Scalar ConversionFactor();
 
 public:
 
-  inline static String Suffix();
+  inline static Types::String Suffix();
 
 };
 
@@ -361,71 +361,71 @@ public:
 
 public:
 
-  inline static Scalar ConversionFactor();
+  inline static Types::Scalar ConversionFactor();
 
 public:
 
-  inline static String Suffix();
+  inline static Types::String Suffix();
 
 };
 
 
 template <typename L, typename R>
-inline Scalar ProductFactor<L,R>::ConversionFactor()
+inline Types::Scalar ProductFactor<L,R>::ConversionFactor()
 {
   return L::ConversionFactor() * R::ConversionFactor();
 }
 
 template <typename L, typename R>
-inline String ProductFactor<L,R>::Suffix()
+inline Types::String ProductFactor<L,R>::Suffix()
 {
   wchar_t buf[32];
   ::swprintf_s( buf, L"%g", ConversionFactor() );
-  return String( L"\'" ) + buf + L'\'';
+  return Types::String( L"\'" ) + buf + L'\'';
 }
 
-template <Integer L, Integer R>
-inline Scalar ProductFactor<SI::Factor<L>,SI::Factor<R> >::ConversionFactor()
+template <Types::Integer L, Types::Integer R>
+inline Types::Scalar ProductFactor<SI::Factor<L>,SI::Factor<R> >::ConversionFactor()
 {
   return _F::ConversionFactor();
 }
 
-template <Integer L, Integer R>
-inline String ProductFactor<SI::Factor<L>,SI::Factor<R> >::Suffix()
+template <Types::Integer L, Types::Integer R>
+inline Types::String ProductFactor<SI::Factor<L>,SI::Factor<R> >::Suffix()
 {
   return _F::Suffix();
 }
 
 template <typename L>
-inline Scalar ProductFactor<L,Identity>::ConversionFactor()
+inline Types::Scalar ProductFactor<L,Identity>::ConversionFactor()
 {
   return L::ConversionFactor();
 }
 
 template <typename L>
-inline String ProductFactor<L,Identity>::Suffix()
+inline Types::String ProductFactor<L,Identity>::Suffix()
 {
   return L::Suffix();
 }
 
 template <typename R>
-inline Scalar ProductFactor<Identity,R>::ConversionFactor()
+inline Types::Scalar ProductFactor<Identity,R>::ConversionFactor()
 {
   return R::ConversionFactor();
 }
 
 template <typename R>
-inline String ProductFactor<Identity,R>::Suffix()
+inline Types::String ProductFactor<Identity,R>::Suffix()
 {
   return R::Suffix();
 }
 
-inline Scalar ProductFactor<Identity>::ConversionFactor()
+inline Types::Scalar ProductFactor<Identity>::ConversionFactor()
 {
   return Identity::ConversionFactor();
 }
 
-inline String ProductFactor<Identity>::Suffix()
+inline Types::String ProductFactor<Identity>::Suffix()
 {
   return Identity::Suffix();
 }

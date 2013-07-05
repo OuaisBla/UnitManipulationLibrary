@@ -43,9 +43,9 @@ namespace Unit
 
       typedef ElectricCharge DerivedType;
 
-      inline static String Suffix()
+      inline static Types::String Suffix()
       {
-        return String( L"C" );
+        return Types::String( L"C" );
       }
 
     };
