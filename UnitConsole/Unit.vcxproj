@@ -146,11 +146,11 @@
     <ClCompile Include="TestPerformance.cpp" />
     <ClCompile Include="TestPVNRT.cpp" />
     <ClCompile Include="TestSquareMeter.cpp" />
-    <ClCompile Include="TestUnitAngular.cpp" />
-    <ClCompile Include="TestUnitIdentity.cpp" />
-    <ClCompile Include="TestUnitLength.cpp" />
-    <ClCompile Include="TestUnitMass.cpp" />
-    <ClCompile Include="TestUnitTemperature.cpp" />
+    <ClCompile Include="TestAngular.cpp" />
+    <ClCompile Include="TestIdentity.cpp" />
+    <ClCompile Include="TestLength.cpp" />
+    <ClCompile Include="TestMass.cpp" />
+    <ClCompile Include="TestTemperature.cpp" />
     <ClCompile Include="TestVelocity.cpp" />
   </ItemGroup>
   <ItemGroup>

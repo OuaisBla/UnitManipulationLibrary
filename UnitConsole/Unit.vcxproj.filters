@@ -29,18 +29,6 @@
     <ClCompile Include="TestSquareMeter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TestUnitAngular.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TestUnitIdentity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TestUnitLength.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TestUnitMass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TestVelocity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -56,108 +44,120 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TestUnitTemperature.cpp">
+    <ClCompile Include="TestAngular.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestIdentity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestLength.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestMass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestTemperature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Unit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitAcceleration.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitAmountOfSubstance.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitAngular.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitArea.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitComplex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitElectricCurrent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitEnergy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitFactor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitForce.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitFrequency.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitLength.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitMass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitOperator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitPower.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitPressure.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitProduct.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitSimple.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitTemperature.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitTime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitVelocity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitVolume.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitSI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitHelper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitPowerRatio.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitRatio.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitElectricPotential.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitElectricResistance.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitElectricCharge.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitElectric.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UnitLuminousIntensity.h">
+    <ClInclude Include="..\Include\UnitElectric.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitElectricCharge.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitElectricPotential.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitElectricResistance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitLuminousIntensity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitPowerRatio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Unit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitAcceleration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitAmountOfSubstance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitAngular.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitArea.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Detail\UnitComplex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitElectricCurrent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitEnergy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Detail\UnitFactor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitForce.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitFrequency.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Detail\UnitHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitLength.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitMass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Detail\UnitObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Detail\UnitOperator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitPower.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitPressure.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Detail\UnitProduct.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitRatio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitSI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Detail\UnitSimple.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitTemperature.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitTime.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitVelocity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitVolume.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
