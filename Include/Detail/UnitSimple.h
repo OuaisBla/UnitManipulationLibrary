@@ -30,6 +30,7 @@ jean.gauthier@programmer.net
 
 #include "Detail\UnitObject.h"
 #include "Detail\UnitHelper.h"
+#include <typeinfo>
 
 
 namespace Unit
@@ -51,6 +52,7 @@ public:
 
   typedef typename UnitType::SimplifiedType     SimplifiedType;
   typedef typename SimplifiedType::BaseType     BaseType;
+  typedef typename UnitType::DerivedType        DerivedType;
   typedef typename UnitType::InvertedType       InvertedType;
   typedef typename ProductFactor<
     typename _Factor::SimplifiedFactor, 
@@ -61,6 +63,7 @@ public:
   typedef Simple<UnitType,_Factor>              SimpleType;
   typedef Simple<InvertedType,InvertedFactor>   Invert;
 
+  enum { Exponent = SimplifiedType::Exponent };
   enum { NumeratorBaseTypeValue = SimplifiedType::NumeratorBaseTypeValue };
   enum { DenumeratorBaseTypeValue = SimplifiedType::DenumeratorBaseTypeValue };
 
@@ -80,8 +83,6 @@ public:
       DenumeratorBaseTypeValue == _OtherUnit::DenumeratorBaseTypeValue>();
   }
 
-public:
-
   virtual ~Simple() { }
 
 public:
@@ -98,6 +99,7 @@ public:
 public:
 
   inline Types::String GetSuffix() const;
+  inline Types::String GetSISuffix() const;
 
 public:
 
@@ -140,15 +142,13 @@ protected:
   */
   ScalarType m_Value;
 
+private:
+
+  inline explicit Simple( void *, void * ); 
+
+  static Simple const RuntimeSuffixesCtor;
+
 };
-
-template <typename T, typename F>
-Types::Scalar const Simple<T,F>::m_Factor = ::pow( Simple<T,F>::SimplifiedFactor::ConversionFactor(), ::abs( Simple<T,F>::SimplifiedType::Exponent ) );
-
-
-template <typename T, typename F>
-typename Simple<T,F>::ScalarType const Simple<T,F>::m_Epsilon = boost::math::tools::root_epsilon<typename Simple<T,F>::ScalarType>();
-
 
 
 template <typename _Factor>
@@ -193,6 +193,16 @@ protected:
 };
 
 
+template <typename T, typename F>
+Types::Scalar const Simple<T,F>::m_Factor = ::pow( Simple<T,F>::SimplifiedFactor::ConversionFactor(), ::abs( Simple<T,F>::SimplifiedType::Exponent ) );
+
+
+template <typename T, typename F>
+typename Simple<T,F>::ScalarType const Simple<T,F>::m_Epsilon = boost::math::tools::root_epsilon<typename Simple<T,F>::ScalarType>();
+
+
+
+
 //
 //  Definition of constructors
 //
@@ -201,6 +211,7 @@ template <typename T, typename F>
 inline Simple<T,F>::Simple() :
   m_Value( 0. )
 {
+  static Simple<T,F> __ForceLinker = Simple<T,F>::RuntimeSuffixesCtor;
 }
 
 template <typename T, typename F>
@@ -215,6 +226,25 @@ inline Simple<T,F>::Simple( Simple<UnitType,F> const &_s ) :
 {
 }
 
+template <typename T, typename F>
+Simple<T,F> const Simple<T,F>::RuntimeSuffixesCtor( NULL, NULL );
+
+
+template <typename T, typename F>
+inline Simple<T,F>::Simple( void *, void * ) 
+{
+  Detail::SuffixesValue const suffixKey( static_cast<Types::Integer>( NumeratorBaseTypeValue ), static_cast<Types::Integer>( DenumeratorBaseTypeValue ) );
+
+  Detail::SuffixesMap::iterator it = Object<ScalarType,Policy>::RuntimeSuffixes.find(suffixKey);
+
+  if( it == Object<ScalarType,Policy>::RuntimeSuffixes.end() &&
+      typeid( BaseType ) != typeid( DerivedType ) )
+  {
+    Types::String const derivedTypeSuffix = DerivedType::Suffix();
+
+    Object<ScalarType,Policy>::RuntimeSuffixes.insert( Detail::SuffixesMap::value_type( suffixKey, Detail::SuffixesString( Types::String(), derivedTypeSuffix ) ) );
+  }
+}
 
 
 //
@@ -267,26 +297,68 @@ inline typename Simple<T,F>::ScalarType Simple<T,F>::GetConvertedValue() const
 template <typename T, typename F>
 inline Types::String Simple<T,F>::GetSuffix() const
 {
-  boost::unordered_map<Types::Integer, Types::Integer> factors;
-   
-  Detail::decompose( static_cast<Types::Integer>( NumeratorBaseTypeValue ), factors );
-  Detail::decompose( -static_cast<Types::Integer>( DenumeratorBaseTypeValue ), factors );
+  if( typeid( BaseType ) != typeid( DerivedType ) )
+  {
+    return Suffix();
+  }
 
-  boost::unordered_map<Types::Integer, Types::Integer>::const_iterator it = factors.begin();
+  Detail::SuffixesValue const suffixKey( static_cast<Types::Integer>( NumeratorBaseTypeValue ), static_cast<Types::Integer>( DenumeratorBaseTypeValue ) );
 
-  Detail::PairString const & suffix_0 = Object<ScalarType,Policy>::RuntimeSuffixes[it->first];
+  Detail::SuffixesMap::const_iterator itDerived = Object<ScalarType,Policy>::RuntimeSuffixes.find(suffixKey);
 
-  Types::String runtimeSuffix = (factors.size() > 1 ? suffix_0.first : Types::String()) + suffix_0.second + Detail::SuffixExponent( it->second );
+  if( itDerived != Object<ScalarType,Policy>::RuntimeSuffixes.end() )
+  {
+    Detail::SuffixesString const & suffix = itDerived->second;
+
+    return _Factor::Suffix() + suffix.TypeString;
+  }
+
+  Detail::SuffixesKey const keys = Keys( Object<ScalarType,Policy>::RuntimeSuffixes );
+
+  Detail::SuffixesValueMap factors;
+  Detail::decomposeFactor( static_cast<Types::Integer>( NumeratorBaseTypeValue ), keys, factors );
+  Detail::decomposeFactor( -static_cast<Types::Integer>( DenumeratorBaseTypeValue ), keys, factors );
+
+  Detail::SuffixesValueMap::const_iterator it = factors.begin();
+
+  Detail::SuffixesString const & suffix_0 = Object<ScalarType,Policy>::RuntimeSuffixes[it->first];
+
+  Types::String runtimeSuffix = suffix_0.FactorString + suffix_0.TypeString + Detail::SuffixExponent( it->second );
 
   for( ++it; it != factors.end(); ++it )
   {
-    Detail::PairString const & suffix_n = Object<ScalarType,Policy>::RuntimeSuffixes[it->first];
+    Detail::SuffixesString const & suffix_n = Object<ScalarType,Policy>::RuntimeSuffixes[it->first];
 
-    runtimeSuffix += Literals::DOT_OPERATOR + suffix_n.first + suffix_n.second + Detail::SuffixExponent( it->second );
+    runtimeSuffix += Literals::DOT_OPERATOR + suffix_n.FactorString + suffix_n.TypeString + Detail::SuffixExponent( it->second );
+  }
+
+  return SimplifiedFactor::Suffix() + runtimeSuffix;
+}
+
+template <typename T, typename F>
+inline Types::String Simple<T,F>::GetSISuffix() const
+{
+  Detail::SuffixesValueMap factors;
+
+  Detail::decomposePrime( static_cast<Types::Integer>( NumeratorBaseTypeValue ), factors );
+  Detail::decomposePrime( -static_cast<Types::Integer>( DenumeratorBaseTypeValue ), factors );
+
+  Detail::SuffixesValueMap::const_iterator it = factors.begin();
+
+  Detail::SuffixesString const & suffix_0 = Object<ScalarType,Policy>::RuntimeSuffixes[it->first];
+
+  Types::String runtimeSuffix = suffix_0.FactorString + suffix_0.TypeString + Detail::SuffixExponent( it->second );
+
+  for( ++it; it != factors.end(); ++it )
+  {
+    Detail::SuffixesString const & suffix_n = Object<ScalarType,Policy>::RuntimeSuffixes[it->first];
+
+    runtimeSuffix += Literals::DOT_OPERATOR + suffix_n.FactorString + suffix_n.TypeString + Detail::SuffixExponent( it->second );
   }
 
   return _Factor::Suffix() + runtimeSuffix;
 }
+
 
 //
 template <typename F>

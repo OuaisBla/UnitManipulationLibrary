@@ -40,7 +40,7 @@ struct _Mass : public Object<>, public Facade<_Mass>
 
   typedef SI::Kilo SimplifiedFactor;
 
-  enum { NumeratorBaseTypeValue = 5 };
+  enum { NumeratorBaseTypeValue = 3 };
   enum { DenumeratorBaseTypeValue = 1 };
 
   inline static Types::String Suffix()

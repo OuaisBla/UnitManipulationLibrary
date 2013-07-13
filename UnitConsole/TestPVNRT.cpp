@@ -64,15 +64,25 @@ void TestPV_equals_NRT()
   Pascal2 p0;
 
   std::wcout << "Newton: " << Newton().GetSuffix() << std::endl;
+  std::wcout << "Newton: " << Newton().GetSISuffix() << std::endl;
   std::wcout << "Newton2: " << Newton2().GetSuffix() << std::endl;
+  std::wcout << "Newton2: " << Newton2().GetSISuffix() << std::endl;
   std::wcout << "Pascal: " << Pascal().GetSuffix() << std::endl;
+  std::wcout << "Pascal: " << Pascal().GetSISuffix() << std::endl;
   std::wcout << "Pascal2: " << Pascal2().GetSuffix() << std::endl;
+  std::wcout << "Pascal2: " << Pascal2().GetSISuffix() << std::endl;
   std::wcout << "Joule: " << Joule().GetSuffix() << std::endl;
+  std::wcout << "Joule: " << Joule().GetSISuffix() << std::endl;
   std::wcout << "Joule2: " << Joule2().GetSuffix() << std::endl;
+  std::wcout << "Joule2: " << Joule2().GetSISuffix() << std::endl;
   std::wcout << "Watt: " << Watt().GetSuffix() << std::endl;
+  std::wcout << "Watt: " << Watt().GetSISuffix() << std::endl;
   std::wcout << "Watt2: " << Watt2().GetSuffix() << std::endl;
+  std::wcout << "Watt2: " << Watt2().GetSISuffix() << std::endl;
   std::wcout << "Volt: " << Volt().GetSuffix() << std::endl;
+  std::wcout << "Volt: " << Volt().GetSISuffix() << std::endl;
   std::wcout << "Volt2: " << Volt2().GetSuffix() << std::endl;
+  std::wcout << "Volt2: " << Volt2().GetSISuffix() << std::endl;
 
   std::wcout << (Pascal2() / Joule2( 1. )).GetSuffix() << std::endl;
 

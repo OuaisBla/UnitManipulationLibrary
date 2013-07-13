@@ -29,8 +29,14 @@ jean.gauthier@programmer.net
 
 
 #include <boost/math/common_factor.hpp>
-#include <boost/unordered_map.hpp>
+#include <boost/container/map.hpp>
+#include <vector>
+#include <algorithm>
 #include <xstring>
+
+
+#pragma warning ( push )
+#pragma warning ( disable : 4428 )  //warning C4428: universal-character-name encountered in source
 
 
 namespace Unit
@@ -72,8 +78,6 @@ namespace Unit
   namespace Detail
   {
 
-    typedef std::pair<Types::String, Types::String>     PairString;
-    typedef boost::unordered_map<Types::Integer, PairString>   SuffixesMap;
 
     //
     //  Compile-time assertion operator
@@ -162,10 +166,72 @@ namespace Unit
     }
 
 
+    struct SuffixesString
+    {
+
+      Types::String FactorString;
+      Types::String TypeString;
+
+      SuffixesString( ) { }
+
+      SuffixesString( Types::String const &_f, Types::String const &_b ) :
+        FactorString( _f ),
+        TypeString( _b )
+      {
+      }
+
+    };
+
+    struct SuffixesValue
+    {
+
+      Types::Integer Numerator;
+      Types::Integer Denumerator;
+
+      SuffixesValue( ) : Numerator( 0 ), Denumerator( 1 ) { }
+      SuffixesValue( Types::Integer const &_n ) : Numerator( _n ), Denumerator( 1 ) { }
+      SuffixesValue( Types::Integer const &_n, Types::Integer const &_d ) : Numerator( _n ), Denumerator( _d ) { }
+
+
+      bool operator == ( SuffixesValue const &_v ) const
+      {
+        return Numerator == _v.Numerator && Denumerator == _v.Denumerator;
+      }
+
+      bool operator < ( SuffixesValue const &_v ) const
+      {
+        return static_cast<Types::Scalar>( Numerator ) / static_cast<Types::Scalar>( Denumerator ) < 
+          static_cast<Types::Scalar>( _v.Numerator ) / static_cast<Types::Scalar>( _v.Denumerator );
+      }
+
+      Types::Integer Product() const { return Numerator * Denumerator; }
+
+    };
+
+
+    typedef boost::container::map<SuffixesValue, SuffixesString>   SuffixesMap;
+    typedef boost::container::map<SuffixesValue, Types::Integer>   SuffixesValueMap;
+    typedef std::vector<SuffixesValue>                             SuffixesKey;
+
+
+    inline SuffixesKey Keys( SuffixesMap const &suffixesMap )
+    {
+      SuffixesKey values;
+      values.reserve(suffixesMap.size());
+
+      for( SuffixesMap::const_iterator i = suffixesMap.begin(); i != suffixesMap.end(); ++i )
+      {
+        values.push_back(i->first);
+      }
+
+      return values;
+    }
+
+
     //
     //  Runtime time integer helper for factorization
     //
-    inline void decompose(Types::Integer n, boost::unordered_map<Types::Integer, Types::Integer> &out)
+    inline void decomposePrime(Types::Integer n, SuffixesValueMap &out)
     {
       int _sign = n < 0 ? -1 : 1; 
 
@@ -177,10 +243,10 @@ namespace Unit
       {
         while (n % i == Types::Integer(0))
         {
-          boost::unordered_map<Types::Integer, Types::Integer>::iterator it = out.find( i ); 
+          SuffixesValueMap::iterator it = out.find( i ); 
           if( it == out.end() )
           {
-            it = out.insert( boost::unordered_map<Types::Integer, Types::Integer>::value_type( i, 0 ) ).first;
+            it = out.insert( SuffixesValueMap::value_type( i, 0 ) ).first;
           }
 
           it->second += _sign;
@@ -188,6 +254,37 @@ namespace Unit
           n /= i;
         }
         ++i;
+      }
+    }
+
+    //
+    //  Runtime time integer helper for factorization
+    //
+    inline void decomposeFactor(Types::Integer n, SuffixesKey const &possibleFactors, SuffixesValueMap &out )
+    {
+      int _sign = n < 0 ? -1 : 1; 
+
+      n = ::abs( n );
+
+      SuffixesKey::size_type i = possibleFactors.size() - 1;
+
+      while (n != 1 && i >= 0 )
+      {
+        Types::Integer possibleFactor( possibleFactors[i].Product() );
+
+        while (n % possibleFactor == Types::Integer(0))
+        {
+          SuffixesValueMap::iterator it = out.find( possibleFactor ); 
+          if( it == out.end() )
+          {
+            it = out.insert( SuffixesValueMap::value_type( possibleFactor, 0 ) ).first;
+          }
+
+          it->second += _sign;
+
+          n /= possibleFactor;
+        }
+        --i;
       }
     }
 
@@ -208,3 +305,5 @@ namespace Unit
   }
 
 }
+
+#pragma warning ( pop )

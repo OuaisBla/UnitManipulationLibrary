@@ -38,7 +38,7 @@ namespace Unit
 struct _Time : public Object<>, public Facade<_Time>
 {
 
-  enum { NumeratorBaseTypeValue = 3 };
+  enum { NumeratorBaseTypeValue = 5 };
   enum { DenumeratorBaseTypeValue = 1 };
 
   inline static Types::String Suffix()

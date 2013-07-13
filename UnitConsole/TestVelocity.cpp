@@ -171,6 +171,8 @@ void SeeClassDefinition()
 
   Velocity const velocity;
   std::wcout << velocity.GetSuffix() << std::endl;
+  Assert( velocity.GetSuffix() == velocity.GetSISuffix() );
+  Assert( velocity.GetSISuffix() == Velocity::Suffix() );
 
   Dekavelocity const dekavelocity;
   std::wcout << dekavelocity.GetSuffix() << std::endl;

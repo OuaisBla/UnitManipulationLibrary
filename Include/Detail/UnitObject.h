@@ -131,6 +131,7 @@ public:
 public:
 
   virtual Types::String GetSuffix() const { return Types::String(); } 
+  virtual Types::String GetSISuffix() const { return Types::String(); } 
 
 protected:
 
@@ -199,7 +200,7 @@ public:
 
 private:
 
-  inline explicit BaseUnit( void * ); 
+  inline explicit BaseUnit( void *, void * ); 
 
   static BaseUnit const RuntimeSuffixesCtor;
 
@@ -207,7 +208,7 @@ private:
 
 
 template <typename T, Types::Integer E>
-BaseUnit<T,E> const BaseUnit<T,E>::RuntimeSuffixesCtor( NULL );
+BaseUnit<T,E> const BaseUnit<T,E>::RuntimeSuffixesCtor( NULL, NULL );
 
 template <typename T, Types::Integer E>
 inline BaseUnit<T,E>::BaseUnit()
@@ -216,18 +217,19 @@ inline BaseUnit<T,E>::BaseUnit()
 }
 
 template <typename T, Types::Integer E>
-inline BaseUnit<T,E>::BaseUnit( void * ) 
+inline BaseUnit<T,E>::BaseUnit( void *, void * ) 
 {
-  Types::Integer const _NumeratorBaseTypeValue = static_cast<Types::Integer>( NumeratorBaseTypeValue * DenumeratorBaseTypeValue );
+  Detail::SuffixesValue const suffixKey( static_cast<Types::Integer>( NumeratorBaseTypeValue ), static_cast<Types::Integer>( DenumeratorBaseTypeValue ) );
 
-  Detail::SuffixesMap::iterator it = Object<ScalarType,Policy>::RuntimeSuffixes.find(_NumeratorBaseTypeValue);
+  Detail::SuffixesMap::iterator it = Object<ScalarType,Policy>::RuntimeSuffixes.find( suffixKey );
 
-  if( Detail::IsPrime( _NumeratorBaseTypeValue ) && it == Object<ScalarType,Policy>::RuntimeSuffixes.end() )
+  if( it == Object<ScalarType,Policy>::RuntimeSuffixes.end() &&
+      Detail::IsPrime( suffixKey.Product() ) )
   {
-    Types::String const suffix = BaseType::Suffix();
-    Types::String const factorsuffix = BaseType::SimplifiedFactor::Suffix();
+    Types::String const factorSuffix = BaseType::SimplifiedFactor::Suffix();
+    Types::String const baseTypeSuffix = BaseType::Suffix();
 
-    Object<ScalarType,Policy>::RuntimeSuffixes.insert( Detail::SuffixesMap::value_type( _NumeratorBaseTypeValue, Detail::PairString( factorsuffix, suffix ) ) );
+    Object<ScalarType,Policy>::RuntimeSuffixes.insert( Detail::SuffixesMap::value_type( suffixKey, Detail::SuffixesString( factorSuffix, baseTypeSuffix ) ) );
   }
 }
 
