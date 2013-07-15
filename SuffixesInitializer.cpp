@@ -14,6 +14,9 @@ SuffixesMap SuffixesInitializer::RuntimeSuffixes;
 
 #ifdef NO_STATIC_UNIT_SUFFIXES_EVALUATION
 
+#pragma warning( push )
+#pragma warning( disable : 4189 )
+
 void SuffixesInitializer::Initialize()
 {
   using namespace Unit::SI;
@@ -28,10 +31,34 @@ void SuffixesInitializer::Initialize()
   Mole::SimplifiedType mol(NULL, NULL);
   Candela::SimplifiedType cd(NULL, NULL);
 
-  //Derived Unit
-  Radian rad( NULL, NULL ); 
+  //Angle Derived Unit
+  Radian rad( NULL, NULL );
   Degree deg( NULL, NULL );
 
+  //Electric Derived Unit
+  Volt volt( NULL, NULL ); 
+  Joule joule( NULL, NULL );
+  Watt watt( NULL, NULL ); 
+  Coulomb coulomb( NULL, NULL );
+  Ohm ohm( NULL, NULL );
+
+  //Force Derived Unit
+  Newton newton( NULL, NULL );
+  Pascal ___pascal( NULL, NULL );
+
+  //Frequency Derived Unit
+  Hertz hertz( NULL, NULL );
+
+  //Ratio Derived Unit
+  Bel bel( NULL, NULL );
+  Percent percent( NULL, NULL );
+
+  //Temperature Derived Unit
+  Celsius celsius( NULL, NULL );
+
+
 }
+
+#pragma warning( pop )
 
 #endif
