@@ -95,9 +95,6 @@
     <ClInclude Include="..\Include\UnitRatio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Include\UnitSI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\Include\UnitTemperature.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -129,6 +126,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Include\Detail\UnitSimple.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitBaseSI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UnitSI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

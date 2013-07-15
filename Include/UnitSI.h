@@ -28,12 +28,17 @@ jean.gauthier@programmer.net
 #pragma once
 
 
-#include "UnitLength.h"
-#include "UnitTime.h"
-#include "UnitElectricCurrent.h"
-#include "UnitMass.h"
-#include "UnitTemperature.h"
-#include "UnitAmountOfSubstance.h"
-#include "UnitLuminousIntensity.h"
-
+#include "UnitBaseSI.h"
+#include "UnitAcceleration.h"
+#include "UnitAngular.h"
+#include "UnitArea.h"
+#include "UnitForce.h"
+#include "UnitElectric.h"
+#include "UnitFrequency.h"
+#include "UnitPower.h"
+#include "UnitPowerRatio.h"
+#include "UnitPressure.h"
+#include "UnitRatio.h"
+#include "UnitVelocity.h"
+#include "UnitVolume.h"
 

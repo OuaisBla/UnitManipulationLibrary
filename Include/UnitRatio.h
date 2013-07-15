@@ -34,7 +34,7 @@ jean.gauthier@programmer.net
 namespace Unit
 {
 
-  struct Ratio : public Object<Ratio>
+  struct Ratio : public Object<>, public Facade<Ratio>
   {
 
     enum { NumeratorBaseTypeValue = 103 };

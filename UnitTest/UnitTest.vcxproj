@@ -126,6 +126,7 @@
     <ClInclude Include="..\Include\UnitPowerRatio.h" />
     <ClInclude Include="..\Include\UnitPressure.h" />
     <ClInclude Include="..\Include\UnitRatio.h" />
+    <ClInclude Include="..\Include\UnitBaseSI.h" />
     <ClInclude Include="..\Include\UnitSI.h" />
     <ClInclude Include="..\Include\UnitTemperature.h" />
     <ClInclude Include="..\Include\UnitTime.h" />

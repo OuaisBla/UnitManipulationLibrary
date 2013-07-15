@@ -28,30 +28,12 @@ jean.gauthier@programmer.net
 #pragma once
 
 
-#include "Unit.h"
+#include "UnitLength.h"
+#include "UnitTime.h"
+#include "UnitElectricCurrent.h"
+#include "UnitMass.h"
+#include "UnitTemperature.h"
+#include "UnitAmountOfSubstance.h"
+#include "UnitLuminousIntensity.h"
 
 
-namespace Unit
-{
-
-  struct _PowerRatio : public Object<>, public Facade<_PowerRatio>
-  {
-
-    enum { NumeratorBaseTypeValue = 101 };
-    enum { DenumeratorBaseTypeValue = 1 };
-
-    inline static Types::String Suffix()
-    { 
-      return Types::String( L"B" );
-    }
-
-  };
-
-
-  typedef _PowerRatio::SimplifiedType       PowerRatio;
-
-  typedef Simple<PowerRatio, SI::Deci>      Decibel;
-  typedef Simple<PowerRatio>                Bel;
-
-
-}
