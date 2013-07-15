@@ -11,3 +11,14 @@ Support for SI Unit
 Support for SI Derived Unit
 Support for Non SI Unit
 Support for Operator (Comparaison, Arithmetic)
+
+TO DO: 
+Extend ScalarType to fully support Complex numbers, Integer and floating point number with variable precision policy.
+	- Try to preserve compiler interopability between various numerical support whenever possible. (Ie, Float to int conversion, Complex to double conversion, ...)
+Implement thorough unit testing for all supported units.
+	- More assert
+	- More academic problems solving
+Add unit support for the scientific domain that are most used.
+Add physical constants for supported scientific domain.
+	- Implemented with the Boost precision policy
+
