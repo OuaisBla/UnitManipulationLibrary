@@ -1,11 +1,10 @@
 #include "stdafx.h"
 #include "Detail/UnitObject.h"
 
-#ifndef NO_STATIC_UNIT_SUFFIXES_EVALUATION
+#ifdef NO_STATIC_UNIT_SUFFIXES_EVALUATION
 #include "UnitSI.h"
 #endif
 
-using namespace Unit;
 using namespace Unit::Detail;
 
 
