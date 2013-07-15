@@ -194,7 +194,7 @@ protected:
 
 
 template <typename T, typename F>
-Types::Scalar const Simple<T,F>::m_Factor = ::pow( Simple<T,F>::SimplifiedFactor::ConversionFactor(), ::abs( Simple<T,F>::SimplifiedType::Exponent ) );
+Types::Scalar const Simple<T,F>::m_Factor = ::pow( Simple<T,F>::SimplifiedFactor::ConversionFactor(), ::abs( Simple<T,F>::Exponent ) );
 
 
 template <typename T, typename F>

@@ -11,7 +11,7 @@ using namespace Unit::NonSI;
 
 static void TestClassDefinition();
 static void SeeClassDefinition();
-
+static void TestComparaisonOperators();
 
 void Assert( bool );
 bool fequal( double, double );
@@ -22,6 +22,7 @@ void TestTemperature()
 
   TestClassDefinition();
   SeeClassDefinition();
+  TestComparaisonOperators();
 
 }
 
@@ -85,3 +86,20 @@ void SeeClassDefinition()
 
 }
 
+void TestComparaisonOperators()
+{
+
+  Celsius const unit_0_celsius( 0. );
+  Celsius const unit_100_celsius( 100. );
+  Kelvin const unit_0_celsius_in_kelvin = unit_0_celsius;
+  Kelvin const unit_100_celsius_in_kelvin = unit_0_celsius_in_kelvin + Kelvin( 100. );
+  Kelvin const unit_0_kelvin;
+
+  Assert( unit_0_celsius_in_kelvin == unit_0_celsius && unit_0_celsius == unit_0_celsius_in_kelvin );
+  Assert( unit_0_celsius != unit_100_celsius_in_kelvin );
+  Assert( unit_0_celsius < unit_100_celsius_in_kelvin );
+  Assert( unit_0_celsius > unit_0_kelvin );
+  Assert( unit_0_celsius <= unit_100_celsius_in_kelvin );
+  Assert( unit_0_celsius >= unit_0_kelvin );
+
+}

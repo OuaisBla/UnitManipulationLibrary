@@ -91,7 +91,7 @@ inline bool operator== ( Simple<T,F1> const &_s1, Simple<T,F2> const &_s2 )
 {
   typedef typename ProductFactor<F1, typename F2::InvertedFactor>::SimplifiedFactor _ScaledFactor;
 
-  Types::Scalar const _scaleFactor =  _ScaledFactor::ConversionFactor();
+  Types::Scalar const _scaleFactor =  ::pow( _ScaledFactor::ConversionFactor(), ::abs( T::Exponent ) );
 
   double const _s1Value = _s1.Simple<T,F1>::GetValue() * _scaleFactor;
   double const _s2Value = _s2.Simple<T,F2>::GetValue();
@@ -110,7 +110,7 @@ inline bool operator< ( Simple<T,F1> const &_s1, Simple<T,F2> const &_s2 )
 {
   typedef typename ProductFactor<F1, typename F2::InvertedFactor>::SimplifiedFactor _ScaledFactor;
 
-  Types::Scalar const _scaleFactor =  _ScaledFactor::ConversionFactor();
+  Types::Scalar const _scaleFactor = ::pow( _ScaledFactor::ConversionFactor(), ::abs( T::Exponent ) );
 
   double const _s1Value = _s1.Simple<T,F1>::GetValue() * _scaleFactor;
   double const _s2Value = _s2.Simple<T,F2>::GetValue();
@@ -152,10 +152,10 @@ inline bool operator== ( Simple<T1,F1> const &_s1, Simple<T2,F2> const &_s2 )
 
   typedef typename ProductFactor<F1, typename F2::InvertedFactor>::SimplifiedFactor _ScaledFactor;
 
-  Types::Scalar const _scaleFactor =  _ScaledFactor::ConversionFactor();
+  Types::Scalar const _scaleFactor =  ::pow( _ScaledFactor::ConversionFactor(), ::abs( T1::Exponent ) );
 
   typename Simple<T1,F1>::ScalarType const _s1scaled = _s1.Simple<T1,F1>::GetValue() * _scaleFactor;
-  typename Simple<T2,F2>::ScalarType const _s2scaled = _s2.Simple<T2,F2>::GetValue();
+  typename Simple<T2,F2>::ScalarType const _s2scaled = OffsetHandler<T1, T2>::Convert( _s2.Simple<T2,F2>::GetValue() );
 
   return ::fabs( _s1scaled - _s2scaled ) < Simple<T1,_ScaledFactor>::Epsilon();
 }
@@ -171,15 +171,15 @@ inline bool operator< ( Simple<T1,F1> const &_s1, Simple<T2,F2> const &_s2 )
 {
   std::is_convertible<typename Simple<T1,F1>::ScalarType, typename Simple<T2,F2>::ScalarType>();
 
-  CompatibleUnit<Simple<T1,F1>::NumeratorBaseTypeValue == Simple<T2,F2>::NumeratorBaseTypeValue && 
+  Detail::CompatibleUnit<Simple<T1,F1>::NumeratorBaseTypeValue == Simple<T2,F2>::NumeratorBaseTypeValue && 
     Simple<T1,F1>::DenumeratorBaseTypeValue == Simple<T2,F2>::DenumeratorBaseTypeValue>();
 
   typedef typename ProductFactor<F1, typename F2::InvertedFactor>::SimplifiedFactor _ScaledFactor;
 
-  Types::Scalar const _scaleFactor =  _ScaledFactor::ConversionFactor();
+  Types::Scalar const _scaleFactor =  ::pow( _ScaledFactor::ConversionFactor(), ::abs( T1::Exponent ) );
 
   typename Simple<T1,F1>::ScalarType const _s1scaled = _s1.Simple<T1,F1>::GetValue() * _scaleFactor;
-  typename Simple<T2,F2>::ScalarType const _s2scaled = _s2.Simple<T2,F2>::GetValue();
+  typename Simple<T2,F2>::ScalarType const _s2scaled = OffsetHandler<T1, T2>::Convert( _s2.Simple<T2,F2>::GetValue() );
 
   return _s1scaled < _s2scaled && 
     ::fabs( _s1scaled - _s2scaled ) >= Simple<T1,_ScaledFactor>::Epsilon();
