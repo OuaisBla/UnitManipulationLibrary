@@ -62,10 +62,10 @@ void TestAngular()
   Assert( fequal( toNormalize.tan(), 0. ) );
 
 
-  std::wcout << Radian::Suffix() << std::endl;
-  std::wcout << Degree::Suffix() << std::endl;
-  std::wcout << Grade::Suffix() << std::endl;
-  std::wcout << AngularMinute::Suffix() << std::endl;
-  std::wcout << AngularSecond::Suffix() << std::endl;
+  OutputLine( Radian::Suffix() );
+  OutputLine( Degree::Suffix() );
+  OutputLine( Grade::Suffix() );
+  OutputLine( AngularMinute::Suffix() );
+  OutputLine( AngularSecond::Suffix() );
 
 }

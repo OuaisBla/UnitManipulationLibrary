@@ -53,7 +53,7 @@ void TestSimple_T_F()
 void TestSimple_Exp1_F()
 {
 
-  std::wcout << " -- Test Simple<S<T,1>,F> form. --" << std::endl;
+  OutputLine( L" -- Test Simple<S<T,1>,F> form. --" );
 
   volatile Scalar s = 0;
 
@@ -97,7 +97,7 @@ void TestSimple_Exp1_F()
 
   if( m.GetValue() != s )
   {
-    std::wcout << "Implementation error while processing test." << std::endl;
+    OutputLine( L"Implementation error while processing test." );
   }
 
   PrintPerformance( endraw - startraw, endunit - startunit );
@@ -115,9 +115,9 @@ void PrintPerformance( clock_t const rawdiff, clock_t const unitdiff )
   Second const unittime( Scalar( unitdiff ) / CLOCKS_PER_SEC ); 
   Second const difftime = unittime - rawtime;
 
-  std::wcout << "Raw time: " << rawtime.GetValue() << rawtime.GetSuffix() << std::endl;
-  std::wcout << "Unit time: " << unittime.GetValue() << unittime.GetSuffix() << std::endl;
-  std::wcout << "Time difference: " << difftime.GetValue() << difftime.GetSuffix() << std::endl;
+  OutputLine( L"Raw time: " + ToString( rawtime.GetValue() ) + rawtime.GetSuffix() );
+  OutputLine( L"Unit time: " + ToString( unittime.GetValue() )  + unittime.GetSuffix() );
+  OutputLine( L"Time difference: " + ToString( difftime.GetValue() ) + difftime.GetSuffix() );
 
-  std::wcout << "Performance factor: " << (unittime / rawtime) << std::endl;
+  OutputLine( L"Performance factor: " + ToString( unittime / rawtime) );
 }

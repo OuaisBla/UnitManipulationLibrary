@@ -66,20 +66,20 @@ void TestClassDefinition()
 
 void SeeClassDefinition()
 {
-  std::wcout << "-- Kelvin --" << std::endl;
+  OutputLine( L"-- Kelvin --" );
 
   Decikelvin const decikelvin;
-  std::wcout << decikelvin.GetSuffix() << std::endl;
+  OutputLine( decikelvin.GetSuffix() );
 
   Kelvin const kelvin;
-  std::wcout << kelvin.GetSuffix() << std::endl;
+  OutputLine( kelvin.GetSuffix() );
 
   Dekakelvin const dekakelvin;
-  std::wcout << dekakelvin.GetSuffix() << std::endl;
+  OutputLine( dekakelvin.GetSuffix() );
 
   Celsius const celsius;
-  std::wcout << celsius.GetSuffix() << std::endl;
-  std::wcout << Celsius::Suffix() << std::endl;
+  OutputLine( celsius.GetSuffix() );
+  OutputLine( Celsius::Suffix() );
 
 }
 

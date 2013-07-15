@@ -78,31 +78,31 @@ void TestClassDefinition()
 
 void SeeClassDefinition()
 {
-  std::wcout << "-- Force --" << std::endl;
+  OutputLine( L"-- Force --" );
 
   Newton const newton;
-  std::wcout << newton.GetSuffix() << std::endl;
+  OutputLine( newton.GetSuffix() );
 
   Newton2 const newton2;
-  std::wcout << newton2.GetSuffix() << std::endl;
+  OutputLine( newton2.GetSuffix() );
 
   Newton3 const newton3;
-  std::wcout << newton3.GetSuffix() << std::endl;
+  OutputLine( newton3.GetSuffix() );
 
   Newton4 const newton4;
-  std::wcout << newton4.GetSuffix() << std::endl;
+  OutputLine( newton4.GetSuffix() );
 
   Newton5 const newton5;
-  std::wcout << newton5.GetSuffix() << std::endl;
+  OutputLine( newton5.GetSuffix() );
 
   Newton6 const newton6;
-  std::wcout << newton6.GetSuffix() << std::endl;
+  OutputLine( newton6.GetSuffix() );
 
   Newton7 const newton7;
-  std::wcout << newton7.GetSuffix() << std::endl;
+  OutputLine( newton7.GetSuffix() );
 
   Newton8 const newton8;
-  std::wcout << newton8.GetSuffix() << std::endl;
+  OutputLine( newton8.GetSuffix() );
 }
 
 void TestFactorDefinition()
@@ -147,7 +147,7 @@ void TestCompileTimeDefinition()
 
   Scalar factor = Newton::SimplifiedFactor::ConversionFactor();
 
-  std::wcout << "Newton \\ Newton: " << s << std::endl;
+  OutputLine( L"Newton \\ Newton: " + ToString( s ) );
 
 }
 
@@ -173,11 +173,11 @@ void TestSomeForce()
 
   Unit::Object<> const &o = Identity() / (thirty / (n2 - n1));
 
-  std::wcout << "Newton: " << n1.GetSuffix() << std::endl;
+  OutputLine( Types::String( L"Newton: " ) + n1.GetSuffix() );
 
-  std::wcout << o.GetSuffix() << std::endl;
-  std::wcout << o.GetValue() << std::endl;
-  std::wcout << o.GetFactor() << std::endl;
+  OutputLine( o.GetSuffix() );
+  OutputLine( ToString( o.GetValue() ) );
+  OutputLine( ToString( o.GetFactor() ) );
 
 }
 

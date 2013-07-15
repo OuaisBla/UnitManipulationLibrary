@@ -45,26 +45,26 @@ void TestClassDefinition()
 
 void SeeClassDefinition()
 {
-  std::wcout << "-- Electric --" << std::endl;
+  OutputLine( L"-- Electric --" );
 
   Volt const volt;
-  std::wcout << volt.GetSuffix() << std::endl;
-  std::wcout << Volt::Suffix() << std::endl;
+  OutputLine( volt.GetSuffix() );
+  OutputLine( Volt::Suffix() );
 
-  std::wcout << Product<Watt,Ampere::Invert>::Suffix() << std::endl;
+  OutputLine( Product<Watt,Ampere::Invert>::Suffix() );
 
   Ohm const ohm;
-  std::wcout << ohm.GetSuffix() << std::endl;
-  std::wcout << Ohm::Suffix() << std::endl;
+  OutputLine( ohm.GetSuffix() );
+  OutputLine( Ohm::Suffix() );
 
-  std::wcout << Product<Volt,Ampere::Invert>::Suffix() << std::endl;
+  OutputLine( Product<Volt,Ampere::Invert>::Suffix() );
 
   Coulomb const coulomb;
-  std::wcout << coulomb.GetSuffix() << std::endl;
-  std::wcout << Coulomb::Suffix() << std::endl;
+  OutputLine( coulomb.GetSuffix() );
+  OutputLine( Coulomb::Suffix() );
 
 
-  std::wcout << Product<Volt,Ohm::Invert>::Suffix() << std::endl;
+  OutputLine( Product<Volt,Ohm::Invert>::Suffix() );
 
 }
 

@@ -109,52 +109,52 @@ void TestClassDefinition()
 
 void SeeClassDefinition()
 {
-  std::wcout << "-- Cubicmeter --" << std::endl;
+  OutputLine( L"-- Cubicmeter --" );
 
   Femtocubicmeter const femtocubicmeter;
-  std::wcout << femtocubicmeter.GetSuffix() << std::endl;
+  OutputLine( femtocubicmeter.GetSuffix() );
 
   Picocubicmeter const picocubicmeter;
-  std::wcout << picocubicmeter.GetSuffix() << std::endl;
+  OutputLine( picocubicmeter.GetSuffix() );
 
   Nanocubicmeter const nanocubicmeter;
-  std::wcout << nanocubicmeter.GetSuffix() << std::endl;
+  OutputLine( nanocubicmeter.GetSuffix() );
 
   Microcubicmeter const microcubicmeter;
-  std::wcout << microcubicmeter.GetSuffix() << std::endl;
+  OutputLine( microcubicmeter.GetSuffix() );
 
   Millicubicmeter const millicubicmeter;
-  std::wcout << millicubicmeter.GetSuffix() << std::endl;
+  OutputLine( millicubicmeter.GetSuffix() );
 
   Centicubicmeter const centicubicmeter;
-  std::wcout << centicubicmeter.GetSuffix() << std::endl;
+  OutputLine( centicubicmeter.GetSuffix() );
 
   Decicubicmeter const decicubicmeter;
-  std::wcout << decicubicmeter.GetSuffix() << std::endl;
+  OutputLine( decicubicmeter.GetSuffix() );
 
   Cubicmeter const cubicmeter;
-  std::wcout << cubicmeter.GetSuffix() << std::endl;
+  OutputLine( cubicmeter.GetSuffix() );
 
   Dekacubicmeter const dekacubicmeter;
-  std::wcout << dekacubicmeter.GetSuffix() << std::endl;
+  OutputLine( dekacubicmeter.GetSuffix() );
 
   Hectocubicmeter const hectocubicmeter;
-  std::wcout << hectocubicmeter.GetSuffix() << std::endl;
+  OutputLine( hectocubicmeter.GetSuffix() );
 
   Kilocubicmeter const kilocubicmeter;
-  std::wcout << kilocubicmeter.GetSuffix() << std::endl;
+  OutputLine( kilocubicmeter.GetSuffix() );
 
   Megacubicmeter const megacubicmeter;
-  std::wcout << megacubicmeter.GetSuffix() << std::endl;
+  OutputLine( megacubicmeter.GetSuffix() );
 
   Gigacubicmeter const gigacubicmeter;
-  std::wcout << gigacubicmeter.GetSuffix() << std::endl;
+  OutputLine( gigacubicmeter.GetSuffix() );
 
   Teracubicmeter const teracubicmeter;
-  std::wcout << teracubicmeter.GetSuffix() << std::endl;
+  OutputLine( teracubicmeter.GetSuffix() );
 
   Petacubicmeter const petacubicmeter;
-  std::wcout << petacubicmeter.GetSuffix() << std::endl;
+  OutputLine( petacubicmeter.GetSuffix() );
 
 }
 

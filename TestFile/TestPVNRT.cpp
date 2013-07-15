@@ -45,7 +45,7 @@ typedef Product<Product<Meter,Kilogram>,Product<Second,Meter>::Invert> Pascal3;
 
 void TestPV_equals_NRT()
 {
-  std::wcout << "-- Test PV equals NRT -- " << std::endl;
+  OutputLine( L"-- Test PV equals NRT -- " );
 
   RType const R( 8.3144621 );
 
@@ -59,32 +59,32 @@ void TestPV_equals_NRT()
 
   Pascal2 p0;
 
-  std::wcout << "Newton: " << Newton().GetSuffix() << std::endl;
-  std::wcout << "Newton: " << Newton().GetSISuffix() << std::endl;
-  std::wcout << "Newton2: " << Newton2().GetSuffix() << std::endl;
-  std::wcout << "Newton2: " << Newton2().GetSISuffix() << std::endl;
-  std::wcout << "Pascal: " << Pascal().GetSuffix() << std::endl;
-  std::wcout << "Pascal: " << Pascal().GetSISuffix() << std::endl;
-  std::wcout << "Pascal2: " << Pascal2().GetSuffix() << std::endl;
-  std::wcout << "Pascal2: " << Pascal2().GetSISuffix() << std::endl;
-  std::wcout << "Joule: " << Joule().GetSuffix() << std::endl;
-  std::wcout << "Joule: " << Joule().GetSISuffix() << std::endl;
-  std::wcout << "Joule2: " << Joule2().GetSuffix() << std::endl;
-  std::wcout << "Joule2: " << Joule2().GetSISuffix() << std::endl;
-  std::wcout << "Watt: " << Watt().GetSuffix() << std::endl;
-  std::wcout << "Watt: " << Watt().GetSISuffix() << std::endl;
-  std::wcout << "Watt2: " << Watt2().GetSuffix() << std::endl;
-  std::wcout << "Watt2: " << Watt2().GetSISuffix() << std::endl;
-  std::wcout << "Volt: " << Volt().GetSuffix() << std::endl;
-  std::wcout << "Volt: " << Volt().GetSISuffix() << std::endl;
-  std::wcout << "Volt2: " << Volt2().GetSuffix() << std::endl;
-  std::wcout << "Volt2: " << Volt2().GetSISuffix() << std::endl;
-  std::wcout << "Volt3: " << Volt3().GetSuffix() << std::endl;
-  std::wcout << "Volt3: " << Volt3().GetSISuffix() << std::endl;
-  std::wcout << (Pascal2() / Joule2( 1. )).GetSuffix() << std::endl;
+  OutputLine( Types::String( L"Newton: " ) + Newton().GetSuffix() );
+  OutputLine( Types::String( L"Newton: " ) + Newton().GetSISuffix() );
+  OutputLine( Types::String( L"Newton2: " ) + Newton2().GetSuffix() );
+  OutputLine( Types::String( L"Newton2: " ) + Newton2().GetSISuffix() );
+  OutputLine( Types::String( L"Pascal: " ) + Pascal().GetSuffix() );
+  OutputLine( Types::String( L"Pascal: " ) + Pascal().GetSISuffix() );
+  OutputLine( Types::String( L"Pascal2: " ) + Pascal2().GetSuffix() );
+  OutputLine( Types::String( L"Pascal2: " ) + Pascal2().GetSISuffix() );
+  OutputLine( Types::String( L"Joule: " ) + Joule().GetSuffix() );
+  OutputLine( Types::String( L"Joule: " ) + Joule().GetSISuffix() );
+  OutputLine( Types::String( L"Joule2: " ) + Joule2().GetSuffix() );
+  OutputLine( Types::String( L"Joule2: " ) + Joule2().GetSISuffix() );
+  OutputLine( Types::String( L"Watt: " ) + Watt().GetSuffix() );
+  OutputLine( Types::String( L"Watt: " ) + Watt().GetSISuffix() );
+  OutputLine( Types::String( L"Watt2: " ) + Watt2().GetSuffix() );
+  OutputLine( Types::String( L"Watt2: " ) + Watt2().GetSISuffix() );
+  OutputLine( Types::String( L"Volt: " ) + Volt().GetSuffix() );
+  OutputLine( Types::String( L"Volt: " ) + Volt().GetSISuffix() );
+  OutputLine( Types::String( L"Volt2: " ) + Volt2().GetSuffix() );
+  OutputLine( Types::String( L"Volt2: " ) + Volt2().GetSISuffix() );
+  OutputLine( Types::String( L"Volt3: " ) + Volt3().GetSuffix() );
+  OutputLine( Types::String( L"Volt3: " ) + Volt3().GetSISuffix() );
+  OutputLine( (Pascal2() / Joule2( 1. )).GetSuffix() );
 
-  std::wcout << (pressure * spaceneeded).GetSuffix() << std::endl;
-  std::wcout << (air * R * temperature).GetSuffix() << std::endl;
+  OutputLine( (pressure * spaceneeded).GetSuffix() );
+  OutputLine( (air * R * temperature).GetSuffix() );
 
   int num = (pressure * spaceneeded).NumeratorBaseTypeValue;
   int denum = (pressure * spaceneeded).DenumeratorBaseTypeValue;

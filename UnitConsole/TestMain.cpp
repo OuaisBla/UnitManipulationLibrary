@@ -12,7 +12,7 @@
 void TestLength();
 void TestForce();
 void TestAcceleration();
-void TestUnitMass();
+void TestMass();
 void TestVelocity();
 void TestAngular();
 void TestRunTimePerformance();
@@ -29,7 +29,7 @@ int __cdecl main()
 
   TestLength();
   TestVelocity();
-  TestUnitMass();   
+  TestMass();   
   TestAcceleration();
   TestForce();
   TestAngular();
@@ -53,7 +53,7 @@ extern void Assert( bool const b )
   assert( b );
 }
 
-extern bool fequal( double const x, double const y )
+extern void OutputLine( Unit::Types::String const &_s )
 {
-  return ::fabs( x - y ) < boost::math::tools::root_epsilon<double>();
+  std::wcout << _s << std::endl;
 }

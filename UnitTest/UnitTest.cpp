@@ -11,6 +11,16 @@ using namespace Microsoft::VisualStudio::TestTools::UnitTesting;
 
 
 
+void TestLength();
+void TestForce();
+void TestAcceleration();
+void TestMass();
+void TestVelocity();
+void TestAngular();
+void TestRunTimePerformance();
+void TestPV_equals_NRT();
+void TestElectric();
+void TestTemperature();
 void TestFrequency();
 
 
@@ -65,12 +75,92 @@ namespace UnitTest
 		#pragma endregion 
 
 		[TestMethod]
-		void TestFrequency()
+		void TestLength()
 		{
       
-      ::TestFrequency();
+      ::TestLength();
 
 		}
+
+    [TestMethod]
+    void TestForce()
+    {
+
+      ::TestForce();
+
+    }
+
+    [TestMethod]
+    void TestAcceleration()
+    {
+
+      ::TestAcceleration();
+
+    }
+
+    [TestMethod]
+    void TestMass()
+    {
+
+      ::TestMass();
+
+    }
+
+    [TestMethod]
+    void TestVelocity()
+    {
+
+      ::TestVelocity();
+
+    }
+
+    [TestMethod]
+    void TestAngular()
+    {
+
+      ::TestAngular();
+
+    }
+
+    [TestMethod]
+    void TestRunTimePerformance()
+    {
+
+      ::TestRunTimePerformance();
+
+    }
+
+    [TestMethod]
+    void TestPV_equals_NRT()
+    {
+
+      ::TestPV_equals_NRT();
+
+    }
+
+    [TestMethod]
+    void TestElectric()
+    {
+
+      ::TestElectric();
+
+    }
+
+    [TestMethod]
+    void TestTemperature()
+    {
+
+      ::TestTemperature();
+
+    }
+
+    [TestMethod]
+    void TestFrequency()
+    {
+
+      ::TestFrequency();
+
+    }
 
 	};
 }

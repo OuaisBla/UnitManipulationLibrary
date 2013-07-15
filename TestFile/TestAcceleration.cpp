@@ -137,103 +137,103 @@ void TestClassDefinition()
 
 void SeeClassDefinition()
 {
-  std::wcout << "-- Acceleration --" << std::endl;
+  OutputLine( L"-- Acceleration --" );
 
   Femtoacceleration const femtoacceleration;
-  std::wcout << femtoacceleration.GetSuffix() << std::endl;
+  OutputLine( femtoacceleration.GetSuffix() );
 
   Picoacceleration const picoacceleration;
-  std::wcout << picoacceleration.GetSuffix() << std::endl;
+  OutputLine( picoacceleration.GetSuffix() );
 
   Nanoacceleration const nanoacceleration;
-  std::wcout << nanoacceleration.GetSuffix() << std::endl;
+  OutputLine( nanoacceleration.GetSuffix() );
 
   Microacceleration const microacceleration;
-  std::wcout << microacceleration.GetSuffix() << std::endl;
+  OutputLine( microacceleration.GetSuffix() );
 
   Milliacceleration const milliacceleration;
-  std::wcout << milliacceleration.GetSuffix() << std::endl;
+  OutputLine( milliacceleration.GetSuffix() );
 
   Centiacceleration const centiacceleration;
-  std::wcout << centiacceleration.GetSuffix() << std::endl;
+  OutputLine( centiacceleration.GetSuffix() );
 
   Deciacceleration const deciacceleration;
-  std::wcout << deciacceleration.GetSuffix() << std::endl;
+  OutputLine( deciacceleration.GetSuffix() );
 
   Acceleration const acceleration;
-  std::wcout << acceleration.GetSuffix() << std::endl;
+  OutputLine( acceleration.GetSuffix() );
 
   Dekaacceleration const dekaacceleration;
-  std::wcout << dekaacceleration.GetSuffix() << std::endl;
+  OutputLine( dekaacceleration.GetSuffix() );
 
   Hectoacceleration const hectoacceleration;
-  std::wcout << hectoacceleration.GetSuffix() << std::endl;
+  OutputLine( hectoacceleration.GetSuffix() );
 
   Kiloacceleration const kiloacceleration;
-  std::wcout << kiloacceleration.GetSuffix() << std::endl;
+  OutputLine( kiloacceleration.GetSuffix() );
 
   Megaacceleration const megaacceleration;
-  std::wcout << megaacceleration.GetSuffix() << std::endl;
+  OutputLine( megaacceleration.GetSuffix() );
 
   Gigaacceleration const gigaacceleration;
-  std::wcout << gigaacceleration.GetSuffix() << std::endl;
+  OutputLine( gigaacceleration.GetSuffix() );
 
   Teraacceleration const teraacceleration;
-  std::wcout << teraacceleration.GetSuffix() << std::endl;
+  OutputLine( teraacceleration.GetSuffix() );
 
   Petaacceleration const petaacceleration;
-  std::wcout << petaacceleration.GetSuffix() << std::endl;
+  OutputLine( petaacceleration.GetSuffix() );
 
   Femtoacceleration2 const femtoacceleration2;
-  std::wcout << femtoacceleration2.GetSuffix() << std::endl;
+  OutputLine( femtoacceleration2.GetSuffix() );
 
   Picoacceleration2 const picoacceleration2;
-  std::wcout << picoacceleration2.GetSuffix() << std::endl;
+  OutputLine( picoacceleration2.GetSuffix() );
 
   Nanoacceleration2 const nanoacceleration2;
-  std::wcout << nanoacceleration2.GetSuffix() << std::endl;
+  OutputLine( nanoacceleration2.GetSuffix() );
 
   Microacceleration2 const microacceleration2;
-  std::wcout << microacceleration2.GetSuffix() << std::endl;
+  OutputLine( microacceleration2.GetSuffix() );
 
   Milliacceleration2 const milliacceleration2;
-  std::wcout << milliacceleration2.GetSuffix() << std::endl;
+  OutputLine( milliacceleration2.GetSuffix() );
 
   Centiacceleration2 const centiacceleration2;
-  std::wcout << centiacceleration2.GetSuffix() << std::endl;
+  OutputLine( centiacceleration2.GetSuffix() );
 
   Deciacceleration2 const deciacceleration2;
-  std::wcout << deciacceleration2.GetSuffix() << std::endl;
+  OutputLine( deciacceleration2.GetSuffix() );
 
   Dekaacceleration2 const dekaacceleration2;
-  std::wcout << dekaacceleration2.GetSuffix() << std::endl;
+  OutputLine( dekaacceleration2.GetSuffix() );
 
   Hectoacceleration2 const hectoacceleration2;
-  std::wcout << hectoacceleration2.GetSuffix() << std::endl;
+  OutputLine( hectoacceleration2.GetSuffix() );
 
   Kiloacceleration2 const kiloacceleration2;
-  std::wcout << kiloacceleration2.GetSuffix() << std::endl;
+  OutputLine( kiloacceleration2.GetSuffix() );
 
   Megaacceleration2 const megaacceleration2;
-  std::wcout << megaacceleration2.GetSuffix() << std::endl;
+  OutputLine( megaacceleration2.GetSuffix() );
 
   Gigaacceleration2 const gigaacceleration2;
-  std::wcout << gigaacceleration2.GetSuffix() << std::endl;
+  OutputLine( gigaacceleration2.GetSuffix() );
 
   Teraacceleration2 const teraacceleration2;
-  std::wcout << teraacceleration2.GetSuffix() << std::endl;
+  OutputLine( teraacceleration2.GetSuffix() );
 
   Petaacceleration2 const petaacceleration2;
-  std::wcout << petaacceleration2.GetSuffix() << std::endl;
+  OutputLine( petaacceleration2.GetSuffix() );
 
   CarAccel const caraccel;
-  std::wcout << caraccel.GetSuffix() << std::endl;
+  OutputLine( caraccel.GetSuffix() );
 
   Acceleration3 const accel3;
-  std::wcout << accel3.GetSuffix() << std::endl;
+  OutputLine( accel3.GetSuffix() );
 
   Acceleration4 const accel4;
-  std::wcout << accel4.GetSuffix() << std::endl;
+  OutputLine( accel4.GetSuffix() );
   
 }
 

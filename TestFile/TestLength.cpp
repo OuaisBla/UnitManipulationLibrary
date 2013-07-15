@@ -136,65 +136,65 @@ void TestClassDefinition()
 
 void SeeClassDefinition()
 {
-  std::wcout << "-- Meter --" << std::endl;
+  OutputLine( L"-- Meter --" );
 
   Femtometer const femtometer;
-  std::wcout << femtometer.GetSuffix() << std::endl;
+  OutputLine( femtometer.GetSuffix() );
 
   Picometer const picometer;
-  std::wcout << picometer.GetSuffix() << std::endl;
+  OutputLine( picometer.GetSuffix() );
 
   Nanometer const nanometer;
-  std::wcout << nanometer.GetSuffix() << std::endl;
+  OutputLine( nanometer.GetSuffix() );
 
   Micrometer const micrometer;
-  std::wcout << micrometer.GetSuffix() << std::endl;
+  OutputLine( micrometer.GetSuffix() );
 
   Millimeter const millimeter;
-  std::wcout << millimeter.GetSuffix() << std::endl;
+  OutputLine( millimeter.GetSuffix() );
 
   Centimeter const centimeter;
-  std::wcout << centimeter.GetSuffix() << std::endl;
+  OutputLine( centimeter.GetSuffix() );
 
   Decimeter const decimeter;
-  std::wcout << decimeter.GetSuffix() << std::endl;
+  OutputLine( decimeter.GetSuffix() );
 
   Meter const meter;
-  std::wcout << meter.GetSuffix() << std::endl;
+  OutputLine( meter.GetSuffix() );
 
   Dekameter const dekameter;
-  std::wcout << dekameter.GetSuffix() << std::endl;
+  OutputLine( dekameter.GetSuffix() );
 
   Hectometer const hectometer;
-  std::wcout << hectometer.GetSuffix() << std::endl;
+  OutputLine( hectometer.GetSuffix() );
 
   Kilometer const kilometer;
-  std::wcout << kilometer.GetSuffix() << std::endl;
+  OutputLine( kilometer.GetSuffix() );
 
   Megameter const megameter;
-  std::wcout << megameter.GetSuffix() << std::endl;
+  OutputLine( megameter.GetSuffix() );
 
   Gigameter const gigameter;
-  std::wcout << gigameter.GetSuffix() << std::endl;
+  OutputLine( gigameter.GetSuffix() );
 
   Terameter const terameter;
-  std::wcout << terameter.GetSuffix() << std::endl;
+  OutputLine( terameter.GetSuffix() );
 
   Petameter const petameter;
-  std::wcout << petameter.GetSuffix() << std::endl;
+  OutputLine( petameter.GetSuffix() );
 
   Mil const mil;
-  std::wcout << Mil::Suffix() << std::endl;
+  OutputLine( Mil::Suffix() );
   Assert( mil.GetSuffix() == Mil::Suffix() );
   Assert( mil.GetSISuffix() != Mil::Suffix() );
 
   Inch const inch;
-  std::wcout << Inch::Suffix() << std::endl;
+  OutputLine( Inch::Suffix() );
   Assert( inch.GetSuffix() == Inch::Suffix() );
   Assert( inch.GetSISuffix() != Inch::Suffix() );
 
   Foot const foot;
-  std::wcout << Foot::Suffix() << std::endl;
+  OutputLine( Foot::Suffix() );
   Assert( foot.GetSuffix() == Foot::Suffix() );
   Assert( foot.GetSISuffix() != Foot::Suffix() );
 }

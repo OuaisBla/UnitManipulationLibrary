@@ -110,52 +110,52 @@ void TestClassDefinition()
 
 void SeeClassDefinition()
 {
-  std::wcout << "-- Squaremeter --" << std::endl;
+  OutputLine( L"-- Squaremeter --" );
 
   Femtosquaremeter const femtosquaremeter;
-  std::wcout << femtosquaremeter.GetSuffix() << std::endl;
+  OutputLine( femtosquaremeter.GetSuffix() );
 
   Picosquaremeter const picosquaremeter;
-  std::wcout << picosquaremeter.GetSuffix() << std::endl;
+  OutputLine( picosquaremeter.GetSuffix() );
 
   Nanosquaremeter const nanosquaremeter;
-  std::wcout << nanosquaremeter.GetSuffix() << std::endl;
+  OutputLine( nanosquaremeter.GetSuffix() );
 
   Microsquaremeter const microsquaremeter;
-  std::wcout << microsquaremeter.GetSuffix() << std::endl;
+  OutputLine( microsquaremeter.GetSuffix() );
 
   Millisquaremeter const millisquaremeter;
-  std::wcout << millisquaremeter.GetSuffix() << std::endl;
+  OutputLine( millisquaremeter.GetSuffix() );
 
   Centisquaremeter const centisquaremeter;
-  std::wcout << centisquaremeter.GetSuffix() << std::endl;
+  OutputLine( centisquaremeter.GetSuffix() );
 
   Decisquaremeter const decisquaremeter;
-  std::wcout << decisquaremeter.GetSuffix() << std::endl;
+  OutputLine( decisquaremeter.GetSuffix() );
 
   Squaremeter const squaremeter;
-  std::wcout << squaremeter.GetSuffix() << std::endl;
+  OutputLine( squaremeter.GetSuffix() );
 
   Dekasquaremeter const dekasquaremeter;
-  std::wcout << dekasquaremeter.GetSuffix() << std::endl;
+  OutputLine( dekasquaremeter.GetSuffix() );
 
   Hectosquaremeter const hectosquaremeter;
-  std::wcout << hectosquaremeter.GetSuffix() << std::endl;
+  OutputLine( hectosquaremeter.GetSuffix() );
 
   Kilosquaremeter const kilosquaremeter;
-  std::wcout << kilosquaremeter.GetSuffix() << std::endl;
+  OutputLine( kilosquaremeter.GetSuffix() );
 
   Megasquaremeter const megasquaremeter;
-  std::wcout << megasquaremeter.GetSuffix() << std::endl;
+  OutputLine( megasquaremeter.GetSuffix() );
 
   Gigasquaremeter const gigasquaremeter;
-  std::wcout << gigasquaremeter.GetSuffix() << std::endl;
+  OutputLine( gigasquaremeter.GetSuffix() );
 
   Terasquaremeter const terasquaremeter;
-  std::wcout << terasquaremeter.GetSuffix() << std::endl;
+  OutputLine( terasquaremeter.GetSuffix() );
 
   Petasquaremeter const petasquaremeter;
-  std::wcout << petasquaremeter.GetSuffix() << std::endl;
+  OutputLine( petasquaremeter.GetSuffix() );
 
 }
 

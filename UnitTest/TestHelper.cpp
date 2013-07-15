@@ -1,11 +1,8 @@
 
 #include "stdafx.h"
-#include <math.h>
-#include <boost\math\tools\precision.hpp>
+
 
 using namespace System;
-using namespace System::Text;
-using namespace System::Collections::Generic;
 
 
 void __cdecl Assert( bool const b )
@@ -13,8 +10,9 @@ void __cdecl Assert( bool const b )
   Microsoft::VisualStudio::TestTools::UnitTesting::Assert::IsTrue( b );
 }
 
-
-bool __cdecl fequal( double const x, double const y )
+void OutputLine( Unit::Types::String const &_s )
 {
-  return ::fabs( x - y ) < boost::math::tools::root_epsilon<double>();
+  Console::WriteLine( gcnew String( _s.c_str() ) );
 }
+
+

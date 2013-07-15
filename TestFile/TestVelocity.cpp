@@ -142,99 +142,99 @@ void TestClassDefinition()
 
 void SeeClassDefinition()
 {
-  std::wcout << "-- Velocity --" << std::endl;
+  OutputLine( L"-- Velocity --" );
 
   Femtovelocity const femtovelocity;
-  std::wcout << femtovelocity.GetSuffix() << std::endl;
+  OutputLine( femtovelocity.GetSuffix() );
 
   Picovelocity const picovelocity;
-  std::wcout << picovelocity.GetSuffix() << std::endl;
+  OutputLine( picovelocity.GetSuffix() );
 
   Nanovelocity const nanovelocity;
-  std::wcout << nanovelocity.GetSuffix() << std::endl;
+  OutputLine( nanovelocity.GetSuffix() );
 
   Microvelocity const microvelocity;
-  std::wcout << microvelocity.GetSuffix() << std::endl;
+  OutputLine( microvelocity.GetSuffix() );
 
   Millivelocity const millivelocity;
-  std::wcout << millivelocity.GetSuffix() << std::endl;
+  OutputLine( millivelocity.GetSuffix() );
 
   Centivelocity const centivelocity;
-  std::wcout << centivelocity.GetSuffix() << std::endl;
+  OutputLine( centivelocity.GetSuffix() );
 
   Decivelocity const decivelocity;
-  std::wcout << decivelocity.GetSuffix() << std::endl;
+  OutputLine( decivelocity.GetSuffix() );
 
   Velocity const velocity;
-  std::wcout << velocity.GetSuffix() << std::endl;
+  OutputLine( velocity.GetSuffix() );
   Assert( velocity.GetSuffix() == velocity.GetSISuffix() );
   Assert( velocity.GetSISuffix() == Velocity::Suffix() );
 
   Dekavelocity const dekavelocity;
-  std::wcout << dekavelocity.GetSuffix() << std::endl;
+  OutputLine( dekavelocity.GetSuffix() );
 
   Hectovelocity const hectovelocity;
-  std::wcout << hectovelocity.GetSuffix() << std::endl;
+  OutputLine( hectovelocity.GetSuffix() );
 
   Kilovelocity const kilovelocity;
-  std::wcout << kilovelocity.GetSuffix() << std::endl;
+  OutputLine( kilovelocity.GetSuffix() );
 
   Megavelocity const megavelocity;
-  std::wcout << megavelocity.GetSuffix() << std::endl;
+  OutputLine( megavelocity.GetSuffix() );
 
   Gigavelocity const gigavelocity;
-  std::wcout << gigavelocity.GetSuffix() << std::endl;
+  OutputLine( gigavelocity.GetSuffix() );
 
   Teravelocity const teravelocity;
-  std::wcout << teravelocity.GetSuffix() << std::endl;
+  OutputLine( teravelocity.GetSuffix() );
 
   Petavelocity const petavelocity;
-  std::wcout << petavelocity.GetSuffix() << std::endl;
+  OutputLine( petavelocity.GetSuffix() );
 
   Femtovelocity2 const femtovelocity2;
-  std::wcout << femtovelocity2.GetSuffix() << std::endl;
+  OutputLine( femtovelocity2.GetSuffix() );
 
   Picovelocity2 const picovelocity2;
-  std::wcout << picovelocity2.GetSuffix() << std::endl;
+  OutputLine( picovelocity2.GetSuffix() );
 
   Nanovelocity2 const nanovelocity2;
-  std::wcout << nanovelocity2.GetSuffix() << std::endl;
+  OutputLine( nanovelocity2.GetSuffix() );
 
   Microvelocity2 const microvelocity2;
-  std::wcout << microvelocity2.GetSuffix() << std::endl;
+  OutputLine( microvelocity2.GetSuffix() );
 
   Millivelocity2 const millivelocity2;
-  std::wcout << millivelocity2.GetSuffix() << std::endl;
+  OutputLine( millivelocity2.GetSuffix() );
 
   Centivelocity2 const centivelocity2;
-  std::wcout << centivelocity2.GetSuffix() << std::endl;
+  OutputLine( centivelocity2.GetSuffix() );
 
   Decivelocity2 const decivelocity2;
-  std::wcout << decivelocity2.GetSuffix() << std::endl;
+  OutputLine( decivelocity2.GetSuffix() );
 
   Dekavelocity2 const dekavelocity2;
-  std::wcout << dekavelocity2.GetSuffix() << std::endl;
+  OutputLine( dekavelocity2.GetSuffix() );
 
   Hectovelocity2 const hectovelocity2;
-  std::wcout << hectovelocity2.GetSuffix() << std::endl;
+  OutputLine( hectovelocity2.GetSuffix() );
 
   Kilovelocity2 const kilovelocity2;
-  std::wcout << kilovelocity2.GetSuffix() << std::endl;
+  OutputLine( kilovelocity2.GetSuffix() );
 
   Megavelocity2 const megavelocity2;
-  std::wcout << megavelocity2.GetSuffix() << std::endl;
+  OutputLine( megavelocity2.GetSuffix() );
 
   Gigavelocity2 const gigavelocity2;
-  std::wcout << gigavelocity2.GetSuffix() << std::endl;
+  OutputLine( gigavelocity2.GetSuffix() );
 
   Teravelocity2 const teravelocity2;
-  std::wcout << teravelocity2.GetSuffix() << std::endl;
+  OutputLine( teravelocity2.GetSuffix() );
 
   Petavelocity2 const petavelocity2;
-  std::wcout << petavelocity2.GetSuffix() << std::endl;
+  OutputLine( petavelocity2.GetSuffix() );
 
   CarVelocity const carvelocity;
-  std::wcout << carvelocity.GetSuffix() << std::endl;
+  OutputLine( carvelocity.GetSuffix() );
 }
 
 void TestCompileTimeDefinition()

@@ -11,7 +11,7 @@ static void TestClassDefinition();
 static void SeeClassDefinition();
 
 
-void TestUnitMass()
+void TestMass()
 {
 
   TestClassDefinition();
@@ -79,66 +79,66 @@ void TestClassDefinition()
 
 void SeeClassDefinition()
 {
-  std::wcout << "-- Gram --" << std::endl;
+  OutputLine( L"-- Gram --" );
 
   Femtogram const femtogram;
-  std::wcout << femtogram.GetSuffix() << std::endl;
-  std::wcout << Femtogram::Suffix() << std::endl;
+  OutputLine( femtogram.GetSuffix() );
+  OutputLine( Femtogram::Suffix() );
 
   Picogram const picogram;
-  std::wcout << picogram.GetSuffix() << std::endl;
-  std::wcout << Picogram::Suffix() << std::endl;
+  OutputLine( picogram.GetSuffix() );
+  OutputLine( Picogram::Suffix() );
 
   Nanogram const nanogram;
-  std::wcout << nanogram.GetSuffix() << std::endl;
-  std::wcout << Nanogram::Suffix() << std::endl;
+  OutputLine( nanogram.GetSuffix() );
+  OutputLine( Nanogram::Suffix() );
 
   Microgram const microgram;
-  std::wcout << microgram.GetSuffix() << std::endl;
-  std::wcout << Microgram::Suffix() << std::endl;
+  OutputLine( microgram.GetSuffix() );
+  OutputLine( Microgram::Suffix() );
 
   Milligram const milligram;
-  std::wcout << milligram.GetSuffix() << std::endl;
-  std::wcout << Milligram::Suffix() << std::endl;
+  OutputLine( milligram.GetSuffix() );
+  OutputLine( Milligram::Suffix() );
 
   Centigram const centigram;
-  std::wcout << centigram.GetSuffix() << std::endl;
-  std::wcout << Centigram::Suffix() << std::endl;
+  OutputLine( centigram.GetSuffix() );
+  OutputLine( Centigram::Suffix() );
 
   Decigram const decigram;
-  std::wcout << decigram.GetSuffix() << std::endl;
-  std::wcout << Femtogram::Suffix() << std::endl;
+  OutputLine( decigram.GetSuffix() );
+  OutputLine( Femtogram::Suffix() );
 
   Gram const gram;
-  std::wcout << gram.GetSuffix() << std::endl;
-  std::wcout << Gram::Suffix() << std::endl;
+  OutputLine( gram.GetSuffix() );
+  OutputLine( Gram::Suffix() );
 
   Dekagram const dekagram;
-  std::wcout << dekagram.GetSuffix() << std::endl;
-  std::wcout << Dekagram::Suffix() << std::endl;
+  OutputLine( dekagram.GetSuffix() );
+  OutputLine( Dekagram::Suffix() );
 
   Hectogram const hectogram;
-  std::wcout << hectogram.GetSuffix() << std::endl;
-  std::wcout << Hectogram::Suffix() << std::endl;
+  OutputLine( hectogram.GetSuffix() );
+  OutputLine( Hectogram::Suffix() );
 
   Kilogram const kilogram;
-  std::wcout << kilogram.GetSuffix() << std::endl;
-  std::wcout << Kilogram::Suffix() << std::endl;
+  OutputLine( kilogram.GetSuffix() );
+  OutputLine( Kilogram::Suffix() );
 
   Megagram const megagram;
-  std::wcout << megagram.GetSuffix() << std::endl;
-  std::wcout << Megagram::Suffix() << std::endl;
+  OutputLine( megagram.GetSuffix() );
+  OutputLine( Megagram::Suffix() );
 
   Gigagram const gigagram;
-  std::wcout << gigagram.GetSuffix() << std::endl;
-  std::wcout << Gigagram::Suffix() << std::endl;
+  OutputLine( gigagram.GetSuffix() );
+  OutputLine( Gigagram::Suffix() );
 
   Teragram const teragram;
-  std::wcout << teragram.GetSuffix() << std::endl;
-  std::wcout << Teragram::Suffix() << std::endl;
+  OutputLine( teragram.GetSuffix() );
+  OutputLine( Teragram::Suffix() );
 
   Petagram const petagram;
-  std::wcout << petagram.GetSuffix() << std::endl;
-  std::wcout << Petagram::Suffix() << std::endl;
+  OutputLine( petagram.GetSuffix() );
+  OutputLine( Petagram::Suffix() );
 }
 
