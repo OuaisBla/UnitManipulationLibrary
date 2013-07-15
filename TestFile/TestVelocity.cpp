@@ -1,7 +1,6 @@
 
 #include "stdafx.h"
 #include "UnitVelocity.h"
-#include <iostream>
 
 
 using namespace Unit;
@@ -31,9 +30,6 @@ typedef Product<Meter, Femtosecond::Invert> Petavelocity2;
 
 typedef Product<Kilometer,Hour::Invert>  CarVelocity;
 
-
-void Assert( bool );
-bool fequal( double, double );
 
 
 static void TestClassDefinition();

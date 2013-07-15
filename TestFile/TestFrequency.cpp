@@ -1,16 +1,11 @@
 
 #include "stdafx.h"
 #include "UnitFrequency.h"
-#include <iostream>
 
 
 using namespace Unit;
 using namespace Unit::SI;
 using namespace Unit::NonSI;
-
-
-void Assert( bool );
-bool fequal( double, double );
 
 
 //

@@ -91,11 +91,26 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\SuffixesInitializer.cpp" />
+    <ClCompile Include="..\TestFile\TestAcceleration.cpp" />
+    <ClCompile Include="..\TestFile\TestAngular.cpp" />
+    <ClCompile Include="..\TestFile\TestCubicMeter.cpp" />
+    <ClCompile Include="..\TestFile\TestElectric.cpp" />
+    <ClCompile Include="..\TestFile\TestForce.cpp" />
+    <ClCompile Include="..\TestFile\TestFrequency.cpp" />
+    <ClCompile Include="..\TestFile\TestIdentity.cpp" />
+    <ClCompile Include="..\TestFile\TestLength.cpp" />
+    <ClCompile Include="..\TestFile\TestMass.cpp" />
+    <ClCompile Include="..\TestFile\TestPerformance.cpp" />
+    <ClCompile Include="..\TestFile\TestPVNRT.cpp" />
+    <ClCompile Include="..\TestFile\TestSquareMeter.cpp" />
+    <ClCompile Include="..\TestFile\TestTemperature.cpp" />
+    <ClCompile Include="..\TestFile\TestVelocity.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TestHelper.cpp" />
     <ClCompile Include="UnitTest.cpp" />
   </ItemGroup>
   <ItemGroup>

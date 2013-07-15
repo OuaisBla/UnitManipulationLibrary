@@ -4,18 +4,14 @@
 #include "UnitPressure.h"
 #include "UnitEnergy.h"
 #include "UnitPower.h"
+#include "UnitElectricPotential.h"
 #include "UnitElectricCurrent.h"
 #include "UnitAmountOfSubstance.h"
 #include "UnitTemperature.h"
-#include <iostream>
 
 
 using namespace Unit;
 using namespace Unit::SI;
-
-
-void Assert( bool );
-bool fequal( double, double );
 
 
 
@@ -32,7 +28,7 @@ bool fequal( double, double );
 
 
 typedef Product<Joule,Product<Mole, Kelvin>::Invert> RType;
-typedef Product<Watt,Ampere::Invert> Volt;
+typedef Product<Watt,Ampere::Invert> Volt3;
 
 
 
@@ -83,7 +79,8 @@ void TestPV_equals_NRT()
   std::wcout << "Volt: " << Volt().GetSISuffix() << std::endl;
   std::wcout << "Volt2: " << Volt2().GetSuffix() << std::endl;
   std::wcout << "Volt2: " << Volt2().GetSISuffix() << std::endl;
-
+  std::wcout << "Volt3: " << Volt3().GetSuffix() << std::endl;
+  std::wcout << "Volt3: " << Volt3().GetSISuffix() << std::endl;
   std::wcout << (Pascal2() / Joule2( 1. )).GetSuffix() << std::endl;
 
   std::wcout << (pressure * spaceneeded).GetSuffix() << std::endl;

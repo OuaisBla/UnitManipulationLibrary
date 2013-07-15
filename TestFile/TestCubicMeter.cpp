@@ -1,7 +1,6 @@
 
 #include "stdafx.h"
 #include "UnitVolume.h"
-#include <iostream>
 
 
 using namespace Unit;
@@ -21,11 +20,6 @@ typedef Product<Product<Dekameter>,Decimeter> Dekacubicmeter2;
 typedef Product<Meter,Product<Dekameter> > Hectocubicmeter2;
 typedef Product<Hectometer,Product<Kilometer,Centimeter> > Kilocubicmeter2;
 typedef Product<Meter,Product<Kilometer> > Megacubicmeter2;
-
-
-
-void Assert( bool );
-bool fequal( double, double );
 
 
 static void TestClassDefinition();

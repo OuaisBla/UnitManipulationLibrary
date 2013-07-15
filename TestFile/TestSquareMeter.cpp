@@ -1,7 +1,6 @@
 
 #include "stdafx.h"
 #include "UnitArea.h"
-#include <iostream>
 
 
 using namespace Unit;
@@ -22,10 +21,6 @@ typedef Product<Dekameter> Hectosquaremeter2;
 typedef Product<Kilometer,Meter> Kilosquaremeter2;
 typedef Product<Kilometer> Megasquaremeter2;
 
-
-
-void Assert( bool );
-bool fequal( double, double );
 
 
 static void TestClassDefinition();

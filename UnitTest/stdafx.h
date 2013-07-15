@@ -7,3 +7,11 @@
 
 #include "Unit.h"
 #include "UnitSI.h"
+
+
+#include <iostream>
+
+void Assert( bool );
+bool fequal( double, double );
+
+using Unit::Types::Scalar;

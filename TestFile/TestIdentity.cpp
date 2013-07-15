@@ -11,8 +11,6 @@ using namespace Unit::SI;
 static void TestBinaryOperator();
 
 
-void Assert( bool );
-bool fequal( double, double );
 
 
 void TestUnitIdentity()

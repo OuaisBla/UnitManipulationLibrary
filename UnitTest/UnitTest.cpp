@@ -11,6 +11,9 @@ using namespace Microsoft::VisualStudio::TestTools::UnitTesting;
 
 
 
+void TestFrequency();
+
+
 namespace UnitTest
 {
 	[TestClass]
@@ -65,10 +68,7 @@ namespace UnitTest
 		void TestFrequency()
 		{
       
-      Hertz hertz;
-      Console::WriteLine ( gcnew String( hertz.GetSuffix().c_str()  ) );
-
-      Console::WriteLine ( gcnew String( Hertz::Suffix().c_str()  ) );
+      ::TestFrequency();
 
 		}
 

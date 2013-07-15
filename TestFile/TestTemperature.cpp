@@ -1,7 +1,6 @@
 
 #include "stdafx.h"
 #include "UnitTemperature.h"
-#include <iostream>
 
 
 using namespace Unit;
@@ -13,8 +12,6 @@ static void TestClassDefinition();
 static void SeeClassDefinition();
 static void TestComparaisonOperators();
 
-void Assert( bool );
-bool fequal( double, double );
 
 
 void TestTemperature()

@@ -1,7 +1,6 @@
 
 #include "stdafx.h"
 #include "UnitMass.h"
-#include <iostream>
 
 
 using namespace Unit;
@@ -10,10 +9,6 @@ using namespace Unit::SI;
 
 static void TestClassDefinition();
 static void SeeClassDefinition();
-
-
-void Assert( bool );
-bool fequal( double, double );
 
 
 void TestUnitMass()

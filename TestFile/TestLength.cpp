@@ -1,7 +1,6 @@
 
 #include "stdafx.h"
 #include "UnitLength.h"
-#include <iostream>
 
 
 using namespace Unit;
@@ -19,10 +18,6 @@ static void TestMathematicalBinaryOperatorsWithScalar();
 static void TestMathematicalAssignmentOperatorsWithScalar();
 static void TestMathematicalBinaryOperators();
 static void TestMathematicalAssignmentOperators();
-
-
-void Assert( bool );
-bool fequal( double, double );
 
 
 void TestLength()

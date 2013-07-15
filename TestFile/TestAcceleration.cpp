@@ -2,7 +2,6 @@
 #include "stdafx.h"
 #include "UnitAcceleration.h"
 
-#include <iostream>
 
 
 using namespace Unit;
@@ -44,8 +43,6 @@ typedef Product<Kilometer,Hour::Invert>  CarSpeed;
 typedef Product<Kilometer,Product<Hour::Invert> >  CarAccel;
 
 
-void Assert( bool );
-bool fequal( double, double );
 
 
 static void TestClassDefinition();

@@ -2,7 +2,6 @@
 #include "stdafx.h"
 #include "UnitTime.h"
 #include "UnitLength.h"
-#include <iostream>
 #include <time.h>
 
 

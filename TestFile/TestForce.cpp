@@ -2,7 +2,6 @@
 #include "stdafx.h"
 #include "UnitForce.h"
 #include "UnitAngular.h"
-#include <iostream>
 
 using namespace Unit;
 using namespace Unit::SI;
@@ -40,9 +39,6 @@ typedef Product<Gigagram, Kiloacceleration>   Giganewton2;
 typedef Product<Petagram, Milliacceleration>  Teranewton2;
 typedef Product<Teragram, Acceleration>       Petanewton2;
 
-
-void Assert( bool );
-bool fequal( double, double );
 
 
 static void TestClassDefinition();
