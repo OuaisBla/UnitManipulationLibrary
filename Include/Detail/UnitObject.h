@@ -44,10 +44,6 @@ jean.gauthier@programmer.net
 #pragma inline_depth( 255 )
 #pragma inline_recursion( on )
 
-#ifndef _MSC_VER
-#pragma template_depth( 255 )
-#endif
-
 
 namespace Unit
 {
@@ -98,6 +94,8 @@ inline Types::String Identity::Suffix()
 template <typename, Types::Integer = 1>
 class BaseUnit;
 
+template <typename, typename = Identity>
+class Simple;
 
 /**
   Abstract class representing the basic interface of a unit object.
@@ -137,10 +135,6 @@ protected:
 
   virtual void SetValue( ScalarType ) { }
 
-protected:
-
-  static Detail::SuffixesMap RuntimeSuffixes;
-
 };
 
 
@@ -156,13 +150,42 @@ struct Facade
 
 };
 
-template<typename S, typename P>
-Detail::SuffixesMap Object<S,P>::RuntimeSuffixes;
+
+namespace Detail
+{
+
+  class SuffixesInitializer
+  {
+
+    SuffixesInitializer();
+    SuffixesInitializer( SuffixesInitializer const &);
+    void operator= ( SuffixesInitializer const &);
+
+    template<class B, Types::Integer E> friend class BaseUnit;
+    template<class T, class F>          friend class Simple;
+
+  public:
+
+  #ifndef NO_STATIC_UNIT_SUFFIXES_EVALUATION
+    inline static void Initialize()
+    {
+    }
+  #else
+    static void Initialize();
+  #endif
+
+  private:
+
+    static SuffixesMap RuntimeSuffixes;
+
+  };
+
+}
+
 
 template<typename S, typename P>
 inline Object<S,P>::Object()
 {
-  static Detail::SuffixesMap __ForceLinker = Object<S,P>::RuntimeSuffixes;
 }
 
 /**
@@ -202,18 +225,27 @@ private:
 
   inline explicit BaseUnit( void *, void * ); 
 
+#ifndef NO_STATIC_UNIT_SUFFIXES_EVALUATION
   static BaseUnit const RuntimeSuffixesCtor;
+#else
+  friend class Detail::SuffixesInitializer;
+#endif
 
 };
 
 
+#ifndef NO_STATIC_UNIT_SUFFIXES_EVALUATION
 template <typename T, Types::Integer E>
 BaseUnit<T,E> const BaseUnit<T,E>::RuntimeSuffixesCtor( NULL, NULL );
+#endif
+
 
 template <typename T, Types::Integer E>
 inline BaseUnit<T,E>::BaseUnit()
 {
+#ifndef NO_STATIC_UNIT_SUFFIXES_EVALUATION
   static BaseUnit<T,E> __ForceLinker = BaseUnit<T,E>::RuntimeSuffixesCtor;
+#endif
 }
 
 template <typename T, Types::Integer E>
@@ -221,15 +253,15 @@ inline BaseUnit<T,E>::BaseUnit( void *, void * )
 {
   Detail::SuffixesValue const suffixKey( static_cast<Types::Integer>( NumeratorBaseTypeValue ), static_cast<Types::Integer>( DenumeratorBaseTypeValue ) );
 
-  Detail::SuffixesMap::iterator it = Object<ScalarType,Policy>::RuntimeSuffixes.find( suffixKey );
+  Detail::SuffixesMap::iterator it = Detail::SuffixesInitializer::RuntimeSuffixes.find( suffixKey );
 
-  if( it == Object<ScalarType,Policy>::RuntimeSuffixes.end() &&
+  if( it == Detail::SuffixesInitializer::RuntimeSuffixes.end() &&
       Detail::IsPrime( suffixKey.Product() ) )
   {
     Types::String const factorSuffix = BaseType::SimplifiedFactor::Suffix();
     Types::String const baseTypeSuffix = BaseType::Suffix();
 
-    Object<ScalarType,Policy>::RuntimeSuffixes.insert( Detail::SuffixesMap::value_type( suffixKey, Detail::SuffixesString( factorSuffix, baseTypeSuffix ) ) );
+    Detail::SuffixesInitializer::RuntimeSuffixes.insert( Detail::SuffixesMap::value_type( suffixKey, Detail::SuffixesString( factorSuffix, baseTypeSuffix ) ) );
   }
 }
 

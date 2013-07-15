@@ -37,7 +37,7 @@ namespace Unit
 {
 
 
-template <typename _UnitType, typename _Factor = Identity>
+template <typename _UnitType, typename _Factor>
 class Simple : public _UnitType
 {
 public:
@@ -146,7 +146,11 @@ private:
 
   inline explicit Simple( void *, void * ); 
 
+#ifndef NO_STATIC_UNIT_SUFFIXES_EVALUATION
   static Simple const RuntimeSuffixesCtor;
+#else
+  friend class Detail::SuffixesInitializer;
+#endif
 
 };
 
@@ -201,6 +205,10 @@ template <typename T, typename F>
 typename Simple<T,F>::ScalarType const Simple<T,F>::m_Epsilon = boost::math::tools::root_epsilon<typename Simple<T,F>::ScalarType>();
 
 
+#ifndef NO_STATIC_UNIT_SUFFIXES_EVALUATION
+template <typename T, typename F>
+Simple<T,F> const Simple<T,F>::RuntimeSuffixesCtor( NULL, NULL );
+#endif
 
 
 //
@@ -211,7 +219,9 @@ template <typename T, typename F>
 inline Simple<T,F>::Simple() :
   m_Value( 0. )
 {
+#ifndef NO_STATIC_UNIT_SUFFIXES_EVALUATION
   static Simple<T,F> __ForceLinker = Simple<T,F>::RuntimeSuffixesCtor;
+#endif
 }
 
 template <typename T, typename F>
@@ -227,22 +237,21 @@ inline Simple<T,F>::Simple( Simple<UnitType,F> const &_s ) :
 }
 
 template <typename T, typename F>
-Simple<T,F> const Simple<T,F>::RuntimeSuffixesCtor( NULL, NULL );
-
-
-template <typename T, typename F>
 inline Simple<T,F>::Simple( void *, void * ) 
 {
-  Detail::SuffixesValue const suffixKey( static_cast<Types::Integer>( NumeratorBaseTypeValue ), static_cast<Types::Integer>( DenumeratorBaseTypeValue ) );
+  using namespace Detail;
+  using namespace Types;
 
-  Detail::SuffixesMap::iterator it = Object<ScalarType,Policy>::RuntimeSuffixes.find(suffixKey);
+  SuffixesValue const suffixKey( static_cast<Integer>( NumeratorBaseTypeValue ), static_cast<Integer>( DenumeratorBaseTypeValue ) );
 
-  if( it == Object<ScalarType,Policy>::RuntimeSuffixes.end() &&
+  SuffixesMap::iterator it = SuffixesInitializer::RuntimeSuffixes.find(suffixKey);
+
+  if( it == SuffixesInitializer::RuntimeSuffixes.end() &&
       typeid( BaseType ) != typeid( DerivedType ) )
   {
-    Types::String const derivedTypeSuffix = DerivedType::Suffix();
+    String const derivedTypeSuffix = DerivedType::Suffix();
 
-    Object<ScalarType,Policy>::RuntimeSuffixes.insert( Detail::SuffixesMap::value_type( suffixKey, Detail::SuffixesString( Types::String(), derivedTypeSuffix ) ) );
+    SuffixesInitializer::RuntimeSuffixes.insert( SuffixesMap::value_type( suffixKey, SuffixesString( String(), derivedTypeSuffix ) ) );
   }
 }
 
@@ -304,30 +313,35 @@ inline Types::String Simple<T,F>::GetSuffix() const
 
   Detail::SuffixesValue const suffixKey( static_cast<Types::Integer>( NumeratorBaseTypeValue ), static_cast<Types::Integer>( DenumeratorBaseTypeValue ) );
 
-  Detail::SuffixesMap::const_iterator itDerived = Object<ScalarType,Policy>::RuntimeSuffixes.find(suffixKey);
+  Detail::SuffixesMap::const_iterator itDerived = Detail::SuffixesInitializer::RuntimeSuffixes.find(suffixKey);
 
-  if( itDerived != Object<ScalarType,Policy>::RuntimeSuffixes.end() )
+  if( itDerived != Detail::SuffixesInitializer::RuntimeSuffixes.end() )
   {
     Detail::SuffixesString const & suffix = itDerived->second;
 
     return _Factor::Suffix() + suffix.TypeString;
   }
 
-  Detail::SuffixesKey const keys = Keys( Object<ScalarType,Policy>::RuntimeSuffixes );
+  Detail::SuffixesKey const keys = Keys( Detail::SuffixesInitializer::RuntimeSuffixes );
 
   Detail::SuffixesValueMap factors;
   Detail::decomposeFactor( static_cast<Types::Integer>( NumeratorBaseTypeValue ), keys, factors );
   Detail::decomposeFactor( -static_cast<Types::Integer>( DenumeratorBaseTypeValue ), keys, factors );
 
+  if( factors.empty() )
+  {
+    return Suffix();
+  }
+
   Detail::SuffixesValueMap::const_iterator it = factors.begin();
 
-  Detail::SuffixesString const & suffix_0 = Object<ScalarType,Policy>::RuntimeSuffixes[it->first];
+  Detail::SuffixesString const & suffix_0 = Detail::SuffixesInitializer::RuntimeSuffixes[it->first];
 
   Types::String runtimeSuffix = suffix_0.FactorString + suffix_0.TypeString + Detail::SuffixExponent( it->second );
 
   for( ++it; it != factors.end(); ++it )
   {
-    Detail::SuffixesString const & suffix_n = Object<ScalarType,Policy>::RuntimeSuffixes[it->first];
+    Detail::SuffixesString const & suffix_n = Detail::SuffixesInitializer::RuntimeSuffixes[it->first];
 
     runtimeSuffix += Literals::DOT_OPERATOR + suffix_n.FactorString + suffix_n.TypeString + Detail::SuffixExponent( it->second );
   }
@@ -343,15 +357,20 @@ inline Types::String Simple<T,F>::GetSISuffix() const
   Detail::decomposePrime( static_cast<Types::Integer>( NumeratorBaseTypeValue ), factors );
   Detail::decomposePrime( -static_cast<Types::Integer>( DenumeratorBaseTypeValue ), factors );
 
+  if( factors.empty() )
+  {
+    return Suffix();
+  }
+
   Detail::SuffixesValueMap::const_iterator it = factors.begin();
 
-  Detail::SuffixesString const & suffix_0 = Object<ScalarType,Policy>::RuntimeSuffixes[it->first];
+  Detail::SuffixesString const & suffix_0 = Detail::SuffixesInitializer::RuntimeSuffixes[it->first];
 
   Types::String runtimeSuffix = suffix_0.FactorString + suffix_0.TypeString + Detail::SuffixExponent( it->second );
 
   for( ++it; it != factors.end(); ++it )
   {
-    Detail::SuffixesString const & suffix_n = Object<ScalarType,Policy>::RuntimeSuffixes[it->first];
+    Detail::SuffixesString const & suffix_n = Detail::SuffixesInitializer::RuntimeSuffixes[it->first];
 
     runtimeSuffix += Literals::DOT_OPERATOR + suffix_n.FactorString + suffix_n.TypeString + Detail::SuffixExponent( it->second );
   }

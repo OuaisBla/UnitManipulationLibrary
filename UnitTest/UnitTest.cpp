@@ -1,6 +1,8 @@
 #include "stdafx.h"
-#include "UnitFrequency.h"
+#include "UnitSI.h"
 
+
+using namespace Unit;
 using namespace Unit::SI;
 using namespace System;
 using namespace System::Text;
@@ -39,8 +41,11 @@ namespace UnitTest
 		//You can use the following additional attributes as you write your tests:
 		//
 		//Use ClassInitialize to run code before running the first test in the class
-		//[ClassInitialize()]
-		//static void MyClassInitialize(TestContext^ testContext) {};
+		[ClassInitialize()]
+		static void MyClassInitialize(Microsoft::VisualStudio::TestTools::UnitTesting::TestContext^ ) 
+    {
+      Detail::SuffixesInitializer::Initialize();
+    }
 		//
 		//Use ClassCleanup to run code after all tests in a class have run
 		//[ClassCleanup()]
@@ -57,7 +62,7 @@ namespace UnitTest
 		#pragma endregion 
 
 		[TestMethod]
-		void TestMethod()
+		void TestFrequency()
 		{
       
       Hertz hertz;
