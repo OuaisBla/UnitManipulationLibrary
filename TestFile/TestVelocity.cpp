@@ -510,14 +510,15 @@ void SolveVelocityProblems1()
   //   3.00 x 10 8 m/s.  How far is Earth from the sun? 
   Meter const rep4 = Velocity( 3.e8 ) * Minute( 8.3 );
   Scalar const _rep4 = rep4.GetValue();
-  Assert( fequal( _rep4, 149400000000.00 ) );
+  Assert( fequal( _rep4, 149400000000.00, 1.e8 ) );
 
   //5. You and a friend each drive 50 km.  You travel at 90 km/h, your friend 
   //   at 95 km/h.  How long will your friend wait for you at the end of the 
   //   trip? 
   Kilometer const fifty( 50. );
   Hour const rep5 = fifty / CarVelocity( 90. ) - fifty / CarVelocity( 95. );
-  Scalar const _rep5 = rep5.GetValue();       //0.029239766081871
+  Scalar const _rep5 = rep5.GetValue();
+  Assert( fequal( _rep5, 0.029239766081871 ) );
 
 }
 
@@ -550,7 +551,7 @@ void SolveVelocityProblems2()
   //   80 km/hr? 
   Hour const rep5 = Identity() / (CarVelocity( 80. ) / Kilometer( 350. ));
   Scalar const _rep5 = rep5.GetValue();
-  //Assert( fequal( _rep5, 4.3750000000000 ) );
+  Assert( fequal( _rep5, 4.3750000000000 ) );
 
   //6. How many seconds will it take for a satellite to travel 450 km at a rate of 120 m/s? 
   Second const rep6 = Kilometer( 450. ) / Velocity( 120. );
@@ -584,6 +585,7 @@ void SolveVelocityProblems3()
   //   is the speed of the beam horizontally across the screen? 
   Velocity const rep1 = Centimeter( 50. ) * 525. / Second( .03 );
   Scalar const _rep1 = rep1.GetValue();
+  Assert( fequal( _rep1, 8750.0 ) );
 
 
   //2. What is your average speed in each of these cases? 
@@ -593,12 +595,15 @@ void SolveVelocityProblems3()
   Velocity const rep2_2 = (Second( 100. ) * Velocity( 5. ) + Velocity( 1. ) * Second( 100. )) / (Second( 100. ) * 2.);
   Scalar const _rep2 = rep2.GetValue();
   Scalar const _rep2_2 = rep2_2.GetValue();
+  Assert( fequal( _rep2, 1.6666666666666667 ) );
+  Assert( fequal( _rep2_2, 3.0 ) );
 
   //3. A rabbit and a turtle are practicing for their big race. The rabbit covers a 30. m practice course 
   //   in 5.0 seconds, the turtle covers the same distance in 120 seconds. If the actual race is run on a 96 m 
   //   course, by how many seconds will the rabbit beat the turtle? 
   Second const rep3 = Meter( 96. ) / (Meter( 30. ) / Second( 5. )) - Meter( 96. ) / (Meter( 120. ) / Second( 5. ));
   Scalar const _rep3 = rep3.GetValue();
+  Assert( fequal( _rep3, 12.0 ) );
 
   //4. A tsunami caused by an earthquake occurring in Alaska in 1946 consisted of several huge waves 
   //   which were found to travel at the average speed of 790 km/hr. The first of the waves reached 
@@ -606,11 +611,13 @@ void SolveVelocityProblems3()
   //   of the tsunami was from Hawaii. 
   Kilometer const rep4 = CarVelocity( 790. ) * (Hour( 4. ) + (Hour)Minute( 34 ) );
   Scalar const _rep4 = rep4.GetValue();
+  Assert( fequal( _rep4, 3607.666666666667 ) );
 
   //5. Two cyclist race with nearly uniform speed on a 500. m course. The blue bicycle crosses the 
   //   finish line 2.0 s ahead of the red bicycle. If the red bicycle maintained an average speed of 10. m/s, 
   //   what was the average speed of the blue bicycle? 
   Velocity const rep5 = Meter( 500. ) / (Second(Meter( 500. ) / Velocity( 10. )) + Second( 2. ));
-  Scalar const _rep5 = rep5.GetValue();       
+  Scalar const _rep5 = rep5.GetValue();
+  Assert( fequal( _rep5, 9.6153846153846150 ) );
 
 }

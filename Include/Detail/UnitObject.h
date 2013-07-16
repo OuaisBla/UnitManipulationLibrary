@@ -352,7 +352,7 @@ class ProductFactor
 public:
 
   typedef ProductFactor<typename L::SimplifiedFactor,typename R::SimplifiedFactor> SimplifiedFactor;
-  typedef ProductFactor<typename R::SimplifiedFactor,typename L::SimplifiedFactor> InvertedFactor;
+  typedef ProductFactor<typename L::InvertedFactor,typename R::InvertedFactor> InvertedFactor;
 
 public:
 

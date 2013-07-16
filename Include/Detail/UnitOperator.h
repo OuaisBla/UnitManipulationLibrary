@@ -375,14 +375,28 @@ inline typename Simple<T,F>::Invert operator/ ( Identity const &, Simple<T,F> co
 template <typename T1, typename F1, typename T2, typename F2>
 inline typename Product<Simple<T1,F1>,Simple<T2,F2> >::SimpleType operator* ( Simple<T1,F1> const &_s1, Simple<T2,F2> const &_s2 )
 {
-  return typename Product<Simple<T1,F1>,Simple<T2,F2> >::SimpleType( _s1.Simple<T1,F1>::GetValue() * _s2.Simple<T2,F2>::GetValue() );
+  std::is_convertible<typename Simple<T1,F1>::ScalarType, typename Simple<T2,F2>::ScalarType>();
+
+  typedef typename Product<Simple<T1,F1>,Simple<T2,F2> >::SimpleType ProductType;
+
+  ProductType::ScalarType const value = _s1.Simple<T1,F1>::GetConvertedValue() * _s2.Simple<T2,F2>::GetConvertedValue();
+  Scalar const factor = ProductType::ConversionFactor();
+
+  return ProductType( value / factor );
 }
 
 
 template <typename T1, typename F1, typename T2, typename F2>
 inline typename Product<Simple<T1,F1>,typename Simple<T2,F2>::Invert>::SimpleType operator/ ( Simple<T1,F1> const &_s1, Simple<T2,F2> const &_s2 )
 {
-  return typename Product<Simple<T1,F1>,typename Simple<T2,F2>::Invert>::SimpleType( _s1.Simple<T1,F1>::GetValue() / _s2.Simple<T2,F2>::GetValue() );
+  std::is_convertible<typename Simple<T1,F1>::ScalarType, typename Simple<T2,F2>::ScalarType>();
+
+  typedef typename Product<Simple<T1,F1>,typename Simple<T2,F2>::Invert>::SimpleType ProductType;
+
+  ProductType::ScalarType const value = _s1.Simple<T1,F1>::GetConvertedValue() / _s2.Simple<T2,F2>::GetConvertedValue();
+  Scalar const factor = ProductType::ConversionFactor();
+
+  return ProductType( value / factor );
 }
 
 template <typename T, Types::Integer E, typename F>

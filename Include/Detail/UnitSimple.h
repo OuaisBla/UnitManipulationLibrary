@@ -58,9 +58,9 @@ public:
     typename _Factor::SimplifiedFactor, 
     typename UnitType::SimplifiedFactor::InvertedFactor>
     ::SimplifiedFactor                          SimplifiedFactor;
-  typedef typename _Factor::InvertedFactor      InvertedFactor;
+  typedef typename SimplifiedFactor::InvertedFactor  InvertedFactor;
   
-  typedef Simple<UnitType,_Factor>              SimpleType;
+  typedef Simple<UnitType,SimplifiedFactor>     SimpleType;
   typedef Simple<InvertedType,InvertedFactor>   Invert;
 
   enum { Exponent = SimplifiedType::Exponent };
@@ -185,6 +185,11 @@ public:
 public:
 
   inline operator Types::Scalar() const;
+
+  inline static Types::Scalar ConversionFactor()
+  {
+    return 1.0;
+  }
 
 protected:
 
@@ -396,7 +401,7 @@ inline Simple<Identity,F>::Simple( Simple<Identity,F> const &_s ) :
 template <typename F>
 inline Simple<Identity,F>::operator Types::Scalar() const
 {
-  return m_Value * F::ConversionFactor();
+  return m_Value;
 }
 
 

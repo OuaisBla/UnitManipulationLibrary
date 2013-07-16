@@ -141,7 +141,7 @@ void TestCompileTimeDefinition()
 
 
   Meter const m = Meter(newton8 * ( Second(1.0) * Second(1.0) ) / Kilogram(1.0));
-
+  Assert( m == Meter( 1.0 ) );
 
   Scalar const s = Newton(newton2) / Newton(newton);
   OutputLine( L"Newton \\ Newton: " + ToString( s ) );

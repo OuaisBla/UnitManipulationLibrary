@@ -51,7 +51,7 @@ class Product : public Simple<
 public:
 
   typedef typename ProductFactor<typename L::SimplifiedFactor, typename R::SimplifiedFactor>::SimplifiedFactor    SimplifiedFactor;
-  typedef typename ProductFactor<typename L::SimplifiedFactor, typename R::SimplifiedFactor>::InvertedFactor      InvertedFactor;
+  typedef typename SimplifiedFactor::InvertedFactor      InvertedFactor;
 
   typedef Simple<typename PS2<typename L::SimplifiedType, typename R::SimplifiedType>::SimplifiedType, SimplifiedFactor> ParentType;
 
@@ -111,7 +111,7 @@ class Product<Simple<BaseUnit<T,a>,F1>,Simple<BaseUnit<T,b>,F2> > : public Simpl
 public:
 
   typedef typename ProductFactor<typename L::SimplifiedFactor, typename R::SimplifiedFactor>::SimplifiedFactor  SimplifiedFactor;
-  typedef typename ProductFactor<typename L::SimplifiedFactor, typename R::SimplifiedFactor>::InvertedFactor    InvertedFactor;
+  typedef typename SimplifiedFactor::InvertedFactor    InvertedFactor;
 
   typedef Simple<typename BaseUnit<typename T::BaseType,a + b>::SimplifiedType, SimplifiedFactor> ParentType;
 
