@@ -312,7 +312,8 @@ void TestCompileTimeDefinition()
   Megaacceleration2 const megaacceleration2 = megaacceleration;
   Assert( fequal( megaacceleration.GetFactor(), megaacceleration2.GetFactor() ) );
 
-  Scalar s = acceleration3 / acceleration4;
+  Scalar const s = acceleration3 / acceleration4;
+  Assert( fequal( s, 0.0 ) );
 
 }
 
@@ -327,6 +328,8 @@ void SolveAccelerationProblems1()
   Velocity const rep1_2 = potfalls / rep1;
   Scalar const _rep1 = rep1.GetValue();
   Scalar const _rep1_2 = rep1_2.GetValue();
+  Assert( fequal( _rep1, 2.2587697572631282 ) );
+  Assert( fequal( _rep1_2, 11.067971810589327  ) );
 
   //2. A plane, starting from rest at one end of a runway, undergoes a 
   //   constant acceleration of 1.6 m/s2 for a distance of 1600 m before 
@@ -338,6 +341,8 @@ void SolveAccelerationProblems1()
   Velocity const rep2_2 = planedistance / rep2;
   Scalar const _rep2 = rep2.GetValue();
   Scalar const _rep2_2 = rep2_2.GetValue(); 
+  Assert( fequal( _rep2, 44.721359549995796 ) );
+  Assert( fequal( _rep2_2, 35.777087639996637 ) );
 
 }
 
@@ -347,23 +352,28 @@ void SolveAccelerationProblems2()
   //   projectile? 
   Acceleration const rep1 = Velocity( 300. ) / Second( .5 );
   Scalar const _rep1 = rep1.GetValue();
+  Assert( fequal( _rep1, 600. ) );
 
   //2. A meteoroid changed velocity from 1.0 km/s to 1.8 km/s in 0.03 seconds. What is
   //   the acceleration of the meteoroid? 
   Acceleration const rep2 = (Kilovelocity( 1.8 ) - Kilovelocity( 1. )) / Second( .03 );
   Scalar const _rep2 = rep2.GetValue();
+  Assert( fequal( _rep2, 26666.6666666666667 ) );
 
   //3. The space shuttle releases a space telescope into orbit around the earth. The 
   //   telescope goes from being stationary to traveling at a speed of 1700 m/s in 25 
   //   seconds. What is the acceleration of the satellite? 
   Acceleration const rep3 = Velocity( 1700. ) / Second( 25. );
   Scalar const _rep3 = rep3.GetValue();
+  Assert( fequal( _rep3, 68. ) );
+
 
   //4. A dragster in a race accelerated from stop to 60 m/s by the time it reached the 
   //   finish line. The  dragster moved in a straight line and traveled from the starting line to
   //   the finish line in 8.0 sec.   What was the acceleration of the dragster? 
   Acceleration const rep4 = Velocity( 60. ) / Second( 8. );
   Scalar const _rep4 = rep4.GetValue();
+  Assert( fequal( _rep4, 7.5 ) );
 
 }
 

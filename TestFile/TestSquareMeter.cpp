@@ -235,17 +235,21 @@ void TestConversionConstructor()
 
   //1) Convert 4.26 x 10e4 m2 to km2 
   Kilosquaremeter const _rep1 = Squaremeter( 4.260e4 );
-  Scalar rep1 = _rep1.GetValue(); //4.62 x 10e-2
+  Scalar rep1 = _rep1.GetValue();
+  Assert( fequal( rep1, 4.62e-2 ) );
 
   //2) Convert 3.20 x 10e10 fm2 to cm2. 
   Centisquaremeter const _rep2 = Femtosquaremeter( 3.2e10 );
-  Scalar const rep2 = _rep2.GetValue(); //3.20 x 10e-16 
+  Scalar const rep2 = _rep2.GetValue();  
+  Assert( fequal( rep2, 3.20e-16, 1.0e-12 ) );
 
   //3) Convert the answer in number 2 to Mm2 
   Millisquaremeter const _rep3_1 = Femtosquaremeter( 3.2e10 );
   Millisquaremeter const _rep3_2 = _rep2;
-  Scalar const rep3_1 = _rep3_1.GetValue(); //3.20 x 10e-14
-  Scalar const rep3_2 = _rep3_2.GetValue(); //3.20 x 10e-14
+  Scalar const rep3_1 = _rep3_1.GetValue();
+  Scalar const rep3_2 = _rep3_2.GetValue();
+  Assert( fequal( rep3_1, 3.20e-14, 1.0e-12 ) );
+  Assert( fequal( rep3_2, 3.20e-14, 1.0e-12 ) );
 
 }
 
@@ -256,11 +260,13 @@ void TestConversionAssignmentOperator()
   Kilosquaremeter _rep1;
   _rep1 = Squaremeter( 4.260e4 );
   Scalar rep1 = _rep1.GetValue();
+  Assert( fequal( rep1, 4.62e-2 ) );
 
   //2) Convert 3.20 x 10e10 fm2 to cm2. 
   Centisquaremeter _rep2;
   _rep2 = Femtosquaremeter( 3.2e10 );
   Scalar const rep2 = _rep2.GetValue();
+  Assert( fequal( rep2, 3.20e-16, 1.0e-12 ) );
 
   //3) Convert the answer in number 2 to Mm2 
   Millisquaremeter _rep3_1;
@@ -269,7 +275,8 @@ void TestConversionAssignmentOperator()
   _rep3_2 = _rep2;
   Scalar const rep3_1 = _rep3_1.GetValue();
   Scalar const rep3_2 = _rep3_2.GetValue();
-
+  Assert( fequal( rep3_1, 3.20e-14, 1.0e-12 ) );
+  Assert( fequal( rep3_2, 3.20e-14, 1.0e-12 ) );
 }
 
 void TestCompileTimeConversionConstructor()
@@ -278,17 +285,20 @@ void TestCompileTimeConversionConstructor()
   //1) Convert 4.26 x 10e4 m2 to km2 
   Kilosquaremeter2 const _rep1 = Squaremeter( 4.260e4 );
   Scalar rep1 = _rep1.GetValue();
+  Assert( fequal( rep1, 4.62e-2 ) );
 
   //2) Convert 3.20 x 10e10 fm2 to cm2. 
   Centisquaremeter2 const _rep2 = Femtosquaremeter2( 3.2e10 );
   Scalar const rep2 = _rep2.GetValue();
+  Assert( fequal( rep2, 3.20e-16, 1.0e-12 ) );
 
   //3) Convert the answer in number 2 to Mm2 
   Millisquaremeter2 const _rep3_1 = Femtosquaremeter2( 3.2e10 );
   Millisquaremeter2 const _rep3_2 = _rep2;
   Scalar const rep3_1 = _rep3_1.GetValue();
   Scalar const rep3_2 = _rep3_2.GetValue();
-
+  Assert( fequal( rep3_1, 3.20e-14, 1.0e-12 ) );
+  Assert( fequal( rep3_2, 3.20e-14, 1.0e-12 ) );
 }
 
 void TestCompileTimeConversionAssignmentOperator()
@@ -298,11 +308,13 @@ void TestCompileTimeConversionAssignmentOperator()
   Kilosquaremeter2 _rep1;
   _rep1 = Squaremeter( 4.260e4 );
   Scalar rep1 = _rep1.GetValue();
+  Assert( fequal( rep1, 4.62e-2 ) );
 
   //2) Convert 3.20 x 10e10 fm2 to cm2. 
   Centisquaremeter2 _rep2;
   _rep2 = Femtosquaremeter2( 3.2e10 );
   Scalar const rep2 = _rep2.GetValue();
+  Assert( fequal( rep2, 3.20e-16, 1.0e-12 ) );
 
   //3) Convert the answer in number 2 to Mm2 
   Millisquaremeter2 _rep3_1;
@@ -311,5 +323,6 @@ void TestCompileTimeConversionAssignmentOperator()
   _rep3_2 = _rep2;
   Scalar const rep3_1 = _rep3_1.GetValue();
   Scalar const rep3_2 = _rep3_2.GetValue();
-
+  Assert( fequal( rep3_1, 3.20e-14, 1.0e-12 ) );
+  Assert( fequal( rep3_2, 3.20e-14, 1.0e-12 ) );
 }

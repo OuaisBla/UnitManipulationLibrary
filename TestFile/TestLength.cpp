@@ -79,9 +79,10 @@ void TestClassDefinition()
   Assert( fequal( meter.GetConvertedValue(), 1. ) );
   Assert( fequal( meter.GetFactor(), 1. ) );
 
-  long l = sizeof( Meter );
-  long l2 = sizeof( Kilometer );
-  long l3 = sizeof( meter );
+  long const l = sizeof( Meter );
+  long const l2 = sizeof( Kilometer );
+  long const l3 = sizeof( meter );
+  Assert( l == l2 && l == l3 );
 
   Dekameter const dekameter( 1. );
   Assert( fequal( dekameter.GetValue(), 1. ) );

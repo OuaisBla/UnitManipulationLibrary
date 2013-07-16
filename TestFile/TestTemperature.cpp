@@ -36,9 +36,6 @@ void TestClassDefinition()
   Assert( fequal( kelvin.GetConvertedValue(), 1. ) );
   Assert( fequal( kelvin.GetFactor(), 1. ) );
 
-  long l = sizeof( Kelvin );
-  long l2 = sizeof( Kilokelvin );
-
   Dekakelvin const dekakelvin( 1. );
   Assert( fequal( dekakelvin.GetValue(), 1. ) );
   Assert( fequal( dekakelvin.GetConvertedValue(), 10. ) );

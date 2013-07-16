@@ -93,8 +93,8 @@ inline bool operator== ( Simple<T,F1> const &_s1, Simple<T,F2> const &_s2 )
 
   Types::Scalar const _scaleFactor =  ::pow( _ScaledFactor::ConversionFactor(), ::abs( T::Exponent ) );
 
-  double const _s1Value = _s1.Simple<T,F1>::GetValue() * _scaleFactor;
-  double const _s2Value = _s2.Simple<T,F2>::GetValue();
+  T::ScalarType const _s1Value = _s1.Simple<T,F1>::GetValue() * _scaleFactor;
+  T::ScalarType const _s2Value = _s2.Simple<T,F2>::GetValue();
 
   return ::fabs( _s1Value - _s2Value ) < Simple<T,_ScaledFactor>::Epsilon();
 }
@@ -112,8 +112,8 @@ inline bool operator< ( Simple<T,F1> const &_s1, Simple<T,F2> const &_s2 )
 
   Types::Scalar const _scaleFactor = ::pow( _ScaledFactor::ConversionFactor(), ::abs( T::Exponent ) );
 
-  double const _s1Value = _s1.Simple<T,F1>::GetValue() * _scaleFactor;
-  double const _s2Value = _s2.Simple<T,F2>::GetValue();
+  T::ScalarType const _s1Value = _s1.Simple<T,F1>::GetValue() * _scaleFactor;
+  T::ScalarType const _s2Value = _s2.Simple<T,F2>::GetValue();
 
   return _s1Value < _s2Value && 
     ::fabs( _s1Value - _s2Value ) >= Simple<T,_ScaledFactor>::Epsilon();

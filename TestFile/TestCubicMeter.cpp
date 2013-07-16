@@ -227,23 +227,18 @@ void TestCompileTimeDefinition()
 
 }
 
-//
-//  Source : http://dbhs.wvusd.k12.ca.us/Metric/Metric-Cubic&Cubic-Units.html
-//
 void TestConversionConstructor()
 {
 
-  //1) Convert 4.26 x 10e4 m2 to km2 
-  Cubicmeter const _rep1 = Centicubicmeter( 4310. );
-  Scalar const rep1 = _rep1.GetValue(); //4.31e-3
+  //1 m3 = 1,000,000 cm3
+  Centicubicmeter const _rep1 = Cubicmeter( 1. );
+  Scalar const rep1 = _rep1.GetValue();
+  Assert( fequal( rep1, 1e7 ) );
 
-  //2) Convert 3.20 x 10e10 fm2 to cm2. 
-  Millicubicmeter const _rep2 = Centicubicmeter( 86.3 );
-  Scalar const rep2 = _rep2.GetValue(); //8.63e4
+  Assert( Centicubicmeter( rep1 ) == Cubicmeter( 1. ) );
 
-  //3) Convert the answer in number 2 to Mm2 
-  Decicubicmeter const _rep3_1 = Millicubicmeter( 5.94e10 );
-  Scalar const rep3_1 = _rep3_1.GetValue();
+  //1,000,000 - 1 cm3 < 1 m3 
+  Assert( ( Centicubicmeter( rep1 ) - Centicubicmeter( 1 ) ) < Cubicmeter( 1. ) );
 
 }
 

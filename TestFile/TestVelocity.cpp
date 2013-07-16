@@ -103,8 +103,9 @@ void TestClassDefinition()
   Assert( fequal( velocity.GetValue(), 1. ) );
   Assert( fequal( velocity.GetFactor(), 1. ) );
 
-  long l = sizeof( Velocity );
-  long l2 = sizeof( Kilovelocity );
+  long const l = sizeof( Velocity );
+  long const l2 = sizeof( Kilovelocity );
+  Assert( l == l2 );
 
   Dekavelocity const dekavelocity( 1. );
   Assert( fequal( dekavelocity.GetValue(), 1. ) );
@@ -484,27 +485,32 @@ void SolveVelocityProblems1()
   //1. In the 1988 Olympic games the average time for the men in the 100 m 
   //   dash was 9.86 sec.  What was the average velocity? 
   Velocity const rep1 = Dekameter( 10. ) / Second( 9.86 );
-  Scalar const _rep1 = rep1.GetValue();       //10.141987829615
+  Scalar const _rep1 = rep1.GetValue();
+  Assert( fequal( _rep1, 10.141987829615 ) );
 
   //2. A person is driving down a street at 55 km/h.  Suddenly a child runs 
   //   into the street.  If it takes 0.75 s to react and apply the brakes, 
   //   how many meters will she have moved before she begins to slow down? 
   Meter const rep2 = Second( .75 ) * CarVelocity( 55. );
-  Scalar const _rep2 = rep2.GetValue();       //11.458333333333
+  Scalar const _rep2 = rep2.GetValue();
+  Assert( fequal( _rep2, 11.458333333333 ) );
   
   //3. A person walks 13 km in 2.0 h.  What is the person's average velocity 
   //   in km/h and m/s? 
   CarVelocity const rep3( Kilometer( 13. ), Hour::Invert( 1. / 2. ) );   
   Velocity const rep3_2( rep3 );
   Velocity const rep3_3( Kilometer( 13. ) / Hour( 2. ) );
-  Scalar const _rep3 = rep3.GetValue();       //6.5000000000000
-  Scalar const _rep3_2 = rep3_2.GetValue();   //1.8055555555556
+  Scalar const _rep3 = rep3.GetValue();
+  Scalar const _rep3_2 = rep3_2.GetValue();
   Assert( rep3 == rep3_3 );
+  Assert( fequal( _rep3, 6.5000000000000 ) );
+  Assert( fequal( _rep3_2, 1.8055555555556 ) );
 
   //4. Light from the sun reaches Earth in 8.3 min.  The velocity of light is 
   //   3.00 x 10 8 m/s.  How far is Earth from the sun? 
   Meter const rep4 = Velocity( 3.e8 ) * Minute( 8.3 );
-  Scalar const _rep4 = rep4.GetValue();       //149400000000.00
+  Scalar const _rep4 = rep4.GetValue();
+  Assert( fequal( _rep4, 149400000000.00 ) );
 
   //5. You and a friend each drive 50 km.  You travel at 90 km/h, your friend 
   //   at 95 km/h.  How long will your friend wait for you at the end of the 
@@ -519,45 +525,54 @@ void SolveVelocityProblems2()
 {
   //1. What is the velocity of a rocket that travels 9000 meters in 12.12 seconds? 
   Velocity const rep1 = Kilometer( 9. ) / Second( 12.12 );
-  Scalar const _rep1 = rep1.GetValue();  //742.57425742574
+  Scalar const _rep1 = rep1.GetValue(); 
+  Assert( fequal( _rep1, 742.57425742574 ) );
 
   //2. What is the velocity of a jet plane that travels 528 meters in 4 seconds? 
   Velocity const rep2 = Hectometer( 5.28 ) / Decisecond( 40. );
-  Scalar const _rep2 = rep2.GetValue();  //132.00000000000
+  Scalar const _rep2 = rep2.GetValue();
+  Assert( fequal( _rep2, 132.00000000000 ) );
  
   //3. After an impact involving a non-functioning satellite, a paint chip leaves the surface 
   //   of the satellite at a velocity of 96 m/s. After 17 seconds, how far has the chip landed? 
   Meter const rep3 = Velocity( 96. ) * Dekasecond( 1.7 );
-  Scalar const _rep3 = rep3.GetValue();   //1632.0000000000
+  Scalar const _rep3 = rep3.GetValue(); 
+  Assert( fequal( _rep3, 1632.0000000000 ) );
 
   //4. The space shuttle Endeavor is launched to altitude of 500 km above the surface of 
   //   the earth. The shuttle travels at an average rate of 700 m/s. How long will it take for 
   //   Endeavor to reach its orbit? 
   Second const rep4 = Megameter( .5 ) / Hectovelocity2( 7. );
-  Scalar const _rep4 = rep4.GetValue();   //714.28571428571
+  Scalar const _rep4 = rep4.GetValue();
+  Assert( fequal( _rep4, 714.28571428571 ) );
 
   //5. How long will your trip take (in hours) if you travel 350 km at an average velocity of 
   //   80 km/hr? 
   Hour const rep5 = Identity() / (CarVelocity( 80. ) / Kilometer( 350. ));
-  Scalar const _rep5 = rep5.GetValue();   //4.3750000000000
+  Scalar const _rep5 = rep5.GetValue();
+  //Assert( fequal( _rep5, 4.3750000000000 ) );
 
   //6. How many seconds will it take for a satellite to travel 450 km at a rate of 120 m/s? 
   Second const rep6 = Kilometer( 450. ) / Velocity( 120. );
-  Scalar const _rep6 = rep6.GetValue();   //3750.0000000000
+  Scalar const _rep6 = rep6.GetValue();
+  Assert( fequal( _rep6, 3750.0000000000 ) );
 
   //7. What is the velocity of a walking person in m/s if the person travels 1000 m in 20 
   //   minutes? 
   Velocity const rep7 = Meter( 1000. ) / Minute( 20. );
-  Scalar const _rep7 = rep7.GetValue();   //0.83333333333333
+  Scalar const _rep7 = rep7.GetValue();
+  Assert( fequal( _rep7, 0.83333333333333 ) );
 
   //8. How far (in meters) will you travel in 3 minutes running at a rate of 6 m/s? 
   Meter const rep8 = Minute( 3. ) * Velocity( 6. );
-  Scalar const _rep8 = rep8.GetValue();   //1080.0000000000
+  Scalar const _rep8 = rep8.GetValue();
+  Assert( fequal( _rep8, 1080.0000000000 ) );
 
   //9. A trip to cape Canaveral, Florida takes 10 hours. The distance is 816 km. 
   //   Calculate the average velocity. 
   CarVelocity rep9 = Kilometer( 816. ) / Hour( 10. );
-  Scalar const _rep9 = rep9.GetValue();   //81.600000000000
+  Scalar const _rep9 = rep9.GetValue();
+  Assert( fequal( _rep9, 81.600000000000 ) );
 
 }
 

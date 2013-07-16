@@ -86,16 +86,10 @@ void TestPV_equals_NRT()
   OutputLine( (pressure * spaceneeded).GetSuffix() );
   OutputLine( (air * R * temperature).GetSuffix() );
 
-  int num = (pressure * spaceneeded).NumeratorBaseTypeValue;
-  int denum = (pressure * spaceneeded).DenumeratorBaseTypeValue;
-
-  int num2 = (air * R * temperature).NumeratorBaseTypeValue;
-  int denum2 = (air * R * temperature).DenumeratorBaseTypeValue;
-
-
   Scalar const PV = (pressure * spaceneeded).GetConvertedValue();
   Scalar const nRT = (air * R * temperature).GetConvertedValue();
 
   Assert( (pressure * spaceneeded) == (air * R * temperature) );
+  Assert( fequal( PV, nRT ) );
 
 }

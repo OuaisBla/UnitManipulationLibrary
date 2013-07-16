@@ -140,15 +140,14 @@ void TestCompileTimeDefinition()
   Newton8 newton8 = Newton8( newton7 );
 
 
-  Meter m = Meter(newton8 * ( Second(1.0) * Second(1.0) ) / Kilogram(1.0));
+  Meter const m = Meter(newton8 * ( Second(1.0) * Second(1.0) ) / Kilogram(1.0));
 
 
-  Scalar s = Newton(newton2) / Newton(newton);
-
-  Scalar factor = Newton::SimplifiedFactor::ConversionFactor();
-
+  Scalar const s = Newton(newton2) / Newton(newton);
   OutputLine( L"Newton \\ Newton: " + ToString( s ) );
 
+  Scalar const factor = Newton::SimplifiedFactor::ConversionFactor();
+  Assert( factor == 1.0 );
 }
 
 
