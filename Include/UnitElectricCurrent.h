@@ -56,27 +56,27 @@ namespace SI
 {
 
 
-typedef Simple<ElectricCurrent,Yocto>    Yoctoampere;
-typedef Simple<ElectricCurrent,Zepto>    Zeptoampere;
-typedef Simple<ElectricCurrent,Atto>     Attoampere;
-typedef Simple<ElectricCurrent,Femto>    Femtoampere;
-typedef Simple<ElectricCurrent,Pico>     Picoampere;
-typedef Simple<ElectricCurrent,Nano>     Nanoampere;
-typedef Simple<ElectricCurrent,Micro>    Microampere;
-typedef Simple<ElectricCurrent,Milli>    Milliampere;
-typedef Simple<ElectricCurrent,Centi>    Centiampere;
-typedef Simple<ElectricCurrent,Deci>     Deciampere;
-typedef Simple<ElectricCurrent>          Ampere;
-typedef Simple<ElectricCurrent,Deka>     Dekaampere;
-typedef Simple<ElectricCurrent,Hecto>    Hectoampere;
-typedef Simple<ElectricCurrent,Kilo>     Kiloampere;
-typedef Simple<ElectricCurrent,Mega>     Megaampere;
-typedef Simple<ElectricCurrent,Giga>     Gigaampere;
-typedef Simple<ElectricCurrent,Tera>     Teraampere;
-typedef Simple<ElectricCurrent,Peta>     Petaampere;
-typedef Simple<ElectricCurrent,Exa>      Exaampere;
-typedef Simple<ElectricCurrent,Zetta>    Zeptaampere;
-typedef Simple<ElectricCurrent,Yotta>    Yottaampere;
+typedef Quantity<ElectricCurrent,Yocto>    Yoctoampere;
+typedef Quantity<ElectricCurrent,Zepto>    Zeptoampere;
+typedef Quantity<ElectricCurrent,Atto>     Attoampere;
+typedef Quantity<ElectricCurrent,Femto>    Femtoampere;
+typedef Quantity<ElectricCurrent,Pico>     Picoampere;
+typedef Quantity<ElectricCurrent,Nano>     Nanoampere;
+typedef Quantity<ElectricCurrent,Micro>    Microampere;
+typedef Quantity<ElectricCurrent,Milli>    Milliampere;
+typedef Quantity<ElectricCurrent,Centi>    Centiampere;
+typedef Quantity<ElectricCurrent,Deci>     Deciampere;
+typedef Quantity<ElectricCurrent>          Ampere;
+typedef Quantity<ElectricCurrent,Deka>     Dekaampere;
+typedef Quantity<ElectricCurrent,Hecto>    Hectoampere;
+typedef Quantity<ElectricCurrent,Kilo>     Kiloampere;
+typedef Quantity<ElectricCurrent,Mega>     Megaampere;
+typedef Quantity<ElectricCurrent,Giga>     Gigaampere;
+typedef Quantity<ElectricCurrent,Tera>     Teraampere;
+typedef Quantity<ElectricCurrent,Peta>     Petaampere;
+typedef Quantity<ElectricCurrent,Exa>      Exaampere;
+typedef Quantity<ElectricCurrent,Zetta>    Zeptaampere;
+typedef Quantity<ElectricCurrent,Yotta>    Yottaampere;
 
 
 } // namespace SI

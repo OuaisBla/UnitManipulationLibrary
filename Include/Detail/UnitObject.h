@@ -95,7 +95,7 @@ template <typename, Types::Integer = 1>
 class BaseUnit;
 
 template <typename, typename = Identity>
-class Simple;
+class Quantity;
 
 /**
   Abstract class representing the basic interface of a unit object.
@@ -162,7 +162,7 @@ namespace Detail
     void operator= ( SuffixesInitializer const &);
 
     template<class B, Types::Integer E> friend class BaseUnit;
-    template<class T, class F>          friend class Simple;
+    template<class T, class F>          friend class Quantity;
 
   public:
 

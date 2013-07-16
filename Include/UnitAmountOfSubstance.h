@@ -56,27 +56,27 @@ namespace SI
 {
 
 
-typedef Simple<AmountOfSubstance,Yocto>    Yoctomole;
-typedef Simple<AmountOfSubstance,Zepto>    Zeptomole;
-typedef Simple<AmountOfSubstance,Atto>     Attomole;
-typedef Simple<AmountOfSubstance,Femto>    Femtomole;
-typedef Simple<AmountOfSubstance,Pico>     Picomole;
-typedef Simple<AmountOfSubstance,Nano>     Nanomole;
-typedef Simple<AmountOfSubstance,Micro>    Micromole;
-typedef Simple<AmountOfSubstance,Milli>    Millimole;
-typedef Simple<AmountOfSubstance,Centi>    Centimole;
-typedef Simple<AmountOfSubstance,Deci>     Decimole;
-typedef Simple<AmountOfSubstance>          Mole;
-typedef Simple<AmountOfSubstance,Deka>     Dekamole;
-typedef Simple<AmountOfSubstance,Hecto>    Hectomole;
-typedef Simple<AmountOfSubstance,Kilo>     Kilomole;
-typedef Simple<AmountOfSubstance,Mega>     Megamole;
-typedef Simple<AmountOfSubstance,Giga>     Gigamole; 
-typedef Simple<AmountOfSubstance,Tera>     Teramole;
-typedef Simple<AmountOfSubstance,Peta>     Petamole;
-typedef Simple<AmountOfSubstance,Exa>      Examole;
-typedef Simple<AmountOfSubstance,Zetta>    Zeptamole;
-typedef Simple<AmountOfSubstance,Yotta>    Yottamole;
+typedef Quantity<AmountOfSubstance,Yocto>    Yoctomole;
+typedef Quantity<AmountOfSubstance,Zepto>    Zeptomole;
+typedef Quantity<AmountOfSubstance,Atto>     Attomole;
+typedef Quantity<AmountOfSubstance,Femto>    Femtomole;
+typedef Quantity<AmountOfSubstance,Pico>     Picomole;
+typedef Quantity<AmountOfSubstance,Nano>     Nanomole;
+typedef Quantity<AmountOfSubstance,Micro>    Micromole;
+typedef Quantity<AmountOfSubstance,Milli>    Millimole;
+typedef Quantity<AmountOfSubstance,Centi>    Centimole;
+typedef Quantity<AmountOfSubstance,Deci>     Decimole;
+typedef Quantity<AmountOfSubstance>          Mole;
+typedef Quantity<AmountOfSubstance,Deka>     Dekamole;
+typedef Quantity<AmountOfSubstance,Hecto>    Hectomole;
+typedef Quantity<AmountOfSubstance,Kilo>     Kilomole;
+typedef Quantity<AmountOfSubstance,Mega>     Megamole;
+typedef Quantity<AmountOfSubstance,Giga>     Gigamole; 
+typedef Quantity<AmountOfSubstance,Tera>     Teramole;
+typedef Quantity<AmountOfSubstance,Peta>     Petamole;
+typedef Quantity<AmountOfSubstance,Exa>      Examole;
+typedef Quantity<AmountOfSubstance,Zetta>    Zeptamole;
+typedef Quantity<AmountOfSubstance,Yotta>    Yottamole;
 
 
 } //namespace SI

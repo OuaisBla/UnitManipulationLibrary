@@ -36,7 +36,7 @@ namespace Unit
 
 
 template <typename, typename>
-class Simple;
+class Quantity;
 
 
 /**
@@ -44,7 +44,7 @@ class Simple;
 */
 
 template <typename L, typename R = L>
-class Product : public Simple<
+class Product : public Quantity<
   typename PS2<typename L::SimplifiedType, typename R::SimplifiedType>::SimplifiedType, 
   typename ProductFactor<typename L::SimplifiedFactor, typename R::SimplifiedFactor>::SimplifiedFactor>
 {
@@ -53,7 +53,7 @@ public:
   typedef typename ProductFactor<typename L::SimplifiedFactor, typename R::SimplifiedFactor>::SimplifiedFactor    SimplifiedFactor;
   typedef typename SimplifiedFactor::InvertedFactor      InvertedFactor;
 
-  typedef Simple<typename PS2<typename L::SimplifiedType, typename R::SimplifiedType>::SimplifiedType, SimplifiedFactor> ParentType;
+  typedef Quantity<typename PS2<typename L::SimplifiedType, typename R::SimplifiedType>::SimplifiedType, SimplifiedFactor> ParentType;
 
   typedef typename ParentType::BaseType           BaseType;
   typedef typename ParentType::SimplifiedType     SimplifiedType;
@@ -74,7 +74,7 @@ public:
     typename OtherUnitType, 
     typename OtherFactor
     >
-  inline Product( Simple<OtherUnitType, OtherFactor> const &_s ) :
+  inline Product( Quantity<OtherUnitType, OtherFactor> const &_s ) :
     ParentType( _s )
   {
   }
@@ -100,20 +100,20 @@ public:
 */
 
 template <typename T, Types::Integer a, Types::Integer b, typename F1, typename F2>
-class Product<Simple<BaseUnit<T,a>,F1>,Simple<BaseUnit<T,b>,F2> > : public Simple<
+class Product<Quantity<BaseUnit<T,a>,F1>,Quantity<BaseUnit<T,b>,F2> > : public Quantity<
   typename BaseUnit<typename T::BaseType,a+b>::SimplifiedType, 
   typename ProductFactor<F1,F2>::SimplifiedFactor>
 {
   
-  typedef Simple<BaseUnit<T,a>,F1> L;
-  typedef Simple<BaseUnit<T,b>,F2> R;
+  typedef Quantity<BaseUnit<T,a>,F1> L;
+  typedef Quantity<BaseUnit<T,b>,F2> R;
 
 public:
 
   typedef typename ProductFactor<typename L::SimplifiedFactor, typename R::SimplifiedFactor>::SimplifiedFactor  SimplifiedFactor;
   typedef typename SimplifiedFactor::InvertedFactor    InvertedFactor;
 
-  typedef Simple<typename BaseUnit<typename T::BaseType,a + b>::SimplifiedType, SimplifiedFactor> ParentType;
+  typedef Quantity<typename BaseUnit<typename T::BaseType,a + b>::SimplifiedType, SimplifiedFactor> ParentType;
 
   typedef typename ParentType::BaseType           BaseType;
   typedef typename ParentType::SimplifiedType     SimplifiedType;
@@ -133,7 +133,7 @@ public:
     typename OtherUnitType, 
     typename OtherFactor
   >
-  inline Product( Simple<OtherUnitType, OtherFactor> const &_s ) :
+  inline Product( Quantity<OtherUnitType, OtherFactor> const &_s ) :
     ParentType( _s )
   {
   }
@@ -184,25 +184,25 @@ inline Product<L,R>::Product( Product<R,L> const &_parent ) :
 }
 
 template <typename T, Types::Integer a, Types::Integer b, typename F1, typename F2>
-inline Product<Simple<BaseUnit<T,a>,F1>,Simple<BaseUnit<T,b>,F2> >::Product( ScalarType const _s ) : 
+inline Product<Quantity<BaseUnit<T,a>,F1>,Quantity<BaseUnit<T,b>,F2> >::Product( ScalarType const _s ) : 
   ParentType( _s )
 {
 }
 
 template <typename T, Types::Integer a, Types::Integer b, typename F1, typename F2>
-inline Product<Simple<BaseUnit<T,a>,F1>,Simple<BaseUnit<T,b>,F2> >::Product( ScalarType const _s1, ScalarType const _s2 ) : 
+inline Product<Quantity<BaseUnit<T,a>,F1>,Quantity<BaseUnit<T,b>,F2> >::Product( ScalarType const _s1, ScalarType const _s2 ) : 
   ParentType( _s1, _s2 )
 {
 }
 
 template <typename T, Types::Integer a, Types::Integer b, typename F1, typename F2>
-inline Product<Simple<BaseUnit<T,a>,F1>,Simple<BaseUnit<T,b>,F2> >::Product( L const &_l, R const &_r ) : 
+inline Product<Quantity<BaseUnit<T,a>,F1>,Quantity<BaseUnit<T,b>,F2> >::Product( L const &_l, R const &_r ) : 
   ParentType( _l.L::GetValue() * _r.R::GetValue() )
 {
 }
 
 template <typename T, Types::Integer a, Types::Integer b, typename F1, typename F2>
-inline Product<Simple<BaseUnit<T,a>,F1>,Simple<BaseUnit<T,b>,F2> >::Product( Product<L,R> const &_parent ) : 
+inline Product<Quantity<BaseUnit<T,a>,F1>,Quantity<BaseUnit<T,b>,F2> >::Product( Product<L,R> const &_parent ) : 
   ParentType( _parent )
 {
 }
@@ -234,7 +234,7 @@ inline Product<L,R> const & Product<L,R>::operator= ( Product<R,L> const &_paren
 }
 
 template <typename T, Types::Integer a, Types::Integer b, typename F1, typename F2>
-inline Product<Simple<BaseUnit<T,a>,F1>,Simple<BaseUnit<T,b>,F2> > const & Product<Simple<BaseUnit<T,a>,F1>,Simple<BaseUnit<T,b>,F2> >::operator= ( ScalarType const _s )
+inline Product<Quantity<BaseUnit<T,a>,F1>,Quantity<BaseUnit<T,b>,F2> > const & Product<Quantity<BaseUnit<T,a>,F1>,Quantity<BaseUnit<T,b>,F2> >::operator= ( ScalarType const _s )
 {
   ParentType::operator= ( _s );
   return *this;
@@ -242,7 +242,7 @@ inline Product<Simple<BaseUnit<T,a>,F1>,Simple<BaseUnit<T,b>,F2> > const & Produ
 
 
 template <typename T, Types::Integer a, Types::Integer b, typename F1, typename F2>
-inline Product<Simple<BaseUnit<T,a>,F1>,Simple<BaseUnit<T,b>,F2> > const & Product<Simple<BaseUnit<T,a>,F1>,Simple<BaseUnit<T,b>,F2> >::operator= ( Product<L,R> const &_parent )
+inline Product<Quantity<BaseUnit<T,a>,F1>,Quantity<BaseUnit<T,b>,F2> > const & Product<Quantity<BaseUnit<T,a>,F1>,Quantity<BaseUnit<T,b>,F2> >::operator= ( Product<L,R> const &_parent )
 {
   ParentType::operator= ( _parent );
   return *this;

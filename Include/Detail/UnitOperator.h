@@ -36,7 +36,7 @@ namespace Unit
 
 
 template <typename, typename>
-class Simple;
+class Quantity;
 
 template <typename, typename>
 class Product;
@@ -47,37 +47,37 @@ class Product;
 //
 
 template <typename T, typename F>
-inline bool operator== ( Simple<T,F> const &_s1, Simple<T,F> const &_s2 )
+inline bool operator== ( Quantity<T,F> const &_s1, Quantity<T,F> const &_s2 )
 {
-  return ::fabs( _s1.Simple<T,F>::GetValue() - _s2.Simple<T,F>::GetValue() ) < Simple<T,F>::Epsilon();
+  return ::fabs( _s1.Quantity<T,F>::GetValue() - _s2.Quantity<T,F>::GetValue() ) < Quantity<T,F>::Epsilon();
 }
 
 template <typename T, typename F>
-inline bool operator!= ( Simple<T,F> const &_s1, Simple<T,F> const &_s2 )
+inline bool operator!= ( Quantity<T,F> const &_s1, Quantity<T,F> const &_s2 )
 {
   return !(_s1 == _s2);
 }
 
 template <typename T, typename F>
-inline bool operator< ( Simple<T,F> const &_s1, Simple<T,F> const &_s2 )
+inline bool operator< ( Quantity<T,F> const &_s1, Quantity<T,F> const &_s2 )
 {
-  return _s1.Simple<T,F>::GetValue() < _s2.Simple<T,F>::GetValue() && _s1 != _s2;
+  return _s1.Quantity<T,F>::GetValue() < _s2.Quantity<T,F>::GetValue() && _s1 != _s2;
 }
 
 template <typename T, typename F>
-inline bool operator> ( Simple<T,F> const &_s1, Simple<T,F> const &_s2 )
+inline bool operator> ( Quantity<T,F> const &_s1, Quantity<T,F> const &_s2 )
 {
   return  _s2 < _s1;
 }
 
 template <typename T, typename F>
-inline bool operator<= ( Simple<T,F> const &_s1, Simple<T,F> const &_s2 )
+inline bool operator<= ( Quantity<T,F> const &_s1, Quantity<T,F> const &_s2 )
 {
   return !(_s2 < _s1);
 }
 
 template <typename T, typename F>
-inline bool operator>= ( Simple<T,F> const &_s1, Simple<T,F> const &_s2 )
+inline bool operator>= ( Quantity<T,F> const &_s1, Quantity<T,F> const &_s2 )
 {
   return !(_s1 < _s2);
 }
@@ -87,52 +87,52 @@ inline bool operator>= ( Simple<T,F> const &_s1, Simple<T,F> const &_s2 )
 //
 
 template <typename T, typename F1, typename F2>
-inline bool operator== ( Simple<T,F1> const &_s1, Simple<T,F2> const &_s2 )
+inline bool operator== ( Quantity<T,F1> const &_s1, Quantity<T,F2> const &_s2 )
 {
   typedef typename ProductFactor<F1, typename F2::InvertedFactor>::SimplifiedFactor _ScaledFactor;
 
   Types::Scalar const _scaleFactor =  ::pow( _ScaledFactor::ConversionFactor(), ::abs( T::Exponent ) );
 
-  T::ScalarType const _s1Value = _s1.Simple<T,F1>::GetValue() * _scaleFactor;
-  T::ScalarType const _s2Value = _s2.Simple<T,F2>::GetValue();
+  T::ScalarType const _s1Value = _s1.Quantity<T,F1>::GetValue() * _scaleFactor;
+  T::ScalarType const _s2Value = _s2.Quantity<T,F2>::GetValue();
 
-  return ::fabs( _s1Value - _s2Value ) < Simple<T,_ScaledFactor>::Epsilon();
+  return ::fabs( _s1Value - _s2Value ) < Quantity<T,_ScaledFactor>::Epsilon();
 }
 
 template <typename T, typename F1, typename F2>
-inline bool operator!= ( Simple<T,F1> const &_s1, Simple<T,F2> const &_s2 )
+inline bool operator!= ( Quantity<T,F1> const &_s1, Quantity<T,F2> const &_s2 )
 {
   return !(_s1 == _s2);
 }
 
 template <typename T, typename F1, typename F2>
-inline bool operator< ( Simple<T,F1> const &_s1, Simple<T,F2> const &_s2 )
+inline bool operator< ( Quantity<T,F1> const &_s1, Quantity<T,F2> const &_s2 )
 {
   typedef typename ProductFactor<F1, typename F2::InvertedFactor>::SimplifiedFactor _ScaledFactor;
 
   Types::Scalar const _scaleFactor = ::pow( _ScaledFactor::ConversionFactor(), ::abs( T::Exponent ) );
 
-  T::ScalarType const _s1Value = _s1.Simple<T,F1>::GetValue() * _scaleFactor;
-  T::ScalarType const _s2Value = _s2.Simple<T,F2>::GetValue();
+  T::ScalarType const _s1Value = _s1.Quantity<T,F1>::GetValue() * _scaleFactor;
+  T::ScalarType const _s2Value = _s2.Quantity<T,F2>::GetValue();
 
   return _s1Value < _s2Value && 
-    ::fabs( _s1Value - _s2Value ) >= Simple<T,_ScaledFactor>::Epsilon();
+    ::fabs( _s1Value - _s2Value ) >= Quantity<T,_ScaledFactor>::Epsilon();
 }
 
 template <typename T, typename F1, typename F2>
-inline bool operator> ( Simple<T,F1> const &_s1, Simple<T,F2> const &_s2 )
+inline bool operator> ( Quantity<T,F1> const &_s1, Quantity<T,F2> const &_s2 )
 {
   return  _s2 < _s1;
 }
 
 template <typename T, typename F1, typename F2>
-inline bool operator<= ( Simple<T,F1> const &_s1, Simple<T,F2> const &_s2 )
+inline bool operator<= ( Quantity<T,F1> const &_s1, Quantity<T,F2> const &_s2 )
 {
   return !(_s2 < _s1);
 }
 
 template <typename T, typename F1, typename F2>
-inline bool operator>= ( Simple<T,F1> const &_s1, Simple<T,F2> const &_s2 )
+inline bool operator>= ( Quantity<T,F1> const &_s1, Quantity<T,F2> const &_s2 )
 {
   return !(_s1 < _s2);
 }
@@ -143,92 +143,92 @@ inline bool operator>= ( Simple<T,F1> const &_s1, Simple<T,F2> const &_s2 )
 //
 
 template <typename T1, typename T2, typename F1, typename F2>
-inline bool operator== ( Simple<T1,F1> const &_s1, Simple<T2,F2> const &_s2 )
+inline bool operator== ( Quantity<T1,F1> const &_s1, Quantity<T2,F2> const &_s2 )
 {
-  std::is_convertible<typename Simple<T1,F1>::ScalarType, typename Simple<T2,F2>::ScalarType>();
+  std::is_convertible<typename Quantity<T1,F1>::ScalarType, typename Quantity<T2,F2>::ScalarType>();
 
-  Detail::CompatibleUnit<Simple<T1,F1>::NumeratorBaseTypeValue == Simple<T2,F2>::NumeratorBaseTypeValue && 
-    Simple<T1,F1>::DenumeratorBaseTypeValue == Simple<T2,F2>::DenumeratorBaseTypeValue>();
+  Detail::CompatibleUnit<Quantity<T1,F1>::NumeratorBaseTypeValue == Quantity<T2,F2>::NumeratorBaseTypeValue && 
+    Quantity<T1,F1>::DenumeratorBaseTypeValue == Quantity<T2,F2>::DenumeratorBaseTypeValue>();
 
   typedef typename ProductFactor<F1, typename F2::InvertedFactor>::SimplifiedFactor _ScaledFactor;
 
   Types::Scalar const _scaleFactor =  ::pow( _ScaledFactor::ConversionFactor(), ::abs( T1::Exponent ) );
 
-  typename Simple<T1,F1>::ScalarType const _s1scaled = _s1.Simple<T1,F1>::GetValue() * _scaleFactor;
-  typename Simple<T2,F2>::ScalarType const _s2scaled = OffsetHandler<T1, T2>::Convert( _s2.Simple<T2,F2>::GetValue() );
+  typename Quantity<T1,F1>::ScalarType const _s1scaled = _s1.Quantity<T1,F1>::GetValue() * _scaleFactor;
+  typename Quantity<T2,F2>::ScalarType const _s2scaled = OffsetHandler<T1, T2>::Convert( _s2.Quantity<T2,F2>::GetValue() );
 
-  return ::fabs( _s1scaled - _s2scaled ) < Simple<T1,_ScaledFactor>::Epsilon();
+  return ::fabs( _s1scaled - _s2scaled ) < Quantity<T1,_ScaledFactor>::Epsilon();
 }
 
 template <typename T1, typename T2, typename F1, typename F2>
-inline bool operator!= ( Simple<T1,F1> const &_s1, Simple<T2,F2> const &_s2 )
+inline bool operator!= ( Quantity<T1,F1> const &_s1, Quantity<T2,F2> const &_s2 )
 {
   return !(_s1 == _s2);
 }
 
 template <typename T1, typename T2, typename F1, typename F2>
-inline bool operator< ( Simple<T1,F1> const &_s1, Simple<T2,F2> const &_s2 )
+inline bool operator< ( Quantity<T1,F1> const &_s1, Quantity<T2,F2> const &_s2 )
 {
-  std::is_convertible<typename Simple<T1,F1>::ScalarType, typename Simple<T2,F2>::ScalarType>();
+  std::is_convertible<typename Quantity<T1,F1>::ScalarType, typename Quantity<T2,F2>::ScalarType>();
 
-  Detail::CompatibleUnit<Simple<T1,F1>::NumeratorBaseTypeValue == Simple<T2,F2>::NumeratorBaseTypeValue && 
-    Simple<T1,F1>::DenumeratorBaseTypeValue == Simple<T2,F2>::DenumeratorBaseTypeValue>();
+  Detail::CompatibleUnit<Quantity<T1,F1>::NumeratorBaseTypeValue == Quantity<T2,F2>::NumeratorBaseTypeValue && 
+    Quantity<T1,F1>::DenumeratorBaseTypeValue == Quantity<T2,F2>::DenumeratorBaseTypeValue>();
 
   typedef typename ProductFactor<F1, typename F2::InvertedFactor>::SimplifiedFactor _ScaledFactor;
 
   Types::Scalar const _scaleFactor =  ::pow( _ScaledFactor::ConversionFactor(), ::abs( T1::Exponent ) );
 
-  typename Simple<T1,F1>::ScalarType const _s1scaled = _s1.Simple<T1,F1>::GetValue() * _scaleFactor;
-  typename Simple<T2,F2>::ScalarType const _s2scaled = OffsetHandler<T1, T2>::Convert( _s2.Simple<T2,F2>::GetValue() );
+  typename Quantity<T1,F1>::ScalarType const _s1scaled = _s1.Quantity<T1,F1>::GetValue() * _scaleFactor;
+  typename Quantity<T2,F2>::ScalarType const _s2scaled = OffsetHandler<T1, T2>::Convert( _s2.Quantity<T2,F2>::GetValue() );
 
   return _s1scaled < _s2scaled && 
-    ::fabs( _s1scaled - _s2scaled ) >= Simple<T1,_ScaledFactor>::Epsilon();
+    ::fabs( _s1scaled - _s2scaled ) >= Quantity<T1,_ScaledFactor>::Epsilon();
 }
 
 template <typename T1, typename T2, typename F1, typename F2>
-inline bool operator> ( Simple<T1,F1> const &_s1, Simple<T2,F2> const &_s2 )
+inline bool operator> ( Quantity<T1,F1> const &_s1, Quantity<T2,F2> const &_s2 )
 {
   return  _s2 < _s1;
 }
 
 template <typename T1, typename T2, typename F1, typename F2>
-inline bool operator<= ( Simple<T1,F1> const &_s1, Simple<T2,F2> const &_s2 )
+inline bool operator<= ( Quantity<T1,F1> const &_s1, Quantity<T2,F2> const &_s2 )
 {
   return !(_s2 < _s1);
 }
 
 template <typename T1, typename T2, typename F1, typename F2>
-inline bool operator>= ( Simple<T1,F1> const &_s1, Simple<T2,F2> const &_s2 )
+inline bool operator>= ( Quantity<T1,F1> const &_s1, Quantity<T2,F2> const &_s2 )
 {
   return !(_s1 < _s2);
 }
 
 //
-//  Definition of arithmetical operator (Simple and scalar)
+//  Definition of arithmetical operator (Quantity and scalar)
 //
 
 template <typename T, typename F>
-inline Simple<T,F> operator* ( Simple<T,F> const &_o, Types::Scalar const _s )
+inline Quantity<T,F> operator* ( Quantity<T,F> const &_o, Types::Scalar const _s )
 {
-  return Simple<T,F>( _o.Simple<T,F>::GetValue() * _s );
+  return Quantity<T,F>( _o.Quantity<T,F>::GetValue() * _s );
 }
 
 template <typename T, typename F>
-inline Simple<T,F> operator* ( Types::Scalar const _s, Simple<T,F> const &_o )
+inline Quantity<T,F> operator* ( Types::Scalar const _s, Quantity<T,F> const &_o )
 {
   return _o * _s;
 }
 
 template <typename T, typename F>
-inline Simple<T,F> operator/ ( Simple<T,F> const &_o, Types::Scalar const _s )
+inline Quantity<T,F> operator/ ( Quantity<T,F> const &_o, Types::Scalar const _s )
 {
-  return Simple<T,F>( _o.Simple<T,F>::GetValue() / _s );
+  return Quantity<T,F>( _o.Quantity<T,F>::GetValue() / _s );
 }
 
 template <typename T, typename F>
-inline typename Simple<T,F>::Invert operator/ ( Types::Scalar const _s, Simple<T,F> const &_o )
+inline typename Quantity<T,F>::Invert operator/ ( Types::Scalar const _s, Quantity<T,F> const &_o )
 {
-  return typename Simple<T,F>::Invert( _s / _o.Simple<T,F>::GetValue() );
+  return typename Quantity<T,F>::Invert( _s / _o.Quantity<T,F>::GetValue() );
 }
 
 
@@ -237,27 +237,27 @@ inline typename Simple<T,F>::Invert operator/ ( Types::Scalar const _s, Simple<T
 //
 
 template <typename T, typename F>
-inline Simple<T,F> operator+ ( Simple<T,F> const &_s1, Simple<T,F> const &_s2 )
+inline Quantity<T,F> operator+ ( Quantity<T,F> const &_s1, Quantity<T,F> const &_s2 )
 {
-  return Simple<T,F> ( _s1.Simple<T,F>::GetValue() + _s2.Simple<T,F>::GetValue() );
+  return Quantity<T,F> ( _s1.Quantity<T,F>::GetValue() + _s2.Quantity<T,F>::GetValue() );
 }
 
 template <typename T, typename F>
-inline Simple<T,F> operator- ( Simple<T,F> const &_s1, Simple<T,F> const &_s2 )
+inline Quantity<T,F> operator- ( Quantity<T,F> const &_s1, Quantity<T,F> const &_s2 )
 {
-  return Simple<T,F> ( _s1.Simple<T,F>::GetValue() - _s2.Simple<T,F>::GetValue() );
+  return Quantity<T,F> ( _s1.Quantity<T,F>::GetValue() - _s2.Quantity<T,F>::GetValue() );
 }
 
 template <typename T, typename F>
-inline Types::Scalar operator/ ( Simple<T,F> const &_s1, Simple<T,F> const &_s2 )
+inline Types::Scalar operator/ ( Quantity<T,F> const &_s1, Quantity<T,F> const &_s2 )
 {
-  return _s1.Simple<T,F>::GetValue() / _s2.Simple<T,F>::GetValue();
+  return _s1.Quantity<T,F>::GetValue() / _s2.Quantity<T,F>::GetValue();
 }
 
 template <typename T, typename F,Types::Integer Exp>
-inline Types::Scalar operator* ( Simple<BaseUnit<T,Exp>,F> const &_s1, Simple<BaseUnit<T,-Exp>,F> const &_s2 )
+inline Types::Scalar operator* ( Quantity<BaseUnit<T,Exp>,F> const &_s1, Quantity<BaseUnit<T,-Exp>,F> const &_s2 )
 {
-  return _s1.Simple<BaseUnit<T,Exp>,F>::GetValue() * _s2.Simple<BaseUnit<T,-Exp>,F>::GetValue();
+  return _s1.Quantity<BaseUnit<T,Exp>,F>::GetValue() * _s2.Quantity<BaseUnit<T,-Exp>,F>::GetValue();
 }
 
 
@@ -266,9 +266,9 @@ inline Types::Scalar operator* ( Simple<BaseUnit<T,Exp>,F> const &_s1, Simple<Ba
 //
 
 template <typename T, typename F1, typename F2>
-inline Simple<T,typename ProductFactor<F1, F2>::SimplifiedFactor> operator+ ( Simple<T,F1> const &_s1, Simple<T,F2> const &_s2 )
+inline Quantity<T,typename ProductFactor<F1, F2>::SimplifiedFactor> operator+ ( Quantity<T,F1> const &_s1, Quantity<T,F2> const &_s2 )
 {
-  typedef Simple<T,typename ProductFactor<F1, F2>::SimplifiedFactor> _ScaledType;
+  typedef Quantity<T,typename ProductFactor<F1, F2>::SimplifiedFactor> _ScaledType;
 
   _ScaledType const _s1scaled = _ScaledType(_s1);
   _ScaledType const _s2scaled = _ScaledType(_s2);
@@ -277,9 +277,9 @@ inline Simple<T,typename ProductFactor<F1, F2>::SimplifiedFactor> operator+ ( Si
 }
 
 template <typename T, typename F1, typename F2>
-inline Simple<T,typename ProductFactor<F1, F2>::SimplifiedFactor> operator- ( Simple<T,F1> const &_s1, Simple<T,F2> const &_s2 )
+inline Quantity<T,typename ProductFactor<F1, F2>::SimplifiedFactor> operator- ( Quantity<T,F1> const &_s1, Quantity<T,F2> const &_s2 )
 {
-  typedef Simple<T,typename ProductFactor<F1, F2>::SimplifiedFactor> _ScaledType;
+  typedef Quantity<T,typename ProductFactor<F1, F2>::SimplifiedFactor> _ScaledType;
 
   _ScaledType const _s1scaled = _ScaledType(_s1);
   _ScaledType const _s2scaled = _ScaledType(_s2);
@@ -288,9 +288,9 @@ inline Simple<T,typename ProductFactor<F1, F2>::SimplifiedFactor> operator- ( Si
 }
 
 template <typename T, typename F1, typename F2>
-inline Types::Scalar operator/ ( Simple<T,F1> const &_s1, Simple<T,F2> const &_s2 )
+inline Types::Scalar operator/ ( Quantity<T,F1> const &_s1, Quantity<T,F2> const &_s2 )
 {
-  typedef Simple<T,typename ProductFactor<F1, F2>::SimplifiedFactor> _ScaledType;
+  typedef Quantity<T,typename ProductFactor<F1, F2>::SimplifiedFactor> _ScaledType;
 
   _ScaledType const _s1scaled = _ScaledType(_s1);
   _ScaledType const _s2scaled = _ScaledType(_s2);
@@ -304,9 +304,9 @@ inline Types::Scalar operator/ ( Simple<T,F1> const &_s1, Simple<T,F2> const &_s
 //
 
 template <typename T, typename F>
-inline Simple<T,F> operator- ( Simple<T,F> const &_s )
+inline Quantity<T,F> operator- ( Quantity<T,F> const &_s )
 {
-  return Simple<T,F>( -_s.Simple<T,F>::GetValue() );
+  return Quantity<T,F>( -_s.Quantity<T,F>::GetValue() );
 }
 
 
@@ -315,25 +315,25 @@ inline Simple<T,F> operator- ( Simple<T,F> const &_s )
 //
 
 template <typename T, typename F1, typename F2>
-inline Simple<T,F1> const & operator+= ( Simple<T,F1> &_s1, Simple<T,F2> const &_s2 )
+inline Quantity<T,F1> const & operator+= ( Quantity<T,F1> &_s1, Quantity<T,F2> const &_s2 )
 {
   return _s1 = _s1 + _s2;
 }
 
 template <typename T, typename F1, typename F2>
-inline Simple<T,F1> const & operator-= ( Simple<T,F1> &_s1, Simple<T,F2> const &_s2 )
+inline Quantity<T,F1> const & operator-= ( Quantity<T,F1> &_s1, Quantity<T,F2> const &_s2 )
 {
   return _s1 = _s1 - _s2;
 }
 
 template <typename T, typename F>
-inline Simple<T,F> const & operator*= ( Simple<T,F> &_o, Types::Scalar const _s )
+inline Quantity<T,F> const & operator*= ( Quantity<T,F> &_o, Types::Scalar const _s )
 {
   return _o = _o * _s;
 }
 
 template <typename T, typename F>
-inline Simple<T,F> const & operator/= ( Simple<T,F> &_o, Types::Scalar const _s )
+inline Quantity<T,F> const & operator/= ( Quantity<T,F> &_o, Types::Scalar const _s )
 {
   return _o = _o / _s;
 }
@@ -344,27 +344,27 @@ inline Simple<T,F> const & operator/= ( Simple<T,F> &_o, Types::Scalar const _s 
 //
 
 template <typename T, typename F>
-inline Simple<T,F> const & operator* ( Simple<T,F> const &_s, Identity const & )
+inline Quantity<T,F> const & operator* ( Quantity<T,F> const &_s, Identity const & )
 {
   return _s;
 }
 
 template <typename T, typename F>
-inline Simple<T,F> const & operator* ( Identity const &, Simple<T,F> const &_s )
+inline Quantity<T,F> const & operator* ( Identity const &, Quantity<T,F> const &_s )
 {
   return _s;
 }
 
 template <typename T, typename F>
-inline Simple<T,F> const & operator/ ( Simple<T,F> const &_s, Identity const & )
+inline Quantity<T,F> const & operator/ ( Quantity<T,F> const &_s, Identity const & )
 {
   return _s;
 }
 
 template <typename T, typename F>
-inline typename Simple<T,F>::Invert operator/ ( Identity const &, Simple<T,F> const &_s )
+inline typename Quantity<T,F>::Invert operator/ ( Identity const &, Quantity<T,F> const &_s )
 {
-  return typename Simple<T,F>::Invert( 1. / _s.Simple<T,F>::GetValue() );
+  return typename Quantity<T,F>::Invert( 1. / _s.Quantity<T,F>::GetValue() );
 }
 
 
@@ -373,13 +373,13 @@ inline typename Simple<T,F>::Invert operator/ ( Identity const &, Simple<T,F> co
 //
 
 template <typename T1, typename F1, typename T2, typename F2>
-inline typename Product<Simple<T1,F1>,Simple<T2,F2> >::SimpleType operator* ( Simple<T1,F1> const &_s1, Simple<T2,F2> const &_s2 )
+inline typename Product<Quantity<T1,F1>,Quantity<T2,F2> >::QuantityType operator* ( Quantity<T1,F1> const &_s1, Quantity<T2,F2> const &_s2 )
 {
-  std::is_convertible<typename Simple<T1,F1>::ScalarType, typename Simple<T2,F2>::ScalarType>();
+  std::is_convertible<typename Quantity<T1,F1>::ScalarType, typename Quantity<T2,F2>::ScalarType>();
 
-  typedef typename Product<Simple<T1,F1>,Simple<T2,F2> >::SimpleType ProductType;
+  typedef typename Product<Quantity<T1,F1>,Quantity<T2,F2> >::QuantityType ProductType;
 
-  ProductType::ScalarType const value = _s1.Simple<T1,F1>::GetConvertedValue() * _s2.Simple<T2,F2>::GetConvertedValue();
+  ProductType::ScalarType const value = _s1.Quantity<T1,F1>::GetConvertedValue() * _s2.Quantity<T2,F2>::GetConvertedValue();
   Scalar const factor = ProductType::ConversionFactor();
 
   return ProductType( value / factor );
@@ -387,39 +387,39 @@ inline typename Product<Simple<T1,F1>,Simple<T2,F2> >::SimpleType operator* ( Si
 
 
 template <typename T1, typename F1, typename T2, typename F2>
-inline typename Product<Simple<T1,F1>,typename Simple<T2,F2>::Invert>::SimpleType operator/ ( Simple<T1,F1> const &_s1, Simple<T2,F2> const &_s2 )
+inline typename Product<Quantity<T1,F1>,typename Quantity<T2,F2>::Invert>::QuantityType operator/ ( Quantity<T1,F1> const &_s1, Quantity<T2,F2> const &_s2 )
 {
-  std::is_convertible<typename Simple<T1,F1>::ScalarType, typename Simple<T2,F2>::ScalarType>();
+  std::is_convertible<typename Quantity<T1,F1>::ScalarType, typename Quantity<T2,F2>::ScalarType>();
 
-  typedef typename Product<Simple<T1,F1>,typename Simple<T2,F2>::Invert>::SimpleType ProductType;
+  typedef typename Product<Quantity<T1,F1>,typename Quantity<T2,F2>::Invert>::QuantityType ProductType;
 
-  ProductType::ScalarType const value = _s1.Simple<T1,F1>::GetConvertedValue() / _s2.Simple<T2,F2>::GetConvertedValue();
+  ProductType::ScalarType const value = _s1.Quantity<T1,F1>::GetConvertedValue() / _s2.Quantity<T2,F2>::GetConvertedValue();
   Scalar const factor = ProductType::ConversionFactor();
 
   return ProductType( value / factor );
 }
 
 template <typename T, Types::Integer E, typename F>
-inline Simple<BaseUnit<T, E / 2>, F> sqrt( Simple<BaseUnit<T, E>, F> const &_s )
+inline Quantity<BaseUnit<T, E / 2>, F> sqrt( Quantity<BaseUnit<T, E>, F> const &_s )
 {
   Detail::CompatibleUnit<(E > 1)>();
 
-  typedef Simple<BaseUnit<T, E>, F> _SimpleTypeArg;
-  typedef Simple<BaseUnit<T, E / 2>, F> _SimpleTypeReturn;
+  typedef Quantity<BaseUnit<T, E>, F> _QuantityTypeArg;
+  typedef Quantity<BaseUnit<T, E / 2>, F> _QuantityTypeReturn;
 
-  return _SimpleTypeReturn( ::sqrt( _s._SimpleTypeArg::GetValue() ) );
+  return _QuantityTypeReturn( ::sqrt( _s._QuantityTypeArg::GetValue() ) );
 }
 
 template <typename L, Types::Integer ExpL, typename R, Types::Integer ExpR, Types::Integer E, typename F>
-inline Simple<BaseUnit<PS2<BaseUnit<L,(ExpL * E) / 2>, BaseUnit<R,(ExpR * E) / 2> >, 1>, F> 
-  sqrt( Simple<BaseUnit<PS2<BaseUnit<L,ExpL>, BaseUnit<R,ExpR> >, E>, F> const &_s )
+inline Quantity<BaseUnit<PS2<BaseUnit<L,(ExpL * E) / 2>, BaseUnit<R,(ExpR * E) / 2> >, 1>, F> 
+  sqrt( Quantity<BaseUnit<PS2<BaseUnit<L,ExpL>, BaseUnit<R,ExpR> >, E>, F> const &_s )
 {
   CompatibleUnit<(E * ExpL > 1) && (E * ExpR > 1)>();
 
-  typedef Simple<BaseUnit<PS2<BaseUnit<L,ExpL>, BaseUnit<R,ExpR> >, E>, F> _SimpleTypeArg;
-  typedef Simple<BaseUnit<PS2<BaseUnit<L,(ExpL * E) / 2>, BaseUnit<R,(ExpR * E) / 2> >, 1>, F> _SimpleTypeReturn;
+  typedef Quantity<BaseUnit<PS2<BaseUnit<L,ExpL>, BaseUnit<R,ExpR> >, E>, F> _QuantityTypeArg;
+  typedef Quantity<BaseUnit<PS2<BaseUnit<L,(ExpL * E) / 2>, BaseUnit<R,(ExpR * E) / 2> >, 1>, F> _QuantityTypeReturn;
 
-  return _SimpleTypeReturn( ::sqrt( _s._SimpleTypeArg::GetValue() ) );
+  return _QuantityTypeReturn( ::sqrt( _s._QuantityTypeArg::GetValue() ) );
 }
 
 

@@ -56,27 +56,27 @@ namespace SI
 {
 
 
-typedef Simple<LuminousIntensity,Yocto>    Yoctocandela;
-typedef Simple<LuminousIntensity,Zepto>    Zeptocandela;
-typedef Simple<LuminousIntensity,Atto>     Attocandela;
-typedef Simple<LuminousIntensity,Femto>    Femtocandela;
-typedef Simple<LuminousIntensity,Pico>     Picocandela;
-typedef Simple<LuminousIntensity,Nano>     Nanocandela;
-typedef Simple<LuminousIntensity,Micro>    Microcandela;
-typedef Simple<LuminousIntensity,Milli>    Millicandela;
-typedef Simple<LuminousIntensity,Centi>    Centicandela;
-typedef Simple<LuminousIntensity,Deci>     Decicandela;
-typedef Simple<LuminousIntensity>          Candela;
-typedef Simple<LuminousIntensity,Deka>     Dekacandela;
-typedef Simple<LuminousIntensity,Hecto>    Hectocandela;
-typedef Simple<LuminousIntensity,Kilo>     Kilocandela;
-typedef Simple<LuminousIntensity,Mega>     Megacandela;
-typedef Simple<LuminousIntensity,Giga>     Gigacandela; 
-typedef Simple<LuminousIntensity,Tera>     Teracandela;
-typedef Simple<LuminousIntensity,Peta>     Petacandela;
-typedef Simple<LuminousIntensity,Exa>      Exacandela;
-typedef Simple<LuminousIntensity,Zetta>    Zeptacandela;
-typedef Simple<LuminousIntensity,Yotta>    Yottacandela;
+typedef Quantity<LuminousIntensity,Yocto>    Yoctocandela;
+typedef Quantity<LuminousIntensity,Zepto>    Zeptocandela;
+typedef Quantity<LuminousIntensity,Atto>     Attocandela;
+typedef Quantity<LuminousIntensity,Femto>    Femtocandela;
+typedef Quantity<LuminousIntensity,Pico>     Picocandela;
+typedef Quantity<LuminousIntensity,Nano>     Nanocandela;
+typedef Quantity<LuminousIntensity,Micro>    Microcandela;
+typedef Quantity<LuminousIntensity,Milli>    Millicandela;
+typedef Quantity<LuminousIntensity,Centi>    Centicandela;
+typedef Quantity<LuminousIntensity,Deci>     Decicandela;
+typedef Quantity<LuminousIntensity>          Candela;
+typedef Quantity<LuminousIntensity,Deka>     Dekacandela;
+typedef Quantity<LuminousIntensity,Hecto>    Hectocandela;
+typedef Quantity<LuminousIntensity,Kilo>     Kilocandela;
+typedef Quantity<LuminousIntensity,Mega>     Megacandela;
+typedef Quantity<LuminousIntensity,Giga>     Gigacandela; 
+typedef Quantity<LuminousIntensity,Tera>     Teracandela;
+typedef Quantity<LuminousIntensity,Peta>     Petacandela;
+typedef Quantity<LuminousIntensity,Exa>      Exacandela;
+typedef Quantity<LuminousIntensity,Zetta>    Zeptacandela;
+typedef Quantity<LuminousIntensity,Yotta>    Yottacandela;
 
 
 } //namespace SI

@@ -38,7 +38,7 @@ namespace Unit
 
 
 template <typename _UnitType, typename _Factor>
-class Simple : public _UnitType
+class Quantity : public _UnitType
 {
 public:
 
@@ -60,8 +60,8 @@ public:
     ::SimplifiedFactor                          SimplifiedFactor;
   typedef typename SimplifiedFactor::InvertedFactor  InvertedFactor;
   
-  typedef Simple<UnitType,SimplifiedFactor>     SimpleType;
-  typedef Simple<InvertedType,InvertedFactor>   Invert;
+  typedef Quantity<UnitType,SimplifiedFactor>   QuantityType;
+  typedef Quantity<InvertedType,InvertedFactor> Invert;
 
   enum { Exponent = SimplifiedType::Exponent };
   enum { NumeratorBaseTypeValue = SimplifiedType::NumeratorBaseTypeValue };
@@ -69,26 +69,26 @@ public:
 
 public:
 
-  inline Simple();
-  inline explicit Simple( ScalarType );
-  inline Simple( Simple<UnitType,_Factor> const & );
+  inline Quantity();
+  inline explicit Quantity( ScalarType );
+  inline Quantity( Quantity<UnitType,_Factor> const & );
 
   template< typename OtherUnitType, typename OtherFactor>
-  inline Simple( Simple<OtherUnitType, OtherFactor> const &_s ) :
-    m_Value( OffsetHandler<UnitType, OtherUnitType>::Convert( _s.Simple<OtherUnitType, OtherFactor>::GetValue() * (OtherFactor::ConversionFactor() / m_Factor) ) )
+  inline Quantity( Quantity<OtherUnitType, OtherFactor> const &_s ) :
+    m_Value( OffsetHandler<UnitType, OtherUnitType>::Convert( _s.Quantity<OtherUnitType, OtherFactor>::GetValue() * (OtherFactor::ConversionFactor() / m_Factor) ) )
   {
-    typedef Simple<OtherUnitType, OtherFactor> _OtherUnit;
+    typedef Quantity<OtherUnitType, OtherFactor> _OtherUnit;
 
     Detail::CompatibleUnit<NumeratorBaseTypeValue == _OtherUnit::NumeratorBaseTypeValue && 
       DenumeratorBaseTypeValue == _OtherUnit::DenumeratorBaseTypeValue>();
   }
 
-  virtual ~Simple() { }
+  virtual ~Quantity() { }
 
 public:
 
-  inline Simple<UnitType,_Factor> const & operator= ( Types::Scalar );
-  inline Simple<UnitType,_Factor> const & operator= ( Simple<UnitType,_Factor> const & );
+  inline Quantity<UnitType,_Factor> const & operator= ( Types::Scalar );
+  inline Quantity<UnitType,_Factor> const & operator= ( Quantity<UnitType,_Factor> const & );
 
 public:
 
@@ -144,10 +144,10 @@ protected:
 
 private:
 
-  inline explicit Simple( void *, void * ); 
+  inline explicit Quantity( void *, void * ); 
 
 #ifndef NO_STATIC_UNIT_SUFFIXES_EVALUATION
-  static Simple const RuntimeSuffixesCtor;
+  static Quantity const RuntimeSuffixesCtor;
 #else
   friend class Detail::SuffixesInitializer;
 #endif
@@ -156,11 +156,11 @@ private:
 
 
 template <typename _Factor>
-class Simple<Identity,_Factor>
+class Quantity<Identity,_Factor>
 {
 
-  Simple();
-  void operator= ( Simple<Identity,_Factor> const & );
+  Quantity();
+  void operator= ( Quantity<Identity,_Factor> const & );
 
 public:
 
@@ -172,15 +172,15 @@ public:
   typedef typename _Factor::SimplifiedFactor SimplifiedFactor;
   typedef typename _Factor::InvertedFactor InvertedFactor;
   
-  typedef Simple<UnitType,_Factor> SimpleType;
-  typedef Simple<InvertedType,InvertedFactor> Invert;
+  typedef Quantity<UnitType,_Factor> QuantityType;
+  typedef Quantity<InvertedType,InvertedFactor> Invert;
 
 public:
 
-  inline Simple( Types::Scalar );
-  inline Simple( Simple<Identity,_Factor> const & );
+  inline Quantity( Types::Scalar );
+  inline Quantity( Quantity<Identity,_Factor> const & );
 
-  ~Simple() { }
+  ~Quantity() { }
 
 public:
 
@@ -203,16 +203,16 @@ protected:
 
 
 template <typename T, typename F>
-Types::Scalar const Simple<T,F>::m_Factor = ::pow( Simple<T,F>::SimplifiedFactor::ConversionFactor(), ::abs( Simple<T,F>::Exponent ) );
+Types::Scalar const Quantity<T,F>::m_Factor = ::pow( Quantity<T,F>::SimplifiedFactor::ConversionFactor(), ::abs( Quantity<T,F>::Exponent ) );
 
 
 template <typename T, typename F>
-typename Simple<T,F>::ScalarType const Simple<T,F>::m_Epsilon = boost::math::tools::root_epsilon<typename Simple<T,F>::ScalarType>();
+typename Quantity<T,F>::ScalarType const Quantity<T,F>::m_Epsilon = boost::math::tools::root_epsilon<typename Quantity<T,F>::ScalarType>();
 
 
 #ifndef NO_STATIC_UNIT_SUFFIXES_EVALUATION
 template <typename T, typename F>
-Simple<T,F> const Simple<T,F>::RuntimeSuffixesCtor( NULL, NULL );
+Quantity<T,F> const Quantity<T,F>::RuntimeSuffixesCtor( NULL, NULL );
 #endif
 
 
@@ -221,28 +221,28 @@ Simple<T,F> const Simple<T,F>::RuntimeSuffixesCtor( NULL, NULL );
 //
 
 template <typename T, typename F>
-inline Simple<T,F>::Simple() :
+inline Quantity<T,F>::Quantity() :
   m_Value( 0. )
 {
 #ifndef NO_STATIC_UNIT_SUFFIXES_EVALUATION
-  static Simple<T,F> __ForceLinker = Simple<T,F>::RuntimeSuffixesCtor;
+  static Quantity<T,F> __ForceLinker = Quantity<T,F>::RuntimeSuffixesCtor;
 #endif
 }
 
 template <typename T, typename F>
-inline Simple<T,F>::Simple( ScalarType const _v ) :
+inline Quantity<T,F>::Quantity( ScalarType const _v ) :
   m_Value( _v )
 {
 }
 
 template <typename T, typename F>
-inline Simple<T,F>::Simple( Simple<UnitType,F> const &_s ) :
+inline Quantity<T,F>::Quantity( Quantity<UnitType,F> const &_s ) :
   m_Value( _s.m_Value )
 {
 }
 
 template <typename T, typename F>
-inline Simple<T,F>::Simple( void *, void * ) 
+inline Quantity<T,F>::Quantity( void *, void * ) 
 {
   using namespace Detail;
   using namespace Types;
@@ -266,14 +266,14 @@ inline Simple<T,F>::Simple( void *, void * )
 //
 
 template <typename T, typename F>
-inline Simple<T,F> const & Simple<T,F>::operator= ( Types::Scalar const _s )
+inline Quantity<T,F> const & Quantity<T,F>::operator= ( Types::Scalar const _s )
 {
   m_Value = _s;
   return *this;
 }
 
 template <typename T, typename F>
-inline Simple<T,F> const & Simple<T,F>::operator= ( Simple<UnitType,F> const &_s )
+inline Quantity<T,F> const & Quantity<T,F>::operator= ( Quantity<UnitType,F> const &_s )
 {
   m_Value = _s.m_Value;
   return *this;
@@ -285,31 +285,31 @@ inline Simple<T,F> const & Simple<T,F>::operator= ( Simple<UnitType,F> const &_s
 //
 
 template <typename T, typename F>
-inline typename Simple<T,F>::ScalarType Simple<T,F>::GetValue() const
+inline typename Quantity<T,F>::ScalarType Quantity<T,F>::GetValue() const
 { 
   return m_Value;
 }
 
 template <typename T, typename F>
-inline void Simple<T,F>::SetValue( ScalarType const _s )
+inline void Quantity<T,F>::SetValue( ScalarType const _s )
 {
   m_Value = _s;
 }
 
 template <typename T, typename F>
-inline Types::Scalar Simple<T,F>::GetFactor() const
+inline Types::Scalar Quantity<T,F>::GetFactor() const
 {
   return m_Factor;
 }
 
 template <typename T, typename F>
-inline typename Simple<T,F>::ScalarType Simple<T,F>::GetConvertedValue() const
+inline typename Quantity<T,F>::ScalarType Quantity<T,F>::GetConvertedValue() const
 { 
   return OffsetHandler<BaseType, UnitType>::Convert( m_Value * m_Factor );
 }
 
 template <typename T, typename F>
-inline Types::String Simple<T,F>::GetSuffix() const
+inline Types::String Quantity<T,F>::GetSuffix() const
 {
   if( typeid( BaseType ) != typeid( DerivedType ) )
   {
@@ -355,7 +355,7 @@ inline Types::String Simple<T,F>::GetSuffix() const
 }
 
 template <typename T, typename F>
-inline Types::String Simple<T,F>::GetSISuffix() const
+inline Types::String Quantity<T,F>::GetSISuffix() const
 {
   Detail::SuffixesValueMap factors;
 
@@ -387,19 +387,19 @@ inline Types::String Simple<T,F>::GetSISuffix() const
 
 //
 template <typename F>
-inline Simple<Identity,F>::Simple( Types::Scalar const _s ) :
+inline Quantity<Identity,F>::Quantity( Types::Scalar const _s ) :
   m_Value( _s )
 {
 }
 
 template <typename F>
-inline Simple<Identity,F>::Simple( Simple<Identity,F> const &_s ) :
+inline Quantity<Identity,F>::Quantity( Quantity<Identity,F> const &_s ) :
   m_Value( _s.m_Value )
 {
 }
 
 template <typename F>
-inline Simple<Identity,F>::operator Types::Scalar() const
+inline Quantity<Identity,F>::operator Types::Scalar() const
 {
   return m_Value;
 }

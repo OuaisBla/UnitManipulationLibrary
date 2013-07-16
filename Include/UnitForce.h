@@ -53,27 +53,27 @@ struct Force : public Product<Kilogram,Acceleration>::UnitType
 };
 
 
-typedef Simple<Force,Yocto>  Yoctonewton;
-typedef Simple<Force,Zepto>  Zeptonewton;
-typedef Simple<Force,Atto>   Attonewton;
-typedef Simple<Force,Femto>  Femtonewton;
-typedef Simple<Force,Pico>   Piconewton;
-typedef Simple<Force,Nano>   Nanonewton;
-typedef Simple<Force,Micro>  Micronewton;
-typedef Simple<Force,Milli>  Millinewton;
-typedef Simple<Force,Centi>  Centinewton;
-typedef Simple<Force,Deci>   Decinewton;
-typedef Simple<Force>        Newton;
-typedef Simple<Force,Deka>   Dekanewton;
-typedef Simple<Force,Hecto>  Hectonewton;
-typedef Simple<Force,Kilo>   Kilonewton;
-typedef Simple<Force,Mega>   Meganewton;
-typedef Simple<Force,Giga>   Giganewton;
-typedef Simple<Force,Tera>   Teranewton;
-typedef Simple<Force,Peta>   Petanewton;
-typedef Simple<Force,Exa>    Exanewton;
-typedef Simple<Force,Zetta>  Zeptanewton;
-typedef Simple<Force,Yotta>  Yottanewton;
+typedef Quantity<Force,Yocto>  Yoctonewton;
+typedef Quantity<Force,Zepto>  Zeptonewton;
+typedef Quantity<Force,Atto>   Attonewton;
+typedef Quantity<Force,Femto>  Femtonewton;
+typedef Quantity<Force,Pico>   Piconewton;
+typedef Quantity<Force,Nano>   Nanonewton;
+typedef Quantity<Force,Micro>  Micronewton;
+typedef Quantity<Force,Milli>  Millinewton;
+typedef Quantity<Force,Centi>  Centinewton;
+typedef Quantity<Force,Deci>   Decinewton;
+typedef Quantity<Force>        Newton;
+typedef Quantity<Force,Deka>   Dekanewton;
+typedef Quantity<Force,Hecto>  Hectonewton;
+typedef Quantity<Force,Kilo>   Kilonewton;
+typedef Quantity<Force,Mega>   Meganewton;
+typedef Quantity<Force,Giga>   Giganewton;
+typedef Quantity<Force,Tera>   Teranewton;
+typedef Quantity<Force,Peta>   Petanewton;
+typedef Quantity<Force,Exa>    Exanewton;
+typedef Quantity<Force,Zetta>  Zeptanewton;
+typedef Quantity<Force,Yotta>  Yottanewton;
 
 
 } //namespace SI

@@ -52,27 +52,27 @@ struct Energy : public Product<Newton, Meter>::UnitType
 };
 
 
-typedef Simple<Energy,Yocto>  Yoctojoule;
-typedef Simple<Energy,Zepto>  Zeptojoule;
-typedef Simple<Energy,Atto>   Attojoule;
-typedef Simple<Energy,Femto>  Femtojoule;
-typedef Simple<Energy,Pico>   Picojoule;
-typedef Simple<Energy,Nano>   Nanojoule;
-typedef Simple<Energy,Micro>  Microjoule;
-typedef Simple<Energy,Milli>  Millijoule;
-typedef Simple<Energy,Centi>  Centijoule;
-typedef Simple<Energy,Deci>   Decijoule;
-typedef Simple<Energy>        Joule;
-typedef Simple<Energy,Deka>   Dekajoule;
-typedef Simple<Energy,Hecto>  Hectojoule;
-typedef Simple<Energy,Kilo>   Kilojoule;
-typedef Simple<Energy,Mega>   Megajoule;
-typedef Simple<Energy,Giga>   Gigajoule;
-typedef Simple<Energy,Tera>   Terajoule;
-typedef Simple<Energy,Peta>   Petajoule;
-typedef Simple<Energy,Exa>    Exajoule;
-typedef Simple<Energy,Zetta>  Zeptajoule;
-typedef Simple<Energy,Yotta>  Yottajoule;
+typedef Quantity<Energy,Yocto>  Yoctojoule;
+typedef Quantity<Energy,Zepto>  Zeptojoule;
+typedef Quantity<Energy,Atto>   Attojoule;
+typedef Quantity<Energy,Femto>  Femtojoule;
+typedef Quantity<Energy,Pico>   Picojoule;
+typedef Quantity<Energy,Nano>   Nanojoule;
+typedef Quantity<Energy,Micro>  Microjoule;
+typedef Quantity<Energy,Milli>  Millijoule;
+typedef Quantity<Energy,Centi>  Centijoule;
+typedef Quantity<Energy,Deci>   Decijoule;
+typedef Quantity<Energy>        Joule;
+typedef Quantity<Energy,Deka>   Dekajoule;
+typedef Quantity<Energy,Hecto>  Hectojoule;
+typedef Quantity<Energy,Kilo>   Kilojoule;
+typedef Quantity<Energy,Mega>   Megajoule;
+typedef Quantity<Energy,Giga>   Gigajoule;
+typedef Quantity<Energy,Tera>   Terajoule;
+typedef Quantity<Energy,Peta>   Petajoule;
+typedef Quantity<Energy,Exa>    Exajoule;
+typedef Quantity<Energy,Zetta>  Zeptajoule;
+typedef Quantity<Energy,Yotta>  Yottajoule;
 
 
 } //namespace SI

@@ -51,27 +51,27 @@ namespace Unit
 
     };
 
-    typedef Simple<ElectricPotentialDifference,Yocto>    Yoctovolt;
-    typedef Simple<ElectricPotentialDifference,Zepto>    Zeptovolt;
-    typedef Simple<ElectricPotentialDifference,Atto>     Attovolt;
-    typedef Simple<ElectricPotentialDifference,Femto>    Femtovolt;
-    typedef Simple<ElectricPotentialDifference,Pico>     Picovolt;
-    typedef Simple<ElectricPotentialDifference,Nano>     Nanovolt;
-    typedef Simple<ElectricPotentialDifference,Micro>    Microvolt;
-    typedef Simple<ElectricPotentialDifference,Milli>    Millivolt;
-    typedef Simple<ElectricPotentialDifference,Centi>    Centivolt;
-    typedef Simple<ElectricPotentialDifference,Deci>     Decivolt;
-    typedef Simple<ElectricPotentialDifference>          Volt;
-    typedef Simple<ElectricPotentialDifference,Deka>     Dekavolt;
-    typedef Simple<ElectricPotentialDifference,Hecto>    Hectovolt;
-    typedef Simple<ElectricPotentialDifference,Kilo>     Kilovolt;
-    typedef Simple<ElectricPotentialDifference,Mega>     Megavolt;
-    typedef Simple<ElectricPotentialDifference,Giga>     Gigavolt;
-    typedef Simple<ElectricPotentialDifference,Tera>     Teravolt;
-    typedef Simple<ElectricPotentialDifference,Peta>     Petavolt;
-    typedef Simple<ElectricPotentialDifference,Exa>      Exavolt;
-    typedef Simple<ElectricPotentialDifference,Zetta>    Zeptavolt;
-    typedef Simple<ElectricPotentialDifference,Yotta>    Yottavolt;
+    typedef Quantity<ElectricPotentialDifference,Yocto>    Yoctovolt;
+    typedef Quantity<ElectricPotentialDifference,Zepto>    Zeptovolt;
+    typedef Quantity<ElectricPotentialDifference,Atto>     Attovolt;
+    typedef Quantity<ElectricPotentialDifference,Femto>    Femtovolt;
+    typedef Quantity<ElectricPotentialDifference,Pico>     Picovolt;
+    typedef Quantity<ElectricPotentialDifference,Nano>     Nanovolt;
+    typedef Quantity<ElectricPotentialDifference,Micro>    Microvolt;
+    typedef Quantity<ElectricPotentialDifference,Milli>    Millivolt;
+    typedef Quantity<ElectricPotentialDifference,Centi>    Centivolt;
+    typedef Quantity<ElectricPotentialDifference,Deci>     Decivolt;
+    typedef Quantity<ElectricPotentialDifference>          Volt;
+    typedef Quantity<ElectricPotentialDifference,Deka>     Dekavolt;
+    typedef Quantity<ElectricPotentialDifference,Hecto>    Hectovolt;
+    typedef Quantity<ElectricPotentialDifference,Kilo>     Kilovolt;
+    typedef Quantity<ElectricPotentialDifference,Mega>     Megavolt;
+    typedef Quantity<ElectricPotentialDifference,Giga>     Gigavolt;
+    typedef Quantity<ElectricPotentialDifference,Tera>     Teravolt;
+    typedef Quantity<ElectricPotentialDifference,Peta>     Petavolt;
+    typedef Quantity<ElectricPotentialDifference,Exa>      Exavolt;
+    typedef Quantity<ElectricPotentialDifference,Zetta>    Zeptavolt;
+    typedef Quantity<ElectricPotentialDifference,Yotta>    Yottavolt;
 
 
   } // namespace SI

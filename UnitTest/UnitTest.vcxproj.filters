@@ -30,46 +30,46 @@
     <ClCompile Include="TestHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\UnitConsole\TestAcceleration.cpp">
+    <ClCompile Include="..\TestFile\TestAcceleration.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\UnitConsole\TestAngular.cpp">
+    <ClCompile Include="..\TestFile\TestAngular.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\UnitConsole\TestCubicMeter.cpp">
+    <ClCompile Include="..\TestFile\TestCubicMeter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\UnitConsole\TestElectric.cpp">
+    <ClCompile Include="..\TestFile\TestElectric.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\UnitConsole\TestForce.cpp">
+    <ClCompile Include="..\TestFile\TestForce.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\UnitConsole\TestFrequency.cpp">
+    <ClCompile Include="..\TestFile\TestFrequency.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\UnitConsole\TestIdentity.cpp">
+    <ClCompile Include="..\TestFile\TestIdentity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\UnitConsole\TestLength.cpp">
+    <ClCompile Include="..\TestFile\TestLength.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\UnitConsole\TestMass.cpp">
+    <ClCompile Include="..\TestFile\TestMass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\UnitConsole\TestPerformance.cpp">
+    <ClCompile Include="..\TestFile\TestPerformance.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\UnitConsole\TestPVNRT.cpp">
+    <ClCompile Include="..\TestFile\TestPVNRT.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\UnitConsole\TestSquareMeter.cpp">
+    <ClCompile Include="..\TestFile\TestSquareMeter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\UnitConsole\TestTemperature.cpp">
+    <ClCompile Include="..\TestFile\TestTemperature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\UnitConsole\TestVelocity.cpp">
+    <ClCompile Include="..\TestFile\TestVelocity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -170,13 +170,13 @@
     <ClInclude Include="..\Include\Detail\UnitProduct.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Include\Detail\UnitSimple.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\Include\UnitBaseSI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Include\UnitSI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Detail\UnitQuantity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

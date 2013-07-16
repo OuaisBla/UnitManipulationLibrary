@@ -42,27 +42,27 @@ namespace SI
 typedef Product<Meter>::UnitType Area;
 
 
-typedef Simple<Area,Yocto>  Yoctosquaremeter;
-typedef Simple<Area,Zepto>  Zeptosquaremeter;
-typedef Simple<Area,Atto>   Attosquaremeter;
-typedef Simple<Area,Femto>  Femtosquaremeter;
-typedef Simple<Area,Pico>   Picosquaremeter;
-typedef Simple<Area,Nano>   Nanosquaremeter;
-typedef Simple<Area,Micro>  Microsquaremeter;
-typedef Simple<Area,Milli>  Millisquaremeter;
-typedef Simple<Area,Centi>  Centisquaremeter;
-typedef Simple<Area,Deci>   Decisquaremeter;
-typedef Simple<Area>        Squaremeter;
-typedef Simple<Area,Deka>   Dekasquaremeter;
-typedef Simple<Area,Hecto>  Hectosquaremeter;
-typedef Simple<Area,Kilo>   Kilosquaremeter;
-typedef Simple<Area,Mega>   Megasquaremeter;
-typedef Simple<Area,Giga>   Gigasquaremeter;
-typedef Simple<Area,Tera>   Terasquaremeter;
-typedef Simple<Area,Peta>   Petasquaremeter;
-typedef Simple<Area,Exa>    Exasquaremeter;
-typedef Simple<Area,Zetta>  Zeptasquaremeter;
-typedef Simple<Area,Yotta>  Yottasquaremeter;
+typedef Quantity<Area,Yocto>  Yoctosquaremeter;
+typedef Quantity<Area,Zepto>  Zeptosquaremeter;
+typedef Quantity<Area,Atto>   Attosquaremeter;
+typedef Quantity<Area,Femto>  Femtosquaremeter;
+typedef Quantity<Area,Pico>   Picosquaremeter;
+typedef Quantity<Area,Nano>   Nanosquaremeter;
+typedef Quantity<Area,Micro>  Microsquaremeter;
+typedef Quantity<Area,Milli>  Millisquaremeter;
+typedef Quantity<Area,Centi>  Centisquaremeter;
+typedef Quantity<Area,Deci>   Decisquaremeter;
+typedef Quantity<Area>        Squaremeter;
+typedef Quantity<Area,Deka>   Dekasquaremeter;
+typedef Quantity<Area,Hecto>  Hectosquaremeter;
+typedef Quantity<Area,Kilo>   Kilosquaremeter;
+typedef Quantity<Area,Mega>   Megasquaremeter;
+typedef Quantity<Area,Giga>   Gigasquaremeter;
+typedef Quantity<Area,Tera>   Terasquaremeter;
+typedef Quantity<Area,Peta>   Petasquaremeter;
+typedef Quantity<Area,Exa>    Exasquaremeter;
+typedef Quantity<Area,Zetta>  Zeptasquaremeter;
+typedef Quantity<Area,Yotta>  Yottasquaremeter;
 
 
 } //namespace SI

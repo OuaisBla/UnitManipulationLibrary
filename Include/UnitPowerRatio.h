@@ -50,8 +50,8 @@ namespace Unit
 
   typedef _PowerRatio::SimplifiedType       PowerRatio;
 
-  typedef Simple<PowerRatio, SI::Deci>      Decibel;
-  typedef Simple<PowerRatio>                Bel;
+  typedef Quantity<PowerRatio, SI::Deci>      Decibel;
+  typedef Quantity<PowerRatio>                Bel;
 
 
 }

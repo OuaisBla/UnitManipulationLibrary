@@ -56,27 +56,27 @@ namespace SI
 {
 
 
-typedef Simple<Time,Yocto>    Yoctosecond;
-typedef Simple<Time,Zepto>    Zeptosecond;
-typedef Simple<Time,Atto>     Attosecond;
-typedef Simple<Time,Femto>    Femtosecond;
-typedef Simple<Time,Pico>     Picosecond;
-typedef Simple<Time,Nano>     Nanosecond;
-typedef Simple<Time,Micro>    Microsecond;
-typedef Simple<Time,Milli>    Millisecond;
-typedef Simple<Time,Centi>    Centisecond;
-typedef Simple<Time,Deci>     Decisecond;
-typedef Simple<Time>          Second;
-typedef Simple<Time,Deka>     Dekasecond;
-typedef Simple<Time,Hecto>    Hectosecond;
-typedef Simple<Time,Kilo>     Kilosecond;
-typedef Simple<Time,Mega>     Megasecond;
-typedef Simple<Time,Giga>     Gigasecond; 
-typedef Simple<Time,Tera>     Terasecond;
-typedef Simple<Time,Peta>     Petasecond;
-typedef Simple<Time,Exa>      Exasecond;
-typedef Simple<Time,Zetta>    Zettasecond;
-typedef Simple<Time,Yotta>    Yottasecond;
+typedef Quantity<Time,Yocto>    Yoctosecond;
+typedef Quantity<Time,Zepto>    Zeptosecond;
+typedef Quantity<Time,Atto>     Attosecond;
+typedef Quantity<Time,Femto>    Femtosecond;
+typedef Quantity<Time,Pico>     Picosecond;
+typedef Quantity<Time,Nano>     Nanosecond;
+typedef Quantity<Time,Micro>    Microsecond;
+typedef Quantity<Time,Milli>    Millisecond;
+typedef Quantity<Time,Centi>    Centisecond;
+typedef Quantity<Time,Deci>     Decisecond;
+typedef Quantity<Time>          Second;
+typedef Quantity<Time,Deka>     Dekasecond;
+typedef Quantity<Time,Hecto>    Hectosecond;
+typedef Quantity<Time,Kilo>     Kilosecond;
+typedef Quantity<Time,Mega>     Megasecond;
+typedef Quantity<Time,Giga>     Gigasecond; 
+typedef Quantity<Time,Tera>     Terasecond;
+typedef Quantity<Time,Peta>     Petasecond;
+typedef Quantity<Time,Exa>      Exasecond;
+typedef Quantity<Time,Zetta>    Zettasecond;
+typedef Quantity<Time,Yotta>    Yottasecond;
 
 
 } //namespace SI
@@ -129,8 +129,8 @@ struct _HourFactor
 
 };
 
-typedef Simple<_Minute,_MinuteFactor>   Minute;
-typedef Simple<_Hour,_HourFactor>       Hour;
+typedef Quantity<_Minute,_MinuteFactor>   Minute;
+typedef Quantity<_Hour,_HourFactor>       Hour;
 
 
 } //namespace NonSI

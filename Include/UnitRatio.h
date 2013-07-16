@@ -48,7 +48,7 @@ namespace Unit
   };
 
 
-  typedef Simple<Ratio::SimplifiedType>      Percent;
+  typedef Quantity<Ratio::SimplifiedType>      Percent;
  
 
 }

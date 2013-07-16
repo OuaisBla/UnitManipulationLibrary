@@ -58,27 +58,27 @@ namespace SI
 {
 
 
-typedef Simple<Mass,Yocto>    Yoctogram;
-typedef Simple<Mass,Zepto>    Zeptogram;
-typedef Simple<Mass,Atto>     Attogram;
-typedef Simple<Mass,Femto>    Femtogram;
-typedef Simple<Mass,Pico>     Picogram;
-typedef Simple<Mass,Nano>     Nanogram;
-typedef Simple<Mass,Micro>    Microgram;
-typedef Simple<Mass,Milli>    Milligram;
-typedef Simple<Mass,Centi>    Centigram;
-typedef Simple<Mass,Deci>     Decigram;
-typedef Simple<Mass>          Gram;
-typedef Simple<Mass,Deka>     Dekagram;
-typedef Simple<Mass,Hecto>    Hectogram;
-typedef Simple<Mass,Kilo>     Kilogram;
-typedef Simple<Mass,Mega>     Megagram;
-typedef Simple<Mass,Giga>     Gigagram;
-typedef Simple<Mass,Tera>     Teragram;
-typedef Simple<Mass,Peta>     Petagram;
-typedef Simple<Mass,Exa>      Exagram;
-typedef Simple<Mass,Zetta>    Zeptagram;
-typedef Simple<Mass,Yotta>    Yottagram;
+typedef Quantity<Mass,Yocto>    Yoctogram;
+typedef Quantity<Mass,Zepto>    Zeptogram;
+typedef Quantity<Mass,Atto>     Attogram;
+typedef Quantity<Mass,Femto>    Femtogram;
+typedef Quantity<Mass,Pico>     Picogram;
+typedef Quantity<Mass,Nano>     Nanogram;
+typedef Quantity<Mass,Micro>    Microgram;
+typedef Quantity<Mass,Milli>    Milligram;
+typedef Quantity<Mass,Centi>    Centigram;
+typedef Quantity<Mass,Deci>     Decigram;
+typedef Quantity<Mass>          Gram;
+typedef Quantity<Mass,Deka>     Dekagram;
+typedef Quantity<Mass,Hecto>    Hectogram;
+typedef Quantity<Mass,Kilo>     Kilogram;
+typedef Quantity<Mass,Mega>     Megagram;
+typedef Quantity<Mass,Giga>     Gigagram;
+typedef Quantity<Mass,Tera>     Teragram;
+typedef Quantity<Mass,Peta>     Petagram;
+typedef Quantity<Mass,Exa>      Exagram;
+typedef Quantity<Mass,Zetta>    Zeptagram;
+typedef Quantity<Mass,Yotta>    Yottagram;
 
 
 } //namespace SI

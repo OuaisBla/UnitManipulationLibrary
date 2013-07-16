@@ -51,27 +51,27 @@ namespace Unit
     };
 
 
-    typedef Simple<ElectricCharge,Yocto>    Yoctocoulomb;
-    typedef Simple<ElectricCharge,Zepto>    Zeptocoulomb;
-    typedef Simple<ElectricCharge,Atto>     Attocoulomb;
-    typedef Simple<ElectricCharge,Femto>    Femtocoulomb;
-    typedef Simple<ElectricCharge,Pico>     Picocoulomb;
-    typedef Simple<ElectricCharge,Nano>     Nanocoulomb;
-    typedef Simple<ElectricCharge,Micro>    Microcoulomb;
-    typedef Simple<ElectricCharge,Milli>    Millicoulomb;
-    typedef Simple<ElectricCharge,Centi>    Centicoulomb;
-    typedef Simple<ElectricCharge,Deci>     Decicoulomb;
-    typedef Simple<ElectricCharge>          Coulomb;
-    typedef Simple<ElectricCharge,Deka>     Dekacoulomb;
-    typedef Simple<ElectricCharge,Hecto>    Hectocoulomb;
-    typedef Simple<ElectricCharge,Kilo>     Kilocoulomb;
-    typedef Simple<ElectricCharge,Mega>     Megacoulomb;
-    typedef Simple<ElectricCharge,Giga>     Gigacoulomb;
-    typedef Simple<ElectricCharge,Tera>     Teracoulomb;
-    typedef Simple<ElectricCharge,Peta>     Petacoulomb;
-    typedef Simple<ElectricCharge,Exa>      Exacoulomb;
-    typedef Simple<ElectricCharge,Zetta>    Zeptacoulomb;
-    typedef Simple<ElectricCharge,Yotta>    Yottacoulomb;
+    typedef Quantity<ElectricCharge,Yocto>    Yoctocoulomb;
+    typedef Quantity<ElectricCharge,Zepto>    Zeptocoulomb;
+    typedef Quantity<ElectricCharge,Atto>     Attocoulomb;
+    typedef Quantity<ElectricCharge,Femto>    Femtocoulomb;
+    typedef Quantity<ElectricCharge,Pico>     Picocoulomb;
+    typedef Quantity<ElectricCharge,Nano>     Nanocoulomb;
+    typedef Quantity<ElectricCharge,Micro>    Microcoulomb;
+    typedef Quantity<ElectricCharge,Milli>    Millicoulomb;
+    typedef Quantity<ElectricCharge,Centi>    Centicoulomb;
+    typedef Quantity<ElectricCharge,Deci>     Decicoulomb;
+    typedef Quantity<ElectricCharge>          Coulomb;
+    typedef Quantity<ElectricCharge,Deka>     Dekacoulomb;
+    typedef Quantity<ElectricCharge,Hecto>    Hectocoulomb;
+    typedef Quantity<ElectricCharge,Kilo>     Kilocoulomb;
+    typedef Quantity<ElectricCharge,Mega>     Megacoulomb;
+    typedef Quantity<ElectricCharge,Giga>     Gigacoulomb;
+    typedef Quantity<ElectricCharge,Tera>     Teracoulomb;
+    typedef Quantity<ElectricCharge,Peta>     Petacoulomb;
+    typedef Quantity<ElectricCharge,Exa>      Exacoulomb;
+    typedef Quantity<ElectricCharge,Zetta>    Zeptacoulomb;
+    typedef Quantity<ElectricCharge,Yotta>    Yottacoulomb;
 
 
   } // namespace SI

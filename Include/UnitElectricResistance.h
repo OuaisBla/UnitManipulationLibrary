@@ -50,27 +50,27 @@ namespace Unit
     };
 
 
-    typedef Simple<ElectricResistance,Yocto>    Yoctoohm;
-    typedef Simple<ElectricResistance,Zepto>    Zeptoohm;
-    typedef Simple<ElectricResistance,Atto>     Attoohm;
-    typedef Simple<ElectricResistance,Femto>    Femtoohm;
-    typedef Simple<ElectricResistance,Pico>     Picoohm;
-    typedef Simple<ElectricResistance,Nano>     Nanoohm;
-    typedef Simple<ElectricResistance,Micro>    Microohm;
-    typedef Simple<ElectricResistance,Milli>    Milliohm;
-    typedef Simple<ElectricResistance,Centi>    Centiohm;
-    typedef Simple<ElectricResistance,Deci>     Deciohm;
-    typedef Simple<ElectricResistance>          Ohm;
-    typedef Simple<ElectricResistance,Deka>     Dekaohm;
-    typedef Simple<ElectricResistance,Hecto>    Hectoohm;
-    typedef Simple<ElectricResistance,Kilo>     Kiloohm;
-    typedef Simple<ElectricResistance,Mega>     Megaohm;
-    typedef Simple<ElectricResistance,Giga>     Gigaohm;
-    typedef Simple<ElectricResistance,Tera>     Teraohm;
-    typedef Simple<ElectricResistance,Peta>     Petaohm;
-    typedef Simple<ElectricResistance,Exa>      Exaohm;
-    typedef Simple<ElectricResistance,Zetta>    Zeptaohm;
-    typedef Simple<ElectricResistance,Yotta>    Yottaohm;
+    typedef Quantity<ElectricResistance,Yocto>    Yoctoohm;
+    typedef Quantity<ElectricResistance,Zepto>    Zeptoohm;
+    typedef Quantity<ElectricResistance,Atto>     Attoohm;
+    typedef Quantity<ElectricResistance,Femto>    Femtoohm;
+    typedef Quantity<ElectricResistance,Pico>     Picoohm;
+    typedef Quantity<ElectricResistance,Nano>     Nanoohm;
+    typedef Quantity<ElectricResistance,Micro>    Microohm;
+    typedef Quantity<ElectricResistance,Milli>    Milliohm;
+    typedef Quantity<ElectricResistance,Centi>    Centiohm;
+    typedef Quantity<ElectricResistance,Deci>     Deciohm;
+    typedef Quantity<ElectricResistance>          Ohm;
+    typedef Quantity<ElectricResistance,Deka>     Dekaohm;
+    typedef Quantity<ElectricResistance,Hecto>    Hectoohm;
+    typedef Quantity<ElectricResistance,Kilo>     Kiloohm;
+    typedef Quantity<ElectricResistance,Mega>     Megaohm;
+    typedef Quantity<ElectricResistance,Giga>     Gigaohm;
+    typedef Quantity<ElectricResistance,Tera>     Teraohm;
+    typedef Quantity<ElectricResistance,Peta>     Petaohm;
+    typedef Quantity<ElectricResistance,Exa>      Exaohm;
+    typedef Quantity<ElectricResistance,Zetta>    Zeptaohm;
+    typedef Quantity<ElectricResistance,Yotta>    Yottaohm;
 
 
   } // namespace SI

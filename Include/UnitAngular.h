@@ -55,7 +55,7 @@ namespace Unit
 
     inline void Normalize();
 
-    inline Simple<SimplifiedType> Normalized() const;
+    inline Quantity<SimplifiedType> Normalized() const;
 
     inline ScalarType cos() const;
     inline ScalarType sin() const;
@@ -85,9 +85,9 @@ namespace Unit
   }
 
   template<typename S, typename P>
-  inline Simple<typename _Angle<S,P>::SimplifiedType> _Angle<S,P>::Normalized() const
+  inline Quantity<typename _Angle<S,P>::SimplifiedType> _Angle<S,P>::Normalized() const
   {
-    return Simple<typename _Angle<S,P>::SimplifiedType>( _Normalize<S,P>( GetConvertedValue() ) );
+    return Quantity<typename _Angle<S,P>::SimplifiedType>( _Normalize<S,P>( GetConvertedValue() ) );
   }
 
   template<typename S, typename P>
@@ -124,7 +124,7 @@ namespace SI
 {
 
 
-  typedef Simple<Angle> Radian;
+  typedef Quantity<Angle> Radian;
 
 
 } //namespace SI
@@ -219,10 +219,10 @@ namespace NonSI
   };
 
 
-  typedef Simple<_Degree,_DegreeFactor>                 Degree;
-  typedef Simple<_Grade,_GradeFactor>                   Grade;
-  typedef Simple<_AngularMinute,_AngularMinuteFactor>   AngularMinute;
-  typedef Simple<_AngularSecond,_AngularSecondFactor>   AngularSecond;
+  typedef Quantity<_Degree,_DegreeFactor>                 Degree;
+  typedef Quantity<_Grade,_GradeFactor>                   Grade;
+  typedef Quantity<_AngularMinute,_AngularMinuteFactor>   AngularMinute;
+  typedef Quantity<_AngularSecond,_AngularSecondFactor>   AngularSecond;
 
 
 } //namespace NonSI

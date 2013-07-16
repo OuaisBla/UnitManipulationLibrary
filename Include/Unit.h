@@ -28,7 +28,7 @@ jean.gauthier@programmer.net
 #pragma once 
 
 
-#include "Detail\UnitSimple.h"
+#include "Detail\UnitQuantity.h"
 #include "Detail\UnitComplex.h"
 #include "Detail\UnitProduct.h"
 #include "Detail\UnitOperator.h"

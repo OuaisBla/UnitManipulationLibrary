@@ -43,27 +43,27 @@ namespace SI
 typedef Product<Meter,Second::Invert>::UnitType _Velocity;
 
 
-typedef Simple<_Velocity,Yocto>  Yoctovelocity;
-typedef Simple<_Velocity,Zepto>  Zeptovelocity;
-typedef Simple<_Velocity,Atto>   Attovelocity;
-typedef Simple<_Velocity,Femto>  Femtovelocity;
-typedef Simple<_Velocity,Pico>   Picovelocity;
-typedef Simple<_Velocity,Nano>   Nanovelocity;
-typedef Simple<_Velocity,Micro>  Microvelocity;
-typedef Simple<_Velocity,Milli>  Millivelocity;
-typedef Simple<_Velocity,Centi>  Centivelocity;
-typedef Simple<_Velocity,Deci>   Decivelocity;
-typedef Simple<_Velocity>        Velocity;
-typedef Simple<_Velocity,Deka>   Dekavelocity;
-typedef Simple<_Velocity,Hecto>  Hectovelocity;
-typedef Simple<_Velocity,Kilo>   Kilovelocity;
-typedef Simple<_Velocity,Mega>   Megavelocity;
-typedef Simple<_Velocity,Giga>   Gigavelocity;
-typedef Simple<_Velocity,Tera>   Teravelocity;
-typedef Simple<_Velocity,Peta>   Petavelocity;
-typedef Simple<_Velocity,Exa>    Exavelocity;
-typedef Simple<_Velocity,Zetta>  Zeptavelocity;
-typedef Simple<_Velocity,Yotta>  Yottavelocity;
+typedef Quantity<_Velocity,Yocto>  Yoctovelocity;
+typedef Quantity<_Velocity,Zepto>  Zeptovelocity;
+typedef Quantity<_Velocity,Atto>   Attovelocity;
+typedef Quantity<_Velocity,Femto>  Femtovelocity;
+typedef Quantity<_Velocity,Pico>   Picovelocity;
+typedef Quantity<_Velocity,Nano>   Nanovelocity;
+typedef Quantity<_Velocity,Micro>  Microvelocity;
+typedef Quantity<_Velocity,Milli>  Millivelocity;
+typedef Quantity<_Velocity,Centi>  Centivelocity;
+typedef Quantity<_Velocity,Deci>   Decivelocity;
+typedef Quantity<_Velocity>        Velocity;
+typedef Quantity<_Velocity,Deka>   Dekavelocity;
+typedef Quantity<_Velocity,Hecto>  Hectovelocity;
+typedef Quantity<_Velocity,Kilo>   Kilovelocity;
+typedef Quantity<_Velocity,Mega>   Megavelocity;
+typedef Quantity<_Velocity,Giga>   Gigavelocity;
+typedef Quantity<_Velocity,Tera>   Teravelocity;
+typedef Quantity<_Velocity,Peta>   Petavelocity;
+typedef Quantity<_Velocity,Exa>    Exavelocity;
+typedef Quantity<_Velocity,Zetta>  Zeptavelocity;
+typedef Quantity<_Velocity,Yotta>  Yottavelocity;
 
 
 } //namespace SI

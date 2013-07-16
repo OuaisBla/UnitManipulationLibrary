@@ -42,27 +42,27 @@ namespace SI
 typedef Product<Squaremeter,Meter>::UnitType Volume;
 
 
-typedef Simple<Volume,Yocto>  Yoctocubicmeter;
-typedef Simple<Volume,Zepto>  Zeptocubicmeter;
-typedef Simple<Volume,Atto>   Attocubicmeter;
-typedef Simple<Volume,Femto>  Femtocubicmeter;
-typedef Simple<Volume,Pico>   Picocubicmeter;
-typedef Simple<Volume,Nano>   Nanocubicmeter;
-typedef Simple<Volume,Micro>  Microcubicmeter;
-typedef Simple<Volume,Milli>  Millicubicmeter;
-typedef Simple<Volume,Centi>  Centicubicmeter;
-typedef Simple<Volume,Deci>   Decicubicmeter;
-typedef Simple<Volume>        Cubicmeter;
-typedef Simple<Volume,Deka>   Dekacubicmeter;
-typedef Simple<Volume,Hecto>  Hectocubicmeter;
-typedef Simple<Volume,Kilo>   Kilocubicmeter;
-typedef Simple<Volume,Mega>   Megacubicmeter;
-typedef Simple<Volume,Giga>   Gigacubicmeter;
-typedef Simple<Volume,Tera>   Teracubicmeter;
-typedef Simple<Volume,Peta>   Petacubicmeter;
-typedef Simple<Volume,Exa>    Exacubicmeter;
-typedef Simple<Volume,Zetta>  Zeptacubicmeter;
-typedef Simple<Volume,Yotta>  Yottacubicmeter;
+typedef Quantity<Volume,Yocto>  Yoctocubicmeter;
+typedef Quantity<Volume,Zepto>  Zeptocubicmeter;
+typedef Quantity<Volume,Atto>   Attocubicmeter;
+typedef Quantity<Volume,Femto>  Femtocubicmeter;
+typedef Quantity<Volume,Pico>   Picocubicmeter;
+typedef Quantity<Volume,Nano>   Nanocubicmeter;
+typedef Quantity<Volume,Micro>  Microcubicmeter;
+typedef Quantity<Volume,Milli>  Millicubicmeter;
+typedef Quantity<Volume,Centi>  Centicubicmeter;
+typedef Quantity<Volume,Deci>   Decicubicmeter;
+typedef Quantity<Volume>        Cubicmeter;
+typedef Quantity<Volume,Deka>   Dekacubicmeter;
+typedef Quantity<Volume,Hecto>  Hectocubicmeter;
+typedef Quantity<Volume,Kilo>   Kilocubicmeter;
+typedef Quantity<Volume,Mega>   Megacubicmeter;
+typedef Quantity<Volume,Giga>   Gigacubicmeter;
+typedef Quantity<Volume,Tera>   Teracubicmeter;
+typedef Quantity<Volume,Peta>   Petacubicmeter;
+typedef Quantity<Volume,Exa>    Exacubicmeter;
+typedef Quantity<Volume,Zetta>  Zeptacubicmeter;
+typedef Quantity<Volume,Yotta>  Yottacubicmeter;
 
 
 } //namespace SI

@@ -52,27 +52,27 @@ struct Pressure : public Product<Newton, Product<Meter>::Invert>::UnitType
 };
 
 
-typedef Simple<Pressure,Yocto>  Yoctopascal;
-typedef Simple<Pressure,Zepto>  Zeptopascal;
-typedef Simple<Pressure,Atto>   Attopascal;
-typedef Simple<Pressure,Femto>  Femtopascal;
-typedef Simple<Pressure,Pico>   Picopascal;
-typedef Simple<Pressure,Nano>   Nanopascal;
-typedef Simple<Pressure,Micro>  Micropascal;
-typedef Simple<Pressure,Milli>  Millipascal;
-typedef Simple<Pressure,Centi>  Centipascal;
-typedef Simple<Pressure,Deci>   Decipascal;
-typedef Simple<Pressure>        Pascal;
-typedef Simple<Pressure,Deka>   Dekapascal;
-typedef Simple<Pressure,Hecto>  Hectopascal;
-typedef Simple<Pressure,Kilo>   Kilopascal;
-typedef Simple<Pressure,Mega>   Megapascal;
-typedef Simple<Pressure,Giga>   Gigapascal;
-typedef Simple<Pressure,Tera>   Terapascal;
-typedef Simple<Pressure,Peta>   Petapascal;
-typedef Simple<Pressure,Exa>    Exapascal;
-typedef Simple<Pressure,Zetta>  Zeptapascal;
-typedef Simple<Pressure,Yotta>  Yottapascal;
+typedef Quantity<Pressure,Yocto>  Yoctopascal;
+typedef Quantity<Pressure,Zepto>  Zeptopascal;
+typedef Quantity<Pressure,Atto>   Attopascal;
+typedef Quantity<Pressure,Femto>  Femtopascal;
+typedef Quantity<Pressure,Pico>   Picopascal;
+typedef Quantity<Pressure,Nano>   Nanopascal;
+typedef Quantity<Pressure,Micro>  Micropascal;
+typedef Quantity<Pressure,Milli>  Millipascal;
+typedef Quantity<Pressure,Centi>  Centipascal;
+typedef Quantity<Pressure,Deci>   Decipascal;
+typedef Quantity<Pressure>        Pascal;
+typedef Quantity<Pressure,Deka>   Dekapascal;
+typedef Quantity<Pressure,Hecto>  Hectopascal;
+typedef Quantity<Pressure,Kilo>   Kilopascal;
+typedef Quantity<Pressure,Mega>   Megapascal;
+typedef Quantity<Pressure,Giga>   Gigapascal;
+typedef Quantity<Pressure,Tera>   Terapascal;
+typedef Quantity<Pressure,Peta>   Petapascal;
+typedef Quantity<Pressure,Exa>    Exapascal;
+typedef Quantity<Pressure,Zetta>  Zeptapascal;
+typedef Quantity<Pressure,Yotta>  Yottapascal;
 
 
 } //namespace SI

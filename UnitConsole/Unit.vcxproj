@@ -149,6 +149,7 @@
     <ClCompile Include="..\TestFile\TestVelocity.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Include\Detail\UnitQuantity.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="..\Include\UnitElectric.h" />
     <ClInclude Include="..\Include\UnitElectricCharge.h" />
@@ -177,7 +178,6 @@
     <ClInclude Include="..\Include\Detail\UnitProduct.h" />
     <ClInclude Include="..\Include\UnitRatio.h" />
     <ClInclude Include="..\Include\UnitSI.h" />
-    <ClInclude Include="..\Include\Detail\UnitSimple.h" />
     <ClInclude Include="..\Include\UnitTemperature.h" />
     <ClInclude Include="..\Include\UnitTime.h" />
     <ClInclude Include="..\Include\UnitVelocity.h" />

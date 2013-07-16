@@ -120,7 +120,7 @@
     <ClInclude Include="..\Include\Detail\UnitObject.h" />
     <ClInclude Include="..\Include\Detail\UnitOperator.h" />
     <ClInclude Include="..\Include\Detail\UnitProduct.h" />
-    <ClInclude Include="..\Include\Detail\UnitSimple.h" />
+    <ClInclude Include="..\Include\Detail\UnitQuantity.h" />
     <ClInclude Include="..\Include\Unit.h" />
     <ClInclude Include="..\Include\UnitAcceleration.h" />
     <ClInclude Include="..\Include\UnitAmountOfSubstance.h" />

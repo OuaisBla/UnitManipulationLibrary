@@ -51,27 +51,27 @@ struct Power : public Product<Joule,Second::Invert>::UnitType
 };
 
 
-typedef Simple<Power,Yocto>  Yoctowatt;
-typedef Simple<Power,Zepto>  Zeptowatt;
-typedef Simple<Power,Atto>   Attowatt;
-typedef Simple<Power,Femto>  Femtowatt;
-typedef Simple<Power,Pico>   Picowatt;
-typedef Simple<Power,Nano>   Nanowatt;
-typedef Simple<Power,Micro>  Microwatt;
-typedef Simple<Power,Milli>  Milliwatt;
-typedef Simple<Power,Centi>  Centiwatt;
-typedef Simple<Power,Deci>   Deciwatt;
-typedef Simple<Power>        Watt;
-typedef Simple<Power,Deka>   Dekawatt;
-typedef Simple<Power,Hecto>  Hectowatt;
-typedef Simple<Power,Kilo>   Kilowatt;
-typedef Simple<Power,Mega>   Megawatt;
-typedef Simple<Power,Giga>   Gigawatt;
-typedef Simple<Power,Tera>   Terawatt;
-typedef Simple<Power,Peta>   Petawatt;
-typedef Simple<Power,Exa>    Exawatt;
-typedef Simple<Power,Zetta>  Zeptawatt;
-typedef Simple<Power,Yotta>  Yottawatt;
+typedef Quantity<Power,Yocto>  Yoctowatt;
+typedef Quantity<Power,Zepto>  Zeptowatt;
+typedef Quantity<Power,Atto>   Attowatt;
+typedef Quantity<Power,Femto>  Femtowatt;
+typedef Quantity<Power,Pico>   Picowatt;
+typedef Quantity<Power,Nano>   Nanowatt;
+typedef Quantity<Power,Micro>  Microwatt;
+typedef Quantity<Power,Milli>  Milliwatt;
+typedef Quantity<Power,Centi>  Centiwatt;
+typedef Quantity<Power,Deci>   Deciwatt;
+typedef Quantity<Power>        Watt;
+typedef Quantity<Power,Deka>   Dekawatt;
+typedef Quantity<Power,Hecto>  Hectowatt;
+typedef Quantity<Power,Kilo>   Kilowatt;
+typedef Quantity<Power,Mega>   Megawatt;
+typedef Quantity<Power,Giga>   Gigawatt;
+typedef Quantity<Power,Tera>   Terawatt;
+typedef Quantity<Power,Peta>   Petawatt;
+typedef Quantity<Power,Exa>    Exawatt;
+typedef Quantity<Power,Zetta>  Zeptawatt;
+typedef Quantity<Power,Yotta>  Yottawatt;
 
 
 } //namespace SI

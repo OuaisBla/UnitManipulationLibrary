@@ -42,27 +42,27 @@ namespace SI
 typedef Product<Velocity,Second::Invert>::UnitType _Acceleration;
 
 
-typedef Simple<_Acceleration,Yocto>  Yoctoacceleration;
-typedef Simple<_Acceleration,Zepto>  Zeptoacceleration;
-typedef Simple<_Acceleration,Atto>   Attoacceleration;
-typedef Simple<_Acceleration,Femto>  Femtoacceleration;
-typedef Simple<_Acceleration,Pico>   Picoacceleration;
-typedef Simple<_Acceleration,Nano>   Nanoacceleration;
-typedef Simple<_Acceleration,Micro>  Microacceleration;
-typedef Simple<_Acceleration,Milli>  Milliacceleration;
-typedef Simple<_Acceleration,Centi>  Centiacceleration;
-typedef Simple<_Acceleration,Deci>   Deciacceleration;
-typedef Simple<_Acceleration>        Acceleration;
-typedef Simple<_Acceleration,Deka>   Dekaacceleration;
-typedef Simple<_Acceleration,Hecto>  Hectoacceleration;
-typedef Simple<_Acceleration,Kilo>   Kiloacceleration;
-typedef Simple<_Acceleration,Mega>   Megaacceleration;
-typedef Simple<_Acceleration,Giga>   Gigaacceleration;
-typedef Simple<_Acceleration,Tera>   Teraacceleration;
-typedef Simple<_Acceleration,Peta>   Petaacceleration;
-typedef Simple<_Acceleration,Exa>    Exaacceleration;
-typedef Simple<_Acceleration,Zetta>  Zeptaacceleration;
-typedef Simple<_Acceleration,Yotta>  Yottaacceleration;
+typedef Quantity<_Acceleration,Yocto>  Yoctoacceleration;
+typedef Quantity<_Acceleration,Zepto>  Zeptoacceleration;
+typedef Quantity<_Acceleration,Atto>   Attoacceleration;
+typedef Quantity<_Acceleration,Femto>  Femtoacceleration;
+typedef Quantity<_Acceleration,Pico>   Picoacceleration;
+typedef Quantity<_Acceleration,Nano>   Nanoacceleration;
+typedef Quantity<_Acceleration,Micro>  Microacceleration;
+typedef Quantity<_Acceleration,Milli>  Milliacceleration;
+typedef Quantity<_Acceleration,Centi>  Centiacceleration;
+typedef Quantity<_Acceleration,Deci>   Deciacceleration;
+typedef Quantity<_Acceleration>        Acceleration;
+typedef Quantity<_Acceleration,Deka>   Dekaacceleration;
+typedef Quantity<_Acceleration,Hecto>  Hectoacceleration;
+typedef Quantity<_Acceleration,Kilo>   Kiloacceleration;
+typedef Quantity<_Acceleration,Mega>   Megaacceleration;
+typedef Quantity<_Acceleration,Giga>   Gigaacceleration;
+typedef Quantity<_Acceleration,Tera>   Teraacceleration;
+typedef Quantity<_Acceleration,Peta>   Petaacceleration;
+typedef Quantity<_Acceleration,Exa>    Exaacceleration;
+typedef Quantity<_Acceleration,Zetta>  Zeptaacceleration;
+typedef Quantity<_Acceleration,Yotta>  Yottaacceleration;
 
 
 } //namespace SI

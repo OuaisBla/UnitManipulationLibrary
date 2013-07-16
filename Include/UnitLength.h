@@ -57,27 +57,27 @@ namespace SI
 {
 
 
-typedef Simple<Length,Yocto>    Yoctometer;
-typedef Simple<Length,Zepto>    Zeptometer;
-typedef Simple<Length,Atto>     Attometer;
-typedef Simple<Length,Femto>    Femtometer;
-typedef Simple<Length,Pico>     Picometer;
-typedef Simple<Length,Nano>     Nanometer;
-typedef Simple<Length,Micro>    Micrometer;
-typedef Simple<Length,Milli>    Millimeter;
-typedef Simple<Length,Centi>    Centimeter;
-typedef Simple<Length,Deci>     Decimeter;
-typedef Simple<Length>          Meter;
-typedef Simple<Length,Deka>     Dekameter;
-typedef Simple<Length,Hecto>    Hectometer;
-typedef Simple<Length,Kilo>     Kilometer;
-typedef Simple<Length,Mega>     Megameter;
-typedef Simple<Length,Giga>     Gigameter;
-typedef Simple<Length,Tera>     Terameter;
-typedef Simple<Length,Peta>     Petameter;
-typedef Simple<Length,Exa>      Exameter;
-typedef Simple<Length,Zetta>    Zeptameter;
-typedef Simple<Length,Yotta>    Yottameter;
+typedef Quantity<Length,Yocto>    Yoctometer;
+typedef Quantity<Length,Zepto>    Zeptometer;
+typedef Quantity<Length,Atto>     Attometer;
+typedef Quantity<Length,Femto>    Femtometer;
+typedef Quantity<Length,Pico>     Picometer;
+typedef Quantity<Length,Nano>     Nanometer;
+typedef Quantity<Length,Micro>    Micrometer;
+typedef Quantity<Length,Milli>    Millimeter;
+typedef Quantity<Length,Centi>    Centimeter;
+typedef Quantity<Length,Deci>     Decimeter;
+typedef Quantity<Length>          Meter;
+typedef Quantity<Length,Deka>     Dekameter;
+typedef Quantity<Length,Hecto>    Hectometer;
+typedef Quantity<Length,Kilo>     Kilometer;
+typedef Quantity<Length,Mega>     Megameter;
+typedef Quantity<Length,Giga>     Gigameter;
+typedef Quantity<Length,Tera>     Terameter;
+typedef Quantity<Length,Peta>     Petameter;
+typedef Quantity<Length,Exa>      Exameter;
+typedef Quantity<Length,Zetta>    Zeptameter;
+typedef Quantity<Length,Yotta>    Yottameter;
 
 
 } // namespace SI
@@ -152,9 +152,9 @@ public:
 
 };
 
-typedef Simple<_Mil,_MilFactor>     Mil;
-typedef Simple<_Inch,_InchFactor>   Inch;
-typedef Simple<_Foot,_FootFactor>   Foot;
+typedef Quantity<_Mil,_MilFactor>     Mil;
+typedef Quantity<_Inch,_InchFactor>   Inch;
+typedef Quantity<_Foot,_FootFactor>   Foot;
 
 
 } //namespace NonSI

@@ -52,27 +52,27 @@ namespace SI
   };
 
 
-  typedef Simple<Frequency,Yocto>   Yoctohertz;
-  typedef Simple<Frequency,Zepto>   Zeptohertz;
-  typedef Simple<Frequency,Atto>    Attohertz;
-  typedef Simple<Frequency,Femto>   Femtohertz;
-  typedef Simple<Frequency,Pico>    Picohertz;
-  typedef Simple<Frequency,Nano>    Nanohertz;
-  typedef Simple<Frequency,Micro>   Microhertz;
-  typedef Simple<Frequency,Milli>   Millihertz;
-  typedef Simple<Frequency,Centi>   Centihertz;
-  typedef Simple<Frequency,Deci>    Decihertz;
-  typedef Simple<Frequency>         Hertz;
-  typedef Simple<Frequency,Deka>    Dekahertz;
-  typedef Simple<Frequency,Hecto>   Hectohertz;
-  typedef Simple<Frequency,Kilo>    Kilohertz;
-  typedef Simple<Frequency,Mega>    Megahertz;
-  typedef Simple<Frequency,Giga>    Gigahertz;
-  typedef Simple<Frequency,Tera>    Terahertz;
-  typedef Simple<Frequency,Peta>    Petahertz;
-  typedef Simple<Frequency,Exa>     Exahertz;
-  typedef Simple<Frequency,Zetta>   Zettahertz;
-  typedef Simple<Frequency,Yotta>   Yottahertz;
+  typedef Quantity<Frequency,Yocto>   Yoctohertz;
+  typedef Quantity<Frequency,Zepto>   Zeptohertz;
+  typedef Quantity<Frequency,Atto>    Attohertz;
+  typedef Quantity<Frequency,Femto>   Femtohertz;
+  typedef Quantity<Frequency,Pico>    Picohertz;
+  typedef Quantity<Frequency,Nano>    Nanohertz;
+  typedef Quantity<Frequency,Micro>   Microhertz;
+  typedef Quantity<Frequency,Milli>   Millihertz;
+  typedef Quantity<Frequency,Centi>   Centihertz;
+  typedef Quantity<Frequency,Deci>    Decihertz;
+  typedef Quantity<Frequency>         Hertz;
+  typedef Quantity<Frequency,Deka>    Dekahertz;
+  typedef Quantity<Frequency,Hecto>   Hectohertz;
+  typedef Quantity<Frequency,Kilo>    Kilohertz;
+  typedef Quantity<Frequency,Mega>    Megahertz;
+  typedef Quantity<Frequency,Giga>    Gigahertz;
+  typedef Quantity<Frequency,Tera>    Terahertz;
+  typedef Quantity<Frequency,Peta>    Petahertz;
+  typedef Quantity<Frequency,Exa>     Exahertz;
+  typedef Quantity<Frequency,Zetta>   Zettahertz;
+  typedef Quantity<Frequency,Yotta>   Yottahertz;
 
 
 } //namespace SI
