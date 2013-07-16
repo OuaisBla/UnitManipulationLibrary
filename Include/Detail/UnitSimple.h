@@ -366,7 +366,8 @@ inline Types::String Simple<T,F>::GetSISuffix() const
 
   Detail::SuffixesString const & suffix_0 = Detail::SuffixesInitializer::RuntimeSuffixes[it->first];
 
-  Types::String runtimeSuffix = suffix_0.FactorString + suffix_0.TypeString + Detail::SuffixExponent( it->second );
+  Types::String runtimeSuffix = ( Detail::SuffixesInitializer::RuntimeSuffixes.size() == 1 ? suffix_0.FactorString : Types::String() ) + 
+    suffix_0.TypeString + Detail::SuffixExponent( it->second );
 
   for( ++it; it != factors.end(); ++it )
   {

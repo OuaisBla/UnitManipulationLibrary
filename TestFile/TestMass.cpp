@@ -11,7 +11,7 @@ static void TestClassDefinition();
 static void SeeClassDefinition();
 
 
-void TestMass()
+ void TestMass()
 {
 
   TestClassDefinition();
@@ -22,6 +22,9 @@ void TestMass()
 
 void TestClassDefinition()
 {
+  // Gram is a special case: kg is the base unit 
+  // kg is 1000 times more that g, but kg * m has a unit scale factor of 1.
+
   Microgram const microgram( 1. );
   Assert( fequal( microgram.GetValue(), 1. ) );
   Assert( fequal( microgram.GetConvertedValue(), 1.e-9 ) );
@@ -47,8 +50,9 @@ void TestClassDefinition()
   Assert( fequal( gram.GetConvertedValue(), .001 ) );
   Assert( fequal( gram.GetFactor(), .001 ) );
 
-  long l = sizeof( Gram );
-  long l2 = sizeof( Kilogram );
+  long const l = sizeof( Gram );
+  long const l2 = sizeof( Kilogram );
+  Assert( l == l2 );
 
   Dekagram const dekagram( 1. );
   Assert( fequal( dekagram.GetValue(), 1. ) );
@@ -111,7 +115,11 @@ void SeeClassDefinition()
 
   Gram const gram;
   OutputLine( gram.GetSuffix() );
+  OutputLine( gram.GetSISuffix() );
   OutputLine( Gram::Suffix() );
+  Assert( gram.GetSuffix() == L"g" );
+  Assert( gram.GetSISuffix() == L"g" );
+  Assert( Gram::Suffix() == L"g" );
 
   Dekagram const dekagram;
   OutputLine( dekagram.GetSuffix() );
@@ -123,7 +131,11 @@ void SeeClassDefinition()
 
   Kilogram const kilogram;
   OutputLine( kilogram.GetSuffix() );
+  OutputLine( kilogram.GetSISuffix() );
   OutputLine( Kilogram::Suffix() );
+  Assert( kilogram.GetSuffix() == L"kg" );
+  Assert( kilogram.GetSISuffix() == L"kg" );
+  Assert( Kilogram::Suffix() == L"kg" );
 
   Megagram const megagram;
   OutputLine( megagram.GetSuffix() );
