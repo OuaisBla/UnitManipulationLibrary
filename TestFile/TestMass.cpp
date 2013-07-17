@@ -5,7 +5,7 @@
 
 using namespace Unit;
 using namespace Unit::SI;
-
+using namespace Unit::NonSI;
 
 static void TestClassDefinition();
 static void SeeClassDefinition();
@@ -23,7 +23,8 @@ static void SeeClassDefinition();
 void TestClassDefinition()
 {
   // Gram is a special case: kg is the base unit 
-  // kg is 1000 times more that g, but kg * m has a unit scale factor of 1.
+  // kg is 1000 times more that g but kg is the base unit.
+  // t is 1000 times more that kg so 10e6 time more than g.
 
   Microgram const microgram( 1. );
   Assert( fequal( microgram.GetValue(), 1. ) );
@@ -78,6 +79,21 @@ void TestClassDefinition()
   Assert( fequal( gigagram.GetValue(), 1. ) );
   Assert( fequal( gigagram.GetConvertedValue(), 1.e6 ) );
   Assert( fequal( gigagram.GetFactor(), 1.e6 ) );
+
+  Millimetric_ton const millimetric_ton( 1. );
+  Assert( fequal( millimetric_ton.GetValue(), 1. ) );
+  Assert( fequal( millimetric_ton.GetConvertedValue(), 1. ) );
+  Assert( fequal( millimetric_ton.GetFactor(), 1. ) );
+
+  Metric_ton const metric_ton( 1. );
+  Assert( fequal( metric_ton.GetValue(), 1. ) );
+  Assert( fequal( metric_ton.GetConvertedValue(), 1000. ) );
+  Assert( fequal( metric_ton.GetFactor(), 1000. ) );
+
+  Megametric_ton const megametric_ton( 1. );
+  Assert( fequal( megametric_ton.GetValue(), 1. ) );
+  Assert( fequal( megametric_ton.GetConvertedValue(), 1.e9 ) );
+  Assert( fequal( megametric_ton.GetFactor(), 1.e9 ) );
 
 }
 
@@ -152,5 +168,30 @@ void SeeClassDefinition()
   Petagram const petagram;
   OutputLine( petagram.GetSuffix() );
   OutputLine( Petagram::Suffix() );
+
+
+  Millimetric_ton const millimetric_ton( 1. );
+  OutputLine( millimetric_ton.GetSuffix() );
+  OutputLine( millimetric_ton.GetSISuffix() );
+  OutputLine( Millimetric_ton::Suffix() );
+  Assert( millimetric_ton.GetSuffix() == L"mt" );
+  Assert( millimetric_ton.GetSISuffix() == L"kg" );
+  Assert( Millimetric_ton::Suffix() == L"mt" );
+
+  Metric_ton const metric_ton( 1. );
+  OutputLine( metric_ton.GetSuffix() );
+  OutputLine( metric_ton.GetSISuffix() );
+  OutputLine( Metric_ton::Suffix() );
+  Assert( metric_ton.GetSuffix() == L"t" );
+  Assert( metric_ton.GetSISuffix() == L"Mg" );
+  Assert( Metric_ton::Suffix() == L"t" );
+
+  Megametric_ton const megametric_ton( 1. );
+  OutputLine( megametric_ton.GetSuffix() );
+  OutputLine( megametric_ton.GetSISuffix() );
+  OutputLine( Megametric_ton::Suffix() );
+  Assert( megametric_ton.GetSuffix() == L"Mt" );
+  Assert( megametric_ton.GetSISuffix() == L"Tg" );
+  Assert( Megametric_ton::Suffix() == L"Mt" );
 }
 

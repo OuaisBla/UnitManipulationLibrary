@@ -258,10 +258,11 @@ inline BaseUnit<T,E>::BaseUnit( void *, void * )
   if( it == Detail::SuffixesInitializer::RuntimeSuffixes.end() &&
       Detail::IsPrime( suffixKey.Product() ) )
   {
-    Types::String const factorSuffix = BaseType::SimplifiedFactor::Suffix();
-    Types::String const baseTypeSuffix = BaseType::Suffix();
+    Types::String const baseTypeSISuffix = BaseType::Suffix();
+    Types::String const baseTypeFactorSuffix = BaseType::SimplifiedFactor::InvertedFactor::Suffix();
+    Types::String const quantityUnitSuffix = baseTypeFactorSuffix + baseTypeSISuffix;
 
-    Detail::SuffixesInitializer::RuntimeSuffixes.insert( Detail::SuffixesMap::value_type( suffixKey, Detail::SuffixesString( factorSuffix, baseTypeSuffix ) ) );
+    Detail::SuffixesInitializer::RuntimeSuffixes.insert( Detail::SuffixesMap::value_type( suffixKey, Detail::SuffixesString( quantityUnitSuffix, baseTypeSISuffix ) ) );
   }
 }
 

@@ -169,14 +169,14 @@ namespace Unit
     struct SuffixesString
     {
 
-      Types::String FactorString;
-      Types::String TypeString;
+      Types::String QuantityUnit;
+      Types::String BaseUnitSI;
 
       SuffixesString( ) { }
 
       SuffixesString( Types::String const &_f, Types::String const &_b ) :
-        FactorString( _f ),
-        TypeString( _b )
+        QuantityUnit( _f ),
+        BaseUnitSI( _b )
       {
       }
 

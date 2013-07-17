@@ -38,7 +38,7 @@ namespace Unit
 struct _Mass : public Object<>, public Facade<_Mass>
 {
 
-  typedef SI::Kilo SimplifiedFactor;
+  typedef SI::Milli SimplifiedFactor;
 
   enum { NumeratorBaseTypeValue = 3 };
   enum { DenumeratorBaseTypeValue = 1 };
@@ -82,6 +82,49 @@ typedef Quantity<Mass,Yotta>    Yottagram;
 
 
 } //namespace SI
+
+
+namespace NonSI
+{
+
+
+  struct _Metric_ton : public Mass
+  {
+
+    typedef _Metric_ton DerivedType;
+    typedef SI::Kilo SimplifiedFactor;
+
+    inline static Types::String Suffix()
+    {
+      return Types::String( L"t" );
+    }
+
+  };
+
+  typedef Quantity<_Metric_ton,SI::Yocto>    Yoctometric_ton;
+  typedef Quantity<_Metric_ton,SI::Zepto>    Zeptometric_ton;
+  typedef Quantity<_Metric_ton,SI::Atto>     Attometric_ton;
+  typedef Quantity<_Metric_ton,SI::Femto>    Femtometric_ton;
+  typedef Quantity<_Metric_ton,SI::Pico>     Picometric_ton;
+  typedef Quantity<_Metric_ton,SI::Nano>     Nanometric_ton;
+  typedef Quantity<_Metric_ton,SI::Micro>    Micrometric_ton;
+  typedef Quantity<_Metric_ton,SI::Milli>    Millimetric_ton;
+  typedef Quantity<_Metric_ton,SI::Centi>    Centimetric_ton;
+  typedef Quantity<_Metric_ton,SI::Deci>     Decimetric_ton;
+  typedef Quantity<_Metric_ton>              Metric_ton;
+  typedef Quantity<_Metric_ton,SI::Deka>     Dekametric_ton;
+  typedef Quantity<_Metric_ton,SI::Hecto>    Hectometric_ton;
+  typedef Quantity<_Metric_ton,SI::Kilo>     Kilometric_ton;
+  typedef Quantity<_Metric_ton,SI::Mega>     Megametric_ton;
+  typedef Quantity<_Metric_ton,SI::Giga>     Gigametric_ton;
+  typedef Quantity<_Metric_ton,SI::Tera>     Terametric_ton;
+  typedef Quantity<_Metric_ton,SI::Peta>     Petametric_ton;
+  typedef Quantity<_Metric_ton,SI::Exa>      Exametric_ton;
+  typedef Quantity<_Metric_ton,SI::Zetta>    Zeptametric_ton;
+  typedef Quantity<_Metric_ton,SI::Yotta>    Yottametric_ton;
+
+
+}
 
 
 } //namespace Unit

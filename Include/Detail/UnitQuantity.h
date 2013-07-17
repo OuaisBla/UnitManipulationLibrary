@@ -56,9 +56,10 @@ public:
   typedef typename UnitType::InvertedType       InvertedType;
   typedef typename ProductFactor<
     typename _Factor::SimplifiedFactor, 
-    typename UnitType::SimplifiedFactor::InvertedFactor>
-    ::SimplifiedFactor                          SimplifiedFactor;
-  typedef typename SimplifiedFactor::InvertedFactor  InvertedFactor;
+    typename UnitType::SimplifiedFactor>::SimplifiedFactor
+                                                SimplifiedFactor;
+  typedef typename SimplifiedFactor::InvertedFactor  
+                                                InvertedFactor;
   
   typedef Quantity<UnitType,SimplifiedFactor>   QuantityType;
   typedef Quantity<InvertedType,InvertedFactor> Invert;
@@ -78,6 +79,8 @@ public:
     m_Value( OffsetHandler<UnitType, OtherUnitType>::Convert( _s.Quantity<OtherUnitType, OtherFactor>::GetValue() * (OtherFactor::ConversionFactor() / m_Factor) ) )
   {
     typedef Quantity<OtherUnitType, OtherFactor> _OtherUnit;
+
+    std::is_convertible<ScalarType, typename _OtherUnit::ScalarType>();
 
     Detail::CompatibleUnit<NumeratorBaseTypeValue == _OtherUnit::NumeratorBaseTypeValue && 
       DenumeratorBaseTypeValue == _OtherUnit::DenumeratorBaseTypeValue>();
@@ -324,7 +327,7 @@ inline Types::String Quantity<T,F>::GetSuffix() const
   {
     Detail::SuffixesString const & suffix = itDerived->second;
 
-    return _Factor::Suffix() + suffix.TypeString;
+    return _Factor::Suffix() + suffix.BaseUnitSI;
   }
 
   Detail::SuffixesKey const keys = Keys( Detail::SuffixesInitializer::RuntimeSuffixes );
@@ -342,13 +345,13 @@ inline Types::String Quantity<T,F>::GetSuffix() const
 
   Detail::SuffixesString const & suffix_0 = Detail::SuffixesInitializer::RuntimeSuffixes[it->first];
 
-  Types::String runtimeSuffix = suffix_0.FactorString + suffix_0.TypeString + Detail::SuffixExponent( it->second );
+  Types::String runtimeSuffix = suffix_0.QuantityUnit + Detail::SuffixExponent( it->second );
 
   for( ++it; it != factors.end(); ++it )
   {
     Detail::SuffixesString const & suffix_n = Detail::SuffixesInitializer::RuntimeSuffixes[it->first];
 
-    runtimeSuffix += Literals::DOT_OPERATOR + suffix_n.FactorString + suffix_n.TypeString + Detail::SuffixExponent( it->second );
+    runtimeSuffix += Literals::DOT_OPERATOR + suffix_n.QuantityUnit + Detail::SuffixExponent( it->second );
   }
 
   return SimplifiedFactor::Suffix() + runtimeSuffix;
@@ -369,16 +372,40 @@ inline Types::String Quantity<T,F>::GetSISuffix() const
 
   Detail::SuffixesValueMap::const_iterator it = factors.begin();
 
-  Detail::SuffixesString const & suffix_0 = Detail::SuffixesInitializer::RuntimeSuffixes[it->first];
+  Detail::SuffixesMap::const_iterator iSuffix = Detail::SuffixesInitializer::RuntimeSuffixes.find(it->first);
 
-  Types::String runtimeSuffix = ( Detail::SuffixesInitializer::RuntimeSuffixes.size() == 1 ? suffix_0.FactorString : Types::String() ) + 
-    suffix_0.TypeString + Detail::SuffixExponent( it->second );
+  if( iSuffix == Detail::SuffixesInitializer::RuntimeSuffixes.end() )
+  {
+    throw std::runtime_error( "error: incomplete base unit" );
+  }
+
+  Detail::SuffixesString const & suffix_0 = iSuffix->second;
+
+  //Simple quantity are expressed using BaseUnitSI. Ie. scale + g
+  if( factors.size() == 1 )
+  {
+    typedef typename ProductFactor<SimplifiedFactor, typename BaseType::SimplifiedFactor::InvertedFactor> _BaseUnitFactor;
+
+    Types::String const runtimeSuffix = _BaseUnitFactor::Suffix() + suffix_0.BaseUnitSI + Detail::SuffixExponent( it->second );
+
+    return runtimeSuffix;
+  }
+
+  //Complex unit type are expressed using QuantityUnit string. Ie. scale + (kg * m).
+  Types::String runtimeSuffix = suffix_0.QuantityUnit + Detail::SuffixExponent( it->second );
 
   for( ++it; it != factors.end(); ++it )
   {
-    Detail::SuffixesString const & suffix_n = Detail::SuffixesInitializer::RuntimeSuffixes[it->first];
+    iSuffix = Detail::SuffixesInitializer::RuntimeSuffixes.find(it->first);
 
-    runtimeSuffix += Literals::DOT_OPERATOR + suffix_n.FactorString + suffix_n.TypeString + Detail::SuffixExponent( it->second );
+    if( iSuffix == Detail::SuffixesInitializer::RuntimeSuffixes.end() )
+    {
+      throw std::runtime_error("error: incomplete base unit");
+    }
+
+    Detail::SuffixesString const & suffix_n = iSuffix->second;
+
+    runtimeSuffix += Literals::DOT_OPERATOR + suffix_n.QuantityUnit + Detail::SuffixExponent( it->second );
   }
 
   return _Factor::Suffix() + runtimeSuffix;

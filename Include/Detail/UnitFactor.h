@@ -512,7 +512,12 @@ namespace NonSI
 
     static Types::Scalar ConversionFactor() { return 1.0 / T::ConversionFactor(); }
 
-    static Types::String Suffix() { return Types::String( L"//" ) + T::Suffix(); }
+    static Types::String Suffix() 
+    { 
+      Types::String const _factorString = T::Suffix();
+
+      return _factorString.empty() ? Types::String() : Types::String( L"//" ) + _factorString; 
+    }
 
   };
 

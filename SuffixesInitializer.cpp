@@ -34,6 +34,9 @@ void SuffixesInitializer::Initialize()
   Radian rad( NULL, NULL );
   Degree deg( NULL, NULL );
 
+  //Mass Derived Unit
+  Metric_ton metric_ton( NULL, NULL );
+
   //Electric Derived Unit
   Volt volt( NULL, NULL ); 
   Joule joule( NULL, NULL );
