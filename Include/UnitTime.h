@@ -129,9 +129,31 @@ struct _HourFactor
 
 };
 
+struct _Day : public Time
+{
+
+  typedef _Day DerivedType;
+
+  static Types::String Suffix() { return Types::String( L"d" ); }
+
+};
+
+struct _DayFactor
+{
+
+  typedef _DayFactor               SimplifiedFactor;
+  typedef InvertFactor<_DayFactor> InvertedFactor;
+
+  static Types::Scalar ConversionFactor() { return 86400.; }
+
+  static Types::String Suffix() { return Types::String(); }
+
+};
+
+
 typedef Quantity<_Minute,_MinuteFactor>   Minute;
 typedef Quantity<_Hour,_HourFactor>       Hour;
-
+typedef Quantity<_Day,_DayFactor>         Day;
 
 } //namespace NonSI
 

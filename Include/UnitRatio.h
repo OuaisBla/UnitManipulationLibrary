@@ -34,21 +34,25 @@ jean.gauthier@programmer.net
 namespace Unit
 {
 
-  struct Ratio : public Object<>, public Facade<Ratio>
-  {
+struct Ratio : public Object<>, public Facade<Ratio>
+{
 
-    enum { NumeratorBaseTypeValue = 103 };
-    enum { DenumeratorBaseTypeValue = 1 };
+  enum { NumeratorBaseTypeValue = 103 };
+  enum { DenumeratorBaseTypeValue = 1 };
 
-    inline static Types::String Suffix()
-    { 
-      return Types::String( L"%" );
-    }
+  inline static Types::String Suffix()
+  { 
+    return Types::String( L"%" );
+  }
 
-  };
+};
 
+
+namespace NonSI
+{
 
   typedef Quantity<Ratio::SimplifiedType>      Percent;
- 
+
+}
 
 }

@@ -34,24 +34,29 @@ jean.gauthier@programmer.net
 namespace Unit
 {
 
-  struct _PowerRatio : public Object<>, public Facade<_PowerRatio>
-  {
+struct _PowerRatio : public Object<>, public Facade<_PowerRatio>
+{
 
-    enum { NumeratorBaseTypeValue = 101 };
-    enum { DenumeratorBaseTypeValue = 1 };
+  enum { NumeratorBaseTypeValue = 101 };
+  enum { DenumeratorBaseTypeValue = 1 };
 
-    inline static Types::String Suffix()
-    { 
-      return Types::String( L"B" );
-    }
+  inline static Types::String Suffix()
+  { 
+    return Types::String( L"B" );
+  }
 
-  };
+};
 
 
-  typedef _PowerRatio::SimplifiedType       PowerRatio;
+typedef _PowerRatio::SimplifiedType       PowerRatio;
+
+namespace NonSI
+{
+
 
   typedef Quantity<PowerRatio, SI::Deci>      Decibel;
   typedef Quantity<PowerRatio>                Bel;
 
+}
 
 }
