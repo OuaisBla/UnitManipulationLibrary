@@ -9,13 +9,14 @@ using namespace Unit::NonSI;
 
 static void TestClassDefinition();
 static void SeeClassDefinition();
-
+static void TestConstructors();
 
  void TestMass()
 {
 
   TestClassDefinition();
   SeeClassDefinition();
+  TestConstructors();
 
 }
 
@@ -195,3 +196,32 @@ void SeeClassDefinition()
   Assert( Megametric_ton::Suffix() == L"Mt" );
 }
 
+void TestConstructors()
+{
+  Gram const default_constructor;
+  Assert( fequal( default_constructor.GetValue(), 0. ) );
+
+  Gram const explicit_constructor_with_scalar( 2. );
+  Assert( fequal( explicit_constructor_with_scalar.GetValue(), 2. ) );
+
+  Kilogram const one_kilogram( 1. );
+  Gram unit_1000_gram = one_kilogram;
+  Assert( Kilogram::ConversionFactor() == 1.0 );
+  Assert( Gram::ConversionFactor() == 0.001 );
+  Assert( fequal( unit_1000_gram.GetValue(), 1000. ) );
+
+  Metric_ton const one_metric_ton( 1. );
+  Megagram const one_megagram = one_metric_ton;
+  Assert( fequal( one_megagram.GetValue(), 1. ) );
+  Assert( fequal( one_megagram.GetConvertedValue(), 1.e6 ) );
+
+  Gram const copy_constructor = explicit_constructor_with_scalar;
+  Assert( fequal( copy_constructor.GetValue(), 2. ) );
+
+  Gram const copy_constructor2 = explicit_constructor_with_scalar + one_kilogram;
+  Assert( fequal( copy_constructor2.GetValue(), 1000. + 2. ) );
+
+  Gram const copy_constructor3 = explicit_constructor_with_scalar + static_cast<Megagram>( one_metric_ton );
+  Assert( fequal( copy_constructor3.GetValue(), 1.e6 + 2. ) );
+
+}
