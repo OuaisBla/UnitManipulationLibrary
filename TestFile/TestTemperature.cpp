@@ -46,17 +46,38 @@ void TestClassDefinition()
   Assert( fequal( celsius.GetConvertedValue(), 274.15 ) );
   Assert( fequal( celsius.GetFactor(), 1. ) );
 
-  Celsius const celciusToCelcius( Celsius( 0. ) );
-  Assert( fequal( celciusToCelcius.GetValue(), 0. ) );
+  Fahrenheit const fahrenheit( 1. );
+  Assert( fequal( fahrenheit.GetValue(), 1. ) );
+  Assert( fequal( fahrenheit.GetConvertedValue(), 255.9277777777778 ) );
+  Assert( fequal( fahrenheit.GetFactor(), 0.55555555555555555555555555555556 ) );
 
-  Celsius const KelvinToCelcius( Kelvin( 0.) );
-  Assert( fequal( KelvinToCelcius.GetValue(), -273.15 ) );
 
-  Kelvin const CelciusToKelvin( Celsius( 0.) );
-  Assert( fequal( CelciusToKelvin.GetValue(), 273.15 ) );
+  Celsius const CelsiusToCelsius( Celsius( 1. ) );
+  Assert( fequal( CelsiusToCelsius.GetValue(), 1. ) );
 
-  Kelvin const KelvinToKelvin( Kelvin( 0. ) );
-  Assert( fequal( KelvinToKelvin.GetValue(), 0. ) );
+  Celsius const KelvinToCelsius( Kelvin( 1.) );
+  Assert( fequal( KelvinToCelsius.GetValue(), -272.15 ) );
+
+  Celsius const FahrenheitToCelsius( Fahrenheit( 1.) );
+  Assert( fequal( FahrenheitToCelsius.GetValue(), -17.22222222222222 ) );
+
+  Kelvin const CelsiusToKelvin( Celsius( 0.) );
+  Assert( fequal( CelsiusToKelvin.GetValue(), 273.15 ) );
+
+  Kelvin const KelvinToKelvin( Kelvin( 1. ) );
+  Assert( fequal( KelvinToKelvin.GetValue(), 1. ) );
+
+  Kelvin const FahrenheitToKelvin( Fahrenheit( 1. ) );
+  Assert( fequal( FahrenheitToKelvin.GetValue(), 255.92777777777778 ) );
+
+  Fahrenheit const FahrenheitToFahrenheit( Fahrenheit( 1.) );
+  Assert( fequal( FahrenheitToFahrenheit.GetValue(), 1. ) );
+
+  Fahrenheit const KelvinToFahrenheit( Kelvin( 1. ) );
+  Assert( fequal( KelvinToFahrenheit.GetValue(), -457.87 ) );
+
+  Fahrenheit const CelsiusToFahrenheit( Celsius( 1. ) );
+  Assert( fequal( CelsiusToFahrenheit.GetValue(), 33.8 ) );
 
 
 }
@@ -67,16 +88,37 @@ void SeeClassDefinition()
 
   Decikelvin const decikelvin;
   OutputLine( decikelvin.GetSuffix() );
+  OutputLine( decikelvin.GetSISuffix() );
+  OutputLine( Decikelvin::Suffix() );
 
   Kelvin const kelvin;
   OutputLine( kelvin.GetSuffix() );
+  OutputLine( kelvin.GetSISuffix() );
+  OutputLine( Kelvin::Suffix() );
+  Assert( kelvin.GetSuffix() == L"K" );
+  Assert( kelvin.GetSISuffix() == L"K" );
+  Assert( Kelvin::Suffix() == L"K" );
 
   Dekakelvin const dekakelvin;
   OutputLine( dekakelvin.GetSuffix() );
+  OutputLine( dekakelvin.GetSISuffix() );
+  OutputLine( Dekakelvin::Suffix() );
 
   Celsius const celsius;
   OutputLine( celsius.GetSuffix() );
+  OutputLine( celsius.GetSISuffix() );
   OutputLine( Celsius::Suffix() );
+  Assert( celsius.GetSuffix() == L"°C" );
+  Assert( celsius.GetSISuffix() == L"K" );
+  Assert( Celsius::Suffix() == L"°C" );
+
+  Fahrenheit const fahrenheit;
+  OutputLine( fahrenheit.GetSuffix() );
+  OutputLine( fahrenheit.GetSISuffix() );
+  OutputLine( Fahrenheit::Suffix() );
+  Assert( fahrenheit.GetSuffix() == L"°F" );
+  Assert( fahrenheit.GetSISuffix() == L"K" );
+  Assert( Fahrenheit::Suffix() == L"°F" );
 
 }
 

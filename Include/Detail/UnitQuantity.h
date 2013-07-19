@@ -75,7 +75,9 @@ public:
 
   template< typename OtherUnitType, typename OtherFactor>
   inline Quantity( Quantity<OtherUnitType, OtherFactor> const &_s ) :
-    m_Value( OffsetHandler<UnitType, OtherUnitType>::Convert( _s.Quantity<OtherUnitType, OtherFactor>::GetValue() * (Quantity<OtherUnitType, OtherFactor>::ConversionFactor() / m_Factor) ) )
+    m_Value( 
+      OffsetHandler<DerivedType, typename OtherUnitType::DerivedType>::Convert( 
+      _s.Quantity<OtherUnitType, OtherFactor>::GetValue() * (Quantity<OtherUnitType, OtherFactor>::ConversionFactor() / m_Factor), m_Factor ) )
   {
     typedef Quantity<OtherUnitType, OtherFactor> _OtherUnit;
 
@@ -307,7 +309,7 @@ inline Types::Scalar Quantity<T,F>::GetFactor() const
 template <typename T, typename F>
 inline typename Quantity<T,F>::ScalarType Quantity<T,F>::GetConvertedValue() const
 { 
-  return OffsetHandler<BaseType, UnitType>::Convert( m_Value * m_Factor );
+  return OffsetHandler<BaseType, DerivedType>::Convert( m_Value * m_Factor );
 }
 
 template <typename T, typename F>

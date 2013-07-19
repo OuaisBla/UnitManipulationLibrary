@@ -81,6 +81,8 @@ namespace SI
   struct _Celsius : public Temperature
   {
 
+    typedef _Celsius DerivedType;
+
     static Types::String Suffix() { return Types::String( L"°C" ); }
 
     static ScalarType Offset() { return 273.15; }
@@ -98,7 +100,7 @@ namespace SI
   typedef Quantity<_Celsius,Milli>    Millicelsius;
   typedef Quantity<_Celsius,Centi>    Centicelsius;
   typedef Quantity<_Celsius,Deci>     Decicelsius;
-  typedef Quantity<_Celsius>              Celsius;
+  typedef Quantity<_Celsius>          Celsius;
   typedef Quantity<_Celsius,Deka>     Dekacelsius;
   typedef Quantity<_Celsius,Hecto>    Hectocelsius;
   typedef Quantity<_Celsius,Kilo>     Kilocelsius;
@@ -113,34 +115,42 @@ namespace SI
 } //namespace SI
 
 
-template <typename T>
-class OffsetHandler<T, SI::_Celsius>
+namespace NonSI
 {
-public:
 
-  typedef SI::_Celsius::ScalarType ScalarType;
-
-  inline static ScalarType Convert( ScalarType const value )
+  struct _Fahrenheit : public Temperature
   {
-    return value + (SI::_Celsius::Offset() - T::Offset() );
-  }
 
-};
+    typedef _Fahrenheit DerivedType;
 
-template <typename T>
-class OffsetHandler<SI::_Celsius, T>
+    static Types::String Suffix() { return Types::String( L"°F" ); }
+
+    static ScalarType Offset() { return 255.37222222222222222222222222222; }
+
+  };
+
+  struct _FahrenheitFactor
+  {
+
+    typedef _FahrenheitFactor               SimplifiedFactor;
+    typedef InvertFactor<_FahrenheitFactor> InvertedFactor;
+
+    static Types::Scalar ConversionFactor() { return 5./9.; }
+
+    static Types::String Suffix() { return Types::String(); }
+
+  };
+
+
+  typedef Quantity<_Fahrenheit, _FahrenheitFactor> Fahrenheit;
+
+}
+
+
+template <>
+struct is_supporting_offset<_Temperature> : public ::boost::integral_constant<bool,true>
 {
-public:
-
-  typedef SI::_Celsius::ScalarType ScalarType;
-
-  inline static ScalarType Convert( ScalarType const value )
-  {
-    return value + (T::Offset() - SI::_Celsius::Offset() );
-  }
-
 };
 
 
 } //namespace Unit
-

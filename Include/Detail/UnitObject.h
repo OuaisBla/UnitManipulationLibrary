@@ -33,6 +33,7 @@ jean.gauthier@programmer.net
 #include <cstdlib>
 #include <boost/math/policies/policy.hpp>
 #include <boost/math/tools/precision.hpp>
+#include <boost/utility/enable_if.hpp>
 #include "Detail\UnitHelper.h"
 
 
@@ -324,20 +325,49 @@ inline Types::String Factor<E>::Suffix()
 } //Namespace SI
 
 
+template<typename T>
+struct is_supporting_offset : public ::boost::integral_constant<bool,false>
+{
+};
 
 /**
   Class that represents the product of two factors.
 */
-template <typename L, typename R = L>
-class OffsetHandler
+template <typename L, typename R = L, typename Enable = void>
+struct OffsetHandler
 {
-public:
 
   typedef typename L::ScalarType ScalarType;
 
-  inline static ScalarType Convert( ScalarType const value )
+  inline static ScalarType Convert( ScalarType const value, Types::Scalar const = 1.0 )
   {
     return value;
+  }
+
+};
+
+template <typename L>
+struct  OffsetHandler<L, L, typename boost::enable_if<is_supporting_offset<typename L::BaseType> >::type >
+{
+
+  typedef typename L::ScalarType ScalarType;
+
+  inline static ScalarType Convert( ScalarType const value, Types::Scalar const = 1.0  )
+  {
+    return value;
+  }
+
+};
+
+template <typename L, typename R >
+struct  OffsetHandler<L, R, typename boost::enable_if<is_supporting_offset<typename L::BaseType> >::type >
+{
+
+  typedef typename L::ScalarType ScalarType;
+
+  inline static ScalarType Convert( ScalarType const value, Types::Scalar const factor = 1.0 )
+  {
+    return ( value * factor + ( R::Offset() - L::Offset() ) ) / factor;
   }
 
 };
