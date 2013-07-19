@@ -76,7 +76,7 @@ public:
 
   template< typename OtherUnitType, typename OtherFactor>
   inline Quantity( Quantity<OtherUnitType, OtherFactor> const &_s ) :
-    m_Value( OffsetHandler<UnitType, OtherUnitType>::Convert( _s.Quantity<OtherUnitType, OtherFactor>::GetValue() * (OtherFactor::ConversionFactor() / m_Factor) ) )
+    m_Value( OffsetHandler<UnitType, OtherUnitType>::Convert( _s.Quantity<OtherUnitType, OtherFactor>::GetValue() * (Quantity<OtherUnitType, OtherFactor>::ConversionFactor() / m_Factor) ) )
   {
     typedef Quantity<OtherUnitType, OtherFactor> _OtherUnit;
 

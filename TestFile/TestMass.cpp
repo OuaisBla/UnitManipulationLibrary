@@ -213,7 +213,7 @@ void TestConstructors()
   Metric_ton const one_metric_ton( 1. );
   Megagram const one_megagram = one_metric_ton;
   Assert( fequal( one_megagram.GetValue(), 1. ) );
-  Assert( fequal( one_megagram.GetConvertedValue(), 1.e6 ) );
+  Assert( fequal( one_megagram.GetConvertedValue(), 1.e3 ) );
 
   Gram const copy_constructor = explicit_constructor_with_scalar;
   Assert( fequal( copy_constructor.GetValue(), 2. ) );
