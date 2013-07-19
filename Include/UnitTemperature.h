@@ -55,34 +55,28 @@ namespace SI
 {
 
 
-typedef Quantity<Temperature,Yocto>    Yoctokelvin;
-typedef Quantity<Temperature,Zepto>    Zeptokelvin;
-typedef Quantity<Temperature,Atto>     Attokelvin;
-typedef Quantity<Temperature,Femto>    Femtokelvin;
-typedef Quantity<Temperature,Pico>     Picokelvin;
-typedef Quantity<Temperature,Nano>     Nanokelvin;
-typedef Quantity<Temperature,Micro>    Microkelvin;
-typedef Quantity<Temperature,Milli>    Millikelvin;
-typedef Quantity<Temperature,Centi>    Centikelvin;
-typedef Quantity<Temperature,Deci>     Decikelvin;
-typedef Quantity<Temperature>          Kelvin;
-typedef Quantity<Temperature,Deka>     Dekakelvin;
-typedef Quantity<Temperature,Hecto>    Hectokelvin;
-typedef Quantity<Temperature,Kilo>     Kilokelvin;
-typedef Quantity<Temperature,Mega>     Megakelvin;
-typedef Quantity<Temperature,Giga>     Gigakelvin; 
-typedef Quantity<Temperature,Tera>     Terakelvin;
-typedef Quantity<Temperature,Peta>     Petakelvin;
-typedef Quantity<Temperature,Exa>      Exakelvin;
-typedef Quantity<Temperature,Zetta>    Zeptakelvin;
-typedef Quantity<Temperature,Yotta>    Yottakelvin;
+  typedef Quantity<Temperature,Yocto>    Yoctokelvin;
+  typedef Quantity<Temperature,Zepto>    Zeptokelvin;
+  typedef Quantity<Temperature,Atto>     Attokelvin;
+  typedef Quantity<Temperature,Femto>    Femtokelvin;
+  typedef Quantity<Temperature,Pico>     Picokelvin;
+  typedef Quantity<Temperature,Nano>     Nanokelvin;
+  typedef Quantity<Temperature,Micro>    Microkelvin;
+  typedef Quantity<Temperature,Milli>    Millikelvin;
+  typedef Quantity<Temperature,Centi>    Centikelvin;
+  typedef Quantity<Temperature,Deci>     Decikelvin;
+  typedef Quantity<Temperature>          Kelvin;
+  typedef Quantity<Temperature,Deka>     Dekakelvin;
+  typedef Quantity<Temperature,Hecto>    Hectokelvin;
+  typedef Quantity<Temperature,Kilo>     Kilokelvin;
+  typedef Quantity<Temperature,Mega>     Megakelvin;
+  typedef Quantity<Temperature,Giga>     Gigakelvin; 
+  typedef Quantity<Temperature,Tera>     Terakelvin;
+  typedef Quantity<Temperature,Peta>     Petakelvin;
+  typedef Quantity<Temperature,Exa>      Exakelvin;
+  typedef Quantity<Temperature,Zetta>    Zeptakelvin;
+  typedef Quantity<Temperature,Yotta>    Yottakelvin;
 
-
-} //namespace SI
-
-
-namespace NonSI
-{
 
   struct _Celsius : public Temperature
   {
@@ -93,39 +87,59 @@ namespace NonSI
 
   };
 
-  typedef Quantity<_Celsius>          Celsius;
 
-}
+  typedef Quantity<_Celsius,Yocto>    Yoctocelsius;
+  typedef Quantity<_Celsius,Zepto>    Zeptocelsius;
+  typedef Quantity<_Celsius,Atto>     Attocelsius;
+  typedef Quantity<_Celsius,Femto>    Femtocelsius;
+  typedef Quantity<_Celsius,Pico>     Picocelsius;
+  typedef Quantity<_Celsius,Nano>     Nanocelsius;
+  typedef Quantity<_Celsius,Micro>    Microcelsius;
+  typedef Quantity<_Celsius,Milli>    Millicelsius;
+  typedef Quantity<_Celsius,Centi>    Centicelsius;
+  typedef Quantity<_Celsius,Deci>     Decicelsius;
+  typedef Quantity<_Celsius>              Celsius;
+  typedef Quantity<_Celsius,Deka>     Dekacelsius;
+  typedef Quantity<_Celsius,Hecto>    Hectocelsius;
+  typedef Quantity<_Celsius,Kilo>     Kilocelsius;
+  typedef Quantity<_Celsius,Mega>     Megacelsius;
+  typedef Quantity<_Celsius,Giga>     Gigacelsius; 
+  typedef Quantity<_Celsius,Tera>     Teracelsius;
+  typedef Quantity<_Celsius,Peta>     Petacelsius;
+  typedef Quantity<_Celsius,Exa>      Exacelsius;
+  typedef Quantity<_Celsius,Zetta>    Zeptacelsius;
+  typedef Quantity<_Celsius,Yotta>    Yottacelsius;
+
+} //namespace SI
 
 
 template <typename T>
-class OffsetHandler<T, NonSI::_Celsius>
+class OffsetHandler<T, SI::_Celsius>
 {
 public:
 
-  typedef NonSI::_Celsius::ScalarType ScalarType;
+  typedef SI::_Celsius::ScalarType ScalarType;
 
   inline static ScalarType Convert( ScalarType const value )
   {
-    return value + (NonSI::_Celsius::Offset() - T::Offset() );
+    return value + (SI::_Celsius::Offset() - T::Offset() );
   }
 
 };
 
 template <typename T>
-class OffsetHandler<NonSI::_Celsius, T>
+class OffsetHandler<SI::_Celsius, T>
 {
 public:
 
-  typedef NonSI::_Celsius::ScalarType ScalarType;
+  typedef SI::_Celsius::ScalarType ScalarType;
 
   inline static ScalarType Convert( ScalarType const value )
   {
-    return value + (T::Offset() - NonSI::_Celsius::Offset() );
+    return value + (T::Offset() - SI::_Celsius::Offset() );
   }
 
 };
-
 
 
 } //namespace Unit

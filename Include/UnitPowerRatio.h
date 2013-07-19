@@ -50,12 +50,11 @@ struct _PowerRatio : public Object<>, public Facade<_PowerRatio>
 
 typedef _PowerRatio::SimplifiedType       PowerRatio;
 
-namespace NonSI
+namespace SI
 {
 
-
-  typedef Quantity<PowerRatio, SI::Deci>      Decibel;
-  typedef Quantity<PowerRatio>                Bel;
+  typedef Quantity<PowerRatio, Deci>      Decibel;
+  typedef Quantity<PowerRatio>            Bel;
 
 }
 

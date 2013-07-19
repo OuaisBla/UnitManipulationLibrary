@@ -127,7 +127,9 @@
     <ClInclude Include="..\Include\UnitAngular.h" />
     <ClInclude Include="..\Include\UnitArea.h" />
     <ClInclude Include="..\Include\UnitElectric.h" />
+    <ClInclude Include="..\Include\UnitElectricCapacitance.h" />
     <ClInclude Include="..\Include\UnitElectricCharge.h" />
+    <ClInclude Include="..\Include\UnitElectricConductance.h" />
     <ClInclude Include="..\Include\UnitElectricCurrent.h" />
     <ClInclude Include="..\Include\UnitElectricPotential.h" />
     <ClInclude Include="..\Include\UnitElectricResistance.h" />
@@ -136,6 +138,7 @@
     <ClInclude Include="..\Include\UnitFrequency.h" />
     <ClInclude Include="..\Include\UnitLength.h" />
     <ClInclude Include="..\Include\UnitLuminousIntensity.h" />
+    <ClInclude Include="..\Include\UnitMagnetic.h" />
     <ClInclude Include="..\Include\UnitMass.h" />
     <ClInclude Include="..\Include\UnitPower.h" />
     <ClInclude Include="..\Include\UnitPowerRatio.h" />

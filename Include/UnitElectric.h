@@ -32,3 +32,5 @@ jean.gauthier@programmer.net
 #include "UnitElectricCharge.h"
 #include "UnitElectricPotential.h"
 #include "UnitElectricResistance.h"
+#include "UnitElectricCapacitance.h"
+#include "UnitElectricConductance.h"

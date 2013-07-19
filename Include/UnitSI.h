@@ -41,4 +41,40 @@ jean.gauthier@programmer.net
 #include "UnitRatio.h"
 #include "UnitVelocity.h"
 #include "UnitVolume.h"
+#include "UnitMagnetic.h"
 
+
+namespace Unit
+{
+
+namespace SI
+{
+
+  typedef Product<Pascal, Second>::QuantityType                                   DynamicViscosity;
+  typedef Product<Newton, Meter>::QuantityType                                    MomentOfForce;
+  typedef Product<Newton, Meter::Invert>::QuantityType                            SurfaceTension; 
+  typedef Product<Radian, Second::Invert>::QuantityType                           AngularVelocity;
+  typedef Product<Radian, Product<Second>::Invert>::QuantityType                  AngularAcceleration;
+  typedef Product<Watt, Squaremeter::Invert>::QuantityType                        HeatFluxDensity;
+  typedef Product<Joule, Kelvin::Invert>::QuantityType                            HeatCapacity;
+  typedef Product<Joule, Kelvin::Invert>::QuantityType                            Entropy;
+  typedef Product<Joule, Product<Kilogram, Kelvin>::Invert>::QuantityType         SpecificHeatCapacity;
+  typedef Product<Joule, Product<Kilogram, Kelvin>::Invert>::QuantityType         SpecificEntropy;
+  typedef Product<Joule, Kilogram::Invert>::QuantityType                          SpecificEnergy; 
+  typedef Product<Watt, Product<Meter, Kelvin>::Invert>::QuantityType             ThermalConductivity;
+  typedef Product<Joule, Cubicmeter::Invert>::QuantityType                        EnergyDensity;
+  typedef Product<Volt, Meter::Invert>::QuantityType                              ElectricFieldStrength;
+  typedef Product<Coulomb, Cubicmeter::Invert>::QuantityType                      ElectricChargeDensity;
+  typedef Product<Coulomb, Squaremeter::Invert>::QuantityType                     ElectricFluxDensity;
+  typedef Product<Farad, Meter::Invert>::QuantityType                             Permittivity;
+  typedef Product<Henry, Meter::Invert>::QuantityType                             Permeability;
+  typedef Product<Joule, Mole::Invert>::QuantityType                              MolarEnergy;
+  typedef Product<Joule, Product<Mole, Kelvin>::Invert>::QuantityType             MolarEntropy;
+  typedef Product<Coulomb, Kilogram::Invert>::QuantityType                        Exposure;
+  typedef Product<Watt, Steradian::Invert>::QuantityType                          RadiantIntensity;
+  typedef Product<Watt, Product<Squaremeter, Steradian>::Invert>::QuantityType    Radiance;
+  typedef Product<Katal, Cubicmeter::Invert>::QuantityType                        CatalyticActivityConcentration;
+
+}
+
+}

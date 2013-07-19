@@ -39,71 +39,64 @@ namespace SI
 {
 
 
-typedef Product<Squaremeter,Meter>::UnitType Volume;
+  typedef Product<Squaremeter,Meter>::UnitType Volume;
 
 
-typedef Quantity<Volume,Yocto>  Yoctocubicmeter;
-typedef Quantity<Volume,Zepto>  Zeptocubicmeter;
-typedef Quantity<Volume,Atto>   Attocubicmeter;
-typedef Quantity<Volume,Femto>  Femtocubicmeter;
-typedef Quantity<Volume,Pico>   Picocubicmeter;
-typedef Quantity<Volume,Nano>   Nanocubicmeter;
-typedef Quantity<Volume,Micro>  Microcubicmeter;
-typedef Quantity<Volume,Milli>  Millicubicmeter;
-typedef Quantity<Volume,Centi>  Centicubicmeter;
-typedef Quantity<Volume,Deci>   Decicubicmeter;
-typedef Quantity<Volume>        Cubicmeter;
-typedef Quantity<Volume,Deka>   Dekacubicmeter;
-typedef Quantity<Volume,Hecto>  Hectocubicmeter;
-typedef Quantity<Volume,Kilo>   Kilocubicmeter;
-typedef Quantity<Volume,Mega>   Megacubicmeter;
-typedef Quantity<Volume,Giga>   Gigacubicmeter;
-typedef Quantity<Volume,Tera>   Teracubicmeter;
-typedef Quantity<Volume,Peta>   Petacubicmeter;
-typedef Quantity<Volume,Exa>    Exacubicmeter;
-typedef Quantity<Volume,Zetta>  Zeptacubicmeter;
-typedef Quantity<Volume,Yotta>  Yottacubicmeter;
+  typedef Quantity<Volume,Yocto>  Yoctocubicmeter;
+  typedef Quantity<Volume,Zepto>  Zeptocubicmeter;
+  typedef Quantity<Volume,Atto>   Attocubicmeter;
+  typedef Quantity<Volume,Femto>  Femtocubicmeter;
+  typedef Quantity<Volume,Pico>   Picocubicmeter;
+  typedef Quantity<Volume,Nano>   Nanocubicmeter;
+  typedef Quantity<Volume,Micro>  Microcubicmeter;
+  typedef Quantity<Volume,Milli>  Millicubicmeter;
+  typedef Quantity<Volume,Centi>  Centicubicmeter;
+  typedef Quantity<Volume,Deci>   Decicubicmeter;
+  typedef Quantity<Volume>        Cubicmeter;
+  typedef Quantity<Volume,Deka>   Dekacubicmeter;
+  typedef Quantity<Volume,Hecto>  Hectocubicmeter;
+  typedef Quantity<Volume,Kilo>   Kilocubicmeter;
+  typedef Quantity<Volume,Mega>   Megacubicmeter;
+  typedef Quantity<Volume,Giga>   Gigacubicmeter;
+  typedef Quantity<Volume,Tera>   Teracubicmeter;
+  typedef Quantity<Volume,Peta>   Petacubicmeter;
+  typedef Quantity<Volume,Exa>    Exacubicmeter;
+  typedef Quantity<Volume,Zetta>  Zeptacubicmeter;
+  typedef Quantity<Volume,Yotta>  Yottacubicmeter;
 
 
-} //namespace SI
-
-
-namespace NonSI
-{
-
-
-  struct _Liter : public SI::Volume
+  struct _Liter : public Volume
   {
 
     typedef _Liter DerivedType;
-    typedef SI::Deci SimplifiedFactor;
+    typedef Deci SimplifiedFactor;
 
     static Types::String Suffix() { return Types::String( L"L" ); }
 
   };
 
 
-  typedef Quantity<_Liter,SI::Yocto>  Yoctoliter;
-  typedef Quantity<_Liter,SI::Zepto>  Zeptoliter;
-  typedef Quantity<_Liter,SI::Atto>   Attoliter;
-  typedef Quantity<_Liter,SI::Femto>  Femtoliter;
-  typedef Quantity<_Liter,SI::Pico>   Picoliter;
-  typedef Quantity<_Liter,SI::Nano>   Nanoliter;
-  typedef Quantity<_Liter,SI::Micro>  Microliter;
-  typedef Quantity<_Liter,SI::Milli>  Milliliter;
-  typedef Quantity<_Liter,SI::Centi>  Centiliter;
-  typedef Quantity<_Liter,SI::Deci>   Deciliter;
-  typedef Quantity<_Liter>            Liter;
-  typedef Quantity<_Liter,SI::Deka>   Dekaliter;
-  typedef Quantity<_Liter,SI::Hecto>  Hectoliter;
-  typedef Quantity<_Liter,SI::Kilo>   Kiloliter;
-  typedef Quantity<_Liter,SI::Mega>   Megaliter;
-  typedef Quantity<_Liter,SI::Giga>   Gigaliter;
-  typedef Quantity<_Liter,SI::Tera>   Teraliter;
-  typedef Quantity<_Liter,SI::Peta>   Petaliter;
-  typedef Quantity<_Liter,SI::Exa>    Exaliter;
-  typedef Quantity<_Liter,SI::Zetta>  Zeptaliter;
-  typedef Quantity<_Liter,SI::Yotta>  Yottaliter;
+  typedef Quantity<_Liter,Yocto>  Yoctoliter;
+  typedef Quantity<_Liter,Zepto>  Zeptoliter;
+  typedef Quantity<_Liter,Atto>   Attoliter;
+  typedef Quantity<_Liter,Femto>  Femtoliter;
+  typedef Quantity<_Liter,Pico>   Picoliter;
+  typedef Quantity<_Liter,Nano>   Nanoliter;
+  typedef Quantity<_Liter,Micro>  Microliter;
+  typedef Quantity<_Liter,Milli>  Milliliter;
+  typedef Quantity<_Liter,Centi>  Centiliter;
+  typedef Quantity<_Liter,Deci>   Deciliter;
+  typedef Quantity<_Liter>        Liter;
+  typedef Quantity<_Liter,Deka>   Dekaliter;
+  typedef Quantity<_Liter,Hecto>  Hectoliter;
+  typedef Quantity<_Liter,Kilo>   Kiloliter;
+  typedef Quantity<_Liter,Mega>   Megaliter;
+  typedef Quantity<_Liter,Giga>   Gigaliter;
+  typedef Quantity<_Liter,Tera>   Teraliter;
+  typedef Quantity<_Liter,Peta>   Petaliter;
+  typedef Quantity<_Liter,Exa>    Exaliter;
+  typedef Quantity<_Liter,Zetta>  Zeptaliter;
+  typedef Quantity<_Liter,Yotta>  Yottaliter;
 
 
 } //namespace SI

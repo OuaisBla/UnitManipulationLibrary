@@ -73,6 +73,33 @@ namespace Unit
 
   };
 
+
+  template<typename _ScalarType = Types::Scalar, class _Policy = boost::math::policies::precision<_ScalarType, boost::math::policies::policy<> > >
+  class _SolidAngle : public Object<_ScalarType, _Policy>, public Facade<_SolidAngle<_ScalarType,_Policy> >
+  {
+
+    typedef Facade<_SolidAngle<_ScalarType,_Policy> > _Facade;
+
+  public:
+
+    typedef _ScalarType                         ScalarType;
+    typedef typename _Facade::SimplifiedType   SimplifiedType;
+
+    enum { NumeratorBaseTypeValue = 23 };
+    enum { DenumeratorBaseTypeValue = 1 };
+
+    using Object<_ScalarType, _Policy>::GetValue;
+    using Object<_ScalarType, _Policy>::GetFactor;
+    using Object<_ScalarType, _Policy>::GetConvertedValue;
+    using Object<_ScalarType, _Policy>::SetValue;
+
+    inline static Types::String Suffix()
+    { 
+      return Types::String( L"sr" );
+    }
+
+  };
+
   template<typename S, class P>
   S _Normalize( S const value )
   {
@@ -118,13 +145,15 @@ namespace Unit
 
 
   typedef _Angle<>::SimplifiedType Angle;
+  typedef _SolidAngle<>::SimplifiedType SolidAngle;
 
 
 namespace SI
 {
 
 
-  typedef Quantity<Angle> Radian;
+  typedef Quantity<Angle>       Radian;
+  typedef Quantity<SolidAngle>  Steradian;
 
 
 } //namespace SI
