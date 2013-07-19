@@ -5,7 +5,7 @@
 
 using namespace Unit;
 using namespace Unit::SI;
-
+using namespace Unit::NonSI;
 
 //
 //  Compile time definition.
@@ -269,6 +269,12 @@ void TestConversionConstructor()
 
   //1,000,000 - 1 cm3 < 1 m3 
   Assert( ( Centicubicmeter( rep1 ) - Centicubicmeter( 1 ) ) < Cubicmeter( 1. ) );
+
+  Decicubicmeter decicubicmeter = Liter( 1.0 );
+  Assert( fequal( decicubicmeter.GetValue(), 1.0 ) );
+
+  Cubicmeter cubicmeter = Liter( 1.0 );
+  Assert( fequal( cubicmeter.GetValue(), 0.001 ) );
 
 }
 

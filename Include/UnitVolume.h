@@ -68,5 +68,46 @@ typedef Quantity<Volume,Yotta>  Yottacubicmeter;
 } //namespace SI
 
 
+namespace NonSI
+{
+
+
+  struct _Liter : public SI::Volume
+  {
+
+    typedef _Liter DerivedType;
+    typedef SI::Deci SimplifiedFactor;
+
+    static Types::String Suffix() { return Types::String( L"L" ); }
+
+  };
+
+
+  typedef Quantity<_Liter,SI::Yocto>  Yoctoliter;
+  typedef Quantity<_Liter,SI::Zepto>  Zeptoliter;
+  typedef Quantity<_Liter,SI::Atto>   Attoliter;
+  typedef Quantity<_Liter,SI::Femto>  Femtoliter;
+  typedef Quantity<_Liter,SI::Pico>   Picoliter;
+  typedef Quantity<_Liter,SI::Nano>   Nanoliter;
+  typedef Quantity<_Liter,SI::Micro>  Microliter;
+  typedef Quantity<_Liter,SI::Milli>  Milliliter;
+  typedef Quantity<_Liter,SI::Centi>  Centiliter;
+  typedef Quantity<_Liter,SI::Deci>   Deciliter;
+  typedef Quantity<_Liter>            Liter;
+  typedef Quantity<_Liter,SI::Deka>   Dekaliter;
+  typedef Quantity<_Liter,SI::Hecto>  Hectoliter;
+  typedef Quantity<_Liter,SI::Kilo>   Kiloliter;
+  typedef Quantity<_Liter,SI::Mega>   Megaliter;
+  typedef Quantity<_Liter,SI::Giga>   Gigaliter;
+  typedef Quantity<_Liter,SI::Tera>   Teraliter;
+  typedef Quantity<_Liter,SI::Peta>   Petaliter;
+  typedef Quantity<_Liter,SI::Exa>    Exaliter;
+  typedef Quantity<_Liter,SI::Zetta>  Zeptaliter;
+  typedef Quantity<_Liter,SI::Yotta>  Yottaliter;
+
+
+} //namespace SI
+
+
 } //namespace Unit
 
