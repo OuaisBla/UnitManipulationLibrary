@@ -42,27 +42,26 @@ class Quantity : public _UnitType
 {
 public:
 
-  typedef _UnitType                             UnitType;
-  typedef _Factor                               _Factor;
+  typedef _UnitType                                         UnitType;
+  typedef _Factor                                           _Factor;
 
-  typedef typename UnitType::ScalarType         ScalarType;
-  typedef typename UnitType::Policy             Policy;
-  typedef typename UnitType::Limits             Limits;
+  typedef typename UnitType::ScalarType                     ScalarType;
+  typedef typename UnitType::Policy                         Policy;
+  typedef typename UnitType::Limits                         Limits;
 
 
-  typedef typename UnitType::SimplifiedType     SimplifiedType;
-  typedef typename SimplifiedType::BaseType     BaseType;
-  typedef typename UnitType::DerivedType        DerivedType;
-  typedef typename UnitType::InvertedType       InvertedType;
+  typedef typename UnitType::SimplifiedType                 SimplifiedType;
+  typedef typename SimplifiedType::BaseType                 BaseType;
+  typedef typename UnitType::DerivedType                    DerivedType;
+  typedef typename UnitType::InvertedType                   InvertedType;
   typedef typename ProductFactor<
     typename _Factor::SimplifiedFactor, 
-    typename UnitType::SimplifiedFactor>::SimplifiedFactor
-                                                SimplifiedFactor;
+    typename UnitType::SimplifiedFactor>::SimplifiedFactor  SimplifiedFactor;
   typedef typename SimplifiedFactor::InvertedFactor  
-                                                InvertedFactor;
+                                                            InvertedFactor;
   
-  typedef Quantity<UnitType,SimplifiedFactor>   QuantityType;
-  typedef Quantity<InvertedType,InvertedFactor> Invert;
+  typedef Quantity<SimplifiedType,SimplifiedFactor>         QuantityType;
+  typedef Quantity<InvertedType,InvertedFactor>             Invert;
 
   enum { Exponent = SimplifiedType::Exponent };
   enum { NumeratorBaseTypeValue = SimplifiedType::NumeratorBaseTypeValue };
@@ -118,7 +117,7 @@ public:
 
   inline static Types::String Suffix()
   {
-    return _Factor::Suffix() + DerivedType::Suffix();
+    return _Factor::Suffix() + DerivedType::Suffix() + Detail::SuffixExponent( static_cast<Types::Integer>( Exponent ) );
   }
 
 
@@ -428,7 +427,7 @@ inline Quantity<Identity,F>::Quantity( Quantity<Identity,F> const &_s ) :
 template <typename F>
 inline Quantity<Identity,F>::operator Types::Scalar() const
 {
-  return m_Value;
+  return m_Value * F::ConversionFactor();
 }
 
 

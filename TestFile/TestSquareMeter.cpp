@@ -49,19 +49,19 @@ void TestClassDefinition()
 {
   Femtosquaremeter const femtosquaremeter( 1. );
   Assert( fequal( femtosquaremeter.GetValue(), 1. ) );
-  Assert( fequal( femtosquaremeter.GetFactor(), 1.e-30 ) );
+  Assert( fequal( femtosquaremeter.GetFactor(), 1.e-30, 1.e-30 ) );
 
   Picosquaremeter const picosquaremeter( 1. );
   Assert( fequal( picosquaremeter.GetValue(), 1. ) );
-  Assert( fequal( picosquaremeter.GetFactor(), 1.e-24 ) );
+  Assert( fequal( picosquaremeter.GetFactor(), 1.e-24, 1.e-24 ) );
 
   Nanosquaremeter const nanosquaremeter( 1. );
   Assert( fequal( nanosquaremeter.GetValue(), 1. ) );
-  Assert( fequal( nanosquaremeter.GetFactor(), 1.e-18 ) );
+  Assert( fequal( nanosquaremeter.GetFactor(), 1.e-18, 1.e-18 ) );
 
   Microsquaremeter const microsquaremeter( 1. );
   Assert( fequal( microsquaremeter.GetValue(), 1. ) );
-  Assert( fequal( microsquaremeter.GetFactor(), 1.e-12 ) );
+  Assert( fequal( microsquaremeter.GetFactor(), 1.e-12, 1.e-12 ) );
 
   Millisquaremeter const millisquaremeter( 1. );
   Assert( fequal( millisquaremeter.GetValue(), 1. ) );
@@ -93,19 +93,19 @@ void TestClassDefinition()
 
   Megasquaremeter const megasquaremeter( 1. );
   Assert( fequal( megasquaremeter.GetValue(), 1. ) );
-  Assert( fequal( megasquaremeter.GetFactor(), 1.e12 ) );
+  Assert( fequal( megasquaremeter.GetFactor(), 1.e12, 1.e12 ) );
 
   Gigasquaremeter const gigasquaremeter( 1. );
   Assert( fequal( gigasquaremeter.GetValue(), 1. ) );
-  Assert( fequal( gigasquaremeter.GetFactor(), 1.e18 ) );
+  Assert( fequal( gigasquaremeter.GetFactor(), 1.e18, 1.e18 ) );
 
   Terasquaremeter const terasquaremeter( 1. );
   Assert( fequal( terasquaremeter.GetValue(), 1. ) );
-  Assert( fequal( terasquaremeter.GetFactor(), 1.e24 ) );
+  Assert( fequal( terasquaremeter.GetFactor(), 1.e24, 1.e24 ) );
 
   Petasquaremeter const petasquaremeter( 1. );
   Assert( fequal( petasquaremeter.GetValue(), 1. ) );
-  Assert( fequal( petasquaremeter.GetFactor(), 1.e30 ) );
+  Assert( fequal( petasquaremeter.GetFactor(), 1.e30, 1.e30 ) );
 }
 
 void SeeClassDefinition()
@@ -114,49 +114,84 @@ void SeeClassDefinition()
 
   Femtosquaremeter const femtosquaremeter;
   OutputLine( femtosquaremeter.GetSuffix() );
+  OutputLine( femtosquaremeter.GetSISuffix() );
+  OutputLine( Femtosquaremeter::Suffix() );
 
   Picosquaremeter const picosquaremeter;
   OutputLine( picosquaremeter.GetSuffix() );
+  OutputLine( picosquaremeter.GetSISuffix() );
+  OutputLine( Picosquaremeter::Suffix() );
 
   Nanosquaremeter const nanosquaremeter;
   OutputLine( nanosquaremeter.GetSuffix() );
+  OutputLine( nanosquaremeter.GetSISuffix() );
+  OutputLine( Nanosquaremeter::Suffix() );
 
   Microsquaremeter const microsquaremeter;
   OutputLine( microsquaremeter.GetSuffix() );
+  OutputLine( microsquaremeter.GetSISuffix() );
+  OutputLine( Microsquaremeter::Suffix() );
 
   Millisquaremeter const millisquaremeter;
   OutputLine( millisquaremeter.GetSuffix() );
+  OutputLine( millisquaremeter.GetSISuffix() );
+  OutputLine( Millisquaremeter::Suffix() );
 
   Centisquaremeter const centisquaremeter;
   OutputLine( centisquaremeter.GetSuffix() );
+  OutputLine( centisquaremeter.GetSISuffix() );
+  OutputLine( Centisquaremeter::Suffix() );
 
   Decisquaremeter const decisquaremeter;
   OutputLine( decisquaremeter.GetSuffix() );
+  OutputLine( decisquaremeter.GetSISuffix() );
+  OutputLine( Decisquaremeter::Suffix() );
 
   Squaremeter const squaremeter;
   OutputLine( squaremeter.GetSuffix() );
+  OutputLine( squaremeter.GetSISuffix() );
+  OutputLine( Squaremeter::Suffix() );
+  Assert( squaremeter.GetSuffix() == L"m²" );
+  Assert( squaremeter.GetSISuffix() == L"m²" );
+  Assert( Squaremeter::Suffix() == L"m²" );
 
   Dekasquaremeter const dekasquaremeter;
   OutputLine( dekasquaremeter.GetSuffix() );
+  OutputLine( dekasquaremeter.GetSISuffix() );
+  OutputLine( Dekasquaremeter::Suffix() );
 
   Hectosquaremeter const hectosquaremeter;
   OutputLine( hectosquaremeter.GetSuffix() );
+  OutputLine( hectosquaremeter.GetSISuffix() );
+  OutputLine( Hectosquaremeter::Suffix() );
 
   Kilosquaremeter const kilosquaremeter;
   OutputLine( kilosquaremeter.GetSuffix() );
+  OutputLine( kilosquaremeter.GetSISuffix() );
+  OutputLine( Kilosquaremeter::Suffix() );
+  Assert( kilosquaremeter.GetSuffix() == L"km²" );
+  Assert( kilosquaremeter.GetSISuffix() == L"km²" );
+  Assert( Kilosquaremeter::Suffix() == L"km²" );
 
   Megasquaremeter const megasquaremeter;
   OutputLine( megasquaremeter.GetSuffix() );
+  OutputLine( megasquaremeter.GetSISuffix() );
+  OutputLine( Megasquaremeter::Suffix() );
 
   Gigasquaremeter const gigasquaremeter;
   OutputLine( gigasquaremeter.GetSuffix() );
+  OutputLine( gigasquaremeter.GetSISuffix() );
+  OutputLine( Gigasquaremeter::Suffix() );
 
   Terasquaremeter const terasquaremeter;
   OutputLine( terasquaremeter.GetSuffix() );
+  OutputLine( terasquaremeter.GetSISuffix() );
+  OutputLine( Terasquaremeter::Suffix() );
 
   Petasquaremeter const petasquaremeter;
   OutputLine( petasquaremeter.GetSuffix() );
-
+  OutputLine( petasquaremeter.GetSISuffix() );
+  OutputLine( Petasquaremeter::Suffix() );
 }
 
 void TestCompileTimeDefinition()
@@ -228,7 +263,7 @@ void TestCompileTimeDefinition()
 }
 
 //
-//  Source : http://dbhs.wvusd.k12.ca.us/Metric/Metric-Square&Cubic-Units.html
+//  Source : http://dbhs.wvusd.k12.ca.us/Metric/Metric-Square&square-Units.html
 //
 void TestConversionConstructor()
 {
@@ -236,7 +271,7 @@ void TestConversionConstructor()
   //1) Convert 4.26 x 10e4 m2 to km2 
   Kilosquaremeter const _rep1 = Squaremeter( 4.260e4 );
   Scalar rep1 = _rep1.GetValue();
-  Assert( fequal( rep1, 4.62e-2 ) );
+  Assert( fequal( rep1, 4.26e-2 ) );
 
   //2) Convert 3.20 x 10e10 fm2 to cm2. 
   Centisquaremeter const _rep2 = Femtosquaremeter( 3.2e10 );
@@ -260,7 +295,7 @@ void TestConversionAssignmentOperator()
   Kilosquaremeter _rep1;
   _rep1 = Squaremeter( 4.260e4 );
   Scalar rep1 = _rep1.GetValue();
-  Assert( fequal( rep1, 4.62e-2 ) );
+  Assert( fequal( rep1, 4.26e-2 ) );
 
   //2) Convert 3.20 x 10e10 fm2 to cm2. 
   Centisquaremeter _rep2;
@@ -285,7 +320,7 @@ void TestCompileTimeConversionConstructor()
   //1) Convert 4.26 x 10e4 m2 to km2 
   Kilosquaremeter2 const _rep1 = Squaremeter( 4.260e4 );
   Scalar rep1 = _rep1.GetValue();
-  Assert( fequal( rep1, 4.62e-2 ) );
+  Assert( fequal( rep1, 4.26e-2 ) );
 
   //2) Convert 3.20 x 10e10 fm2 to cm2. 
   Centisquaremeter2 const _rep2 = Femtosquaremeter2( 3.2e10 );
@@ -308,7 +343,7 @@ void TestCompileTimeConversionAssignmentOperator()
   Kilosquaremeter2 _rep1;
   _rep1 = Squaremeter( 4.260e4 );
   Scalar rep1 = _rep1.GetValue();
-  Assert( fequal( rep1, 4.62e-2 ) );
+  Assert( fequal( rep1, 4.26e-2 ) );
 
   //2) Convert 3.20 x 10e10 fm2 to cm2. 
   Centisquaremeter2 _rep2;

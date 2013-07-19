@@ -22,6 +22,8 @@ void TestPV_equals_NRT();
 void TestElectric();
 void TestTemperature();
 void TestFrequency();
+void TestSquareMeter();
+void TestCubicMeter();
 
 
 namespace UnitTest
@@ -162,5 +164,22 @@ namespace UnitTest
 
     }
 
+    [TestMethod]
+    void TestSquareMeter()
+    {
+
+      ::TestSquareMeter();
+
+    }
+
+
+    [TestMethod]
+    void TestCubicMeter()
+    {
+
+      ::TestCubicMeter();
+
+    }
+    
 	};
 }

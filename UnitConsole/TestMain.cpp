@@ -20,6 +20,8 @@ void TestPV_equals_NRT();
 void TestElectric();
 void TestTemperature();
 void TestFrequency();
+void TestSquareMeter();
+void TestCubicMeter();
 
 using namespace Unit::SI;
 
@@ -37,6 +39,8 @@ int __cdecl main()
   TestElectric();
   TestTemperature();
   TestFrequency();
+  TestSquareMeter();
+  TestCubicMeter();
 
 #ifndef _DEBUG
   TestRunTimePerformance();

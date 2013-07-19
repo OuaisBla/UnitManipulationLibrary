@@ -379,10 +379,12 @@ inline typename Product<Quantity<T1,F1>,Quantity<T2,F2> >::QuantityType operator
 
   typedef typename Product<Quantity<T1,F1>,Quantity<T2,F2> >::QuantityType ProductType;
 
-  ProductType::ScalarType const value = _s1.Quantity<T1,F1>::GetConvertedValue() * _s2.Quantity<T2,F2>::GetConvertedValue();
-  Scalar const factor = ProductType::ConversionFactor();
+  Scalar const factor = ProductType::InvertedFactor::ConversionFactor();
 
-  return ProductType( value / factor );
+  ProductType::ScalarType const _s1value = _s1.Quantity<T1,F1>::GetValue() * Quantity<T1,F1>::SimplifiedFactor::ConversionFactor();
+  ProductType::ScalarType const _s2value = _s2.Quantity<T2,F2>::GetValue() * Quantity<T2,F2>::SimplifiedFactor::ConversionFactor();
+
+  return ProductType( (_s1value * _s2value) * factor );
 }
 
 
@@ -393,10 +395,12 @@ inline typename Product<Quantity<T1,F1>,typename Quantity<T2,F2>::Invert>::Quant
 
   typedef typename Product<Quantity<T1,F1>,typename Quantity<T2,F2>::Invert>::QuantityType ProductType;
 
-  ProductType::ScalarType const value = _s1.Quantity<T1,F1>::GetConvertedValue() / _s2.Quantity<T2,F2>::GetConvertedValue();
-  Scalar const factor = ProductType::ConversionFactor();
+  Scalar const factor = ProductType::InvertedFactor::ConversionFactor();
 
-  return ProductType( value / factor );
+  ProductType::ScalarType const _s1value = _s1.Quantity<T1,F1>::GetValue() * Quantity<T1,F1>::SimplifiedFactor::ConversionFactor();
+  ProductType::ScalarType const _s2value = _s2.Quantity<T2,F2>::GetValue() * Quantity<T2,F2>::SimplifiedFactor::ConversionFactor();
+
+  return ProductType( (_s1value / _s2value) * factor );
 }
 
 template <typename T, Types::Integer E, typename F>
