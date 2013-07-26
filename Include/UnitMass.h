@@ -41,7 +41,6 @@ struct _Mass : public Object<>, public Facade<_Mass>
   typedef SI::Milli SimplifiedFactor;
 
   enum { NumeratorBaseTypeValue = 3 };
-  enum { DenumeratorBaseTypeValue = 1 };
 
   inline static Types::String Suffix()
   {

@@ -38,7 +38,6 @@ struct Ratio : public Object<>, public Facade<Ratio>
 {
 
   enum { NumeratorBaseTypeValue = 103 };
-  enum { DenumeratorBaseTypeValue = 1 };
 
   inline static Types::String Suffix()
   { 

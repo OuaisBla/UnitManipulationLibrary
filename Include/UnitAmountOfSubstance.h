@@ -40,7 +40,6 @@ struct _AmountOfSubstance : public Object<>, public Facade<_AmountOfSubstance>
 {
 
   enum { NumeratorBaseTypeValue = 13 };
-  enum { DenumeratorBaseTypeValue = 1 };
 
   inline static Types::String Suffix()
   { 

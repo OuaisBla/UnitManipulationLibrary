@@ -38,7 +38,6 @@ struct _PowerRatio : public Object<>, public Facade<_PowerRatio>
 {
 
   enum { NumeratorBaseTypeValue = 101 };
-  enum { DenumeratorBaseTypeValue = 1 };
 
   inline static Types::String Suffix()
   { 

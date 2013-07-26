@@ -57,7 +57,7 @@ public:
 */
 
 template <typename L, typename R = L>
-class PS2 : public Object<>, public Facade<PS2<L,R> >
+class PS2 : public Object<>, public Facade<PS2<L,R>, false>
 {
 
   enum {
@@ -75,15 +75,12 @@ public:
 
 public:
 
-  inline static Types::String Suffix();
+  inline static Types::String Suffix()
+  {
+    return L::Suffix() + Literals::DOT_OPERATOR + R::Suffix();
+  }
 
 };
-
-template <typename L, typename R>
-inline Types::String PS2<L,R>::Suffix()
-{
-  return L::Suffix() + Literals::DOT_OPERATOR + R::Suffix();
-}
 
 
 /**
@@ -92,7 +89,7 @@ inline Types::String PS2<L,R>::Suffix()
 */
 
 template <typename A, typename B, typename C>
-class PS3 : public Object<>, public Facade<PS3<A,B,C> >
+class PS3 : public Object<>, public Facade<PS3<A,B,C>, false>
 {
 
   enum {
@@ -124,7 +121,7 @@ inline Types::String PS3<A, B, C>::Suffix()
 
 
 template <typename A, typename B, typename C, typename D>
-class PS4 : public Object<>, public Facade<PS4<A,B,C,D> >
+class PS4 : public Object<>, public Facade<PS4<A,B,C,D>, false>
 {
 
   enum {

@@ -41,7 +41,6 @@ struct _LuminousIntensity : public Object<>, public Facade<_LuminousIntensity>
 {
 
   enum { NumeratorBaseTypeValue = 17 };
-  enum { DenumeratorBaseTypeValue = 1 };
 
   inline static Types::String Suffix()
   { 

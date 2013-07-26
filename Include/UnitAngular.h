@@ -49,7 +49,6 @@ namespace Unit
     typedef typename _Facade::SimplifiedType   SimplifiedType;
 
     enum { NumeratorBaseTypeValue = 19 };
-    enum { DenumeratorBaseTypeValue = 1 };
 
     inline static ScalarType Normalize( ScalarType value );
 
@@ -86,7 +85,6 @@ namespace Unit
     typedef typename _Facade::SimplifiedType   SimplifiedType;
 
     enum { NumeratorBaseTypeValue = 23 };
-    enum { DenumeratorBaseTypeValue = 1 };
 
     using Object<_ScalarType, _Policy>::GetValue;
     using Object<_ScalarType, _Policy>::GetFactor;

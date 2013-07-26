@@ -92,12 +92,6 @@ inline Types::String Identity::Suffix()
 }
 
 
-template <typename, Types::Integer = 1>
-class BaseUnit;
-
-template <typename, typename = Identity>
-class Quantity;
-
 /**
   Abstract class representing the basic interface of a unit object.
   
@@ -123,14 +117,14 @@ public:
 
 public:
 
-  virtual ScalarType GetValue() const { return 0; }
-  virtual Types::Scalar GetFactor() const { return 1; }
-  virtual ScalarType GetConvertedValue() const { return 0; }
+  virtual ScalarType GetValue() const             { return 0.; }
+  virtual Types::Scalar GetFactor() const         { return 1.; }
+  virtual ScalarType GetConvertedValue() const    { return 0.; }
 
 public:
 
-  virtual Types::String GetSuffix() const { return Types::String(); } 
-  virtual Types::String GetSISuffix() const { return Types::String(); } 
+  virtual Types::String GetSuffix() const         { return Types::String(); } 
+  virtual Types::String GetSISuffix() const       { return Types::String(); } 
 
 protected:
 
@@ -139,7 +133,14 @@ protected:
 };
 
 
-template<typename _BaseType>
+template <typename, Types::Integer = 1>
+class BaseUnit;
+
+template <typename, typename = Identity>
+class Quantity;
+
+
+template<typename _BaseType, bool _is_simple = true>
 struct Facade
 {
 
@@ -148,6 +149,10 @@ struct Facade
   typedef BaseUnit<BaseType>              SimplifiedType;
   typedef BaseUnit<BaseType,-1>           InvertedType;
   typedef Identity                        SimplifiedFactor;
+
+  enum { DenumeratorBaseTypeValue = 1 };
+
+  static bool const is_simple = _is_simple;
 
 };
 

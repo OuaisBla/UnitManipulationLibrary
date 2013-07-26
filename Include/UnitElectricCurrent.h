@@ -39,7 +39,6 @@ struct _ElectricCurrent : public Object<>, public Facade<_ElectricCurrent>
 {
 
   enum { NumeratorBaseTypeValue = 7 };
-  enum { DenumeratorBaseTypeValue = 1 };
 
   inline static Types::String Suffix()
   { 

@@ -39,7 +39,6 @@ struct _Temperature : public Object<>, public Facade<_Temperature>
 {
 
   enum { NumeratorBaseTypeValue = 11 };
-  enum { DenumeratorBaseTypeValue = 1 };
 
   inline static Types::String Suffix() { return Types::String( L"K" ); }
 
