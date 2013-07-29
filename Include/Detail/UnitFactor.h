@@ -499,8 +499,6 @@ typedef Factor<24>  Yotta;
 } //Namespace SI
 
 
-namespace NonSI
-{
 
   template<typename T>
   class InvertFactor
@@ -520,10 +518,6 @@ namespace NonSI
     }
 
   };
-
-
-}
-
 
 } //Namespace Unit
 

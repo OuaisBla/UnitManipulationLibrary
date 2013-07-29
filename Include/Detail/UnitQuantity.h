@@ -57,8 +57,7 @@ public:
   typedef typename ProductFactor<
     typename _Factor::SimplifiedFactor, 
     typename UnitType::SimplifiedFactor>::SimplifiedFactor  SimplifiedFactor;
-  typedef typename SimplifiedFactor::InvertedFactor  
-                                                            InvertedFactor;
+  typedef typename SimplifiedFactor::InvertedFactor         InvertedFactor;
   
   typedef Quantity<SimplifiedType,SimplifiedFactor>         QuantityType;
   typedef Quantity<InvertedType,InvertedFactor>             Invert;
@@ -171,7 +170,9 @@ public:
   typedef Identity UnitType;
   typedef Identity BaseType;
   typedef Identity SimplifiedType;
-  typedef Types::Scalar   ScalarType;
+  typedef Identity::ScalarType ScalarType;
+  typedef Identity::Policy     Policy;
+  typedef Identity::Limits     Limits;
   typedef Identity InvertedType;
   typedef typename _Factor::SimplifiedFactor SimplifiedFactor;
   typedef typename _Factor::InvertedFactor InvertedFactor;

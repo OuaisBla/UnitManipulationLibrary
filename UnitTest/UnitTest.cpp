@@ -24,6 +24,7 @@ void TestTemperature();
 void TestFrequency();
 void TestSquareMeter();
 void TestCubicMeter();
+void TestSimplifier();
 
 
 namespace UnitTest
@@ -60,6 +61,8 @@ namespace UnitTest
 		static void MyClassInitialize(Microsoft::VisualStudio::TestTools::UnitTesting::TestContext^ ) 
     {
       Detail::SuffixesInitializer::Initialize();
+
+      TestSimplifier();
     }
 		//
 		//Use ClassCleanup to run code after all tests in a class have run

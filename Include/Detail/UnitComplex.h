@@ -1,6 +1,6 @@
 /*
 Unit Manipulation Library.
-Copyright (C) 2002  Jean Gauthier
+Copyright (C) 2002-2013 Jean Gauthier
 
 The goal of this library is to make easy, reliable and efficient the
 manipulation of units, including arithmetical operations and safe 
@@ -30,6 +30,7 @@ jean.gauthier@programmer.net
 
 #include "Detail\UnitObject.h"
 #include "Detail\UnitHelper.h"
+#include <boost/utility/enable_if.hpp>
 
 
 namespace Unit
@@ -46,8 +47,20 @@ class BaseUnit<T,0>
 public:
 
   typedef Identity BaseType;
+  typedef Identity DerivedType;
   typedef Identity SimplifiedType;
   typedef Identity InvertedType;
+  typedef Identity SimplifiedFactor;
+
+  static bool const is_simple = true;
+
+  typedef Identity L;
+  typedef Identity R;
+
+
+  typedef Identity::ScalarType   ScalarType;
+  typedef Identity::Policy       Policy;
+  typedef Identity::Limits       Limits;
 
 };
 
@@ -56,491 +69,306 @@ public:
   Class that represents a product of unit type.
 */
 
-template <typename L, typename R = L>
-class PS2 : public Object<>, public Facade<PS2<L,R>, false>
+template <typename _L, typename _R = _L, typename Enable = void>
+class ComplexUnit : public Object<>
 {
 
-  enum {
-    _NumeratorBaseTypeValue =  L::NumeratorBaseTypeValue * R::NumeratorBaseTypeValue,
-    _DenumeratorBaseTypeValue = L::DenumeratorBaseTypeValue * R::DenumeratorBaseTypeValue,
+  enum 
+  {
+    _NumeratorBaseTypeValue = _L::NumeratorBaseTypeValue * _R::NumeratorBaseTypeValue,
+    _DenumeratorBaseTypeValue = _L::DenumeratorBaseTypeValue * _R::DenumeratorBaseTypeValue,
     _gcd = boost::math::static_gcd<_NumeratorBaseTypeValue, _DenumeratorBaseTypeValue>::value 
   };
 
 public:
 
-  enum { 
-    NumeratorBaseTypeValue = (_NumeratorBaseTypeValue / _gcd), 
-    DenumeratorBaseTypeValue = (_DenumeratorBaseTypeValue / _gcd)
+  enum 
+  { 
+    NumeratorBaseTypeValue = _NumeratorBaseTypeValue / _gcd, 
+    DenumeratorBaseTypeValue = _DenumeratorBaseTypeValue / _gcd,
+    BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue
   };
+
+  typedef ComplexUnit<_L,_R>              BaseType;
+  typedef BaseType                        DerivedType;
+  typedef BaseUnit<BaseType>              SimplifiedType;
+  typedef BaseUnit<BaseType,-1>           InvertedType;
+  typedef Identity                        SimplifiedFactor;
+
+  typedef Object<>::ScalarType            ScalarType;
+  typedef Object<>::Policy                Policy;
+  typedef Object<>::Limits                Limits;
+
+
+  static bool const is_simple = false;
+
+  typedef _L L;
+  typedef _R R;
 
 public:
 
   inline static Types::String Suffix()
   {
-    return L::Suffix() + Literals::DOT_OPERATOR + R::Suffix();
+    return _L::Suffix() + Literals::DOT_OPERATOR + _R::Suffix();
   }
 
 };
 
 
 /**
-  PSX  
-  Class that helps to simplify combination of products of unit type.
+  Helper class that helps to simplify products of unit type.
 */
 
-template <typename A, typename B, typename C>
-class PS3 : public Object<>, public Facade<PS3<A,B,C>, false>
+template <typename T>
+struct is_simple_unit
+{
+  static bool const value = T::is_simple;
+};
+
+
+template <>
+struct ComplexUnit<Identity,Identity>
+{
+
+  typedef Identity  BaseType;
+  typedef Identity  DerivedType;
+  typedef Identity  SimplifiedType;
+  typedef Identity  InvertedType;
+  typedef Identity  SimplifiedFactor;
+
+  typedef Identity::ScalarType            ScalarType;
+  typedef Identity::Policy                Policy;
+  typedef Identity::Limits                Limits;
+
+  static bool const is_simple = false;
+
+  typedef Identity L;
+  typedef Identity R;
+
+  enum 
+  { 
+    NumeratorBaseTypeValue = Identity::NumeratorBaseTypeValue,
+    DenumeratorBaseTypeValue = Identity::DenumeratorBaseTypeValue,
+    BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue 
+  };
+
+};
+
+template <typename _L>
+struct ComplexUnit<_L,Identity> : 
+  public Object<typename _L::ScalarType, typename _L::Policy>
+{
+
+  enum 
+  { 
+    NumeratorBaseTypeValue = _L::NumeratorBaseTypeValue,
+    DenumeratorBaseTypeValue = _L::DenumeratorBaseTypeValue,
+    BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue 
+  };
+
+  typedef typename _L::BaseType BaseType;
+  typedef typename _L::DerivedType DerivedType;
+  typedef typename _L::SimplifiedType SimplifiedType;
+  typedef typename _L::InvertedType InvertedType;
+  typedef typename _L::SimplifiedFactor SimplifiedFactor;
+
+  static bool const is_simple = false;
+
+  typedef _L L;
+  typedef _L R;
+
+};
+
+template <typename _L>
+struct ComplexUnit<Identity,_L> : 
+  public Object<typename _L::ScalarType, typename _L::Policy>
+{
+
+  enum 
+  { 
+    NumeratorBaseTypeValue = BaseType::NumeratorBaseTypeValue,
+    DenumeratorBaseTypeValue = BaseType::DenumeratorBaseTypeValue,
+    BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue 
+  };
+
+  typedef typename _L::BaseType BaseType;
+  typedef typename _L::DerivedType DerivedType;
+  typedef typename _L::SimplifiedType SimplifiedType;
+  typedef typename _L::InvertedType InvertedType;
+  typedef typename _L::SimplifiedFactor SimplifiedFactor;
+
+  static bool const is_simple = false;
+
+  typedef _L L;
+  typedef _L R;
+
+};
+
+template <typename _L, Types::Integer a, Types::Integer b>
+struct ComplexUnit<BaseUnit<_L,a>, BaseUnit<_L,b>> : 
+  public Object<typename _L::ScalarType, typename _L::Policy>
+{
+
+  typedef typename _L::BaseType BaseType;
+  typedef typename _L::DerivedType DerivedType;
+  typedef typename BaseUnit<BaseType,a+b>::SimplifiedType SimplifiedType;
+  typedef typename SimplifiedType::InvertedType InvertedType;
+  typedef typename _L::SimplifiedFactor SimplifiedFactor;
+
+  static bool const is_simple = false;
+
+  typedef SimplifiedType L;
+  typedef SimplifiedType R;
+
+  enum 
+  { 
+    NumeratorBaseTypeValue = BaseType::NumeratorBaseTypeValue,
+    DenumeratorBaseTypeValue = BaseType::DenumeratorBaseTypeValue,
+    BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue
+  };
+
+};
+/*
+template <typename _L, typename _R>
+class ComplexUnit<_L, _R, 
+  typename boost::enable_if_c<_L::BaseTypeValue != _R::BaseTypeValue && !is_simple_unit<_L>::value && is_simple_unit<_R>::value>::type> : 
+  public Object<>, public Facade<ComplexUnit<_L,_R> >
 {
 
   enum {
-    _NumeratorBaseTypeValue = A::NumeratorBaseTypeValue * B::NumeratorBaseTypeValue * C::NumeratorBaseTypeValue,
-    _DenumeratorBaseTypeValue = A::DenumeratorBaseTypeValue * B::DenumeratorBaseTypeValue * C::DenumeratorBaseTypeValue,
-    _gcd = boost::math::static_gcd<_NumeratorBaseTypeValue,_DenumeratorBaseTypeValue>::value 
-  };
-
-
-public:
-
-  enum { 
-    NumeratorBaseTypeValue = _NumeratorBaseTypeValue / _gcd, 
-    DenumeratorBaseTypeValue =  _DenumeratorBaseTypeValue / _gcd
+    _NumeratorBaseTypeValue = _L::NumeratorBaseTypeValue * _R::NumeratorBaseTypeValue,
+    _DenumeratorBaseTypeValue = _L::DenumeratorBaseTypeValue * _R::DenumeratorBaseTypeValue,
+    _gcd = boost::math::static_gcd<_NumeratorBaseTypeValue, _DenumeratorBaseTypeValue>::value 
   };
 
 public:
 
-  inline static Types::String Suffix();
+  enum 
+  { 
+    NumeratorBaseTypeValue = _NumeratorBaseTypeValue / _gcd,
+    DenumeratorBaseTypeValue = _DenumeratorBaseTypeValue / _gcd,
+    BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue 
+  };
+
+  typedef typename _L::L _L_L;
+  typedef typename _L::R _L_R;
+
+  typedef typename ComplexUnit<typename _L_L::SimplifiedType, typename _R::SimplifiedType>::SimplifiedType _L_L_R_SimplifiedType;
+  typedef typename ComplexUnit<_L_L_R_SimplifiedType, typename _R::SimplifiedType>::SimplifiedType _L_R_R_SimplifiedType;
+
+  typedef typename _L_R_R_SimplifiedType::L __L;
+  typedef typename _L_R_R_SimplifiedType::R __R;
+
+  typedef typename __L::SimplifiedType L;
+  typedef typename __R::SimplifiedType R;
+
+  typedef typename ComplexUnit<L, R>::BaseType BaseType;
+  typedef BaseType                             DerivedType;
+  typedef BaseUnit<BaseType>                   SimplifiedType;
+  typedef BaseUnit<BaseType,-1>                InvertedType;
+
+  static bool const is_simple = BaseType::is_simple;
+
+public:
+
+  inline static Types::String Suffix()
+  {
+    return _L::Suffix() + Literals::DOT_OPERATOR + _R::Suffix();
+  }
 
 };
-
-template <typename A, typename B, typename C>
-inline Types::String PS3<A, B, C>::Suffix()
-{
-  return A::Suffix() + Literals::DOT_OPERATOR + B::Suffix() + Literals::DOT_OPERATOR + C::Suffix();
-}
-
-
-
-template <typename A, typename B, typename C, typename D>
-class PS4 : public Object<>, public Facade<PS4<A,B,C,D>, false>
+ */
+  /*
+template <typename _L, typename _R>
+class ComplexUnit<_L, _R, 
+  typename boost::enable_if_c<_L::BaseTypeValue != _R::BaseTypeValue && is_simple_unit<_L>::value && !is_simple_unit<_R>::value>::type> : 
+  public Object<>, public Facade<ComplexUnit<_L,_R> >
 {
 
   enum {
-    _NumeratorBaseTypeValue = A::NumeratorBaseTypeValue * B::NumeratorBaseTypeValue * C::NumeratorBaseTypeValue * D::NumeratorBaseTypeValue,
-    _DenumeratorBaseTypeValue = A::DenumeratorBaseTypeValue * B::DenumeratorBaseTypeValue * C::DenumeratorBaseTypeValue * D::DenumeratorBaseTypeValue,
-    _gcd = boost::math::static_gcd<_NumeratorBaseTypeValue,_DenumeratorBaseTypeValue>::value 
+    _NumeratorBaseTypeValue = _L::NumeratorBaseTypeValue * _R::NumeratorBaseTypeValue,
+    _DenumeratorBaseTypeValue = _L::DenumeratorBaseTypeValue * _R::DenumeratorBaseTypeValue,
+    _gcd = boost::math::static_gcd<_NumeratorBaseTypeValue, _DenumeratorBaseTypeValue>::value 
   };
 
 public:
 
-  enum { 
-    NumeratorBaseTypeValue = _NumeratorBaseTypeValue / _gcd, 
-    DenumeratorBaseTypeValue =  _DenumeratorBaseTypeValue / _gcd
+  enum
+  { 
+    NumeratorBaseTypeValue = _NumeratorBaseTypeValue / _gcd,
+    DenumeratorBaseTypeValue = _DenumeratorBaseTypeValue / _gcd,
+    BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue 
+  };
+
+  typedef typename _R::SimplifiedType L;
+  typedef typename _L::SimplifiedType R;
+
+  typedef typename ComplexUnit<L, R>::BaseType   BaseType;
+  typedef BaseType                               DerivedType;
+  typedef BaseUnit<BaseType>                     SimplifiedType;
+  typedef BaseUnit<BaseType,-1>                  InvertedType;
+
+  static bool const is_simple = BaseType::is_simple;
+
+};
+ */
+
+  /*
+template <typename _L, typename _R>
+class ComplexUnit<_L, _R, 
+  typename boost::enable_if_c<_L::BaseTypeValue != _R::BaseTypeValue && !is_simple_unit<_L>::value && !is_simple_unit<_R>::value>::type> : 
+  public Object<>, public Facade<ComplexUnit<_L,_R> >
+{
+
+  enum {
+    _NumeratorBaseTypeValue = _L::NumeratorBaseTypeValue * _R::NumeratorBaseTypeValue,
+    _DenumeratorBaseTypeValue = _L::DenumeratorBaseTypeValue * _R::DenumeratorBaseTypeValue,
+    _gcd = boost::math::static_gcd<_NumeratorBaseTypeValue, _DenumeratorBaseTypeValue>::value 
   };
 
 public:
 
-  inline static Types::String Suffix();
+  enum
+  { 
+    NumeratorBaseTypeValue = _NumeratorBaseTypeValue / _gcd,
+    DenumeratorBaseTypeValue = _DenumeratorBaseTypeValue / _gcd,
+    BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue 
+  };
 
-};
+  typedef typename _L::L _L_L;
+  typedef typename _L::R _L_R;
+  typedef typename _R::L _R_L;
+  typedef typename _R::R _R_R;
 
-template <typename A, typename B, typename C, typename D>
-inline Types::String PS4<A, B, C, D>::Suffix()
-{
-  return A::Suffix() + Literals::DOT_OPERATOR + B::Suffix() + Literals::DOT_OPERATOR + C::Suffix() + Literals::DOT_OPERATOR + D::Suffix();
-}
+  typedef typename ComplexUnit<typename _L_L::SimplifiedType, typename _R_L::SimplifiedType>::SimplifiedType _L_L_R_L_SimplifiedType;
+  typedef typename ComplexUnit<typename _L_L::SimplifiedType, typename _R_R::SimplifiedType>::SimplifiedType _L_L_R_R_SimplifiedType;
+  typedef typename ComplexUnit<typename _L_R::SimplifiedType, typename _R_L::SimplifiedType>::SimplifiedType _L_R_R_L_SimplifiedType;
+  typedef typename ComplexUnit<typename _L_R::SimplifiedType, typename _R_R::SimplifiedType>::SimplifiedType _L_R_R_R_SimplifiedType;
 
+  typedef typename ComplexUnit<_L_L_R_L_SimplifiedType, typename BaseUnit<_L_L_R_R_SimplifiedType,-1>::SimplifiedType>::SimplifiedType _L_SimplifiedType;
+  typedef typename ComplexUnit<_L_R_R_L_SimplifiedType, typename BaseUnit<_L_R_R_R_SimplifiedType,-1>::SimplifiedType>::SimplifiedType _R_SimplifiedType;
 
-/**
-  Class that helps to simplify products of unit type. (Specialization)
-*/
+  typedef typename _L_SimplifiedType::L __L;
+  typedef typename _R_SimplifiedType::R __R;
 
-template <>
-class PS2<Identity>
-{
-public:
+  typedef typename __L::SimplifiedType L;
+  typedef typename __R::SimplifiedType R;
 
-  typedef Identity BaseType;
-  typedef Identity SimplifiedType;
+  typedef typename ComplexUnit<L, R>::BaseType   BaseType;
+  typedef BaseType                               DerivedType;
+  typedef BaseUnit<BaseType>                     SimplifiedType;
+  typedef BaseUnit<BaseType,-1>                  InvertedType;
 
-};
-
-
-template <typename L>
-class PS2<L,Identity>
-{
-public:
-
-  typedef typename L::BaseType BaseType;
-  typedef typename L::SimplifiedType SimplifiedType;
-
-};
-
-template <typename R>
-class PS2<Identity,R>
-{
-public:
-
-  typedef typename R::BaseType BaseType;
-  typedef typename R::SimplifiedType SimplifiedType;
-
-};
-
-
-template <typename A, Types::Integer a, Types::Integer b>
-class PS2<BaseUnit<A,a>,BaseUnit<A,b> >
-{
-public:
-
-  typedef typename BaseUnit<A,a + b>::SimplifiedType SimplifiedType;
-  typedef typename SimplifiedType::BaseType BaseType;
-
-};
-
-
-template <typename A, typename B, typename C, 
-          Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer i>
-class PS2<BaseUnit<PS2<BaseUnit<A,a>,BaseUnit<B,b> >, i>, BaseUnit<C,c> >
-{
-
-  typedef typename BaseUnit<A,a*i>::SimplifiedType _A;
-  typedef typename BaseUnit<B,b*i>::SimplifiedType _B;
-  typedef typename BaseUnit<C,c>::SimplifiedType   _C;
+  static bool const is_simple = BaseType::is_simple;
 
 public:
 
-  typedef typename PS3<_A,_B,_C>::SimplifiedType SimplifiedType;
-  typedef typename SimplifiedType::BaseType BaseType;
+  inline static Types::String Suffix()
+  {
+    return _L::Suffix() + Literals::DOT_OPERATOR + _R::Suffix();
+  }
 
 };
-
-template <typename A, typename B, typename C, 
-  Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer i>
-class PS2<BaseUnit<A,a>, BaseUnit<PS2<BaseUnit<B,b>, BaseUnit<C,c> >, i> >
-{
-
-  typedef typename BaseUnit<A,a>::SimplifiedType   _A;
-  typedef typename BaseUnit<B,b*i>::SimplifiedType _B;
-  typedef typename BaseUnit<C,c*i>::SimplifiedType _C;
-
-public:
-
-  typedef typename PS3<_A,_B,_C>::SimplifiedType SimplifiedType;
-  typedef typename SimplifiedType::BaseType BaseType;
-
-};
-
-template <typename A, typename B, typename C, typename D, 
-  Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d, 
-  Types::Integer i, Types::Integer j>
-class PS2<BaseUnit<PS2<BaseUnit<A,a>, BaseUnit<B,b> >, i>, BaseUnit<PS2<BaseUnit<C,c>, BaseUnit<D,d> >, j> >
-{
-
-  typedef typename BaseUnit<A,a*i>::SimplifiedType _A;
-  typedef typename BaseUnit<B,b*i>::SimplifiedType _B;
-  typedef typename BaseUnit<C,c*j>::SimplifiedType _C;
-  typedef typename BaseUnit<D,c*j>::SimplifiedType _D;
-
-public:
-
-  typedef typename PS4<_A,_B,_C,_D>::SimplifiedType SimplifiedType;
-  typedef typename SimplifiedType::BaseType BaseType;
-
-};
-
-
-/**
-  PS2
-  Early filter class that helps to simplify trivial combination of products of unit type. (Specialization)
-*/
-
-template <typename A, typename B, Types::Integer a, Types::Integer b>
-class PS2<BaseUnit<A,a>, BaseUnit<PS2<BaseUnit<B,b>, BaseUnit<A,a> >, -1> >
-{
-public:
-
-  typedef typename BaseUnit<B,-b>::SimplifiedType SimplifiedType;
-  typedef typename SimplifiedType::BaseType BaseType;
-
-};
-
-template <typename A, typename B, Types::Integer a, Types::Integer b>
-class PS2<BaseUnit<A,a>, BaseUnit<PS2<BaseUnit<A,a>, BaseUnit<B,b> >, -1> >
-{
-public:
-
-  typedef typename BaseUnit<B,-b>::SimplifiedType SimplifiedType;
-  typedef typename SimplifiedType::BaseType BaseType;
-
-};
-
-template <typename A, typename B, Types::Integer a, Types::Integer b>
-class PS2<BaseUnit<PS2<BaseUnit<B,b>, BaseUnit<A,a> >, -1>, BaseUnit<A,a> >
-{
-public:
-
-  typedef typename BaseUnit<B,-b>::SimplifiedType SimplifiedType;
-  typedef typename SimplifiedType::BaseType BaseType;
-
-};
-
-template <typename A, typename B, Types::Integer a, Types::Integer b>
-class PS2<BaseUnit<PS2<BaseUnit<A,a>,BaseUnit<B,b> >, -1>, BaseUnit<A,a> >
-{
-public:
-
-  typedef typename BaseUnit<B,-b>::SimplifiedType SimplifiedType;
-  typedef typename SimplifiedType::BaseType BaseType;
-
-};
-
-
-template <typename A, typename B, typename C, Types::Integer a, Types::Integer b, Types::Integer c>
-class PS2<BaseUnit<PS2<BaseUnit<A,a>, BaseUnit<B,b> > >, BaseUnit<PS2<BaseUnit<C,c>, BaseUnit<A,a> >, -1> >
-{
-
-  typedef typename BaseUnit<B,b>::SimplifiedType _B;
-  typedef typename BaseUnit<C,-c>::SimplifiedType _C;
-
-public:
-
-  typedef typename PS2<_B,_C>::SimplifiedType SimplifiedType;
-  typedef typename SimplifiedType::BaseType BaseType;
-
-};
-
-template <typename A, typename B, typename C, Types::Integer a, Types::Integer b, Types::Integer c>
-class PS2<BaseUnit<PS2<BaseUnit<B,b>, BaseUnit<A,a> > >, BaseUnit<PS2<BaseUnit<C,c>, BaseUnit<A,a> >, -1> >
-{
-
-  typedef typename BaseUnit<B,b>::SimplifiedType _B;
-  typedef typename BaseUnit<C,-c>::SimplifiedType _C;
-
-public:
-
-  typedef typename PS2<_B,_C>::SimplifiedType SimplifiedType;
-  typedef typename SimplifiedType::BaseType BaseType;
-
-};
-
-template <typename A, typename B, typename C, Types::Integer a, Types::Integer b, Types::Integer c>
-class PS2<BaseUnit<PS2<BaseUnit<B,b>, BaseUnit<A,a> >, -1>, BaseUnit<PS2<BaseUnit<A,a>,BaseUnit<C,c> > > >
-{
-
-  typedef typename BaseUnit<B,-b>::SimplifiedType _B;
-  typedef typename BaseUnit<C,c>::SimplifiedType _C;
-
-public:
-
-  typedef typename PS2<_B,_C>::SimplifiedType SimplifiedType;
-  typedef typename SimplifiedType::BaseType BaseType;
-
-};
-
-template <typename A, typename B, typename C, Types::Integer a, Types::Integer b, Types::Integer c>
-class PS2<BaseUnit<PS2<BaseUnit<A,a>, BaseUnit<B,b> >, -1>, BaseUnit<PS2<BaseUnit<A,a>,BaseUnit<C,c> > > >
-{
-
-  typedef typename BaseUnit<B,-b>::SimplifiedType _B;
-  typedef typename BaseUnit<C,c>::SimplifiedType _C;
-
-public:
-
-  typedef typename PS2<_B,_C>::SimplifiedType SimplifiedType;
-  typedef typename SimplifiedType::BaseType BaseType;
-
-};
-
-
-/**
-  PS3  
-  Class that helps to simplify combination of products of unit type. (Specialization)
-*/
-
-
-template <typename A, typename B>
-class PS3<Identity, A, B>
-{
-public:
-
-  typedef typename PS2<typename A::SimplifiedType, typename B::SimplifiedType>::SimplifiedType SimplifiedType;
-
-};
-
-template <typename A, typename B>
-class PS3<A, Identity, B>
-{
-public:
-
-  typedef typename PS2<typename A::SimplifiedType, typename B::SimplifiedType>::SimplifiedType SimplifiedType;
-
-};
-
-template <typename A, typename B>
-class PS3<A, B, Identity>
-{
-public:
-
-  typedef typename PS2<typename A::SimplifiedType, typename B::SimplifiedType>::SimplifiedType SimplifiedType;
-
-};
-
-template <typename A>
-class PS3<A, Identity, Identity>
-{
-public:
-
-  typedef typename A::SimplifiedType SimplifiedType;
-
-};
-
-template <typename A>
-class PS3<Identity, A, Identity>
-{
-public:
-
-  typedef typename A::SimplifiedType SimplifiedType;
-
-};
-
-template <typename A>
-class PS3<Identity, Identity, A>
-{
-public:
-
-  typedef typename A::SimplifiedType SimplifiedType;
-
-};
-
-template <>
-class PS3<Identity, Identity, Identity>
-{
-public:
-
-  typedef Identity SimplifiedType;
-
-};
-
-template <typename A, typename B, Types::Integer a, Types::Integer b, Types::Integer c>
-class PS3<BaseUnit<A,a>, BaseUnit<A,c>, BaseUnit<B,b> >
-{
-public:
-
-  typedef typename PS2<typename BaseUnit<A,a+c>::SimplifiedType, typename BaseUnit<B,b>::SimplifiedType>::SimplifiedType SimplifiedType;
-
-};
-
-template <typename A, typename B, Types::Integer a, Types::Integer b, Types::Integer c>
-class PS3<BaseUnit<A,a>, BaseUnit<B,b>, BaseUnit<A,c> >
-{
-public:
-
-  typedef typename PS2<typename BaseUnit<A,a+c>::SimplifiedType, typename BaseUnit<B,b>::SimplifiedType>::SimplifiedType SimplifiedType;
-
-};
-
-template <typename A, typename B, Types::Integer a, Types::Integer b, Types::Integer c>
-class PS3<BaseUnit<B,b>, BaseUnit<A,a>, BaseUnit<A,c> >
-{
-public:
-
-  typedef typename PS2<typename BaseUnit<A,a + c>::SimplifiedType, typename BaseUnit<B,b>::SimplifiedType>::SimplifiedType SimplifiedType;
-
-};
-
-template <typename A, Types::Integer a, Types::Integer b, Types::Integer c>
-class PS3<BaseUnit<A,a>,BaseUnit<A,b>,BaseUnit<A,c> >
-{
-public:
-
-  typedef typename BaseUnit<A,a+b+c>::SimplifiedType SimplifiedType;
-
-};
-
-
-/**
-  PS4
-  Class that helps to simplify combination of products of unit type. (Specialization)
-*/
-
-template <typename A, typename B, typename C, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d>
-class PS4<BaseUnit<A,a>, BaseUnit<A,d>, BaseUnit<B,b>, BaseUnit<C,c> >
-{
-public:
-
-  typedef typename PS3<typename BaseUnit<A,a+d>::SimplifiedType, typename BaseUnit<B,b>::SimplifiedType, typename BaseUnit<C,c>::SimplifiedType>::SimplifiedType SimplifiedType;
-
-};
-
-template <typename A, typename B, typename C, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d>
-class PS4<BaseUnit<B,b>, BaseUnit<A,a>, BaseUnit<A,d>, BaseUnit<C,c> >
-{
-public:
-
-  typedef typename PS3<typename BaseUnit<A,a+d>::SimplifiedType, typename BaseUnit<B,b>::SimplifiedType, typename BaseUnit<C,c>::SimplifiedType>::SimplifiedType SimplifiedType;
-
-};
-
-template <typename A, typename B, typename C, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d>
-class PS4<BaseUnit<B,b>, BaseUnit<C,c>, BaseUnit<A,a>, BaseUnit<A,d> >
-{
-public:
-
-  typedef typename PS3<typename BaseUnit<A,a+d>::SimplifiedType, typename BaseUnit<B,b>::SimplifiedType, typename BaseUnit<C,c>::SimplifiedType>::SimplifiedType SimplifiedType;
-
-};
-
-template <typename A, typename B, typename C, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d>
-class PS4<BaseUnit<B,b>, BaseUnit<A,a>, BaseUnit<C,c>, BaseUnit<A,d> >
-{
-public:
-
-  typedef typename PS3<typename BaseUnit<A,a+d>::SimplifiedType, typename BaseUnit<B,b>::SimplifiedType, typename BaseUnit<C,c>::SimplifiedType>::SimplifiedType SimplifiedType;
-
-};
-
-template <typename A, typename B, typename C, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d>
-class PS4<BaseUnit<A,a>, BaseUnit<B,b>, BaseUnit<C,c>, BaseUnit<A,d> >
-{
-public:
-
-  typedef typename PS3<typename BaseUnit<A,a+d>::SimplifiedType, typename BaseUnit<B,b>::SimplifiedType, typename BaseUnit<C,c>::SimplifiedType>::SimplifiedType SimplifiedType;
-
-};
-
-template <typename A, typename B, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d>
-class PS4<BaseUnit<A,a>, BaseUnit<A,c>, BaseUnit<B,b>, BaseUnit<A,d> >
-{
-public:
-
-  typedef typename PS2<typename BaseUnit<A,a+c+d>::SimplifiedType, typename BaseUnit<B,b>::SimplifiedType>::SimplifiedType SimplifiedType;
-
-};
-
-template <typename A, typename B, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d>
-class PS4<BaseUnit<A,a>, BaseUnit<B,b>, BaseUnit<A,c>, BaseUnit<A,d> >
-{
-public:
-
-  typedef typename PS2<typename BaseUnit<A,a+c+d>::SimplifiedType, typename BaseUnit<B,b>::SimplifiedType>::SimplifiedType SimplifiedType;
-
-};
-
-template <typename A, typename B, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d>
-class PS4<BaseUnit<A,a>, BaseUnit<B,b>, BaseUnit<B,c>, BaseUnit<A,d> >
-{
-public:
-
-  typedef typename PS2<typename BaseUnit<A,a+d>::SimplifiedType, typename BaseUnit<B,b+c>::SimplifiedType>::SimplifiedType SimplifiedType;
-
-};
-
-template <typename A, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d>
-class PS4<BaseUnit<A,a>, BaseUnit<A,b>, BaseUnit<A,c>, BaseUnit<A,d> >
-{
-public:
-
-  typedef typename BaseUnit<A,a+b+c+d>::SimplifiedType SimplifiedType;
-
-};
+  */
 
 } //namespace Unit

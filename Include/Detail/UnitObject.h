@@ -59,15 +59,22 @@ class Identity
 public:
 
   typedef Identity BaseType;
+  typedef Identity DerivedType;
   typedef Identity SimplifiedType;
   typedef Identity InvertedType;
   typedef Identity SimplifiedFactor;
   typedef Identity InvertedFactor;
 
+  typedef Types::Scalar                   ScalarType;
+  typedef boost::math::policies::precision<ScalarType, boost::math::policies::policy<> >
+                                          Policy;
+  typedef std::numeric_limits<ScalarType> Limits;
+
   enum { 
     Exponent = 0,
     NumeratorBaseTypeValue = 1, 
-    DenumeratorBaseTypeValue = 1
+    DenumeratorBaseTypeValue = 1,
+    BaseTypeValue = 1
   };
 
 public:
@@ -75,21 +82,17 @@ public:
   Identity() { }
   ~Identity() { }
   
-  inline static Types::Scalar ConversionFactor();
+  inline static Types::Scalar ConversionFactor()
+  {
+    return 1.;
+  }
 
-  inline static Types::String Suffix();
+  inline static Types::String Suffix()
+  {
+    return Types::String();
+  }
 
 };
-
-inline Types::Scalar Identity::ConversionFactor()
-{
-  return 1.;
-}
-
-inline Types::String Identity::Suffix()
-{
-  return Types::String();
-}
 
 
 /**
@@ -154,6 +157,9 @@ struct Facade
 
   static bool const is_simple = _is_simple;
 
+  typedef SimplifiedType L;
+  typedef SimplifiedType R;
+
 };
 
 
@@ -202,8 +208,11 @@ template <typename _BaseType, Types::Integer E>
 class BaseUnit : public _BaseType
 {
 
-  enum { _NumeratorBaseTypeValue = E >= 0 ? BaseType::NumeratorBaseTypeValue : BaseType::DenumeratorBaseTypeValue };
-  enum { _DenumeratorBaseTypeValue = E >= 0 ? BaseType::DenumeratorBaseTypeValue : BaseType::NumeratorBaseTypeValue };
+  enum 
+  { 
+    _NumeratorBaseTypeValue = E >= 0 ? BaseType::NumeratorBaseTypeValue : BaseType::DenumeratorBaseTypeValue,
+    _DenumeratorBaseTypeValue = E >= 0 ? BaseType::DenumeratorBaseTypeValue : BaseType::NumeratorBaseTypeValue 
+  };
 
 public:
 
@@ -212,15 +221,19 @@ public:
   typedef BaseUnit<BaseType,-E>           InvertedType;
   typedef typename BaseType::ScalarType   ScalarType;
   typedef typename BaseType::Policy       Policy;
+  typedef typename BaseType::Limits       Limits;
 
 public:
 
   inline BaseUnit();
 
-  enum { Exponent = E };
-
-  enum { NumeratorBaseTypeValue = Detail::IntegerPow<_NumeratorBaseTypeValue, Exponent>::value };
-  enum { DenumeratorBaseTypeValue = Detail::IntegerPow<_DenumeratorBaseTypeValue, Exponent>::value };
+  enum 
+  { 
+    Exponent = E,
+    NumeratorBaseTypeValue = Detail::IntegerPow<_NumeratorBaseTypeValue, Exponent>::value,
+    DenumeratorBaseTypeValue = Detail::IntegerPow<_DenumeratorBaseTypeValue, Exponent>::value,
+    BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue
+  };
 
 public:
 
@@ -338,11 +351,11 @@ struct is_supporting_offset : public ::boost::integral_constant<bool,false>
 /**
   Class that represents the product of two factors.
 */
-template <typename L, typename R = L, typename Enable = void>
+template <typename _L, typename _R = _L, typename Enable = void>
 struct OffsetHandler
 {
 
-  typedef typename L::ScalarType ScalarType;
+  typedef typename _L::ScalarType ScalarType;
 
   inline static ScalarType Convert( ScalarType const value, Types::Scalar const = 1.0 )
   {
@@ -351,11 +364,11 @@ struct OffsetHandler
 
 };
 
-template <typename L>
-struct  OffsetHandler<L, L, typename boost::enable_if<is_supporting_offset<typename L::BaseType> >::type >
+template <typename _L>
+struct  OffsetHandler<_L, _L, typename boost::enable_if<is_supporting_offset<typename _L::BaseType> >::type >
 {
 
-  typedef typename L::ScalarType ScalarType;
+  typedef typename _L::ScalarType ScalarType;
 
   inline static ScalarType Convert( ScalarType const value, Types::Scalar const = 1.0  )
   {
@@ -364,15 +377,15 @@ struct  OffsetHandler<L, L, typename boost::enable_if<is_supporting_offset<typen
 
 };
 
-template <typename L, typename R >
-struct  OffsetHandler<L, R, typename boost::enable_if<is_supporting_offset<typename L::BaseType> >::type >
+template <typename _L, typename _R >
+struct  OffsetHandler<_L, _R, typename boost::enable_if<is_supporting_offset<typename _L::BaseType> >::type >
 {
 
-  typedef typename L::ScalarType ScalarType;
+  typedef typename _L::ScalarType ScalarType;
 
   inline static ScalarType Convert( ScalarType const value, Types::Scalar const factor = 1.0 )
   {
-    return ( value * factor + ( R::Offset() - L::Offset() ) ) / factor;
+    return ( value * factor + ( _R::Offset() - _L::Offset() ) ) / factor;
   }
 
 };
@@ -382,13 +395,13 @@ struct  OffsetHandler<L, R, typename boost::enable_if<is_supporting_offset<typen
   Class that represents the product of two factors.
 */
 
-template <typename L, typename R = L>
+template <typename _L, typename _R = _L>
 class ProductFactor
 {
 public:
 
-  typedef ProductFactor<typename L::SimplifiedFactor,typename R::SimplifiedFactor> SimplifiedFactor;
-  typedef ProductFactor<typename L::InvertedFactor,typename R::InvertedFactor> InvertedFactor;
+  typedef ProductFactor<typename _L::SimplifiedFactor,typename _R::SimplifiedFactor> SimplifiedFactor;
+  typedef ProductFactor<typename _L::InvertedFactor,typename _R::InvertedFactor> InvertedFactor;
 
 public:
 
@@ -400,11 +413,11 @@ public:
 
 };
 
-template <Types::Integer L, Types::Integer R>
-class ProductFactor<SI::Factor<L>,SI::Factor<R> >
+template <Types::Integer _L, Types::Integer _R>
+class ProductFactor<SI::Factor<_L>,SI::Factor<_R> >
 {
   
-  typedef SI::Factor<L + R> _F;
+  typedef SI::Factor<_L + _R> _F;
 
 public:
 
@@ -421,13 +434,13 @@ public:
 
 };
 
-template <typename L>
-class ProductFactor<L,Identity>
+template <typename _L>
+class ProductFactor<_L,Identity>
 {
 public:
 
-  typedef typename L::SimplifiedFactor SimplifiedFactor;
-  typedef typename L::InvertedFactor InvertedFactor;
+  typedef typename _L::SimplifiedFactor SimplifiedFactor;
+  typedef typename _L::InvertedFactor InvertedFactor;
 
 public:
 
@@ -439,13 +452,13 @@ public:
 
 };
 
-template <typename R>
-class ProductFactor<Identity,R>
+template <typename _R>
+class ProductFactor<Identity,_R>
 {
 public:
 
-  typedef typename R::SimplifiedFactor SimplifiedFactor;
-  typedef typename R::InvertedFactor InvertedFactor;
+  typedef typename _R::SimplifiedFactor SimplifiedFactor;
+  typedef typename _R::InvertedFactor InvertedFactor;
 
 public:
 
@@ -476,54 +489,54 @@ public:
 };
 
 
-template <typename L, typename R>
-inline Types::Scalar ProductFactor<L,R>::ConversionFactor()
+template <typename _L, typename _R>
+inline Types::Scalar ProductFactor<_L,_R>::ConversionFactor()
 {
-  return L::ConversionFactor() * R::ConversionFactor();
+  return _L::ConversionFactor() * _R::ConversionFactor();
 }
 
-template <typename L, typename R>
-inline Types::String ProductFactor<L,R>::Suffix()
+template <typename _L, typename _R>
+inline Types::String ProductFactor<_L,_R>::Suffix()
 {
   wchar_t buf[32];
   ::swprintf_s( buf, L"%g", ConversionFactor() );
   return Types::String( L"\'" ) + buf + L'\'';
 }
 
-template <Types::Integer L, Types::Integer R>
-inline Types::Scalar ProductFactor<SI::Factor<L>,SI::Factor<R> >::ConversionFactor()
+template <Types::Integer _L, Types::Integer _R>
+inline Types::Scalar ProductFactor<SI::Factor<_L>,SI::Factor<_R> >::ConversionFactor()
 {
   return _F::ConversionFactor();
 }
 
-template <Types::Integer L, Types::Integer R>
-inline Types::String ProductFactor<SI::Factor<L>,SI::Factor<R> >::Suffix()
+template <Types::Integer _L, Types::Integer _R>
+inline Types::String ProductFactor<SI::Factor<_L>,SI::Factor<_R> >::Suffix()
 {
   return _F::Suffix();
 }
 
-template <typename L>
-inline Types::Scalar ProductFactor<L,Identity>::ConversionFactor()
+template <typename _L>
+inline Types::Scalar ProductFactor<_L,Identity>::ConversionFactor()
 {
-  return L::ConversionFactor();
+  return _L::ConversionFactor();
 }
 
-template <typename L>
-inline Types::String ProductFactor<L,Identity>::Suffix()
+template <typename _L>
+inline Types::String ProductFactor<_L,Identity>::Suffix()
 {
-  return L::Suffix();
+  return _L::Suffix();
 }
 
-template <typename R>
-inline Types::Scalar ProductFactor<Identity,R>::ConversionFactor()
+template <typename _R>
+inline Types::Scalar ProductFactor<Identity,_R>::ConversionFactor()
 {
-  return R::ConversionFactor();
+  return _R::ConversionFactor();
 }
 
-template <typename R>
-inline Types::String ProductFactor<Identity,R>::Suffix()
+template <typename _R>
+inline Types::String ProductFactor<Identity,_R>::Suffix()
 {
-  return R::Suffix();
+  return _R::Suffix();
 }
 
 inline Types::Scalar ProductFactor<Identity>::ConversionFactor()

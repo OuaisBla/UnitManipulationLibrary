@@ -414,14 +414,14 @@ inline Quantity<BaseUnit<T, E / 2>, F> sqrt( Quantity<BaseUnit<T, E>, F> const &
   return _QuantityTypeReturn( ::sqrt( _s._QuantityTypeArg::GetValue() ) );
 }
 
-template <typename L, Types::Integer ExpL, typename R, Types::Integer ExpR, Types::Integer E, typename F>
-inline Quantity<BaseUnit<PS2<BaseUnit<L,(ExpL * E) / 2>, BaseUnit<R,(ExpR * E) / 2> >, 1>, F> 
-  sqrt( Quantity<BaseUnit<PS2<BaseUnit<L,ExpL>, BaseUnit<R,ExpR> >, E>, F> const &_s )
+template <typename _L, Types::Integer ExpL, typename _R, Types::Integer ExpR, Types::Integer E, typename F>
+inline Quantity<BaseUnit<ComplexUnit<BaseUnit<_L,(ExpL * E) / 2>, BaseUnit<_R,(ExpR * E) / 2> >, 1>, F> 
+  sqrt( Quantity<BaseUnit<ComplexUnit<BaseUnit<_L,ExpL>, BaseUnit<_R,ExpR> >, E>, F> const &_s )
 {
   CompatibleUnit<(E * ExpL > 1) && (E * ExpR > 1)>();
 
-  typedef Quantity<BaseUnit<PS2<BaseUnit<L,ExpL>, BaseUnit<R,ExpR> >, E>, F> _QuantityTypeArg;
-  typedef Quantity<BaseUnit<PS2<BaseUnit<L,(ExpL * E) / 2>, BaseUnit<R,(ExpR * E) / 2> >, 1>, F> _QuantityTypeReturn;
+  typedef Quantity<BaseUnit<ComplexUnit<BaseUnit<_L,ExpL>, BaseUnit<_R,ExpR> >, E>, F> _QuantityTypeArg;
+  typedef Quantity<BaseUnit<ComplexUnit<BaseUnit<_L,(ExpL * E) / 2>, BaseUnit<_R,(ExpR * E) / 2> >, 1>, F> _QuantityTypeReturn;
 
   return _QuantityTypeReturn( ::sqrt( _s._QuantityTypeArg::GetValue() ) );
 }
