@@ -42,7 +42,7 @@ void TestSimplifier()
 
   Integer const _TimeVelocityReducedBaseTypeValue = _TimeVelocityReduced.BaseTypeValue;
 
-  Assert( _TimeVelocityReducedBaseTypeValue == _lengthBaseTypeValue * _timeBaseTypeValue * _timeBaseTypeValue );
+  Assert( _TimeVelocityReducedBaseTypeValue == _lengthBaseTypeValue );
 
 }
 

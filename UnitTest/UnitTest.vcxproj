@@ -54,6 +54,7 @@
       <CompileAsManaged>true</CompileAsManaged>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <AdditionalOptions>-Zm256 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -74,6 +75,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <AdditionalOptions>-Zm256 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -127,6 +129,7 @@
     <ClInclude Include="..\Include\UnitAmountOfSubstance.h" />
     <ClInclude Include="..\Include\UnitAngular.h" />
     <ClInclude Include="..\Include\UnitArea.h" />
+    <ClInclude Include="..\Include\UnitConstants.h" />
     <ClInclude Include="..\Include\UnitElectric.h" />
     <ClInclude Include="..\Include\UnitElectricCapacitance.h" />
     <ClInclude Include="..\Include\UnitElectricCharge.h" />
@@ -134,6 +137,7 @@
     <ClInclude Include="..\Include\UnitElectricCurrent.h" />
     <ClInclude Include="..\Include\UnitElectricPotential.h" />
     <ClInclude Include="..\Include\UnitElectricResistance.h" />
+    <ClInclude Include="..\Include\UnitElectronVolt.h" />
     <ClInclude Include="..\Include\UnitEnergy.h" />
     <ClInclude Include="..\Include\UnitForce.h" />
     <ClInclude Include="..\Include\UnitFrequency.h" />

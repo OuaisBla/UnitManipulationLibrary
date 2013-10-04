@@ -77,6 +77,8 @@ public:
     BaseTypeValue = 1
   };
 
+  static bool const is_simple = false;
+
 public:
 
   Identity() { }

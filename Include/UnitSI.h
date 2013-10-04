@@ -42,6 +42,7 @@ jean.gauthier@programmer.net
 #include "UnitVelocity.h"
 #include "UnitVolume.h"
 #include "UnitMagnetic.h"
+#include "UnitElectronVolt.h"
 
 
 namespace Unit
