@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "TestHelper.h"
 #include "UnitAcceleration.h"
 #include "UnitArea.h"
 #include "UnitFrequency.h"
@@ -9,6 +9,7 @@ using namespace Unit::SI;
 using namespace Unit::NonSI;
 using namespace Unit::Types;
 
+using Unit::Types::Scalar;
 
 
 void TestSimplifier()

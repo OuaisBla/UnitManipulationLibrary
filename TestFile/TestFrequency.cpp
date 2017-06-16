@@ -1,5 +1,5 @@
 
-#include "stdafx.h"
+#include "TestHelper.h"
 #include "UnitFrequency.h"
 
 
@@ -7,6 +7,7 @@ using namespace Unit;
 using namespace Unit::SI;
 using namespace Unit::NonSI;
 
+using Unit::Types::Scalar;
 
 //
 //  Compile time definition.

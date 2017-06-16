@@ -197,6 +197,9 @@
     <ClInclude Include="..\Include\UnitElectronVolt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TestHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">

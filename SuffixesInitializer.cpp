@@ -1,4 +1,5 @@
-#include "stdafx.h"
+
+
 #include "Detail/UnitObject.h"
 
 #ifdef NO_STATIC_UNIT_SUFFIXES_EVALUATION
@@ -16,8 +17,16 @@ SuffixesMap SuffixesInitializer::RuntimeSuffixes;
 #pragma warning( push )
 #pragma warning( disable : 4189 )
 
+
+void InitializeSuffixes()
+{
+  SuffixesInitializer::Initialize();
+}
+
+
 void SuffixesInitializer::Initialize()
 {
+
   using namespace Unit::SI;
   using namespace Unit::NonSI;
 

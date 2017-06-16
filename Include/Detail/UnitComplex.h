@@ -112,22 +112,6 @@ public:
 };
 
 
-template <bool,  typename _L, typename _R>
-struct ComplexUnitDispatcher
-{
-  
-    typedef ComplexUnit<_L,_R> BaseType;
-
-};
-
-template <Types::Integer _BaseValueType, Types::Integer _ValueType,  typename _L, typename _R, typename Enable = void >
-struct ComplexUnitDispatcher
-{
-
-  typedef ComplexUnit<_L,_R> BaseType;
-
-};
-
 
 /**
   Helper class that helps to simplify products of unit type.
@@ -283,7 +267,7 @@ public:
   }
 
 };
- 
+/*
 
 template <typename _L, typename _R>
 class ComplexUnit<_L, _R, 
@@ -333,7 +317,7 @@ public:
 };
 
 
-  /*
+
 template <typename _L, typename _R>
 class ComplexUnit<_L, _R, 
   typename boost::enable_if_c<_L::BaseTypeValue != _R::BaseTypeValue && !is_simple_unit<_L>::value && !is_simple_unit<_R>::value>::type> : 

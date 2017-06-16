@@ -1,5 +1,5 @@
 
-#include "stdafx.h"
+#include "TestHelper.h"
 #include "UnitTime.h"
 #include "UnitLength.h"
 #include <time.h>
@@ -9,6 +9,7 @@ using namespace Unit;
 using namespace Unit::SI;
 using namespace Unit::NonSI;
 
+using Unit::Types::Scalar;
 
 static void PrintPerformance( clock_t , clock_t );
 static void TestSimple_T_F();

@@ -1,9 +1,6 @@
 #include "stdafx.h"
-#include "UnitSI.h"
 
 
-using namespace Unit;
-using namespace Unit::SI;
 using namespace System;
 using namespace System::Text;
 using namespace System::Collections::Generic;
@@ -25,6 +22,8 @@ void TestFrequency();
 void TestSquareMeter();
 void TestCubicMeter();
 void TestSimplifier();
+
+void InitializeSuffixes();
 
 
 namespace UnitTest
@@ -60,7 +59,7 @@ namespace UnitTest
 		[ClassInitialize()]
 		static void MyClassInitialize(Microsoft::VisualStudio::TestTools::UnitTesting::TestContext^ ) 
     {
-      Detail::SuffixesInitializer::Initialize();
+      InitializeSuffixes();
 
       TestSimplifier();
     }

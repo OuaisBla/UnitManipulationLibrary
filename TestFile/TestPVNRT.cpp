@@ -1,5 +1,5 @@
 
-#include "stdafx.h"
+#include "TestHelper.h"
 #include "UnitVolume.h"
 #include "UnitPressure.h"
 #include "UnitEnergy.h"
@@ -13,7 +13,7 @@
 using namespace Unit;
 using namespace Unit::SI;
 
-
+using Unit::Types::Scalar;
 
 
 //                 /

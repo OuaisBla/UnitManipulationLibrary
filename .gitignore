@@ -30,3 +30,5 @@ _ReSharper*/
 *.sdf
 *.opensdf
 *.ipch
+*.db
+*.opendb

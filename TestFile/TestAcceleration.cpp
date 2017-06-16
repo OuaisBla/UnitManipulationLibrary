@@ -1,5 +1,5 @@
 
-#include "stdafx.h"
+#include "TestHelper.h"
 #include "UnitAcceleration.h"
 
 
@@ -8,6 +8,7 @@ using namespace Unit;
 using namespace Unit::SI;
 using namespace Unit::NonSI;
 
+using Unit::Types::Scalar;
 
 
 //
