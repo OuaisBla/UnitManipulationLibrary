@@ -52,12 +52,6 @@ public:
   typedef Identity InvertedType;
   typedef Identity SimplifiedFactor;
 
-  static bool const is_simple = true;
-
-  typedef Identity L;
-  typedef Identity R;
-
-
   typedef Identity::ScalarType   ScalarType;
   typedef Identity::Policy       Policy;
   typedef Identity::Limits       Limits;
@@ -91,16 +85,14 @@ public:
     BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue
   };
 
-  typedef ComplexUnit<_L,_R>              BaseType;
+  typedef _L L;
+  typedef _R R;
+
+  typedef ComplexUnit<L,R>                BaseType;
   typedef BaseType                        DerivedType;
   typedef BaseUnit<BaseType>              SimplifiedType;
   typedef BaseUnit<BaseType,-1>           InvertedType;
   typedef Identity                        SimplifiedFactor;
-
-  static bool const is_simple = false;
-
-  typedef _L L;
-  typedef _R R;
 
 public:
 
@@ -129,6 +121,9 @@ struct ComplexUnit<Identity,Identity>
     BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue 
   };
 
+  typedef Identity L;
+  typedef Identity R;
+
   typedef Identity  BaseType;
   typedef Identity  DerivedType;
   typedef Identity  SimplifiedType;
@@ -138,11 +133,6 @@ struct ComplexUnit<Identity,Identity>
   typedef Identity::ScalarType            ScalarType;
   typedef Identity::Policy                Policy;
   typedef Identity::Limits                Limits;
-
-  static bool const is_simple = false;
-
-  typedef Identity L;
-  typedef Identity R;
 
 };
 
@@ -158,16 +148,14 @@ struct ComplexUnit<_L,Identity> :
     BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue 
   };
 
+  typedef _L L;
+  typedef _L R;
+
   typedef typename _L::BaseType BaseType;
   typedef typename _L::DerivedType DerivedType;
   typedef typename _L::SimplifiedType SimplifiedType;
   typedef typename _L::InvertedType InvertedType;
   typedef typename _L::SimplifiedFactor SimplifiedFactor;
-
-  static bool const is_simple = false;
-
-  typedef _L L;
-  typedef _L R;
 
 };
 
@@ -183,16 +171,14 @@ struct ComplexUnit<Identity,_L> :
     BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue 
   };
 
+  typedef _L L;
+  typedef _L R;
+
   typedef typename _L::BaseType BaseType;
   typedef typename _L::DerivedType DerivedType;
   typedef typename _L::SimplifiedType SimplifiedType;
   typedef typename _L::InvertedType InvertedType;
   typedef typename _L::SimplifiedFactor SimplifiedFactor;
-
-  static bool const is_simple = false;
-
-  typedef _L L;
-  typedef _L R;
 
 };
 
@@ -214,16 +200,17 @@ struct ComplexUnit<BaseUnit<_L,a>, BaseUnit<_L,b>> :
   typedef typename SimplifiedType::InvertedType InvertedType;
   typedef typename _L::SimplifiedFactor SimplifiedFactor;
 
-  static bool const is_simple = false;
-
   typedef SimplifiedType L;
   typedef SimplifiedType R;
 
 };
 
+
+/*
+
 template <typename _L, typename _R>
 class ComplexUnit<_L, _R, 
-  typename boost::enable_if_c<_L::BaseTypeValue != _R::BaseTypeValue && !_L::is_simple && _R::is_simple>::type> : 
+  typename boost::enable_if_c<_L::BaseTypeValue != _R::BaseTypeValue && !_L::is_simple && _R::is_simple && _R::BaseTypeValue != Identity::BaseTypeValue>::type> :
   public Object<typename _L::ScalarType, typename _L::Policy>
 {
 
@@ -248,14 +235,14 @@ public:
   typedef typename ComplexUnit<typename _L_L::SimplifiedType, typename _R::SimplifiedType>::SimplifiedType _L_L_R_SimplifiedType;
   typedef ComplexUnit<typename _L_R::SimplifiedType, _L_L_R_SimplifiedType> _SimplifiedType;
 
-  typedef typename _SimplifiedType::L L;
-  typedef typename _SimplifiedType::R R;
+  typedef typename _SimplifiedType::BaseType          BaseType;
+  typedef typename _SimplifiedType::DerivedType       DerivedType;
+  typedef typename _SimplifiedType::SimplifiedType    SimplifiedType;
+  typedef typename _SimplifiedType::InvertedType      InvertedType;
+  typedef typename _SimplifiedType::SimplifiedFactor  SimplifiedFactor;
 
-  typedef typename _SimplifiedType::BaseType   BaseType;
-  typedef BaseType                             DerivedType;
-  typedef BaseUnit<BaseType>                   SimplifiedType;
-  typedef BaseUnit<BaseType,-1>                InvertedType;
-  typedef typename BaseType::SimplifiedFactor  SimplifiedFactor;
+  typedef typename BaseType::L L;
+  typedef typename BaseType::R R;
 
   static bool const is_simple = BaseType::is_simple;
 
@@ -267,11 +254,12 @@ public:
   }
 
 };
-/*
+
+
 
 template <typename _L, typename _R>
 class ComplexUnit<_L, _R, 
-  typename boost::enable_if_c<_L::BaseTypeValue != _R::BaseTypeValue && _L::is_simple && !_R::is_simple>::type> : 
+  typename boost::enable_if_c<_L::BaseTypeValue != _R::BaseTypeValue && _L::is_simple && _L::BaseTypeValue != Identity::BaseTypeValue && !_R::is_simple>::type> :
   public Object<typename _L::ScalarType, typename _L::Policy>
 {
 
@@ -296,9 +284,6 @@ public:
   typedef typename ComplexUnit<typename _R_L::SimplifiedType, typename _L::SimplifiedType>::SimplifiedType _R_L_R_SimplifiedType;
   typedef ComplexUnit<_R_L_R_SimplifiedType, typename _R_R::SimplifiedType> _SimplifiedType;
 
-  typedef typename _SimplifiedType::L L;
-  typedef typename _SimplifiedType::R R;
-
   typedef typename _SimplifiedType::BaseType   BaseType;
   typedef BaseType                             DerivedType;
   typedef BaseUnit<BaseType>                   SimplifiedType;
@@ -306,6 +291,9 @@ public:
   typedef typename BaseType::SimplifiedFactor  SimplifiedFactor;
 
   static bool const is_simple = BaseType::is_simple;
+
+  typedef typename BaseType::L L;
+  typedef typename BaseType::R R;
 
 public:
 

@@ -77,8 +77,6 @@ public:
     BaseTypeValue = 1
   };
 
-  static bool const is_simple = false;
-
 public:
 
   Identity() { }
@@ -145,7 +143,7 @@ template <typename, typename = Identity>
 class Quantity;
 
 
-template<typename _BaseType, bool _is_simple = true>
+template<typename _BaseType>
 struct Facade
 {
 
@@ -156,11 +154,6 @@ struct Facade
   typedef Identity                        SimplifiedFactor;
 
   enum { DenumeratorBaseTypeValue = 1 };
-
-  static bool const is_simple = _is_simple;
-
-  typedef SimplifiedType L;
-  typedef SimplifiedType R;
 
 };
 
