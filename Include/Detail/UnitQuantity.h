@@ -72,6 +72,12 @@ public:
   inline explicit Quantity( ScalarType );
   inline Quantity( Quantity<UnitType,_Factor> const & );
 
+  template<typename OtherFactor>
+  inline Quantity(Quantity<UnitType, OtherFactor> const &_s) :
+    m_Value( _s.Quantity<UnitType, OtherFactor>::GetValue() * (Quantity<UnitType, OtherFactor>::ConversionFactor() / m_Factor) )
+  {
+  }
+
   template< typename OtherUnitType, typename OtherFactor>
   inline Quantity( Quantity<OtherUnitType, OtherFactor> const &_s ) :
     m_Value( 
