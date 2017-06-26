@@ -106,6 +106,16 @@ public:
 template<typename _ScalarType = Types::Scalar, typename _Policy = boost::math::policies::precision<_ScalarType, boost::math::policies::policy<> > >
 class Object
 {
+
+  // prevent instantiation of base object. 
+  // Force use of const reference that will invoke virtual table fucntion call
+  Object(Object const &);
+  void operator= (Object const &);
+
+protected:
+
+  inline Object();
+
 public:
 
   typedef _ScalarType                     ScalarType;
@@ -114,7 +124,6 @@ public:
 
 public:
 
-  inline Object();
   virtual ~Object() { }
 
 public:

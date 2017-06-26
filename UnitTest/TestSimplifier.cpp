@@ -54,8 +54,6 @@ void TestConstants()
 
   Unit::Object<> const & o = 1.0 / (Unit::SI::Constants::m0 * Unit::SI::Constants::c * Unit::SI::Constants::c);
 
-  Unit::Object<> o2 = 1.0 / (Unit::SI::Constants::m0 * Unit::SI::Constants::c * Unit::SI::Constants::c);
-
   OutputLine( L"Unit::SI::Constants::m0: " + o.GetSuffix());
   OutputLine( L"Unit::SI::Constants::m0: " + o.GetSISuffix());
 
