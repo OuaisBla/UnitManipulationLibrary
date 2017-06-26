@@ -22,6 +22,7 @@ void TestFrequency();
 void TestSquareMeter();
 void TestCubicMeter();
 void TestSimplifier();
+void TestConstants();
 
 void InitializeSuffixes();
 
@@ -182,6 +183,14 @@ namespace UnitTest
       ::TestCubicMeter();
 
     }
-    
+
+    [TestMethod]
+    void TestConstants()
+    {
+
+      ::TestConstants();
+
+    }
+
 	};
 }

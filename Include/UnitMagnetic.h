@@ -30,6 +30,7 @@ jean.gauthier@programmer.net
 
 #include "UnitElectricPotential.h"
 #include "UnitArea.h"
+#include "UnitTime.h"
 
 
 namespace Unit
@@ -38,7 +39,7 @@ namespace Unit
   namespace SI
   {
 
-    struct MagneticFlux : public Product<Volt,Ampere::Invert>::UnitType
+    struct MagneticFlux : public Product<Volt,Second>::UnitType
     {
     
       typedef MagneticFlux DerivedType;

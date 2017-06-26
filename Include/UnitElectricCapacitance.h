@@ -38,7 +38,7 @@ namespace Unit
   namespace SI
   {
 
-    struct Capacitance : public Product<Coulomb,Volt>::UnitType
+    struct Capacitance : public Product<Coulomb,Volt::Invert>::UnitType
     {
 
       typedef Capacitance DerivedType;

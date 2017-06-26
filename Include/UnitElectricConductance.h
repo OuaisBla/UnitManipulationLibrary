@@ -37,7 +37,7 @@ namespace Unit
   namespace SI
   {
 
-    struct Conductance : public Product<Ampere,Volt>::UnitType
+    struct Conductance : public Product<Ampere,Volt::Invert>::UnitType
     {
 
       typedef Conductance DerivedType;

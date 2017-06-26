@@ -61,7 +61,7 @@ namespace Unit
       Velocity                                                                   const c(2.99792458e8);         // speed of light in vacuum
 
       Product<Henry, Meter::Invert>::QuantityType                                const m0(1.2566370614e-6);     // magnetic permeability constant
-      //Product<Farad, Meter::Invert>::QuantityType                                const e0(1.0 / (m0 * c * c));  // electric permittivity constant = 8.85418781...x10 - 12 F / m 
+      Product<Farad, Meter::Invert>::QuantityType                                const e0(1.0 / (m0 * c * c));  // electric permittivity constant = 8.85418781...x10 - 12 F / m 
 
       Product<Meter, Kelvin>::QuantityType 	                                     const c2(1.438775e-2);         //second radiation constant
 
