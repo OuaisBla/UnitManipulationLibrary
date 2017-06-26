@@ -138,27 +138,6 @@ public:
 
 };
 
-template <typename _L, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d>
-class ComplexUnit<BaseUnit<ComplexUnit<BaseUnit<_L,a>, BaseUnit<_L, b>>,c>, BaseUnit<_L, d>> :
-  public Object<typename _L::ScalarType, typename _L::Policy>
-{
-public:
-
-  enum
-  {
-    NumeratorBaseTypeValue = _L::NumeratorBaseTypeValue,
-    DenumeratorBaseTypeValue = _L::DenumeratorBaseTypeValue,
-    BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue
-  };
-
-  typedef typename _L::BaseType BaseType;
-  typedef typename _L::DerivedType DerivedType;
-  typedef typename BaseUnit<BaseType, ((a + b) * c) + d>::SimplifiedType SimplifiedType;
-  typedef typename SimplifiedType::InvertedType InvertedType;
-  typedef typename SimplifiedType::SimplifiedFactor SimplifiedFactor;
-
-};
-
 template <typename _L, typename _R, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d>
 class ComplexUnit<BaseUnit<ComplexUnit<BaseUnit<_L, a>, BaseUnit<_R, b>>, c>, BaseUnit<_L, d>> :
   public Object<typename _L::ScalarType, typename _L::Policy>

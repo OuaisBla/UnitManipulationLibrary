@@ -29,15 +29,22 @@ jean.gauthier@programmer.net
 
 
 #include "UnitEnergy.h"
-#include "UnitConstants.h"
+
 
 
 namespace Unit
 {
 
-
 namespace SI
 {
+
+  namespace Constants
+  {
+
+    Joule const eV(1.60217653e-19);    // electron volt
+
+  }
+
 
   struct _ElectronVoltFactor
   {

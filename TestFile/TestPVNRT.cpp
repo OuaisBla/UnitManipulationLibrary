@@ -8,6 +8,7 @@
 #include "UnitElectricCurrent.h"
 #include "UnitAmountOfSubstance.h"
 #include "UnitTemperature.h"
+#include "UnitConstants.h"
 
 
 using namespace Unit;
@@ -27,10 +28,7 @@ using Unit::Types::Scalar;
 //                 \ 
 
 
-typedef Product<Joule,Product<Mole, Kelvin>::Invert> RType;
 typedef Product<Watt,Ampere::Invert> Volt3;
-
-
 
 typedef Product<Product<Meter,Kilogram>,Product<Second>::Invert> Newton2;
 typedef Product<Newton2,Product<Meter>::Invert> Pascal2;
@@ -46,9 +44,6 @@ typedef Product<Product<Meter,Kilogram>,Product<Second,Meter>::Invert> Pascal3;
 void TestPV_equals_NRT()
 {
   OutputLine( L"-- Test PV equals NRT -- " );
-
-  RType const R( 8.3144621 );
-
 
   Pascal pressure( 101300. );
 
@@ -84,12 +79,12 @@ void TestPV_equals_NRT()
   OutputLine( (Pascal2() / Joule2( 1. )).GetSuffix() );
 
   OutputLine( (pressure * spaceneeded).GetSuffix() );
-  OutputLine( (air * R * temperature).GetSuffix() );
+  OutputLine( (air * Constants::R * temperature).GetSuffix() );
 
   Scalar const PV = (pressure * spaceneeded).GetConvertedValue();
-  Scalar const nRT = (air * R * temperature).GetConvertedValue();
+  Scalar const nRT = (air * Constants::R * temperature).GetConvertedValue();
 
-  Assert( (pressure * spaceneeded) == (air * R * temperature) );
+  Assert( (pressure * spaceneeded) == (air * Constants::R * temperature) );
   Assert( fequal( PV, nRT ) );
 
 }
