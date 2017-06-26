@@ -319,6 +319,9 @@ void TestCompileTimeDefinition()
   Scalar const s2 = acceleration3 / acceleration4;
   Assert( fequal( s2, 0.0 ) );
 
+  Scalar const s3 = acceleration4 / CarAccel(1.0);
+  Assert(fequal(s2, 0.0));
+
 }
 
 void SolveAccelerationProblems1()

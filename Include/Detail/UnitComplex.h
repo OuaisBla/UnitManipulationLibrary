@@ -148,7 +148,7 @@ class ComplexUnit<BaseUnit<ComplexUnit<BaseUnit<_L, a>, BaseUnit<_R, b>>, c>, Ba
 public:
 
   typedef typename ComplexUnit<L,R>::BaseType BaseType;
-  typedef ComplexUnit<L,R>  DerivedType;
+  typedef ComplexUnit<typename L::DerivedType, typename R::DerivedType>  DerivedType;
   typedef typename BaseUnit<BaseType>::SimplifiedType SimplifiedType;
   typedef typename SimplifiedType::InvertedType InvertedType;
   typedef typename SimplifiedType::SimplifiedFactor SimplifiedFactor;
@@ -173,7 +173,7 @@ class ComplexUnit<BaseUnit<ComplexUnit<BaseUnit<_L, a>, BaseUnit<_R, b>>, c>, Ba
 public:
 
   typedef typename ComplexUnit<L, R>::BaseType BaseType;
-  typedef ComplexUnit<L, R>  DerivedType;
+  typedef ComplexUnit<typename L::DerivedType, typename R::DerivedType>  DerivedType;
   typedef typename BaseUnit<BaseType>::SimplifiedType SimplifiedType;
   typedef typename SimplifiedType::InvertedType InvertedType;
   typedef typename SimplifiedType::SimplifiedFactor SimplifiedFactor;
@@ -184,8 +184,32 @@ public:
     DenumeratorBaseTypeValue = BaseType::DenumeratorBaseTypeValue
   };
 
+};
+
+template <typename _L, typename _R, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d>
+class ComplexUnit<BaseUnit<_R, d>, BaseUnit<ComplexUnit<BaseUnit<_L, a>, BaseUnit<_R, b>>, c>> :
+  public Object<typename _L::ScalarType, typename _L::Policy>
+{
+
+  typedef typename BaseUnit<_L, (a * c)>::SimplifiedType L;
+  typedef typename BaseUnit<_R, (b * c) + d>::SimplifiedType R;
+
+public:
+
+  typedef typename ComplexUnit<L, R>::BaseType BaseType;
+  typedef ComplexUnit<typename L::DerivedType, typename R::DerivedType>  DerivedType;
+  typedef typename BaseUnit<BaseType>::SimplifiedType SimplifiedType;
+  typedef typename SimplifiedType::InvertedType InvertedType;
+  typedef typename SimplifiedType::SimplifiedFactor SimplifiedFactor;
+
+  enum
+  {
+    NumeratorBaseTypeValue = BaseType::NumeratorBaseTypeValue,
+    DenumeratorBaseTypeValue = BaseType::DenumeratorBaseTypeValue
+  };
 
 };
+
 
 template <typename _L, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d, Types::Integer e, Types::Integer f>
 class ComplexUnit<BaseUnit<ComplexUnit<BaseUnit<_L, a>, BaseUnit<_L, b>>, c>, BaseUnit<ComplexUnit<BaseUnit<_L, d>, BaseUnit<_L, e>>, f>> :
@@ -218,7 +242,7 @@ class ComplexUnit<BaseUnit<ComplexUnit<BaseUnit<_L, a>, BaseUnit<_R, b>>, c>, Ba
 public:
 
   typedef typename ComplexUnit<L, R>::BaseType BaseType;
-  typedef ComplexUnit<L, R>  DerivedType;
+  typedef ComplexUnit<typename L::DerivedType, typename R::DerivedType>  DerivedType;
   typedef typename BaseUnit<BaseType>::SimplifiedType SimplifiedType;
   typedef typename SimplifiedType::InvertedType InvertedType;
   typedef typename SimplifiedType::SimplifiedFactor SimplifiedFactor;
