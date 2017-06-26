@@ -74,7 +74,6 @@ public:
     Exponent = 0,
     NumeratorBaseTypeValue = 1, 
     DenumeratorBaseTypeValue = 1,
-    BaseTypeValue = 1
   };
 
 public:
@@ -227,7 +226,6 @@ public:
     Exponent = E,
     NumeratorBaseTypeValue = Detail::IntegerPow<_NumeratorBaseTypeValue, Exponent>::value,
     DenumeratorBaseTypeValue = Detail::IntegerPow<_DenumeratorBaseTypeValue, Exponent>::value,
-    BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue
   };
 
 public:
