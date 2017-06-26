@@ -313,12 +313,11 @@ void TestCompileTimeDefinition()
   Megaacceleration2 const megaacceleration2 = megaacceleration;
   Assert( fequal( megaacceleration.GetFactor(), megaacceleration2.GetFactor() ) );
 
- /* Scalar const s = Deciacceleration2() / acceleration4;
-  Assert(fequal(s, 0.0));
+  Scalar const s1 = Deciacceleration2() / acceleration4;
+  Assert(fequal(s1, 0.0));
 
-  // TO DO
-  Scalar const s = acceleration3 / acceleration4;
-  Assert( fequal( s, 0.0 ) );*/
+  Scalar const s2 = acceleration3 / acceleration4;
+  Assert( fequal( s2, 0.0 ) );
 
 }
 

@@ -42,19 +42,8 @@ namespace Unit
 */
 
 template <typename T>
-class BaseUnit<T,0>
+class BaseUnit<T,0> : public Identity
 {
-public:
-
-  typedef Identity BaseType;
-  typedef Identity DerivedType;
-  typedef Identity SimplifiedType;
-  typedef Identity InvertedType;
-  typedef Identity SimplifiedFactor;
-
-  typedef Identity::ScalarType   ScalarType;
-  typedef Identity::Policy       Policy;
-  typedef Identity::Limits       Limits;
 
 };
 
@@ -66,8 +55,6 @@ public:
 template <typename _L, typename _R = _L, typename Enable = void>
 class ComplexUnit : public Object<typename _L::ScalarType, typename _L::Policy>
 {
-
-  template <typename A, typename B, typename E> friend class ComplexUnit;
 
   enum 
   {
@@ -85,11 +72,8 @@ public:
     BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue
   };
 
-  typedef _L L;
-  typedef _R R;
-
-  typedef ComplexUnit<L,R>                BaseType;
-  typedef BaseType                        DerivedType;
+  typedef ComplexUnit<_L,_R>              BaseType;
+  typedef ComplexUnit<_L,_R>              DerivedType;
   typedef BaseUnit<BaseType>              SimplifiedType;
   typedef BaseUnit<BaseType,-1>           InvertedType;
   typedef Identity                        SimplifiedFactor;
@@ -103,6 +87,11 @@ public:
 
 };
 
+template <typename _L, typename _R, Types::Integer a>
+class BaseUnit<ComplexUnit<BaseUnit<_L, 0>, BaseUnit<_R, 0>>, a> : public Identity
+{
+
+};
 
 
 /**
@@ -111,81 +100,28 @@ public:
 
 
 template <>
-struct ComplexUnit<Identity,Identity>
+class ComplexUnit<Identity,Identity> : public Identity
 {
-
-  enum 
-  { 
-    NumeratorBaseTypeValue = Identity::NumeratorBaseTypeValue,
-    DenumeratorBaseTypeValue = Identity::DenumeratorBaseTypeValue,
-    BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue 
-  };
-
-  typedef Identity L;
-  typedef Identity R;
-
-  typedef Identity  BaseType;
-  typedef Identity  DerivedType;
-  typedef Identity  SimplifiedType;
-  typedef Identity  InvertedType;
-  typedef Identity  SimplifiedFactor;
-
-  typedef Identity::ScalarType            ScalarType;
-  typedef Identity::Policy                Policy;
-  typedef Identity::Limits                Limits;
 
 };
 
 template <typename _L>
-struct ComplexUnit<_L,Identity> : 
-  public Object<typename _L::ScalarType, typename _L::Policy>
+class ComplexUnit<_L,Identity> : public _L
 {
-
-  enum 
-  { 
-    NumeratorBaseTypeValue = _L::NumeratorBaseTypeValue,
-    DenumeratorBaseTypeValue = _L::DenumeratorBaseTypeValue,
-    BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue 
-  };
-
-  typedef _L L;
-  typedef _L R;
-
-  typedef typename _L::BaseType BaseType;
-  typedef typename _L::DerivedType DerivedType;
-  typedef typename _L::SimplifiedType SimplifiedType;
-  typedef typename _L::InvertedType InvertedType;
-  typedef typename _L::SimplifiedFactor SimplifiedFactor;
 
 };
 
 template <typename _L>
-struct ComplexUnit<Identity,_L> : 
-  public Object<typename _L::ScalarType, typename _L::Policy>
+class ComplexUnit<Identity,_L> : public _L
 {
-
-  enum 
-  { 
-    NumeratorBaseTypeValue = _L::NumeratorBaseTypeValue,
-    DenumeratorBaseTypeValue = _L::DenumeratorBaseTypeValue,
-    BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue 
-  };
-
-  typedef _L L;
-  typedef _L R;
-
-  typedef typename _L::BaseType BaseType;
-  typedef typename _L::DerivedType DerivedType;
-  typedef typename _L::SimplifiedType SimplifiedType;
-  typedef typename _L::InvertedType InvertedType;
-  typedef typename _L::SimplifiedFactor SimplifiedFactor;
 
 };
 
 template <typename _L, Types::Integer a, Types::Integer b>
-struct ComplexUnit<BaseUnit<_L,a>, BaseUnit<_L,b>> : 
+class ComplexUnit<BaseUnit<_L,a>, BaseUnit<_L,b>> :
   public Object<typename _L::ScalarType, typename _L::Policy>
 {
+public:
 
   enum 
   { 
@@ -198,169 +134,143 @@ struct ComplexUnit<BaseUnit<_L,a>, BaseUnit<_L,b>> :
   typedef typename _L::DerivedType DerivedType;
   typedef typename BaseUnit<BaseType,a+b>::SimplifiedType SimplifiedType;
   typedef typename SimplifiedType::InvertedType InvertedType;
-  typedef typename _L::SimplifiedFactor SimplifiedFactor;
-
-  typedef SimplifiedType L;
-  typedef SimplifiedType R;
+  typedef typename SimplifiedType::SimplifiedFactor SimplifiedFactor;
 
 };
 
+template <typename _L, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d>
+class ComplexUnit<BaseUnit<ComplexUnit<BaseUnit<_L,a>, BaseUnit<_L, b>>,c>, BaseUnit<_L, d>> :
+  public Object<typename _L::ScalarType, typename _L::Policy>
+{
+public:
 
-/*
+  enum
+  {
+    NumeratorBaseTypeValue = _L::NumeratorBaseTypeValue,
+    DenumeratorBaseTypeValue = _L::DenumeratorBaseTypeValue,
+    BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue
+  };
 
-template <typename _L, typename _R>
-class ComplexUnit<_L, _R, 
-  typename boost::enable_if_c<_L::BaseTypeValue != _R::BaseTypeValue && !_L::is_simple && _R::is_simple && _R::BaseTypeValue != Identity::BaseTypeValue>::type> :
+  typedef typename _L::BaseType BaseType;
+  typedef typename _L::DerivedType DerivedType;
+  typedef typename BaseUnit<BaseType, ((a + b) * c) + d>::SimplifiedType SimplifiedType;
+  typedef typename SimplifiedType::InvertedType InvertedType;
+  typedef typename SimplifiedType::SimplifiedFactor SimplifiedFactor;
+
+};
+
+template <typename _L, typename _R, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d>
+class ComplexUnit<BaseUnit<ComplexUnit<BaseUnit<_L, a>, BaseUnit<_R, b>>, c>, BaseUnit<_L, d>> :
   public Object<typename _L::ScalarType, typename _L::Policy>
 {
 
   enum {
     _NumeratorBaseTypeValue = _L::NumeratorBaseTypeValue * _R::NumeratorBaseTypeValue,
     _DenumeratorBaseTypeValue = _L::DenumeratorBaseTypeValue * _R::DenumeratorBaseTypeValue,
-    _gcd = boost::math::static_gcd<_NumeratorBaseTypeValue, _DenumeratorBaseTypeValue>::value 
+    _gcd = boost::math::static_gcd<_NumeratorBaseTypeValue, _DenumeratorBaseTypeValue>::value
   };
 
 public:
 
-  enum 
-  { 
+  enum
+  {
     NumeratorBaseTypeValue = _NumeratorBaseTypeValue / _gcd,
     DenumeratorBaseTypeValue = _DenumeratorBaseTypeValue / _gcd,
-    BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue 
+    BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue
   };
 
-  typedef typename _L::L _L_L;
-  typedef typename _L::R _L_R;
+  typedef BaseUnit<_L, (a * c) + d> L;
+  typedef BaseUnit<_R, (a * c)> R;
 
-  typedef typename ComplexUnit<typename _L_L::SimplifiedType, typename _R::SimplifiedType>::SimplifiedType _L_L_R_SimplifiedType;
-  typedef ComplexUnit<typename _L_R::SimplifiedType, _L_L_R_SimplifiedType> _SimplifiedType;
-
-  typedef typename _SimplifiedType::BaseType          BaseType;
-  typedef typename _SimplifiedType::DerivedType       DerivedType;
-  typedef typename _SimplifiedType::SimplifiedType    SimplifiedType;
-  typedef typename _SimplifiedType::InvertedType      InvertedType;
-  typedef typename _SimplifiedType::SimplifiedFactor  SimplifiedFactor;
-
-  typedef typename BaseType::L L;
-  typedef typename BaseType::R R;
-
-  static bool const is_simple = BaseType::is_simple;
-
-public:
-
-  inline static Types::String Suffix()
-  {
-    return _L::Suffix() + Literals::DOT_OPERATOR + _R::Suffix();
-  }
+  typedef ComplexUnit<L,R>  BaseType;
+  typedef ComplexUnit<L,R>  DerivedType;
+  typedef typename BaseUnit<BaseType>::SimplifiedType SimplifiedType;
+  typedef typename SimplifiedType::InvertedType InvertedType;
+  typedef typename SimplifiedType::SimplifiedFactor SimplifiedFactor;
 
 };
 
-
-
-template <typename _L, typename _R>
-class ComplexUnit<_L, _R, 
-  typename boost::enable_if_c<_L::BaseTypeValue != _R::BaseTypeValue && _L::is_simple && _L::BaseTypeValue != Identity::BaseTypeValue && !_R::is_simple>::type> :
+template <typename _L, typename _R, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d>
+class ComplexUnit<BaseUnit<ComplexUnit<BaseUnit<_L, a>, BaseUnit<_R, b>>, c>, BaseUnit<_R, d>> :
   public Object<typename _L::ScalarType, typename _L::Policy>
 {
 
   enum {
     _NumeratorBaseTypeValue = _L::NumeratorBaseTypeValue * _R::NumeratorBaseTypeValue,
     _DenumeratorBaseTypeValue = _L::DenumeratorBaseTypeValue * _R::DenumeratorBaseTypeValue,
-    _gcd = boost::math::static_gcd<_NumeratorBaseTypeValue, _DenumeratorBaseTypeValue>::value 
+    _gcd = boost::math::static_gcd<_NumeratorBaseTypeValue, _DenumeratorBaseTypeValue>::value
   };
 
 public:
 
   enum
-  { 
+  {
     NumeratorBaseTypeValue = _NumeratorBaseTypeValue / _gcd,
     DenumeratorBaseTypeValue = _DenumeratorBaseTypeValue / _gcd,
-    BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue 
+    BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue
   };
 
-  typedef typename _R::L _R_L;
-  typedef typename _R::R _R_R;
+  typedef BaseUnit<_L, (a * c)> L;
+  typedef BaseUnit<_R, (b * c) + d> R;
 
-  typedef typename ComplexUnit<typename _R_L::SimplifiedType, typename _L::SimplifiedType>::SimplifiedType _R_L_R_SimplifiedType;
-  typedef ComplexUnit<_R_L_R_SimplifiedType, typename _R_R::SimplifiedType> _SimplifiedType;
-
-  typedef typename _SimplifiedType::BaseType   BaseType;
-  typedef BaseType                             DerivedType;
-  typedef BaseUnit<BaseType>                   SimplifiedType;
-  typedef BaseUnit<BaseType,-1>                InvertedType;
-  typedef typename BaseType::SimplifiedFactor  SimplifiedFactor;
-
-  static bool const is_simple = BaseType::is_simple;
-
-  typedef typename BaseType::L L;
-  typedef typename BaseType::R R;
-
-public:
-
-  inline static Types::String Suffix()
-  {
-    return _L::Suffix() + Literals::DOT_OPERATOR + _R::Suffix();
-  }
+  typedef ComplexUnit<L, R>  BaseType;
+  typedef ComplexUnit<L, R>  DerivedType;
+  typedef typename BaseUnit<BaseType>::SimplifiedType SimplifiedType;
+  typedef typename SimplifiedType::InvertedType InvertedType;
+  typedef typename SimplifiedType::SimplifiedFactor SimplifiedFactor;
 
 };
 
+template <typename _L, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d, Types::Integer e, Types::Integer f>
+class ComplexUnit<BaseUnit<ComplexUnit<BaseUnit<_L, a>, BaseUnit<_L, b>>, c>, BaseUnit<ComplexUnit<BaseUnit<_L, d>, BaseUnit<_L, e>>, f>> :
+  public Object<typename _L::ScalarType, typename _L::Policy>
+{
+public:
 
+  enum
+  {
+    NumeratorBaseTypeValue = _L::NumeratorBaseTypeValue,
+    DenumeratorBaseTypeValue = _L::DenumeratorBaseTypeValue,
+    BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue
+  };
 
-template <typename _L, typename _R>
-class ComplexUnit<_L, _R, 
-  typename boost::enable_if_c<_L::BaseTypeValue != _R::BaseTypeValue && !is_simple_unit<_L>::value && !is_simple_unit<_R>::value>::type> : 
-  public Object<>, public Facade<ComplexUnit<_L,_R> >
+  typedef typename _L::BaseType BaseType;
+  typedef typename _L::DerivedType DerivedType;
+  typedef typename BaseUnit<BaseType, ((a + b) * c) + ((d + e) * f)>::SimplifiedType SimplifiedType;
+  typedef typename SimplifiedType::InvertedType InvertedType;
+  typedef typename SimplifiedType::SimplifiedFactor SimplifiedFactor;
+
+};
+
+template <typename _L, typename _R, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d, Types::Integer e, Types::Integer f>
+class ComplexUnit<BaseUnit<ComplexUnit<BaseUnit<_L, a>, BaseUnit<_R, b>>, c>, BaseUnit<ComplexUnit<BaseUnit<_R, d>, BaseUnit<_L, e>>, f>> :
+  public Object<typename _L::ScalarType, typename _L::Policy>
 {
 
   enum {
     _NumeratorBaseTypeValue = _L::NumeratorBaseTypeValue * _R::NumeratorBaseTypeValue,
     _DenumeratorBaseTypeValue = _L::DenumeratorBaseTypeValue * _R::DenumeratorBaseTypeValue,
-    _gcd = boost::math::static_gcd<_NumeratorBaseTypeValue, _DenumeratorBaseTypeValue>::value 
+    _gcd = boost::math::static_gcd<_NumeratorBaseTypeValue, _DenumeratorBaseTypeValue>::value
   };
 
 public:
 
   enum
-  { 
+  {
     NumeratorBaseTypeValue = _NumeratorBaseTypeValue / _gcd,
     DenumeratorBaseTypeValue = _DenumeratorBaseTypeValue / _gcd,
-    BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue 
+    BaseTypeValue = NumeratorBaseTypeValue * DenumeratorBaseTypeValue
   };
 
-  typedef typename _L::L _L_L;
-  typedef typename _L::R _L_R;
-  typedef typename _R::L _R_L;
-  typedef typename _R::R _R_R;
+  typedef BaseUnit<_L, (a * c) + (e * f)> L;
+  typedef BaseUnit<_R, (b * c) + (d * f)> R;
 
-  typedef typename ComplexUnit<typename _L_L::SimplifiedType, typename _R_L::SimplifiedType>::SimplifiedType _L_L_R_L_SimplifiedType;
-  typedef typename ComplexUnit<typename _L_L::SimplifiedType, typename _R_R::SimplifiedType>::SimplifiedType _L_L_R_R_SimplifiedType;
-  typedef typename ComplexUnit<typename _L_R::SimplifiedType, typename _R_L::SimplifiedType>::SimplifiedType _L_R_R_L_SimplifiedType;
-  typedef typename ComplexUnit<typename _L_R::SimplifiedType, typename _R_R::SimplifiedType>::SimplifiedType _L_R_R_R_SimplifiedType;
-
-  typedef typename ComplexUnit<_L_L_R_L_SimplifiedType, typename BaseUnit<_L_L_R_R_SimplifiedType,-1>::SimplifiedType>::SimplifiedType _L_SimplifiedType;
-  typedef typename ComplexUnit<_L_R_R_L_SimplifiedType, typename BaseUnit<_L_R_R_R_SimplifiedType,-1>::SimplifiedType>::SimplifiedType _R_SimplifiedType;
-
-  typedef typename _L_SimplifiedType::L __L;
-  typedef typename _R_SimplifiedType::R __R;
-
-  typedef typename __L::SimplifiedType L;
-  typedef typename __R::SimplifiedType R;
-
-  typedef typename ComplexUnit<L, R>::BaseType   BaseType;
-  typedef BaseType                               DerivedType;
-  typedef BaseUnit<BaseType>                     SimplifiedType;
-  typedef BaseUnit<BaseType,-1>                  InvertedType;
-
-  static bool const is_simple = BaseType::is_simple;
-
-public:
-
-  inline static Types::String Suffix()
-  {
-    return _L::Suffix() + Literals::DOT_OPERATOR + _R::Suffix();
-  }
+  typedef ComplexUnit<L, R>  BaseType;
+  typedef ComplexUnit<L, R>  DerivedType;
+  typedef typename BaseUnit<BaseType>::SimplifiedType SimplifiedType;
+  typedef typename SimplifiedType::InvertedType InvertedType;
+  typedef typename SimplifiedType::SimplifiedFactor SimplifiedFactor;
 
 };
-  */
 
 } //namespace Unit
