@@ -30,7 +30,6 @@ jean.gauthier@programmer.net
 
 #include "Detail\UnitObject.h"
 #include "Detail\UnitHelper.h"
-#include <boost/utility/enable_if.hpp>
 
 
 namespace Unit
