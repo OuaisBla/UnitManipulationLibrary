@@ -20,6 +20,8 @@ typedef Product<Kilogram,Product<Meter,Product<Second>::Invert> > Newton5;
 typedef Product<Product<Kilogram,Meter> ,Product<Second>::Invert>  Newton6;
 typedef Product<Product<Kilogram,Product<Second>::Invert> ,Meter> Newton7;
 typedef Product<Product<Meter,Product<Second>::Invert> ,Kilogram> Newton8;
+
+// With repetition of base type Time.
 typedef Product<Product<Meter, Second::Invert>, Product<Second::Invert, Kilogram>> Newton9;
 typedef Product<Product<Second::Invert, Meter>, Product<Kilogram, Second::Invert>> Newton10;
 typedef Product<Product<Second::Invert, Kilogram>, Product<Meter, Second::Invert>> Newton11;
@@ -184,6 +186,21 @@ void TestCompileTimeDefinition()
 
   Scalar const s8 = newton4 / newton3;
   Assert(fequal(s8, 1.0));
+
+  // TO DO: Bailing out those. If we start repeating base unit, merging them all in tiresome without recursion in template partial specialisation.
+  /*
+  Scalar const s9 = newton9 / newton10;
+  Assert(fequal(s9, 1.0));
+
+  Scalar const s10 = newton10 / newton11;
+  Assert(fequal(s10, 1.0));
+
+  Scalar const s11 = newton11 / newton12;
+  Assert(fequal(s11, 1.0));
+
+  Scalar const s12 = newton12 / newton9;
+  Assert(fequal(s12, 1.0));
+  */
 
 }
 
