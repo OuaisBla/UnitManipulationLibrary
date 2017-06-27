@@ -149,6 +149,31 @@ void TestCompileTimeDefinition()
 
   Scalar const factor = Newton::SimplifiedFactor::ConversionFactor();
   Assert( factor == 1.0 );
+
+  Scalar const s1 = newton / newton2;
+  Assert( fequal( s1, 1.0)  );
+
+/*  Scalar const s2 = newton2 / newton3;
+  Assert(fequal(s2, 1.0));
+
+  Scalar const s3 = newton3 / newton4;
+  Assert(fequal(s3, 1.0));
+
+  Scalar const s4 = newton5 / newton6;
+  Assert(fequal(s4, 1.0));
+
+  Scalar const s5 = newton7 / newton8;
+  Assert(fequal(s5, 1.0));
+
+  Scalar const s6 = newton8 / newton7;
+  Assert(fequal(s6, 1.0));
+
+  Scalar const s7 = newton5 / newton2;
+  Assert(fequal(s7, 1.0));
+
+  Scalar const s8 = newton4 / newton3;
+  Assert(fequal(s8, 1.0));*/
+
 }
 
 

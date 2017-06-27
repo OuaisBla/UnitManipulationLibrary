@@ -58,7 +58,7 @@ class BaseUnit<Identity, a> : public Identity
   Class that represents a product of unit type.
 */
 
-template <typename _L, typename _R = _L, typename Enable = void>
+template <typename _L, typename _R = _L>
 class ComplexUnit : public Object<typename _L::ScalarType, typename _L::Policy>
 {
 
@@ -254,5 +254,46 @@ public:
   };
 
 };
+
+
+template <typename _A, typename _B, typename _C, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d, Types::Integer e, Types::Integer f, Types::Integer g, Types::Integer h, Types::Integer i, Types::Integer j>
+class ComplexUnit<
+    BaseUnit<
+      ComplexUnit<
+        BaseUnit<_A, a>,
+        BaseUnit<ComplexUnit<
+                    BaseUnit<_B, b>, 
+                    BaseUnit<_C, c>>,d>>, e>,
+     BaseUnit<
+        ComplexUnit<
+          BaseUnit<ComplexUnit<
+                    BaseUnit<_B, f>,
+                    BaseUnit<_A, g>>,h>,
+          BaseUnit<_C, i>>,j>> : 
+  public Object<typename _A::ScalarType, typename _A::Policy>
+{
+
+  typedef typename BaseUnit<_A, (a * e) + (g * h * j)>::SimplifiedType A;
+  typedef typename BaseUnit<_B, (b * d * e) + (f * h * j)>::SimplifiedType B;
+
+  typedef typename ComplexUnit<A,B>::SimplifiedType L;
+  typedef typename BaseUnit<_C, (c * d * e) + (i * j)>::SimplifiedType R;
+  
+public:
+
+  typedef typename ComplexUnit<L,R>::BaseType BaseType;
+  typedef ComplexUnit<typename L::DerivedType, typename R::DerivedType>  DerivedType;
+  typedef typename BaseUnit<BaseType>::SimplifiedType SimplifiedType;
+  typedef typename SimplifiedType::InvertedType InvertedType;
+  typedef typename SimplifiedType::SimplifiedFactor SimplifiedFactor;
+
+  enum
+  {
+    NumeratorBaseTypeValue = BaseType::NumeratorBaseTypeValue,
+    DenumeratorBaseTypeValue = BaseType::DenumeratorBaseTypeValue
+  };
+
+};
+
 
 } //namespace Unit
