@@ -295,5 +295,169 @@ public:
 
 };
 
+  template <typename _A, typename _B, typename _C, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d, Types::Integer e, Types::Integer f, Types::Integer g, Types::Integer h, Types::Integer i, Types::Integer j>
+  class ComplexUnit<
+    BaseUnit<
+      ComplexUnit<
+        BaseUnit<
+          ComplexUnit<
+            BaseUnit<_B, a>,
+            BaseUnit<_A, b>>, c>,
+        BaseUnit<_C, d>>, e>,
+    BaseUnit<
+      ComplexUnit<
+        BaseUnit<
+          ComplexUnit<
+            BaseUnit<_A, f>,
+            BaseUnit<_B, g>>, i>,
+        BaseUnit<_C, h>>, j>> :
+  public Object<typename _A::ScalarType, typename _A::Policy>
+  {
+
+    typedef typename BaseUnit<_A, (b * c * e) + (f * i * j)>::SimplifiedType A;
+    typedef typename BaseUnit<_B, (a * c * e) + (g * i * j)>::SimplifiedType B;
+
+    typedef typename ComplexUnit<A,B>::SimplifiedType L;
+    typedef typename BaseUnit<_C, (d * e) + (h * j)>::SimplifiedType R;
+
+  public:
+
+    typedef typename ComplexUnit<L,R>::BaseType BaseType;
+    typedef ComplexUnit<typename L::DerivedType, typename R::DerivedType>  DerivedType;
+    typedef typename BaseUnit<BaseType>::SimplifiedType SimplifiedType;
+    typedef typename SimplifiedType::InvertedType InvertedType;
+    typedef typename SimplifiedType::SimplifiedFactor SimplifiedFactor;
+
+    enum
+    {
+      NumeratorBaseTypeValue = BaseType::NumeratorBaseTypeValue,
+      DenumeratorBaseTypeValue = BaseType::DenumeratorBaseTypeValue
+    };
+
+  };
+
+  template <typename _A, typename _B, typename _C, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d, Types::Integer e, Types::Integer f, Types::Integer g, Types::Integer h, Types::Integer i, Types::Integer j>
+  class ComplexUnit<
+    BaseUnit<
+      ComplexUnit<
+        BaseUnit<
+          ComplexUnit<
+            BaseUnit<_A, a>,
+            BaseUnit<_B, b>>, c>,
+        BaseUnit<_C, d>>, e>,
+     BaseUnit<
+        ComplexUnit<
+          BaseUnit<_B, f>,
+          BaseUnit<
+            ComplexUnit<
+              BaseUnit<_A, g>,
+              BaseUnit<_C, h>>, i>>, j>> :
+  public Object<typename _A::ScalarType, typename _A::Policy>
+  {
+
+    typedef typename BaseUnit<_A, (a * c * e) + (g * i * j)>::SimplifiedType A;
+    typedef typename BaseUnit<_B, (b * c * e) + (f * j)>::SimplifiedType B;
+
+    typedef typename ComplexUnit<A,B>::SimplifiedType L;
+    typedef typename BaseUnit<_C, (d * e) + (h * i * j)>::SimplifiedType R;
+
+  public:
+
+    typedef typename ComplexUnit<L,R>::BaseType BaseType;
+    typedef ComplexUnit<typename L::DerivedType, typename R::DerivedType>  DerivedType;
+    typedef typename BaseUnit<BaseType>::SimplifiedType SimplifiedType;
+    typedef typename SimplifiedType::InvertedType InvertedType;
+    typedef typename SimplifiedType::SimplifiedFactor SimplifiedFactor;
+
+    enum
+    {
+      NumeratorBaseTypeValue = BaseType::NumeratorBaseTypeValue,
+      DenumeratorBaseTypeValue = BaseType::DenumeratorBaseTypeValue
+    };
+
+  };
+
+
+  template <typename _A, typename _B, typename _C, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d, Types::Integer e, Types::Integer f, Types::Integer g, Types::Integer h, Types::Integer i, Types::Integer j>
+  class ComplexUnit<
+    BaseUnit<
+      ComplexUnit<
+        BaseUnit<_A, a>,
+        BaseUnit<
+          ComplexUnit<
+            BaseUnit<_B, b>,
+            BaseUnit<_C, c>>, d>>, e>,
+      BaseUnit<
+        ComplexUnit<
+          BaseUnit<
+            ComplexUnit<
+              BaseUnit<_A, f>,
+              BaseUnit<_B, g>>, h>,
+          BaseUnit<_C, i>>, j>> :
+  public Object<typename _A::ScalarType, typename _A::Policy>
+  {
+
+    typedef typename BaseUnit<_A, (a * e) + (f * h * j)>::SimplifiedType A;
+    typedef typename BaseUnit<_B, (b * d * e) + (g * h * j)>::SimplifiedType B;
+
+    typedef typename ComplexUnit<A,B>::SimplifiedType L;
+    typedef typename BaseUnit<_C, (c * d * e) + (i * j)>::SimplifiedType R;
+
+  public:
+
+    typedef typename ComplexUnit<L,R>::BaseType BaseType;
+    typedef ComplexUnit<typename L::DerivedType, typename R::DerivedType>  DerivedType;
+    typedef typename BaseUnit<BaseType>::SimplifiedType SimplifiedType;
+    typedef typename SimplifiedType::InvertedType InvertedType;
+    typedef typename SimplifiedType::SimplifiedFactor SimplifiedFactor;
+
+    enum
+    {
+      NumeratorBaseTypeValue = BaseType::NumeratorBaseTypeValue,
+      DenumeratorBaseTypeValue = BaseType::DenumeratorBaseTypeValue
+    };
+
+  };
+
+  template <typename _A, typename _B, typename _C, Types::Integer a, Types::Integer b, Types::Integer c, Types::Integer d, Types::Integer e, Types::Integer f, Types::Integer g, Types::Integer h, Types::Integer i, Types::Integer j>
+  class ComplexUnit<
+    BaseUnit<
+      ComplexUnit<
+        BaseUnit<
+          ComplexUnit<
+            BaseUnit<_A, a>,
+            BaseUnit<_C, b>>, c>,
+        BaseUnit<_B, d>>, e>,
+    BaseUnit<
+      ComplexUnit<
+        BaseUnit<
+          ComplexUnit<
+            BaseUnit<_B, f>,
+            BaseUnit<_C, g>>, h>,
+        BaseUnit<_A, i>>, j>> :
+  public Object<typename _A::ScalarType, typename _A::Policy>
+  {
+
+    typedef typename BaseUnit<_A, (a * c * e) + (i * j)>::SimplifiedType A;
+    typedef typename BaseUnit<_B, (d * e) + (f * h * j)>::SimplifiedType B;
+
+    typedef typename ComplexUnit<A,B>::SimplifiedType L;
+    typedef typename BaseUnit<_C, (b * c * e) + (g * h * j)>::SimplifiedType R;
+
+  public:
+
+    typedef typename ComplexUnit<L,R>::BaseType BaseType;
+    typedef ComplexUnit<typename L::DerivedType, typename R::DerivedType>  DerivedType;
+    typedef typename BaseUnit<BaseType>::SimplifiedType SimplifiedType;
+    typedef typename SimplifiedType::InvertedType InvertedType;
+    typedef typename SimplifiedType::SimplifiedFactor SimplifiedFactor;
+
+    enum
+    {
+      NumeratorBaseTypeValue = BaseType::NumeratorBaseTypeValue,
+      DenumeratorBaseTypeValue = BaseType::DenumeratorBaseTypeValue
+    };
+
+  };
 
 } //namespace Unit

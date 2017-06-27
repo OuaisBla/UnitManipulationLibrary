@@ -20,7 +20,10 @@ typedef Product<Kilogram,Product<Meter,Product<Second>::Invert> > Newton5;
 typedef Product<Product<Kilogram,Meter> ,Product<Second>::Invert>  Newton6;
 typedef Product<Product<Kilogram,Product<Second>::Invert> ,Meter> Newton7;
 typedef Product<Product<Meter,Product<Second>::Invert> ,Kilogram> Newton8;
-
+typedef Product<Product<Meter, Second::Invert>, Product<Second::Invert, Kilogram>> Newton9;
+typedef Product<Product<Second::Invert, Meter>, Product<Kilogram, Second::Invert>> Newton10;
+typedef Product<Product<Second::Invert, Kilogram>, Product<Meter, Second::Invert>> Newton11;
+typedef Product<Product<Kilogram, Second::Invert>, Product<Second::Invert, Meter>> Newton12;
 
 //
 //  Compile time definition.
@@ -140,6 +143,14 @@ void TestCompileTimeDefinition()
 
   Newton8 newton8 = Newton8( newton7 );
 
+  Newton9 newton9 = Newton8(newton7);
+
+  Newton10 newton10 = Newton8(newton7);
+
+  Newton11 newton11 = Newton8(newton7);
+
+  Newton12 newton12 = Newton8(newton7);
+
 
   Meter const m = Meter(newton8 * ( Second(1.0) * Second(1.0) ) / Kilogram(1.0));
   Assert( m == Meter( 1.0 ) );
@@ -153,7 +164,7 @@ void TestCompileTimeDefinition()
   Scalar const s1 = newton / newton2;
   Assert( fequal( s1, 1.0)  );
 
-/*  Scalar const s2 = newton2 / newton3;
+  Scalar const s2 = newton2 / newton3;
   Assert(fequal(s2, 1.0));
 
   Scalar const s3 = newton3 / newton4;
@@ -172,7 +183,7 @@ void TestCompileTimeDefinition()
   Assert(fequal(s7, 1.0));
 
   Scalar const s8 = newton4 / newton3;
-  Assert(fequal(s8, 1.0));*/
+  Assert(fequal(s8, 1.0));
 
 }
 

@@ -1,0 +1,18 @@
+Unit::Quantity<
+Unit::BaseUnit<
+	Unit::ComplexUnit<
+		Unit::BaseUnit<
+			Unit::ComplexUnit<
+				Unit::BaseUnit<
+					Unit::ComplexUnit<
+						Unit::BaseUnit<Unit::_Length<Unit::Types::Scalar>,1>,
+						Unit::BaseUnit<Unit::_Mass,1>>,1>,
+				Unit::BaseUnit<Unit::_Time,-2>>,1>,
+		Unit::BaseUnit<
+			Unit::ComplexUnit<
+				Unit::BaseUnit<
+					Unit::ComplexUnit<
+						Unit::BaseUnit<Unit::_Mass,1>,
+						Unit::BaseUnit<Unit::_Length<Unit::Types::Scalar>,1>>,1>,
+				Unit::BaseUnit<Unit::_Time,-2>>,-1>>,1>,
+Unit::ProductFactor<Unit::Identity,_L>::SimplifiedFactor>
